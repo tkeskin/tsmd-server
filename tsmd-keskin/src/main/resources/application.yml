@@ -1,0 +1,20 @@
+server:
+  port: 5003
+  tomcat:
+    max-threads: 1500
+    min-spare-threads: 150
+spring:
+  application:
+    name: tsmd-keskin
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000

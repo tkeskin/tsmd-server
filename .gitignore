@@ -1,0 +1,55 @@
+# Project exclude paths
+/eureka-server/.gradle/
+/eureka-server/build/
+/eureka-server/build/classes/java/main/
+/tsmd-aras/.gradle/
+/tsmd-aras/build/
+/tsmd-aras/build/classes/java/main/
+/tsmd-auth/.gradle/
+/tsmd-auth/build/
+/tsmd-auth/build/classes/java/main/
+/tsmd-cengiz/.gradle/
+/tsmd-cengiz/build/
+/tsmd-cengiz/build/classes/java/main/
+/tsmd-common/.gradle/
+/tsmd-common/build/
+/tsmd-common/build/classes/java/main/
+/tsmd-keskin/.gradle/
+/tsmd-keskin/build/
+/tsmd-keskin/build/classes/java/main/
+/zuul-server/.gradle/
+/zuul-server/build/
+/zuul-server/build/classes/java/main/
+
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/

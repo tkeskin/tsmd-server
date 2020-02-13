@@ -1,0 +1,13 @@
+server:
+  port: 5009
+  tomcat:
+    max-threads: 1500
+    min-spare-threads: 150
+spring:
+  application:
+    name: tsmd-common
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream

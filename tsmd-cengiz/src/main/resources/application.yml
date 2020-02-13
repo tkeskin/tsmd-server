@@ -1,0 +1,40 @@
+server:
+  port: 5001
+  tomcat:
+    max-threads: 1500
+    min-spare-threads: 150
+spring:
+  application:
+    name: tsmd-cengiz
+  datasource:
+    hikari:
+      username: postgres
+      password: MYPASSWD
+      maximum-pool-size: 50
+      minimum-idle: 20
+      connection-timeout: 20500
+    url: jdbc:postgresql://localhost:5432/postgres
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+logging:
+  level:
+    root: info
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000

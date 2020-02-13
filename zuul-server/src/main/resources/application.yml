@@ -1,0 +1,47 @@
+server:
+  port: 8763
+spring:
+  application:
+    name: zuul-server
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      default-zone: ${EUREKA_URI:http://localhost:8761/eureka}
+zuul:
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
+  ignored-services: "*"
+  routes:
+    cengiz:
+      path: /catalog/**
+      service-id: tsmd-cengiz
+    aras:
+      path: /info/**
+      service-id: tsmd-aras
+    keskin:
+      path: /rating/**
+      service-id: tsmd-keskin
+    auth:
+      path: /api/**
+      service-id: tsmd-auth
+      strip-prefix: false
+      sensitive-headers: Cookie,Set-Cookie
+#  prefix: api
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+ribbon:
+  ConnectTimeout: 60000
+  ReadTimeout: 60000
+#default olarak açık birden fazla instance varsa dağıtım yapıyor
+#ribbon:
+#  eureka:
+#    enabled: true

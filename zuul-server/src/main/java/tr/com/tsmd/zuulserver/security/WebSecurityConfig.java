@@ -36,6 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll()
         .antMatchers(HttpMethod.POST, jwtConfig.getSsUri()).permitAll()
         .antMatchers(HttpMethod.GET, jwtConfig.getcUri()).permitAll()
+        .antMatchers(HttpMethod.POST, jwtConfig.getcUri()).permitAll()
         // must be an admin if trying to access admin area (authentication is also required here)
         .antMatchers("/catalog/**").hasRole("ADMIN")
         // Any other request must be authenticated

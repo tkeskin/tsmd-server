@@ -18,8 +18,7 @@ public class NewsEntity extends AuditModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank
-  private String picture;
+  private byte[] picture;
 
   @NotBlank
   private String newsTitle;
@@ -28,12 +27,10 @@ public class NewsEntity extends AuditModel {
   private String newsExplain;
 
 
-
   public NewsEntity() {
   }
 
-  public NewsEntity(Long id, String picture, String username, String newsTitle, String newsExplain) {
-    this.id = id;
+  public NewsEntity(@NotBlank byte[] picture, @NotBlank String newsTitle, @NotBlank String newsExplain) {
     this.picture = picture;
     this.newsTitle = newsTitle;
     this.newsExplain = newsExplain;
@@ -47,11 +44,11 @@ public class NewsEntity extends AuditModel {
     this.id = id;
   }
 
-  public String getPicture() {
+  public byte[] getPicture() {
     return picture;
   }
 
-  public void setPicture(String picture) {
+  public void setPicture(byte[] picture) {
     this.picture = picture;
   }
 

@@ -7,10 +7,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import tr.com.tsmd.cengiz.entity.TrademarkPreEntity;
 import tr.com.tsmd.cengiz.models.CatalogItem;
+import tr.com.tsmd.cengiz.models.TrademarkPre;
+import tr.com.tsmd.cengiz.models.TrademarkPreList;
 import tr.com.tsmd.cengiz.models.UserRating;
+import tr.com.tsmd.cengiz.repository.TrademarkPreRepository;
 import tr.com.tsmd.cengiz.service.MovieInfoService;
 import tr.com.tsmd.cengiz.service.UserRatingService;
 
@@ -28,6 +34,7 @@ public class CengizController {
 
   @Autowired
   UserRatingService ratingInfoService;
+
 
   /**
    * dummy api
@@ -64,4 +71,5 @@ public class CengizController {
         new CatalogItem("Tpe", "yeni", 2019)
     );*/
   }
+
 }

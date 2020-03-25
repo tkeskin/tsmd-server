@@ -1,20 +1,9 @@
 package tr.com.tsmd.cengiz.controller;
 
-import com.sun.istack.ByteArrayDataSource;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import javax.activation.DataHandler;
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeBodyPart;
-import org.apache.commons.codec.binary.Base64;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +22,6 @@ import tr.com.tsmd.cengiz.models.NewsList;
 import tr.com.tsmd.cengiz.models.NoticeList;
 import tr.com.tsmd.cengiz.models.PatentPre;
 import tr.com.tsmd.cengiz.models.TrademarkPre;
-import tr.com.tsmd.cengiz.models.TrademarkPreList;
 import tr.com.tsmd.cengiz.models.UserList;
 import tr.com.tsmd.cengiz.models.ValuationPatent;
 import tr.com.tsmd.cengiz.models.ValuationTrademark;
@@ -127,6 +115,30 @@ public class CengizPublicController {
     //list dönen servis için bir class daha yazıp öyle handle ettik
     NewsList newsList = newsInfoService.getNewsList();
     return newsList;
+  }
+
+  /**
+   * news list
+   *
+   * @return .
+   */
+  @GetMapping("/news/{id}")
+  public News getNewsById(@PathVariable("id") Long id) {
+
+    News news = newsInfoService.getNewsById(id);
+    return news;
+  }
+
+  /**
+   * news list
+   *
+   * @return .
+   */
+  @DeleteMapping("/newsDelete/{id}")
+  public void deleteNews(@PathVariable("id") Long id) {
+
+    newsInfoService.deleteNews(id);
+
   }
 
   /**

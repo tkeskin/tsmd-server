@@ -47,4 +47,18 @@ public class NewsInfoServiceImpl implements NewsInfoService {
   public void addNews(News news) {
     NewsEntity entity=newsRepository.save(new NewsEntity(news.getPicture(),news.getNewsTitle(),news.getNewsExplain()));
   }
+
+  @Override
+  public News getNewsById(Long id) {
+
+    NewsEntity entity=newsRepository.getById(id);
+    News news = new News(entity.getId(),entity.getNewsTitle(),entity.getNewsExplain(),"data: image/jpeg;base64," +
+        new String (Base64.encodeBase64 (entity.getPicture()), StandardCharsets.US_ASCII));
+    return news;
+  }
+
+  @Override
+  public void deleteNews(Long id) {
+    newsRepository.deleteById(id);
+  }
 }

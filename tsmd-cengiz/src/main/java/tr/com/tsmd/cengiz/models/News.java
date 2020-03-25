@@ -24,6 +24,13 @@ public class News {
     this.newsExplain = newsExplain;
   }
 
+  public News(Long id, String newsTitle, String newsExplain, String pictureBase64) {
+    this.id = id;
+    this.newsTitle = newsTitle;
+    this.newsExplain = newsExplain;
+    this.pictureBase64 = pictureBase64;
+  }
+
   public Long getId() {
     return id;
   }

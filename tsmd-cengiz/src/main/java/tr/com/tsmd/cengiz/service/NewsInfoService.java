@@ -8,4 +8,8 @@ public interface NewsInfoService {
   public NewsList getNewsList();
 
   public void addNews(News news);
+
+  News getNewsById(Long id);
+
+  void deleteNews(Long id);
 }

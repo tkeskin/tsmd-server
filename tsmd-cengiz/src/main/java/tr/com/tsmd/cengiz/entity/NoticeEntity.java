@@ -14,8 +14,7 @@ public class NoticeEntity extends AuditModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank
-  private String picture;
+  private byte[] picture;
 
   @NotBlank
   private String noticeTitle;
@@ -23,16 +22,19 @@ public class NoticeEntity extends AuditModel {
   @NotBlank
   private String noticeExplain;
 
+  private String fileName;
 
+  private String fileType;
 
   public NoticeEntity() {
   }
 
-  public NoticeEntity(Long id, String picture, String username, String noticeTitle, String noticeExplain) {
-    this.id = id;
+  public NoticeEntity(byte[] picture, @NotBlank String noticeTitle, @NotBlank String noticeExplain, String fileName, String fileType) {
     this.picture = picture;
     this.noticeTitle = noticeTitle;
     this.noticeExplain = noticeExplain;
+    this.fileName = fileName;
+    this.fileType = fileType;
   }
 
   public Long getId() {
@@ -43,11 +45,11 @@ public class NoticeEntity extends AuditModel {
     this.id = id;
   }
 
-  public String getPicture() {
+  public byte[] getPicture() {
     return picture;
   }
 
-  public void setPicture(String picture) {
+  public void setPicture(byte[] picture) {
     this.picture = picture;
   }
 
@@ -65,5 +67,21 @@ public class NoticeEntity extends AuditModel {
 
   public void setNoticeExplain(String noticeExplain) {
     this.noticeExplain = noticeExplain;
+  }
+
+  public String getFileName() {
+    return fileName;
+  }
+
+  public void setFileName(String fileName) {
+    this.fileName = fileName;
+  }
+
+  public String getFileType() {
+    return fileType;
+  }
+
+  public void setFileType(String fileType) {
+    this.fileType = fileType;
   }
 }

@@ -7,6 +7,8 @@ public class News {
   private String newsTitle;
   private String newsExplain;
   private String pictureBase64;
+  private String fileName;
+  private String fileType;
 
   public News() {
   }
@@ -18,17 +20,31 @@ public class News {
     this.newsExplain = newsExplain;
   }
 
-  public News(byte[] picture, String newsTitle, String newsExplain) {
+  public News(byte[] picture, String newsTitle, String newsExplain,String fileName,String fileType) {
     this.picture = picture;
     this.newsTitle = newsTitle;
     this.newsExplain = newsExplain;
+    this.fileName = fileName;
+    this.fileType = fileType;
   }
 
-  public News(Long id, String newsTitle, String newsExplain, String pictureBase64) {
+  public News(Long id, String newsTitle, String newsExplain, String pictureBase64,String fileName, String fileType) {
     this.id = id;
     this.newsTitle = newsTitle;
     this.newsExplain = newsExplain;
     this.pictureBase64 = pictureBase64;
+    this.fileName = fileName;
+    this.fileType = fileType;
+  }
+
+  public News(Long id, byte[] picture, String newsTitle, String newsExplain, String pictureBase64, String fileName, String fileType) {
+    this.id = id;
+    this.picture = picture;
+    this.newsTitle = newsTitle;
+    this.newsExplain = newsExplain;
+    this.pictureBase64 = pictureBase64;
+    this.fileName = fileName;
+    this.fileType = fileType;
   }
 
   public Long getId() {
@@ -69,5 +85,21 @@ public class News {
 
   public void setPictureBase64(String pictureBase64) {
     this.pictureBase64 = pictureBase64;
+  }
+
+  public String getFileName() {
+    return fileName;
+  }
+
+  public void setFileName(String fileName) {
+    this.fileName = fileName;
+  }
+
+  public String getFileType() {
+    return fileType;
+  }
+
+  public void setFileType(String fileType) {
+    this.fileType = fileType;
   }
 }

@@ -1,6 +1,7 @@
 package tr.com.tsmd.cengiz.controller;
 
 
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,15 +11,20 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import tr.com.tsmd.auth.payload.response.MessageResponse;
 import tr.com.tsmd.cengiz.entity.ActivityAnalysisEntity;
+import tr.com.tsmd.cengiz.entity.ContactMailEntity;
 import tr.com.tsmd.cengiz.entity.PatentPreEntity;
 import tr.com.tsmd.cengiz.entity.TrademarkPreEntity;
 import tr.com.tsmd.cengiz.entity.ValuationPatentEntity;
 import tr.com.tsmd.cengiz.entity.ValuationTrademarkEntity;
 import tr.com.tsmd.cengiz.models.AboutList;
 import tr.com.tsmd.cengiz.models.ActivityAnalysis;
+import tr.com.tsmd.cengiz.models.ContactMail;
+import tr.com.tsmd.cengiz.models.FullDataList;
 import tr.com.tsmd.cengiz.models.General;
 import tr.com.tsmd.cengiz.models.News;
 import tr.com.tsmd.cengiz.models.NewsList;
+import tr.com.tsmd.cengiz.models.NewsRelatedPicturesList;
+import tr.com.tsmd.cengiz.models.Notice;
 import tr.com.tsmd.cengiz.models.NoticeList;
 import tr.com.tsmd.cengiz.models.PatentPre;
 import tr.com.tsmd.cengiz.models.TrademarkPre;
@@ -28,6 +34,7 @@ import tr.com.tsmd.cengiz.models.ValuationTrademark;
 import tr.com.tsmd.cengiz.payload.request.ServicesRequest;
 import tr.com.tsmd.cengiz.payload.request.TrademarkPreRequest;
 import tr.com.tsmd.cengiz.repository.ActivityAnalysisRepository;
+import tr.com.tsmd.cengiz.repository.ContactMailRepository;
 import tr.com.tsmd.cengiz.repository.PatentPreRepository;
 import tr.com.tsmd.cengiz.repository.TrademarkPreRepository;
 import tr.com.tsmd.cengiz.repository.ValuationPatentRepository;
@@ -80,6 +87,9 @@ public class CengizPublicController {
 
   @Autowired
   ActivityAnalysisRepository activityAnalysisRepository;
+
+  @Autowired
+  ContactMailRepository contactMailRepository;
 
   /**
    * user list
@@ -134,12 +144,53 @@ public class CengizPublicController {
    *
    * @return .
    */
+  @GetMapping("/notice/{id}")
+  public Notice getNoticeById(@PathVariable("id") Long id) {
+
+    Notice notice = noticeInfoService.getNoticeById(id);
+    return notice;
+  }
+
+  /**
+   * news list
+   *
+   * @return .
+   */
   @DeleteMapping("/newsDelete/{id}")
   public void deleteNews(@PathVariable("id") Long id) {
 
     newsInfoService.deleteNews(id);
 
   }
+
+  /**
+   * news list
+   *
+   * @return .
+   */
+  @PostMapping(value = "/newsUpdatePicture", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> updateNewsPicture(@RequestParam("id") Long id, @RequestParam("mainPicture") MultipartFile mainPicture) throws Exception {
+
+
+    newsInfoService.updateNewsPicture(id,mainPicture);
+
+    return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+  }
+
+  /**
+   * notice list
+   *
+   * @return .
+   */
+  @PostMapping(value = "/noticeUpdatePicture", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> updateNoticePicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
+
+
+    noticeInfoService.updateNoticePicture(id,picture);
+
+    return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+  }
+
 
   /**
    * notice list
@@ -163,6 +214,30 @@ public class CengizPublicController {
     //list dönen servis için bir class daha yazıp öyle handle ettik
     AboutList aboutList = aboutInfoService.getAboutList();
     return aboutList;
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/newsRelatedPictures/{newsId}")
+  public NewsRelatedPicturesList getNewsRelatedPictures(@PathVariable("newsId") Long newsId) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    NewsRelatedPicturesList newsRelatedPicturesList = newsInfoService.getNewsRelatedPicturesList(newsId);
+    return newsRelatedPicturesList;
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/deleteNewsRelatedPictures/{id}")
+  public ResponseEntity<?> deleteNewsRelatedPictures(@PathVariable("id") Long id) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    newsInfoService.deleteNewsRelatedPicturesById(id);
+    return ResponseEntity.ok(new MessageResponse("Silindi!"));
   }
 
   @PostMapping(value = "/trademarkPreSave")
@@ -407,37 +482,78 @@ public class CengizPublicController {
 
 
   @PostMapping(value = "/addNewsAll", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> addNewsAll(@RequestParam("newsTitle") String newsTitle, @RequestParam("newsExplain") String newsExplain,
+  public ResponseEntity<General> addNewsAll(@RequestParam("newsTitle") String newsTitle, @RequestParam("newsExplain") String newsExplain,
                                       @RequestParam("mainPicture") MultipartFile mainPicture) throws Exception {
 
-    News news = new News(mainPicture.getBytes(), newsTitle, newsExplain);
+    News news = new News(mainPicture.getBytes(), newsTitle, newsExplain,mainPicture.getOriginalFilename(),mainPicture.getContentType());
 
-    newsInfoService.addNews(news);
+    Long id=newsInfoService.addNews(news);
+
+    General general=new General();
+    general.setMessage("Kayıt işleminiz başarılı!");
+    general.setId(id);
 
 
-    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    return ResponseEntity.ok(general);
   }
 
-  @PostMapping(value = "/addNewsAll2", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> addNewsAll2(@RequestParam("newsTitle") String newsTitle, @RequestParam("newsExplain") String newsExplain,
-                                       @RequestParam("mainPicture") MultipartFile mainPicture, @RequestParam("picture") MultipartFile[] picture) throws Exception {
+  @PostMapping(value = "/addNotice", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<General> addNotice(@RequestParam("noticeTitle") String noticeTitle, @RequestParam("noticeExplain") String noticeExplain,
+                                            @RequestParam("picture") MultipartFile picture) throws Exception {
+
+    Notice notice = new Notice(picture.getBytes(), noticeTitle, noticeExplain,picture.getOriginalFilename(),picture.getContentType());
+
+    Long id=noticeInfoService.addNotice(notice);
+
+    General general=new General();
+    general.setMessage("Kayıt işleminiz başarılı!");
+    general.setId(id);
 
 
-    byte[] image = mainPicture.getBytes();
-    String title = newsTitle;
-    String explain = newsExplain;
-
-
-    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    return ResponseEntity.ok(general);
   }
 
   @PostMapping(value = "/addNewsFiles", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> addNewsFiles(@RequestParam("picture") MultipartFile[] picture) throws Exception {
+  public ResponseEntity<?> addNewsFiles(@RequestParam("id") Long id,@RequestParam("relatedPictures") MultipartFile relatedPictures) throws Exception {
 
-    for (int i = 0; i < picture.length; i++) {
-      byte[] image = picture[i].getBytes();
-    }
+      newsInfoService.addNewsRelatedPictures(id,relatedPictures);
+
 
     return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+  }
+
+  /**
+   * news list
+   *
+   * @return .
+   */
+  @PostMapping(value = "/newsUpdateRelatedPicture", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> updateNewsRelatedPicture(@RequestParam("id") Long id, @RequestParam("relatedPicture") MultipartFile relatedPicture) throws Exception {
+
+
+    newsInfoService.updateNewsRelatedPicture(id,relatedPicture);
+
+    return ResponseEntity.ok(new MessageResponse("Resim güncelleme başarılı!"));
+  }
+
+  @PostMapping(value = "/sendContactMail")
+  public ResponseEntity<?> sendContactMail(@RequestBody ContactMail contactMail) {
+
+    contactMailRepository.save(new ContactMailEntity(contactMail.getEmail(),contactMail.getNameSurname(),contactMail.getMessage()));
+
+    String[] to = {"damlaberber@turkpatent.gov.tr"};
+    String content= "Ad Soyad:"+contactMail.getNameSurname()+"Email:"+contactMail.getEmail()+"Message:"+contactMail.getMessage();
+    sendMail(content, to, contactMail.getEmail(), 1, "");
+
+    return ResponseEntity.ok(new MessageResponse("Mailiniz gönderilmiştir!"));
+  }
+
+
+  @PostMapping(value = "/fullData",produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> sendDataTable(@RequestBody FullDataList fullDataList) {
+
+
+
+    return ResponseEntity.ok(new MessageResponse("Mailiniz gönderilmiştir!"));
   }
 }

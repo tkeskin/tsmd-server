@@ -1,6 +1,7 @@
 package tr.com.tsmd.cengiz.entity;
 
 
+import org.hibernate.annotations.Type;
 import tr.com.tsmd.cengiz.util.Const;
 
 import javax.persistence.*;
@@ -15,6 +16,8 @@ public class AboutEntity extends AuditModel {
   private Long id;
 
   @NotBlank
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String aboutExplain;
 
 

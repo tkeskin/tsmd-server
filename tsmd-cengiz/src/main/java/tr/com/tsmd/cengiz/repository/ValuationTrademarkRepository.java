@@ -7,4 +7,5 @@ import tr.com.tsmd.cengiz.entity.ValuationTrademarkEntity;
 @Repository
 public interface ValuationTrademarkRepository extends JpaRepository<ValuationTrademarkEntity, Long> {
 
+  ValuationTrademarkEntity getById(Long id);
 }

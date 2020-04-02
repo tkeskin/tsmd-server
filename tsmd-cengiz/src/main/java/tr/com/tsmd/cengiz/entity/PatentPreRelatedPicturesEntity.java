@@ -1,15 +1,18 @@
 package tr.com.tsmd.cengiz.entity;
 
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
 import org.hibernate.annotations.Type;
 import tr.com.tsmd.cengiz.util.Const;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-
 @Entity
-@Table(name = Const.TABLE_NOTICE, schema = Const.SCHEMA)
-public class NoticeEntity extends AuditModel {
+@Table(name = Const.TABLE_PATENTPRE_RELATED_PICTURES, schema = Const.SCHEMA)
+public class PatentPreRelatedPicturesEntity extends AuditModel {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,27 +22,21 @@ public class NoticeEntity extends AuditModel {
   @Type(type="org.hibernate.type.BinaryType")
   private byte[] picture;
 
-  @NotBlank
-  private String noticeTitle;
-
-  @NotBlank
-  @Lob
-  @Type(type="org.hibernate.type.TextType")
-  private String noticeExplain;
-
   private String fileName;
 
   private String fileType;
 
-  public NoticeEntity() {
+  private Long patentPreId;
+
+
+  public PatentPreRelatedPicturesEntity() {
   }
 
-  public NoticeEntity(byte[] picture, @NotBlank String noticeTitle, @NotBlank String noticeExplain, String fileName, String fileType) {
+  public PatentPreRelatedPicturesEntity(byte[] picture, String fileName, String fileType, Long patentPreId) {
     this.picture = picture;
-    this.noticeTitle = noticeTitle;
-    this.noticeExplain = noticeExplain;
     this.fileName = fileName;
     this.fileType = fileType;
+    this.patentPreId = patentPreId;
   }
 
   public Long getId() {
@@ -58,22 +55,6 @@ public class NoticeEntity extends AuditModel {
     this.picture = picture;
   }
 
-  public String getNoticeTitle() {
-    return noticeTitle;
-  }
-
-  public void setNoticeTitle(String noticeTitle) {
-    this.noticeTitle = noticeTitle;
-  }
-
-  public String getNoticeExplain() {
-    return noticeExplain;
-  }
-
-  public void setNoticeExplain(String noticeExplain) {
-    this.noticeExplain = noticeExplain;
-  }
-
   public String getFileName() {
     return fileName;
   }
@@ -88,5 +69,13 @@ public class NoticeEntity extends AuditModel {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public Long getPatentPreId() {
+    return patentPreId;
+  }
+
+  public void setPatentPreId(Long patentPreId) {
+    this.patentPreId = patentPreId;
   }
 }

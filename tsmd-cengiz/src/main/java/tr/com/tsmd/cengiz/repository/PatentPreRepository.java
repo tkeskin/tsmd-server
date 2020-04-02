@@ -7,4 +7,5 @@ import tr.com.tsmd.cengiz.entity.PatentPreEntity;
 @Repository
 public interface PatentPreRepository extends JpaRepository<PatentPreEntity, Long> {
 
+  PatentPreEntity getById(Long id);
 }

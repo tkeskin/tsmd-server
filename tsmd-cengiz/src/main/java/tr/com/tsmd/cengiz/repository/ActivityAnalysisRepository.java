@@ -7,4 +7,5 @@ import tr.com.tsmd.cengiz.entity.ActivityAnalysisEntity;
 @Repository
 public interface ActivityAnalysisRepository extends JpaRepository<ActivityAnalysisEntity, Long> {
 
+  ActivityAnalysisEntity getById(Long id);
 }

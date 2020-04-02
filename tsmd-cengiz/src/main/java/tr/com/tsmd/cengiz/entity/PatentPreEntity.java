@@ -5,10 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.Type;
 import tr.com.tsmd.cengiz.util.Const;
 
 @Entity
@@ -45,25 +47,49 @@ public class PatentPreEntity extends AuditModel {
 
 
 
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String title;
 
-
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String patentkeyword;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String patentapplication;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String advantage;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String publications;
-  private String deferencechoose;
-  private String deferenceno;
-  private String deferencepriority;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String detailexplain;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String picture;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String otherpoint;
+
+  @Lob
+  @Type(type="org.hibernate.type.BinaryType")
+  private byte[] dekont;
+  private String dekontFileName;
+  private String dekontFileType;
 
 
   public PatentPreEntity() {
   }
 
-  public PatentPreEntity(String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String protectiontype, String reporttype, String computerarea, String electricityarea, String electronicarea, String machinearea, String medicinearea, String automotivearea, String metallurgyarea, String biomedicalarea, String chemistryarea, String foodarea, String buildarea, String otherarea, String title, String patentkeyword, String patentapplication, String advantage, String publications, String deferencechoose, String deferenceno, String deferencepriority, String detailexplain, String picture, String otherpoint) {
+  public PatentPreEntity(String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String protectiontype, String reporttype, String computerarea, String electricityarea, String electronicarea, String machinearea, String medicinearea, String automotivearea, String metallurgyarea, String biomedicalarea, String chemistryarea, String foodarea, String buildarea, String otherarea, String title, String patentkeyword, String patentapplication, String advantage, String publications, String detailexplain, String picture, String otherpoint) {
     this.name_surname = name_surname;
     this.tc = tc;
     this.address = address;
@@ -88,9 +114,6 @@ public class PatentPreEntity extends AuditModel {
     this.patentapplication = patentapplication;
     this.advantage = advantage;
     this.publications = publications;
-    this.deferencechoose = deferencechoose;
-    this.deferenceno = deferenceno;
-    this.deferencepriority = deferencepriority;
     this.detailexplain = detailexplain;
     this.picture = picture;
     this.otherpoint = otherpoint;
@@ -296,29 +319,6 @@ public class PatentPreEntity extends AuditModel {
     this.publications = publications;
   }
 
-  public String getDeferencechoose() {
-    return deferencechoose;
-  }
-
-  public void setDeferencechoose(String deferencechoose) {
-    this.deferencechoose = deferencechoose;
-  }
-
-  public String getDeferenceno() {
-    return deferenceno;
-  }
-
-  public void setDeferenceno(String deferenceno) {
-    this.deferenceno = deferenceno;
-  }
-
-  public String getDeferencepriority() {
-    return deferencepriority;
-  }
-
-  public void setDeferencepriority(String deferencepriority) {
-    this.deferencepriority = deferencepriority;
-  }
 
   public String getDetailexplain() {
     return detailexplain;
@@ -342,5 +342,29 @@ public class PatentPreEntity extends AuditModel {
 
   public void setOtherpoint(String otherpoint) {
     this.otherpoint = otherpoint;
+  }
+
+  public byte[] getDekont() {
+    return dekont;
+  }
+
+  public void setDekont(byte[] dekont) {
+    this.dekont = dekont;
+  }
+
+  public String getDekontFileName() {
+    return dekontFileName;
+  }
+
+  public void setDekontFileName(String dekontFileName) {
+    this.dekontFileName = dekontFileName;
+  }
+
+  public String getDekontFileType() {
+    return dekontFileType;
+  }
+
+  public void setDekontFileType(String dekontFileType) {
+    this.dekontFileType = dekontFileType;
   }
 }

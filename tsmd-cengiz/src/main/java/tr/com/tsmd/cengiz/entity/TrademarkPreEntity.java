@@ -5,10 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.Type;
 import tr.com.tsmd.cengiz.util.Const;
 
 @Entity
@@ -19,10 +21,23 @@ public class TrademarkPreEntity extends AuditModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String trademarktype;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String trademarkimage;
+
   private String trademarkimagename;
+
+  @Lob
+  @Type(type="org.hibernate.type.BinaryType")
   private byte[] trademarkimagebyte;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String trademarktext;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String trademarkclass;
   private String name_surname;
   private String tc;
@@ -32,8 +47,12 @@ public class TrademarkPreEntity extends AuditModel {
   @Size(max = 50)
   @Email
   private String email;
+
+  @Lob
+  @Type(type="org.hibernate.type.BinaryType")
   private byte[] dekont;
   private String dekontName;
+  private String dekontFileType;
 
 
 
@@ -164,5 +183,13 @@ public class TrademarkPreEntity extends AuditModel {
 
   public void setDekontName(String dekontName) {
     this.dekontName = dekontName;
+  }
+
+  public String getDekontFileType() {
+    return dekontFileType;
+  }
+
+  public void setDekontFileType(String dekontFileType) {
+    this.dekontFileType = dekontFileType;
   }
 }

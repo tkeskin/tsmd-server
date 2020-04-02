@@ -7,4 +7,5 @@ import tr.com.tsmd.cengiz.entity.ValuationPatentEntity;
 @Repository
 public interface ValuationPatentRepository extends JpaRepository<ValuationPatentEntity, Long> {
 
+  ValuationPatentEntity getById(Long id);
 }

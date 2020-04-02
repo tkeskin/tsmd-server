@@ -5,7 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
+import org.hibernate.annotations.Type;
 import tr.com.tsmd.cengiz.util.Const;
 
 @Entity
@@ -16,37 +18,137 @@ public class ValuationTrademarkEntity extends AuditModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String address;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String trademarkclass;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String trademarkpurpose;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String registrationdate;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String commonusage;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String dominanttrademark;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String targetcountry;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String trademarktime;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String markettime;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String trademarkcontribution;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String incomepercent;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String mainsector;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String othersector;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String marketshare;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String totalturnover;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String overseasmarketshare;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String exportcountry;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String turnoverpercent;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String percentroyalt;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String competingmarketshare;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String markethistory;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String growthrate;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String turnovertarget;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String trademarkturnoverpercent;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String incomeincreasepercent;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String license;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String licenseroyalt;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String contract;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String advertisement;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String totalexpenditure;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String countryoutside;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String europeanunion;
+
+
+  @Lob
+  @Type(type="org.hibernate.type.BinaryType")
+  private byte[] dekont;
+  private String dekontFileName;
+  private String dekontFileType;
 
 
   public ValuationTrademarkEntity() {
@@ -349,5 +451,29 @@ public class ValuationTrademarkEntity extends AuditModel {
 
   public void setEuropeanunion(String europeanunion) {
     this.europeanunion = europeanunion;
+  }
+
+  public byte[] getDekont() {
+    return dekont;
+  }
+
+  public void setDekont(byte[] dekont) {
+    this.dekont = dekont;
+  }
+
+  public String getDekontFileName() {
+    return dekontFileName;
+  }
+
+  public void setDekontFileName(String dekontFileName) {
+    this.dekontFileName = dekontFileName;
+  }
+
+  public String getDekontFileType() {
+    return dekontFileType;
+  }
+
+  public void setDekontFileType(String dekontFileType) {
+    this.dekontFileType = dekontFileType;
   }
 }

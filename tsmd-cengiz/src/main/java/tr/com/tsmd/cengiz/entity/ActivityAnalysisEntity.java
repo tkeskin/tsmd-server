@@ -5,10 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.Type;
 import tr.com.tsmd.cengiz.util.Const;
 
 @Entity
@@ -26,11 +28,32 @@ public class ActivityAnalysisEntity extends AuditModel {
   @Size(max = 50)
   @Email
   private String email;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String keyWord;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String opponent;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String technicalcomponent;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String image;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String otherpoint;
+
+  @Lob
+  @Type(type="org.hibernate.type.BinaryType")
+  private byte[] dekont;
+  private String dekontFileName;
+  private String dekontFileType;
 
 
 
@@ -136,5 +159,29 @@ public class ActivityAnalysisEntity extends AuditModel {
 
   public void setOtherpoint(String otherpoint) {
     this.otherpoint = otherpoint;
+  }
+
+  public byte[] getDekont() {
+    return dekont;
+  }
+
+  public void setDekont(byte[] dekont) {
+    this.dekont = dekont;
+  }
+
+  public String getDekontFileName() {
+    return dekontFileName;
+  }
+
+  public void setDekontFileName(String dekontFileName) {
+    this.dekontFileName = dekontFileName;
+  }
+
+  public String getDekontFileType() {
+    return dekontFileType;
+  }
+
+  public void setDekontFileType(String dekontFileType) {
+    this.dekontFileType = dekontFileType;
   }
 }

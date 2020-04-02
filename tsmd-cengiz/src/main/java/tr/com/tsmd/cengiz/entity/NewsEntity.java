@@ -1,6 +1,7 @@
 package tr.com.tsmd.cengiz.entity;
 
 
+import org.hibernate.annotations.Type;
 import tr.com.tsmd.cengiz.util.Const;
 
 import javax.persistence.*;
@@ -18,12 +19,16 @@ public class NewsEntity extends AuditModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @Lob
+  @Type(type="org.hibernate.type.BinaryType")
   private byte[] picture;
 
   @NotBlank
   private String newsTitle;
 
   @NotBlank
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String newsExplain;
 
   private String fileName;

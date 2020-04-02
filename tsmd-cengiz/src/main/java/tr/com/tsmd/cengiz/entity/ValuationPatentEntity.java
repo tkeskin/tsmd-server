@@ -5,7 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
+import org.hibernate.annotations.Type;
 import tr.com.tsmd.cengiz.util.Const;
 
 @Entity
@@ -16,36 +18,132 @@ public class ValuationPatentEntity extends AuditModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String address;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String patentpurpose;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String patentappno;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String patentcountry;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String patentmarket;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String patentcontribution;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String patentsector;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String patentothersector;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String marketshare;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String percentageturnover;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String overseasmarketshare;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String exportcountry;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String exportturnover;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String royaltyrate;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String competingmarketshare;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String competitordate;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String competinggrowthrate;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String turnovertarget;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String turnoverpercent;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String incomepercent;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String license;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String licenseroyalt;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String contract;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String advertisement;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String totalexpenditure;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String spending;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String developmentspending;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String worldspending;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String caseexpense;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String countryoutside;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String europeanunio;
+
+  @Lob
+  @Type(type="org.hibernate.type.BinaryType")
+  private byte[] dekont;
+  private String dekontFileName;
+  private String dekontFileType;
 
 
   public ValuationPatentEntity() {
@@ -341,5 +439,29 @@ public class ValuationPatentEntity extends AuditModel {
 
   public void setEuropeanunio(String europeanunio) {
     this.europeanunio = europeanunio;
+  }
+
+  public byte[] getDekont() {
+    return dekont;
+  }
+
+  public void setDekont(byte[] dekont) {
+    this.dekont = dekont;
+  }
+
+  public String getDekontFileName() {
+    return dekontFileName;
+  }
+
+  public void setDekontFileName(String dekontFileName) {
+    this.dekontFileName = dekontFileName;
+  }
+
+  public String getDekontFileType() {
+    return dekontFileType;
+  }
+
+  public void setDekontFileType(String dekontFileType) {
+    this.dekontFileType = dekontFileType;
   }
 }

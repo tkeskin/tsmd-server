@@ -38,9 +38,6 @@ public class PatentPre {
   private String patentapplication;
   private String advantage;
   private String publications;
-  private String deferencechoose;
-  private String deferenceno;
-  private String deferencepriority;
   private String detailexplain;
   private String picture;
   private String otherpoint;
@@ -50,7 +47,7 @@ public class PatentPre {
 
   public PatentPre(String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String protectiontype, String reporttype, String computerarea, String electricityarea, String electronicarea,
                    String machinearea, String medicinearea, String automotivearea, String metallurgyarea, String biomedicalarea, String chemistryarea, String foodarea, String buildarea, String otherarea, String title,
-                   String patentkeyword, String patentapplication, String advantage, String publications, String deferencechoose, String deferenceno, String deferencepriority, String detailexplain, String picture, String otherpoint) {
+                   String patentkeyword, String patentapplication, String advantage, String publications, String detailexplain, String picture, String otherpoint) {
 
     this.name_surname = name_surname;
     this.tc = tc;
@@ -76,9 +73,6 @@ public class PatentPre {
     this.patentapplication = patentapplication;
     this.advantage = advantage;
     this.publications = publications;
-    this.deferencechoose = deferencechoose;
-    this.deferenceno = deferenceno;
-    this.deferencepriority = deferencepriority;
     this.detailexplain = detailexplain;
     this.picture = picture;
     this.otherpoint = otherpoint;
@@ -284,29 +278,6 @@ public class PatentPre {
     this.publications = publications;
   }
 
-  public String getDeferencechoose() {
-    return deferencechoose;
-  }
-
-  public void setDeferencechoose(String deferencechoose) {
-    this.deferencechoose = deferencechoose;
-  }
-
-  public String getDeferenceno() {
-    return deferenceno;
-  }
-
-  public void setDeferenceno(String deferenceno) {
-    this.deferenceno = deferenceno;
-  }
-
-  public String getDeferencepriority() {
-    return deferencepriority;
-  }
-
-  public void setDeferencepriority(String deferencepriority) {
-    this.deferencepriority = deferencepriority;
-  }
 
   public String getDetailexplain() {
     return detailexplain;

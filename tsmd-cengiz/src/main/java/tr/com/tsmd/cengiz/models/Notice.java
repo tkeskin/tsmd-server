@@ -9,6 +9,8 @@ public class Notice {
   private String pictureBase64;
   private String fileName;
   private String fileType;
+  private Boolean published;
+  private String publishedDate;
 
 
   public Notice() {
@@ -29,6 +31,15 @@ public class Notice {
     this.fileType = fileType;
   }
 
+  public Notice(byte[] picture, String noticeTitle, String noticeExplain, String fileName, String fileType, Boolean published) {
+    this.picture = picture;
+    this.noticeTitle = noticeTitle;
+    this.noticeExplain = noticeExplain;
+    this.fileName = fileName;
+    this.fileType = fileType;
+    this.published = published;
+  }
+
   public Notice(Long id, String noticeTitle, String noticeExplain, String pictureBase64, String fileName, String fileType) {
     this.id = id;
     this.noticeTitle = noticeTitle;
@@ -46,6 +57,18 @@ public class Notice {
     this.pictureBase64 = pictureBase64;
     this.fileName = fileName;
     this.fileType = fileType;
+  }
+
+
+  public Notice(Long id, byte[] picture, String noticeTitle, String noticeExplain, String pictureBase64, String fileName, String fileType,Boolean published) {
+    this.id = id;
+    this.picture = picture;
+    this.noticeTitle = noticeTitle;
+    this.noticeExplain = noticeExplain;
+    this.pictureBase64 = pictureBase64;
+    this.fileName = fileName;
+    this.fileType = fileType;
+    this.published=published;
   }
 
   public Long getId() {
@@ -102,5 +125,21 @@ public class Notice {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public Boolean getPublished() {
+    return published;
+  }
+
+  public void setPublished(Boolean published) {
+    this.published = published;
+  }
+
+  public String getPublishedDate() {
+    return publishedDate;
+  }
+
+  public void setPublishedDate(String publishedDate) {
+    this.publishedDate = publishedDate;
   }
 }

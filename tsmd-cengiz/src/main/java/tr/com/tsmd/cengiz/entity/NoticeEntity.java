@@ -31,6 +31,9 @@ public class NoticeEntity extends AuditModel {
 
   private String fileType;
 
+  private Boolean published;
+  private String publishedDate;
+
   public NoticeEntity() {
   }
 
@@ -40,6 +43,29 @@ public class NoticeEntity extends AuditModel {
     this.noticeExplain = noticeExplain;
     this.fileName = fileName;
     this.fileType = fileType;
+
+  }
+
+
+
+  public NoticeEntity(byte[] picture, @NotBlank String noticeTitle, @NotBlank String noticeExplain, String fileName, String fileType,Boolean published,String publishedDate) {
+    this.picture = picture;
+    this.noticeTitle = noticeTitle;
+    this.noticeExplain = noticeExplain;
+    this.fileName = fileName;
+    this.fileType = fileType;
+    this.published = published;
+    this.publishedDate = publishedDate;
+  }
+
+  public NoticeEntity(byte[] picture, @NotBlank String noticeTitle, @NotBlank String noticeExplain, String fileName, String fileType,Boolean published) {
+    this.picture = picture;
+    this.noticeTitle = noticeTitle;
+    this.noticeExplain = noticeExplain;
+    this.fileName = fileName;
+    this.fileType = fileType;
+    this.published = published;
+
   }
 
   public Long getId() {
@@ -88,5 +114,22 @@ public class NoticeEntity extends AuditModel {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+
+  public Boolean getPublished() {
+    return published;
+  }
+
+  public void setPublished(Boolean published) {
+    this.published = published;
+  }
+
+  public String getPublishedDate() {
+    return publishedDate;
+  }
+
+  public void setPublishedDate(String publishedDate) {
+    this.publishedDate = publishedDate;
   }
 }

@@ -2,6 +2,9 @@ package tr.com.tsmd.cengiz.service;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +45,35 @@ public class NewsInfoServiceImpl implements NewsInfoService {
       news.setPictureBase64(base64EncodedImage);
       news.setNewsTitle(newsEntities.get(i).getNewsTitle());
       news.setNewsExplain(newsEntities.get(i).getNewsExplain());
+      news.setPublishedDate(newsEntities.get(i).getPublishedDate());
+      news.setPublished(newsEntities.get(i).getPublished());
+      newsList1.add(news);
+
+    }
+
+    NewsList newsList = new NewsList();
+    newsList.setNewsList(newsList1);
+
+    return newsList;
+  }
+
+
+  @Override
+  public NewsList getNewsPublishedList() {
+
+    List<NewsEntity> newsEntities = newsRepository.getByPublished(true);
+    List<News> newsList1 = new ArrayList<>();
+
+    for (int i=0; i<newsEntities.size();i++) {
+      News news = new News();
+      news.setId(newsEntities.get(i).getId());
+      String base64EncodedImage = "data: image/jpeg;base64," +
+          new String (Base64.encodeBase64 (newsEntities.get(i).getPicture()), StandardCharsets.US_ASCII);
+      //news.setPicture(newsEntities.get(i).getPicture());
+      news.setPictureBase64(base64EncodedImage);
+      news.setNewsTitle(newsEntities.get(i).getNewsTitle());
+      news.setNewsExplain(newsEntities.get(i).getNewsExplain());
+      news.setPublishedDate(newsEntities.get(i).getPublishedDate());
       newsList1.add(news);
 
     }
@@ -54,7 +86,8 @@ public class NewsInfoServiceImpl implements NewsInfoService {
 
   @Override
   public Long addNews(News news) {
-    NewsEntity entity=newsRepository.save(new NewsEntity(news.getPicture(),news.getNewsTitle(),news.getNewsExplain(),news.getFileName(),news.getFileType()));
+    NewsEntity entity=newsRepository.save(new NewsEntity(news.getPicture(),news.getNewsTitle(),
+        news.getNewsExplain(),news.getFileName(),news.getFileType(),news.getPublished()));
 
     return entity.getId();
   }
@@ -64,7 +97,7 @@ public class NewsInfoServiceImpl implements NewsInfoService {
 
     NewsEntity entity=newsRepository.getById(id);
     News news = new News(entity.getId(),entity.getPicture(),entity.getNewsTitle(),entity.getNewsExplain(),"data: image/jpeg;base64," +
-        new String (Base64.encodeBase64 (entity.getPicture()), StandardCharsets.US_ASCII),entity.getFileName(),entity.getFileType());
+        new String (Base64.encodeBase64 (entity.getPicture()), StandardCharsets.US_ASCII),entity.getFileName(),entity.getFileType(),entity.getPublished());
     return news;
   }
 
@@ -78,6 +111,16 @@ public class NewsInfoServiceImpl implements NewsInfoService {
     NewsEntity entity=newsRepository.getById(news.getId());
     entity.setNewsTitle(news.getNewsTitle());
     entity.setNewsExplain(news.getNewsExplain());
+    if (news.getPublished()) {
+      DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+      Date date = new Date();
+      entity.setPublished(news.getPublished());
+      entity.setPublishedDate(dateFormat.format(date));
+    }
+    else {
+      entity.setPublished(news.getPublished());
+      entity.setPublishedDate(null);
+    }
     newsRepository.save(entity);
   }
 
@@ -89,6 +132,11 @@ public class NewsInfoServiceImpl implements NewsInfoService {
       entity.setFileName(mainPicture.getOriginalFilename());
       entity.setFileType(mainPicture.getContentType());
       entity.setPicture(mainPicture.getBytes());
+      if (entity.getPublished()) {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        entity.setPublishedDate(dateFormat.format(date));
+      }
       newsRepository.save(entity);
     } catch (IOException e) {
       e.printStackTrace();

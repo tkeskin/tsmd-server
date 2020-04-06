@@ -35,6 +35,9 @@ public class NewsEntity extends AuditModel {
 
   private String fileType;
 
+  private Boolean published;
+  private String publishedDate;
+
 
   public NewsEntity() {
   }
@@ -45,6 +48,15 @@ public class NewsEntity extends AuditModel {
     this.newsExplain = newsExplain;
     this.fileName = fileName;
     this.fileType = fileType;
+  }
+
+  public NewsEntity(@NotBlank byte[] picture, @NotBlank String newsTitle, @NotBlank String newsExplain, String fileName, String fileType,Boolean published) {
+    this.picture = picture;
+    this.newsTitle = newsTitle;
+    this.newsExplain = newsExplain;
+    this.fileName = fileName;
+    this.fileType = fileType;
+    this.published = published;
   }
 
   public Long getId() {
@@ -93,5 +105,21 @@ public class NewsEntity extends AuditModel {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public Boolean getPublished() {
+    return published;
+  }
+
+  public void setPublished(Boolean published) {
+    this.published = published;
+  }
+
+  public String getPublishedDate() {
+    return publishedDate;
+  }
+
+  public void setPublishedDate(String publishedDate) {
+    this.publishedDate = publishedDate;
   }
 }

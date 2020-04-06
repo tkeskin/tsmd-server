@@ -272,7 +272,7 @@ public class EmailServiceImpl implements EmailService {
 
     } else if (servicesType == 3) {
       ValuationPatentEntity valuationPatentEntity = valuationPatentRepository.getById(id);
-      helper.addAttachment("dekont.jpeg", new ByteArrayResource(valuationPatentEntity.getDekont()));
+//      helper.addAttachment("dekont.jpeg", new ByteArrayResource(valuationPatentEntity.getDekont()));
       String contentHtml="<h1 style=\"font-weight: bold;color: white;background-color: #d32f2f\">Patent Değerleme Talep Formu </h1>\n"
           + "<br>\n"
           + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">BULUŞA İLİŞKİN GENEL BİLGİLER</h3>\n"
@@ -442,7 +442,7 @@ public class EmailServiceImpl implements EmailService {
 
     } else if (servicesType == 4) {
       ValuationTrademarkEntity valuationTrademarkEntity = valuationTrademarkRepository.getById(id);
-      helper.addAttachment("dekont.jpeg", new ByteArrayResource(valuationTrademarkEntity.getDekont()));
+//      helper.addAttachment("dekont.jpeg", new ByteArrayResource(valuationTrademarkEntity.getDekont()));
       String contentHtml="<h1 style=\"font-weight: bold;color: white;background-color: #d32f2f\">Marka Değerleme Talep Formu </h1>\n"
           + "<br>\n"
           + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">MARKAYA İLİŞKİN GENEL BİLGİLER</h3>\n"

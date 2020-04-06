@@ -7,6 +7,8 @@ import tr.com.tsmd.cengiz.models.NoticeList;
 public interface NoticeInfoService {
   NoticeList getNoticeList();
 
+  NoticeList getNoticePublishedList();
+
   Long addNotice(Notice notice);
 
   Notice getNoticeById(Long id);

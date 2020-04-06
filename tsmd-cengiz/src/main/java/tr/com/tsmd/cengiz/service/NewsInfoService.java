@@ -9,6 +9,8 @@ import tr.com.tsmd.cengiz.models.UserList;
 public interface NewsInfoService {
   NewsList getNewsList();
 
+  NewsList getNewsPublishedList();
+
   Long addNews(News news);
 
   News getNewsById(Long id);

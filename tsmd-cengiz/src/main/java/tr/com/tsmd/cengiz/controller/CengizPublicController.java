@@ -1,6 +1,10 @@
 package tr.com.tsmd.cengiz.controller;
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -143,6 +147,18 @@ public class CengizPublicController {
    *
    * @return .
    */
+  @GetMapping("/newsPublished")
+  public NewsList getNewsPublished() {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    NewsList newsList = newsInfoService.getNewsPublishedList();
+    return newsList;
+  }
+
+  /**
+   * news list
+   *
+   * @return .
+   */
   @GetMapping("/news/{id}")
   public News getNewsById(@PathVariable("id") Long id) {
 
@@ -212,6 +228,18 @@ public class CengizPublicController {
   public NoticeList getNotice() {
     //list dönen servis için bir class daha yazıp öyle handle ettik
     NoticeList noticeList = noticeInfoService.getNoticeList();
+    return noticeList;
+  }
+
+  /**
+   * notice list
+   *
+   * @return .
+   */
+  @GetMapping("/noticePublished")
+  public NoticeList getNoticePublished() {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    NoticeList noticeList = noticeInfoService.getNoticePublishedList();
     return noticeList;
   }
 
@@ -500,9 +528,10 @@ public class CengizPublicController {
 
   @PostMapping(value = "/addNewsAll", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<General> addNewsAll(@RequestParam("newsTitle") String newsTitle, @RequestParam("newsExplain") String newsExplain,
+                                            @RequestParam("published") Boolean published,
                                       @RequestParam("mainPicture") MultipartFile mainPicture) throws Exception {
 
-    News news = new News(mainPicture.getBytes(), newsTitle, newsExplain,mainPicture.getOriginalFilename(),mainPicture.getContentType());
+    News news = new News(mainPicture.getBytes(), newsTitle, newsExplain,mainPicture.getOriginalFilename(),mainPicture.getContentType(),published);
 
     Long id=newsInfoService.addNews(news);
 
@@ -516,9 +545,11 @@ public class CengizPublicController {
 
   @PostMapping(value = "/addNotice", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<General> addNotice(@RequestParam("noticeTitle") String noticeTitle, @RequestParam("noticeExplain") String noticeExplain,
+                                           @RequestParam("published") Boolean published,
                                             @RequestParam("picture") MultipartFile picture) throws Exception {
 
-    Notice notice = new Notice(picture.getBytes(), noticeTitle, noticeExplain,picture.getOriginalFilename(),picture.getContentType());
+
+    Notice notice = new Notice(picture.getBytes(), noticeTitle, noticeExplain,picture.getOriginalFilename(),picture.getContentType(),published);
 
     Long id=noticeInfoService.addNotice(notice);
 

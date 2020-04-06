@@ -10,6 +10,8 @@ import java.util.List;
 public interface NewsRepository extends JpaRepository<NewsEntity, Long> {
   List<NewsEntity> findAll();
 
+  List<NewsEntity> getByPublished(Boolean published);
+
   NewsEntity getById(Long id);
 
 }

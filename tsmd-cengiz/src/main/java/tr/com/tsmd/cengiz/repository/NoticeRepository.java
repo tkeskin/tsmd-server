@@ -11,6 +11,8 @@ import java.util.List;
 public interface NoticeRepository extends JpaRepository<NoticeEntity, Long> {
   List<NoticeEntity> findAll();
 
+  List<NoticeEntity> getByPublished(Boolean published);
+
   NoticeEntity getById(Long id);
 
 

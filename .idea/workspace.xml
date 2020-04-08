@@ -28,25 +28,15 @@
     <option name="FILTER_BY_CURRENT_PROJECT" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6917e23-ab4c-4ded-9eb7-886bb2c0a7e7" name="Default Changelist" comment="">
+    <list default="true" id="a6917e23-ab4c-4ded-9eb7-886bb2c0a7e7" name="Default Changelist" comment="geliştirme">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/AboutEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/AboutEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ActivityAnalysisEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ActivityAnalysisEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/NewsEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/NewsEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/NoticeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/NoticeEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/PatentPreEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/PatentPreEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/TrademarkPreEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/TrademarkPreEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ValuationPatentEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ValuationPatentEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ValuationTrademarkEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ValuationTrademarkEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/PatentPre.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/PatentPre.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/ActivityAnalysisRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/ActivityAnalysisRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/PatentPreRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/PatentPreRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/ValuationPatentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/ValuationPatentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/ValuationTrademarkRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/ValuationTrademarkRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/EmailServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/EmailServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/util/Const.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/util/Const.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eureka-server/src/test/java/tr/gov/turkpatent/discoveryserver/EurekaServerApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-aras/src/test/java/tr/gov/turkpatent/aras/ArasApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-auth/src/test/java/tr/gov/turkpatent/auth/AuthApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/test/java/tr/gov/turkpatent/cengiz/CengizApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-common/src/test/java/tr/gov/turkpatent/common/CommonApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-keskin/src/test/java/tr/gov/turkpatent/keskin/KeskinApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zuul-server/src/test/java/tr/gov/turkpatent/zuulserver/ZuulServerApplicationTests.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/tsmd-aras/.gradle/" />
     <ignored path="$PROJECT_DIR$/tsmd-aras/build/" />
@@ -99,6 +89,27 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$/tsmd-cengiz">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/tsmd-aras">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/tsmd-auth">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/tsmd-common">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/tsmd-keskin">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/zuul-server">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/eureka-server">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand />
@@ -111,51 +122,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ValuationTrademarkEntity.java">
+        <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/resources/application.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-17">
-              <caret line="147" column="39" selection-start-line="147" selection-start-column="39" selection-end-line="147" selection-end-column="39" />
-              <folding>
-                <element signature="e#9416#9417#0" expanded="true" />
-                <element signature="e#9439#9440#0" expanded="true" />
-                <element signature="e#9481#9482#0" expanded="true" />
-                <element signature="e#9511#9512#0" expanded="true" />
-                <element signature="e#9550#9551#0" expanded="true" />
-                <element signature="e#9581#9582#0" expanded="true" />
-                <element signature="e#9639#9640#0" expanded="true" />
-                <element signature="e#9685#9686#0" expanded="true" />
-                <element signature="e#9724#9725#0" expanded="true" />
-                <element signature="e#9755#9756#0" expanded="true" />
-                <element signature="e#9813#9814#0" expanded="true" />
-                <element signature="e#9859#9860#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/NewsRelatedPicturesEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/util/Const.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="72" selection-start-line="7" selection-start-column="72" selection-end-line="7" selection-end-column="72" />
+            <state relative-caret-position="164">
+              <caret line="25" column="24" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ActivityAnalysisPicturesEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
+        <entry file="file://$PROJECT_DIR$/tsmd-cengiz/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="17">
+                <caret line="1" column="63" selection-start-line="1" selection-start-column="55" selection-end-line="1" selection-end-column="63" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -166,24 +148,12 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>/register</find>
-      <find>mail</find>
-      <find>trademarkimage</find>
-      <find>/services</find>
-      <find>UserEntity</find>
-      <find>userentity</find>
-      <find>@CrossOrigin</find>
-      <find>POST</find>
-      <find>port:</find>
-      <find>noticeList</find>
-      <find>newsRelatedPictures</find>
-      <find>/newsRelatedPictures</find>
-      <find>/newsUpdate</find>
       <find>downloadPicture</find>
       <find>newsUpdatePicture</find>
       <find>@Email</find>
@@ -201,6 +171,19 @@
       <find>trademarkpresa</find>
       <find>multipartfiles</find>
       <find>byte[]</find>
+      <find>createdD</find>
+      <find>addNotice</find>
+      <find>noticeUpdateContent</find>
+      <find>/notice</find>
+      <find>noticeUpdatePicture</find>
+      <find>/news</find>
+      <find>/addNews</find>
+      <find>getNoticeById</find>
+      <find>ribbon</find>
+      <find>8763</find>
+      <find>500</find>
+      <find>turkpatent</find>
+      <find>tsmd-postgres</find>
     </findStrings>
     <replaceStrings>
       <replace>&lt;td style=\&quot;width: 70%;border: 1px solid black;\&quot;&gt;&quot;+valuationPatentEntity.getAddress()+&quot;&lt;/td&gt;</replace>
@@ -211,6 +194,7 @@
       <dir>C:\Users\damlaberber\Desktop\tsmd-server\tsmd-auth</dir>
       <dir>C:\Users\damlaberber\Desktop\tsmd-server\tsmd-aras</dir>
       <dir>C:\Users\damlaberber\Desktop\tsmd-server\tsmd-cengiz</dir>
+      <dir>C:\Users\damlaberber\Desktop\tsmd-server</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -225,27 +209,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/NewsRepository.java" />
-        <option value="$PROJECT_DIR$/tsmd-auth/src/main/java/tr/com/tsmd/auth/security/WebSecurityConfig.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/security/JwtUsernameAndPasswordAuthenticationFilter.java" />
-        <option value="$PROJECT_DIR$/zuul-server/src/main/java/tr/com/tsmd/zuulserver/security/JwtAuthenticationEntryPoint.java" />
-        <option value="$PROJECT_DIR$/zuul-server/src/main/java/tr/com/tsmd/zuulserver/security/WebSecurityConfig.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/News.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/NewsRelatedPicturesList.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/NewsRelatedPictures.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/NewsRelatedPicturesRepository.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NewsInfoServiceImpl.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/Notice.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/NoticeRepository.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NewsInfoService.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NoticeInfoService.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NoticeInfoServiceImpl.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizController.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ContactMailEntity.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/ContactMail.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/ContactMailRepository.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/FullDataList.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/FullData.java" />
         <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/PatentPre.java" />
         <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/PatentPreRepository.java" />
         <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/EmailService.java" />
@@ -261,13 +224,9 @@
         <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/ActivityAnalysisPicturesRepository.java" />
         <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/ActivityAnalysisServiceImpl.java" />
         <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/ActivityAnalysisService.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/EmailServiceImpl.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/NoticeEntity.java" />
         <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/AboutEntity.java" />
         <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ActivityAnalysisEntity.java" />
         <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ActivityAnalysisPicturesEntity.java" />
-        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/NewsEntity.java" />
         <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/NewsRelatedPicturesEntity.java" />
         <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/PatentPreEntity.java" />
         <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/PatentPreRelatedPicturesEntity.java" />
@@ -276,6 +235,31 @@
         <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ValuationPatentEntity.java" />
         <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ValuationTrademarkEntity.java" />
         <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/util/Const.java" />
+        <option value="$PROJECT_DIR$/tsmd-cengiz/build.gradle" />
+        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/NoticeEntity.java" />
+        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/Notice.java" />
+        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NoticeInfoService.java" />
+        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/NoticeRepository.java" />
+        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NoticeInfoServiceImpl.java" />
+        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NewsInfoService.java" />
+        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/NewsRepository.java" />
+        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java" />
+        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/NewsEntity.java" />
+        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/News.java" />
+        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NewsInfoServiceImpl.java" />
+        <option value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/EmailServiceImpl.java" />
+        <option value="$PROJECT_DIR$/zuul-server/Dockerfile" />
+        <option value="$PROJECT_DIR$/eureka-server/Dockerfile" />
+        <option value="$PROJECT_DIR$/docker-compose.yml" />
+        <option value="$PROJECT_DIR$/tsmd-common/Dockerfile" />
+        <option value="$PROJECT_DIR$/tsmd-cengiz/Dockerfile" />
+        <option value="$PROJECT_DIR$/tsmd-auth/Dockerfile" />
+        <option value="$PROJECT_DIR$/tsmd-aras/Dockerfile" />
+        <option value="$PROJECT_DIR$/tsmd-keskin/Dockerfile" />
+        <option value="$PROJECT_DIR$/tsmd-aras/src/test/java/tr/gov/turkpatent/aras/ArasApplicationTests.java" />
+        <option value="$PROJECT_DIR$/tsmd-cengiz/src/test/java/tr/com/tsmd/cengiz/controller/CengizControllerTest.java" />
+        <option value="$PROJECT_DIR$/tsmd-cengiz/src/test/java/tr/com/tsmd/cengiz/CengizApplicationTest.java" />
+        <option value="$PROJECT_DIR$/eureka-server/src/test/java/tr/com/tsmd/eurekaserver/EurekaServerApplicationTest.java" />
       </list>
     </option>
   </component>
@@ -288,10 +272,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="y" value="-10" />
-    <option name="width" value="1940" />
-    <option name="height" value="1060" />
+    <option name="x" value="-24" />
+    <option name="width" value="1939" />
+    <option name="height" value="1059" />
   </component>
   <component name="ProjectId" id="1TxiJ9zPDtAmWQTNAKahbdQAdWd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -333,47 +316,7 @@
               <item name="tsmd-cengiz" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tsmd-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tsmd-server" type="462c0819:PsiDirectoryNode" />
-              <item name="tsmd-cengiz" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cengiz" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tsmd-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tsmd-server" type="462c0819:PsiDirectoryNode" />
-              <item name="tsmd-cengiz" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cengiz" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tsmd-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tsmd-server" type="462c0819:PsiDirectoryNode" />
-              <item name="tsmd-cengiz" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="cengiz" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tsmd-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tsmd-server" type="462c0819:PsiDirectoryNode" />
-              <item name="tsmd-common" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="tsmd-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tsmd-server" type="462c0819:PsiDirectoryNode" />
-              <item name="tsmd-common" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -395,8 +338,10 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="jdk.selected.JAVA_MODULE" value="11" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tsmd-keskin" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -409,12 +354,20 @@
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="tr.com.tsmd.eurekaserver" />
+      <recent name="tr.com.tsmd.cengiz" />
+      <recent name="tr.com.tsmd.cengiz.controller" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\damlaberber\Desktop\tsmd-server\tsmd-cengiz\src\main\java\tr\com\tsmd\cengiz" />
-      <recent name="C:\Users\damlaberber\Desktop\tsmd-server\tsmd-cengiz\src\main\java\tr\com\tsmd\cengiz\service" />
-      <recent name="$PROJECT_DIR$/tsmd-aras" />
-      <recent name="$PROJECT_DIR$/tsmd-auth" />
-      <recent name="$PROJECT_DIR$/tsmd-cengiz" />
+      <recent name="C:\Users\damlaberber\Desktop\tsmd-server\tsmd-keskin" />
+      <recent name="C:\Users\damlaberber\Desktop\tsmd-server\tsmd-common" />
+      <recent name="C:\Users\damlaberber\Desktop\tsmd-server\tsmd-cengiz" />
+      <recent name="C:\Users\damlaberber\Desktop\tsmd-server\tsmd-auth" />
+      <recent name="C:\Users\damlaberber\Desktop\tsmd-server\tsmd-aras" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="tr.com.tsmd.cengiz.entity" />
@@ -453,6 +406,101 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="eureka-server [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/eureka-server" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="tsmd-auth [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/tsmd-auth" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="tsmd-common [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/tsmd-common" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="tsmd-keskin [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/tsmd-keskin" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="zuul-server [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/zuul-server" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -489,16 +537,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="eureka-server.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tr.com.tsmd.eurekaserver.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="tr.com.tsmd.eurekaserver.EurekaServerApplication" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -542,11 +583,20 @@
       <item itemvalue="Spring Boot.CengizApplication" />
       <item itemvalue="Spring Boot.ArasApplication" />
       <item itemvalue="Spring Boot.KeskinApplication" />
+      <item itemvalue="Gradle.eureka-server [build]" />
+      <item itemvalue="Gradle.tsmd-auth [build]" />
+      <item itemvalue="Gradle.tsmd-common [build]" />
+      <item itemvalue="Gradle.tsmd-keskin [build]" />
+      <item itemvalue="Gradle.zuul-server [build]" />
       <item itemvalue="Spring Boot.EurekaServerApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.EurekaServerApplication" />
+        <item itemvalue="Gradle.zuul-server [build]" />
+        <item itemvalue="Gradle.tsmd-keskin [build]" />
+        <item itemvalue="Gradle.tsmd-common [build]" />
+        <item itemvalue="Gradle.tsmd-auth [build]" />
+        <item itemvalue="Gradle.eureka-server [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -623,7 +673,7 @@
       <workItem from="1583492795599" duration="27285000" />
       <workItem from="1584346228733" duration="108686000" />
       <workItem from="1585326376645" duration="710000" />
-      <workItem from="1585553582301" duration="68093000" />
+      <workItem from="1585553582301" duration="107195000" />
     </task>
     <task id="LOCAL-00001" summary="- bağımlılık eklendi...">
       <created>1581597049281</created>
@@ -674,17 +724,30 @@
       <option name="project" value="LOCAL" />
       <updated>1585732586590</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="geliştirme">
+      <created>1585832862496</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1585832862496</updated>
+    </task>
+    <task id="LOCAL-00009" summary="geliştirme">
+      <created>1586195212513</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1586195212513</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206819000" />
+    <option name="totallyTimeSpent" value="245921000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18590604" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18590604" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -694,8 +757,8 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329429" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49932885" visible="true" weight="0.34114203" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.329429" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4986577" weight="0.34114203" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -703,11 +766,11 @@
       <window_info anchor="bottom" id="Spring" order="8" weight="0.329429" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.35724744" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50067115" side_tool="true" weight="0.43484625" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5013423" side_tool="true" weight="0.34114203" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.329429" />
       <window_info anchor="bottom" id="Java Enterprise" order="13" />
       <window_info anchor="bottom" id="Database Changes" order="14" />
-      <window_info anchor="bottom" id="Version Control" order="15" weight="0.32796487" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="15" sideWeight="0.49932885" visible="true" weight="0.32796487" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24966443" />
@@ -881,73 +944,73 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>124</line>
+          <line>128</line>
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>256</line>
+          <line>284</line>
           <properties />
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>274</line>
+          <line>302</line>
           <properties />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>280</line>
+          <line>308</line>
           <properties />
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>409</line>
+          <line>437</line>
           <properties />
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>434</line>
+          <line>462</line>
           <properties />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/EmailServiceImpl.java</url>
-          <line>71</line>
+          <line>19</line>
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>449</line>
+          <line>477</line>
           <properties />
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>272</line>
+          <line>300</line>
           <properties />
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>494</line>
+          <line>522</line>
           <properties />
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NewsInfoServiceImpl.java</url>
-          <line>56</line>
+          <line>88</line>
           <properties />
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>504</line>
+          <line>533</line>
           <properties />
           <option name="timeStamp" value="39" />
         </line-breakpoint>
@@ -959,49 +1022,49 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>237</line>
+          <line>265</line>
           <properties />
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>249</line>
+          <line>277</line>
           <properties />
           <option name="timeStamp" value="56" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>561</line>
+          <line>592</line>
           <properties />
           <option name="timeStamp" value="57" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NewsInfoServiceImpl.java</url>
-          <line>143</line>
+          <line>191</line>
           <properties />
           <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>535</line>
+          <line>566</line>
           <properties />
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>569</line>
+          <line>600</line>
           <properties />
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>584</line>
+          <line>615</line>
           <properties />
           <option name="timeStamp" value="62" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>582</line>
+          <line>613</line>
           <properties />
           <option name="timeStamp" value="63" />
         </line-breakpoint>
@@ -1013,13 +1076,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>481</line>
+          <line>509</line>
           <properties />
           <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/EmailServiceImpl.java</url>
-          <line>85</line>
+          <line>84</line>
           <properties />
           <option name="timeStamp" value="69" />
         </line-breakpoint>
@@ -1031,7 +1094,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>544</line>
+          <line>575</line>
           <properties />
           <option name="timeStamp" value="72" />
         </line-breakpoint>
@@ -1055,353 +1118,185 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>653</line>
+          <line>684</line>
           <properties />
           <option name="timeStamp" value="78" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>671</line>
+          <line>702</line>
           <properties />
           <option name="timeStamp" value="79" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>680</line>
+          <line>711</line>
           <properties />
           <option name="timeStamp" value="80" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>690</line>
+          <line>721</line>
           <properties />
           <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>662</line>
+          <line>693</line>
           <properties />
           <option name="timeStamp" value="82" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>520</line>
+          <line>551</line>
           <properties />
           <option name="timeStamp" value="83" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/EmailServiceImpl.java</url>
+          <line>121</line>
+          <properties />
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizController.java</url>
+          <line>116</line>
+          <properties />
+          <option name="timeStamp" value="88" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NoticeInfoServiceImpl.java</url>
+          <line>115</line>
+          <properties />
+          <option name="timeStamp" value="89" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/AuditModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/NoticeEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="678">
+          <caret line="60" column="140" selection-start-line="60" selection-start-column="140" selection-end-line="60" selection-end-column="140" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2693#2694#0" expanded="true" />
+            <element signature="e#2719#2720#0" expanded="true" />
+            <element signature="e#2768#2769#0" expanded="true" />
+            <element signature="e#2804#2805#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/NoticeRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+          <caret line="13" column="35" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NoticeInfoService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/Notice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-272">
+          <caret line="11" column="28" lean-forward="true" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+          <folding>
+            <element signature="e#2923#2924#0" expanded="true" />
+            <element signature="e#2949#2950#0" expanded="true" />
+            <element signature="e#2998#2999#0" expanded="true" />
+            <element signature="e#3034#3035#0" expanded="true" />
+            <element signature="e#2699#2700#0" expanded="true" />
+            <element signature="e#2729#2730#0" expanded="true" />
+            <element signature="e#2785#2786#0" expanded="true" />
+            <element signature="e#2829#2830#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/NewsRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="12" column="30" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="12" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NoticeInfoService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
+          <caret line="12" column="51" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NoticeInfoServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="44" selection-end-line="89" />
-          <folding>
-            <element signature="e#2452#2453#0" expanded="true" />
-            <element signature="e#2491#2492#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="116" column="48" selection-start-line="116" selection-start-column="48" selection-end-line="116" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/NewsRelatedPicturesRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+        <state relative-caret-position="213">
+          <caret line="139" selection-start-line="139" selection-end-line="143" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#4128#4129#0" expanded="true" />
+            <element signature="e#4169#4170#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/NewsRelatedPictures.java">
+    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/NewsEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="24" column="30" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="30" />
+        <state relative-caret-position="375">
+          <caret line="58" column="30" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
           <folding>
-            <element signature="e#987#988#0" expanded="true" />
-            <element signature="e#1019#1020#0" expanded="true" />
-            <element signature="e#1123#1124#0" expanded="true" />
-            <element signature="e#1157#1158#0" expanded="true" />
+            <element signature="e#2014#2015#0" expanded="true" />
+            <element signature="e#2040#2041#0" expanded="true" />
+            <element signature="e#2089#2090#0" expanded="true" />
+            <element signature="e#2125#2126#0" expanded="true" />
+            <element signature="e#2160#2161#0" expanded="true" />
+            <element signature="e#2190#2191#0" expanded="true" />
+            <element signature="e#2246#2247#0" expanded="true" />
+            <element signature="e#2290#2291#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/dal/entity/ServicesEntity.java">
+    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/dal/entity/QuestionEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/dal/entity/CustomerEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-357">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/Movie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/ContactMailRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/ContactMail.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding>
-            <element signature="e#190#191#0" expanded="true" />
-            <element signature="e#209#210#0" expanded="true" />
-            <element signature="e#273#274#0" expanded="true" />
-            <element signature="e#301#302#0" expanded="true" />
-            <element signature="e#353#354#0" expanded="true" />
-            <element signature="e#393#394#0" expanded="true" />
-            <element signature="e#241#242#0" expanded="true" />
-            <element signature="e#263#264#0" expanded="true" />
-            <element signature="e#293#294#0" expanded="true" />
-            <element signature="e#315#316#0" expanded="true" />
-            <element signature="e#355#356#0" expanded="true" />
-            <element signature="e#383#384#0" expanded="true" />
-            <element signature="e#415#416#0" expanded="true" />
-            <element signature="e#439#440#0" expanded="true" />
-            <element signature="e#483#484#0" expanded="true" />
-            <element signature="e#515#516#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/News.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="22" selection-start-line="22" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/FullDataList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding>
-            <element signature="e#167#168#0" expanded="true" />
-            <element signature="e#192#193#0" expanded="true" />
-            <element signature="e#246#247#0" expanded="true" />
-            <element signature="e#280#281#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/PatentPre.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="279" selection-start-line="279" selection-end-line="279" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/FullData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="35" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="7" selection-end-column="35" />
-          <folding>
-            <element signature="e#234#235#0" expanded="true" />
-            <element signature="e#253#254#0" expanded="true" />
-            <element signature="e#287#288#0" expanded="true" />
-            <element signature="e#304#305#0" expanded="true" />
-            <element signature="e#353#354#0" expanded="true" />
-            <element signature="e#385#386#0" expanded="true" />
-            <element signature="e#445#446#0" expanded="true" />
-            <element signature="e#493#494#0" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
-            <element signature="e#557#558#0" expanded="true" />
-            <element signature="e#609#610#0" expanded="true" />
-            <element signature="e#649#650#0" expanded="true" />
-            <element signature="e#564#565#0" expanded="true" />
-            <element signature="e#598#599#0" expanded="true" />
-            <element signature="e#662#663#0" expanded="true" />
-            <element signature="e#714#715#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/payload/request/TrademarkPreRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/PatentPreRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/PatentPreTableRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/ValuationPatentRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="41" lean-forward="true" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/EmailService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/ValuationTrademarkRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="26" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/ActivityAnalysisRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="24" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/PatentPreRelatedPicturesRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="14" column="43" lean-forward="true" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/PatentPreService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="12" column="74" lean-forward="true" selection-start-line="12" selection-start-column="74" selection-end-line="12" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/PatentPreServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="56" column="5" lean-forward="true" selection-start-line="49" selection-start-column="3" selection-end-line="56" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/ActivityAnalysisServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="45" column="76" selection-start-line="45" selection-start-column="76" selection-end-line="45" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/ActivityAnalysisService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="68" selection-start-line="10" selection-start-column="68" selection-end-line="10" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/ActivityAnalysisPicturesRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/ValuationServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="43" column="25" lean-forward="true" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/ValuationService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/EmailServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="656" column="54" selection-start-line="656" selection-start-column="54" selection-end-line="656" selection-end-column="54" />
-          <folding>
-            <element signature="method#sendSimpleMessage#0;class#EmailServiceImpl#0" />
-            <element signature="e#2884#5877#1" />
-            <element signature="e#15744#28589#1" />
-            <element signature="e#28618#41711#1" />
-          </folding>
+        <state relative-caret-position="174">
+          <caret line="164" column="37" selection-start-line="164" selection-start-column="37" selection-end-line="164" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NewsInfoService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+        <state relative-caret-position="134">
+          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/News.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="68" column="30" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
+          <folding>
+            <element signature="e#2461#2462#0" expanded="true" />
+            <element signature="e#2487#2488#0" expanded="true" />
+            <element signature="e#2536#2537#0" expanded="true" />
+            <element signature="e#2572#2573#0" expanded="true" />
+            <element signature="e#2607#2608#0" expanded="true" />
+            <element signature="e#2637#2638#0" expanded="true" />
+            <element signature="e#2693#2694#0" expanded="true" />
+            <element signature="e#2737#2738#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NewsInfoServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="56" column="10" selection-start-line="56" selection-start-column="10" selection-end-line="56" selection-end-column="10" />
+        <state relative-caret-position="1326">
+          <caret line="100" column="16" selection-start-line="100" selection-start-column="16" selection-end-line="100" selection-end-column="16" />
           <folding>
             <element signature="method#getNewsRelatedPicturesList#0;class#NewsInfoServiceImpl#0" />
             <element signature="e#4821#4822#0" expanded="true" />
@@ -1410,170 +1305,277 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java">
+    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/EmailServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="854">
-          <caret line="520" selection-start-line="520" selection-end-line="520" />
+        <state relative-caret-position="-686">
+          <caret line="444" column="48" selection-start-line="444" selection-start-column="48" selection-end-line="444" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3109#6102#1" />
+            <element signature="e#6131#16022#1" />
+            <element signature="e#16051#28997#1" />
+            <element signature="e#42252#46708#1" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/AboutEntity.java">
+    <entry file="file://$PROJECT_DIR$/zuul-server/src/main/java/tr/com/tsmd/zuulserver/filter/PreFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="19" column="43" lean-forward="true" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ActivityAnalysisEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="48" column="43" selection-start-line="48" selection-start-column="43" selection-end-line="48" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/AuditModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-23">
-          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ContactMailEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="34" column="23" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/NewsEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="35" column="23" lean-forward="true" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/NoticeEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="34">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/PatentPreEntity.java">
+    <entry file="file://$PROJECT_DIR$/zuul-server/src/main/java/tr/com/tsmd/zuulserver/filter/RouteFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="78" column="43" selection-start-line="78" selection-start-column="43" selection-end-line="78" selection-end-column="43" />
-          <folding>
-            <element signature="e#7351#7352#0" expanded="true" />
-            <element signature="e#7374#7375#0" expanded="true" />
-            <element signature="e#7416#7417#0" expanded="true" />
-            <element signature="e#7446#7447#0" expanded="true" />
-            <element signature="e#7485#7486#0" expanded="true" />
-            <element signature="e#7516#7517#0" expanded="true" />
-            <element signature="e#7574#7575#0" expanded="true" />
-            <element signature="e#7620#7621#0" expanded="true" />
-            <element signature="e#7659#7660#0" expanded="true" />
-            <element signature="e#7690#7691#0" expanded="true" />
-            <element signature="e#7748#7749#0" expanded="true" />
-            <element signature="e#7794#7795#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-23">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/PatentPreRelatedPicturesEntity.java">
+    <entry file="file://$PROJECT_DIR$/zuul-server/src/main/java/tr/com/tsmd/zuulserver/filter/PostFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
+        <state relative-caret-position="147">
+          <caret line="21" column="21" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/PatentPreTableEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
-          <folding>
-            <element signature="e#704#705#0" expanded="true" />
-            <element signature="e#723#724#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/TrademarkPreEntity.java">
+    <entry file="file://$PROJECT_DIR$/zuul-server/src/main/java/tr/com/tsmd/zuulserver/security/JwtAuthenticationEntryPoint.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="51" column="39" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
-          <folding>
-            <element signature="e#3722#3723#0" expanded="true" />
-            <element signature="e#3753#3754#0" expanded="true" />
-            <element signature="e#3811#3812#0" expanded="true" />
-            <element signature="e#3857#3858#0" expanded="true" />
-          </folding>
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ValuationPatentEntity.java">
+    <entry file="file://$PROJECT_DIR$/zuul-server/src/main/java/tr/com/tsmd/zuulserver/security/JwtTokenAuthenticationFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="142" column="39" selection-start-line="142" selection-start-column="39" selection-end-line="142" selection-end-column="39" />
-          <folding>
-            <element signature="e#9034#9035#0" expanded="true" />
-            <element signature="e#9057#9058#0" expanded="true" />
-            <element signature="e#9099#9100#0" expanded="true" />
-            <element signature="e#9129#9130#0" expanded="true" />
-            <element signature="e#9168#9169#0" expanded="true" />
-            <element signature="e#9199#9200#0" expanded="true" />
-            <element signature="e#9257#9258#0" expanded="true" />
-            <element signature="e#9303#9304#0" expanded="true" />
-            <element signature="e#9342#9343#0" expanded="true" />
-            <element signature="e#9373#9374#0" expanded="true" />
-            <element signature="e#9431#9432#0" expanded="true" />
-            <element signature="e#9477#9478#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ValuationTrademarkEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="147" column="39" selection-start-line="147" selection-start-column="39" selection-end-line="147" selection-end-column="39" />
-          <folding>
-            <element signature="e#9416#9417#0" expanded="true" />
-            <element signature="e#9439#9440#0" expanded="true" />
-            <element signature="e#9481#9482#0" expanded="true" />
-            <element signature="e#9511#9512#0" expanded="true" />
-            <element signature="e#9550#9551#0" expanded="true" />
-            <element signature="e#9581#9582#0" expanded="true" />
-            <element signature="e#9639#9640#0" expanded="true" />
-            <element signature="e#9685#9686#0" expanded="true" />
-            <element signature="e#9724#9725#0" expanded="true" />
-            <element signature="e#9755#9756#0" expanded="true" />
-            <element signature="e#9813#9814#0" expanded="true" />
-            <element signature="e#9859#9860#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/NewsRelatedPicturesEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/util/Const.java">
+    <entry file="file://$PROJECT_DIR$/zuul-server/src/main/java/tr/com/tsmd/zuulserver/security/WebSecurityConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="7" column="72" selection-start-line="7" selection-start-column="72" selection-end-line="7" selection-end-column="72" />
+          <caret line="37" column="34" lean-forward="true" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ActivityAnalysisPicturesEntity.java">
+    <entry file="file://$PROJECT_DIR$/zuul-server/src/main/java/tr/com/tsmd/zuulserver/ZuulServerApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="6" lean-forward="true" selection-start-column="6" selection-end-column="6" />
+          <folding>
+            <element signature="e#1631#1780#0" expanded="true" />
+            <element signature="e#1779#1780#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-keskin/src/main/java/tr/com/tsmd/keskin/controller/KeskinController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="21" column="39" selection-start-line="21" selection-start-column="39" selection-end-line="21" selection-end-column="39" />
+          <caret line="18" column="31" lean-forward="true" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-common/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-aras/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-108" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-auth/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eureka-server/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-keskin/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="40" lean-forward="true" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1000">
+          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eureka-server/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-106" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eureka-server/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="23" lean-forward="true" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-common/src/main/java/tr/com/tsmd/common/security/UserRole.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-common/src/main/java/tr/com/tsmd/common/security/JwtConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zuul-server/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="63" lean-forward="true" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/zuul-server/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-common/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-auth/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-aras/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-keskin/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-aras/build/reports/tests/test/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-aras/gradlew">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-aras/src/test/java/tr/gov/turkpatent/aras/ArasApplicationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/test/java/tr/com/tsmd/cengiz/controller/CengizControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="10" column="3" lean-forward="true" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="118" column="36" selection-start-line="118" selection-start-column="36" selection-end-line="118" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/test/java/tr/gov/turkpatent/cengiz/CengizApplicationTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/CengizApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/test/java/tr/com/tsmd/cengiz/CengizApplicationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eureka-server/src/main/java/tr/com/tsmd/eurekaserver/EurekaServerApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/eureka-server/src/test/java/tr/com/tsmd/eurekaserver/EurekaServerApplicationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="25" column="24" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsmd-cengiz/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="17">
+            <caret line="1" column="63" selection-start-line="1" selection-start-column="55" selection-end-line="1" selection-end-column="63" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

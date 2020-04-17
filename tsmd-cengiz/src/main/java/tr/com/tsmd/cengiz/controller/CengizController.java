@@ -22,16 +22,27 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import tr.com.tsmd.auth.payload.response.MessageResponse;
 import tr.com.tsmd.cengiz.entity.TrademarkPreEntity;
+import tr.com.tsmd.cengiz.models.About;
+import tr.com.tsmd.cengiz.models.ActivityAnalysisView;
 import tr.com.tsmd.cengiz.models.CatalogItem;
+import tr.com.tsmd.cengiz.models.CompanyProfile;
+import tr.com.tsmd.cengiz.models.EvaluationInvalidationView;
 import tr.com.tsmd.cengiz.models.News;
 import tr.com.tsmd.cengiz.models.Notice;
+import tr.com.tsmd.cengiz.models.PatentPreView;
+import tr.com.tsmd.cengiz.models.TechnologyConsultancyView;
 import tr.com.tsmd.cengiz.models.TrademarkPre;
 import tr.com.tsmd.cengiz.models.TrademarkPreList;
+import tr.com.tsmd.cengiz.models.TrademarkPreView;
 import tr.com.tsmd.cengiz.models.UserRating;
+import tr.com.tsmd.cengiz.models.ValuationView;
 import tr.com.tsmd.cengiz.repository.TrademarkPreRepository;
+import tr.com.tsmd.cengiz.service.AboutInfoService;
+import tr.com.tsmd.cengiz.service.CompanyProfileInfoService;
 import tr.com.tsmd.cengiz.service.MovieInfoService;
 import tr.com.tsmd.cengiz.service.NewsInfoService;
 import tr.com.tsmd.cengiz.service.NoticeInfoService;
+import tr.com.tsmd.cengiz.service.ServicesInfoService;
 import tr.com.tsmd.cengiz.service.UserRatingService;
 
 @RestController
@@ -54,6 +65,15 @@ public class CengizController {
 
   @Autowired
   NoticeInfoService noticeInfoService;
+
+  @Autowired
+  AboutInfoService aboutInfoService;
+
+  @Autowired
+  CompanyProfileInfoService companyProfileInfoService;
+
+  @Autowired
+  ServicesInfoService servicesInfoService;
 
 
 
@@ -119,6 +139,33 @@ public class CengizController {
     return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
   }
 
+  /**
+   * about updateContent
+   *
+   * @return .
+   */
+  @PostMapping("/aboutUpdateContent")
+  public ResponseEntity<?> updateAboutContent(@RequestBody About about) {
+
+    aboutInfoService.updateAboutContent(about);
+
+    return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+  }
+
+  /**
+   * companyProfile updateContent
+   *
+   * @return .
+   */
+  @PostMapping("/companyProfileUpdateContent")
+  public ResponseEntity<?> updateCompanyProfileContent(@RequestBody CompanyProfile companyProfile) {
+
+    companyProfileInfoService.updateCompanyProfileContent(companyProfile);
+
+    return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+  }
+
+
 
   /**
    * news delete
@@ -160,5 +207,85 @@ public class CengizController {
         .body(new ByteArrayResource(news.getPicture()));
 
   }
+
+
+  /**
+   * patentpreView updateContent
+   *
+   * @return .
+   */
+  @PostMapping("/patentPreUpdateContent")
+  public ResponseEntity<?> updatePatentPreViewContent(@RequestBody PatentPreView patentPreView) {
+
+    servicesInfoService.updatePatentPreViewContent(patentPreView);
+
+    return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+  }
+
+  /**
+   * trademarkpreView updateContent
+   *
+   * @return .
+   */
+  @PostMapping("/trademarkPreUpdateContent")
+  public ResponseEntity<?> updateTrademarkPreViewContent(@RequestBody TrademarkPreView trademarkPreView) {
+
+    servicesInfoService.updateTrademarkPreViewContent(trademarkPreView);
+
+    return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+  }
+
+  /**
+   * activityanalysisView updateContent
+   *
+   * @return .
+   */
+  @PostMapping("/activityAnalysisUpdateContent")
+  public ResponseEntity<?> activityAnalysisViewUpdateContent(@RequestBody ActivityAnalysisView activityAnalysisView) {
+
+    servicesInfoService.updateActivityAnalysisViewContent(activityAnalysisView);
+
+    return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+  }
+
+  /**
+   * valuationview updateContent
+   *
+   * @return .
+   */
+  @PostMapping("/valuationUpdateContent")
+  public ResponseEntity<?> valuationViewUpdateContent(@RequestBody ValuationView valuationView) {
+
+    servicesInfoService.updateValuationViewContent(valuationView);
+
+    return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+  }
+
+  /**
+   * EvaluationInvalidationView updateContent
+   *
+   * @return .
+   */
+  @PostMapping("/evaluationInvalidationUpdateContent")
+  public ResponseEntity<?> evaluationInvalidationViewUpdateContent(@RequestBody EvaluationInvalidationView evaluationInvalidationView) {
+
+    servicesInfoService.updateEvaluationInvalidationViewContent(evaluationInvalidationView);
+
+    return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+  }
+
+  /**
+   * TechnologyConsultancyView updateContent
+   *
+   * @return .
+   */
+  @PostMapping("/technologyConsultancyUpdateContent")
+  public ResponseEntity<?> technologyConsultancyViewUpdateContent(@RequestBody TechnologyConsultancyView technologyConsultancyView) {
+
+    servicesInfoService.updateTechnologyConsultancyViewContent(technologyConsultancyView);
+
+    return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+  }
+
 
 }

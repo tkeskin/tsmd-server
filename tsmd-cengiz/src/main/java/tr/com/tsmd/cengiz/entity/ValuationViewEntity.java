@@ -1,15 +1,19 @@
 package tr.com.tsmd.cengiz.entity;
 
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.Type;
 import tr.com.tsmd.cengiz.util.Const;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-
 @Entity
-@Table(name = Const.TABLE_ABOUT, schema = Const.SCHEMA)
-public class AboutEntity extends AuditModel {
+@Table(name = Const.TABLE_VALUATION_VIEW, schema = Const.SCHEMA)
+public class ValuationViewEntity extends AuditModel {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +22,7 @@ public class AboutEntity extends AuditModel {
   @NotBlank
   @Lob
   @Type(type="org.hibernate.type.TextType")
-  private String aboutExplain;
+  private String valuationExplain;
 
   @Lob
   @Type(type="org.hibernate.type.BinaryType")
@@ -29,22 +33,21 @@ public class AboutEntity extends AuditModel {
   private String fileType;
 
 
-  public AboutEntity() {
+  public ValuationViewEntity() {
   }
 
-  public AboutEntity(Long id, String aboutExplain) {
+  public ValuationViewEntity(Long id, String valuationExplain) {
     this.id = id;
-    this.aboutExplain = aboutExplain;
+    this.valuationExplain = valuationExplain;
   }
 
 
-  public AboutEntity(byte[] picture, @NotBlank String aboutExplain, String fileName, String fileType) {
+  public ValuationViewEntity(byte[] picture, @NotBlank String valuationExplain, String fileName, String fileType) {
     this.picture = picture;
-    this.aboutExplain = aboutExplain;
+    this.valuationExplain = valuationExplain;
     this.fileName = fileName;
     this.fileType = fileType;
   }
-
 
   public Long getId() {
     return id;
@@ -54,12 +57,12 @@ public class AboutEntity extends AuditModel {
     this.id = id;
   }
 
-  public String getAboutExplain() {
-    return aboutExplain;
+  public String getValuationExplain() {
+    return valuationExplain;
   }
 
-  public void setAboutExplain(String aboutExplain) {
-    this.aboutExplain = aboutExplain;
+  public void setValuationExplain(String valuationExplain) {
+    this.valuationExplain = valuationExplain;
   }
 
   public byte[] getPicture() {

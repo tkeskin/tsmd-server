@@ -1,15 +1,19 @@
 package tr.com.tsmd.cengiz.entity;
 
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.Type;
 import tr.com.tsmd.cengiz.util.Const;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-
 @Entity
-@Table(name = Const.TABLE_ABOUT, schema = Const.SCHEMA)
-public class AboutEntity extends AuditModel {
+@Table(name = Const.TABLE_TRADEMARKPRE_VIEW, schema = Const.SCHEMA)
+public class TrademarkPreViewEntity extends AuditModel {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +22,7 @@ public class AboutEntity extends AuditModel {
   @NotBlank
   @Lob
   @Type(type="org.hibernate.type.TextType")
-  private String aboutExplain;
+  private String trademarkPreExplain;
 
   @Lob
   @Type(type="org.hibernate.type.BinaryType")
@@ -29,18 +33,18 @@ public class AboutEntity extends AuditModel {
   private String fileType;
 
 
-  public AboutEntity() {
+  public TrademarkPreViewEntity() {
   }
 
-  public AboutEntity(Long id, String aboutExplain) {
+  public TrademarkPreViewEntity(Long id, String trademarkPreExplain) {
     this.id = id;
-    this.aboutExplain = aboutExplain;
+    this.trademarkPreExplain = trademarkPreExplain;
   }
 
 
-  public AboutEntity(byte[] picture, @NotBlank String aboutExplain, String fileName, String fileType) {
+  public TrademarkPreViewEntity(byte[] picture, @NotBlank String trademarkPreExplain, String fileName, String fileType) {
     this.picture = picture;
-    this.aboutExplain = aboutExplain;
+    this.trademarkPreExplain = trademarkPreExplain;
     this.fileName = fileName;
     this.fileType = fileType;
   }
@@ -54,12 +58,12 @@ public class AboutEntity extends AuditModel {
     this.id = id;
   }
 
-  public String getAboutExplain() {
-    return aboutExplain;
+  public String getTrademarkPreExplain() {
+    return trademarkPreExplain;
   }
 
-  public void setAboutExplain(String aboutExplain) {
-    this.aboutExplain = aboutExplain;
+  public void setTrademarkPreExplain(String trademarkPreExplain) {
+    this.trademarkPreExplain = trademarkPreExplain;
   }
 
   public byte[] getPicture() {

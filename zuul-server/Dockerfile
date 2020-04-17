@@ -1,7 +1,12 @@
-FROM java:11
-VOLUME /tmp
+FROM openjdk:11
 
-COPY /build/libs/zuul-server*.jar /zuul-server.jar
+MAINTAINER dberber
+
 EXPOSE 8763
 
-CMD java -Xms2048m -Xmx4096m -jar /zuul-server.jar
+# label for the image
+LABEL Description="ZUUL SERVER" Version="0.0.1"
+
+ADD /build/libs/zuul-server*.jar /zuul-server.jar
+
+ENTRYPOINT ["java","-jar","/zuul-server.jar"]

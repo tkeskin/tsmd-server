@@ -1,47 +1,47 @@
 package tr.com.tsmd.cengiz.models;
 
-public class About {
+public class ValuationView {
 
   private Long id;
-  private String aboutExplain;
+  private String valuationExplain;
   private byte[] picture;
   private String pictureBase64;
   private String fileName;
   private String fileType;
 
-  public About() {
+  public ValuationView() {
   }
 
-  public About(Long id, String aboutExplain) {
+  public ValuationView(Long id, String valuationExplain) {
     this.id = id;
-    this.aboutExplain = aboutExplain;
+    this.valuationExplain = valuationExplain;
   }
-  public About(Long id, byte[] picture, String aboutExplain) {
+  public ValuationView(Long id, byte[] picture, String valuationExplain) {
     this.id = id;
     this.picture = picture;
-    this.aboutExplain = aboutExplain;
+    this.valuationExplain = valuationExplain;
   }
 
-  public About(byte[] picture, String aboutExplain, String fileName, String fileType) {
+  public ValuationView(byte[] picture, String valuationExplain, String fileName, String fileType) {
     this.picture = picture;
-    this.aboutExplain = aboutExplain;
+    this.valuationExplain = valuationExplain;
     this.fileName = fileName;
     this.fileType = fileType;
   }
 
 
-  public About(Long id, String aboutExplain, String pictureBase64, String fileName, String fileType) {
+  public ValuationView(Long id, String valuationExplain, String pictureBase64, String fileName, String fileType) {
     this.id = id;
-    this.aboutExplain = aboutExplain;
+    this.valuationExplain = valuationExplain;
     this.pictureBase64 = pictureBase64;
     this.fileName = fileName;
     this.fileType = fileType;
   }
 
-  public About(Long id, byte[] picture, String aboutExplain, String pictureBase64, String fileName, String fileType) {
+  public ValuationView(Long id, byte[] picture, String valuationExplain, String pictureBase64, String fileName, String fileType) {
     this.id = id;
     this.picture = picture;
-    this.aboutExplain = aboutExplain;
+    this.valuationExplain = valuationExplain;
     this.pictureBase64 = pictureBase64;
     this.fileName = fileName;
     this.fileType = fileType;
@@ -56,12 +56,20 @@ public class About {
     this.id = id;
   }
 
-  public String getAboutExplain() {
-    return aboutExplain;
+  public String getValuationExplain() {
+    return valuationExplain;
   }
 
-  public void setAboutExplain(String aboutExplain) {
-    this.aboutExplain = aboutExplain;
+  public void setValuationExplain(String valuationExplain) {
+    this.valuationExplain = valuationExplain;
+  }
+
+  public byte[] getPicture() {
+    return picture;
+  }
+
+  public void setPicture(byte[] picture) {
+    this.picture = picture;
   }
 
   public String getPictureBase64() {
@@ -86,13 +94,5 @@ public class About {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
-  }
-
-  public byte[] getPicture() {
-    return picture;
-  }
-
-  public void setPicture(byte[] picture) {
-    this.picture = picture;
   }
 }

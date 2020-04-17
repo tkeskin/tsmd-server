@@ -20,9 +20,13 @@ import tr.com.tsmd.cengiz.entity.PatentPreEntity;
 import tr.com.tsmd.cengiz.entity.TrademarkPreEntity;
 import tr.com.tsmd.cengiz.entity.ValuationPatentEntity;
 import tr.com.tsmd.cengiz.entity.ValuationTrademarkEntity;
+import tr.com.tsmd.cengiz.models.About;
 import tr.com.tsmd.cengiz.models.AboutList;
 import tr.com.tsmd.cengiz.models.ActivityAnalysis;
+import tr.com.tsmd.cengiz.models.ActivityAnalysisView;
+import tr.com.tsmd.cengiz.models.CompanyProfile;
 import tr.com.tsmd.cengiz.models.ContactMail;
+import tr.com.tsmd.cengiz.models.EvaluationInvalidationView;
 import tr.com.tsmd.cengiz.models.FullDataList;
 import tr.com.tsmd.cengiz.models.General;
 import tr.com.tsmd.cengiz.models.News;
@@ -31,10 +35,14 @@ import tr.com.tsmd.cengiz.models.NewsRelatedPicturesList;
 import tr.com.tsmd.cengiz.models.Notice;
 import tr.com.tsmd.cengiz.models.NoticeList;
 import tr.com.tsmd.cengiz.models.PatentPre;
+import tr.com.tsmd.cengiz.models.PatentPreView;
+import tr.com.tsmd.cengiz.models.TechnologyConsultancyView;
 import tr.com.tsmd.cengiz.models.TrademarkPre;
+import tr.com.tsmd.cengiz.models.TrademarkPreView;
 import tr.com.tsmd.cengiz.models.UserList;
 import tr.com.tsmd.cengiz.models.ValuationPatent;
 import tr.com.tsmd.cengiz.models.ValuationTrademark;
+import tr.com.tsmd.cengiz.models.ValuationView;
 import tr.com.tsmd.cengiz.payload.request.ServicesRequest;
 import tr.com.tsmd.cengiz.payload.request.TrademarkPreRequest;
 import tr.com.tsmd.cengiz.repository.ActivityAnalysisRepository;
@@ -45,10 +53,12 @@ import tr.com.tsmd.cengiz.repository.ValuationPatentRepository;
 import tr.com.tsmd.cengiz.repository.ValuationTrademarkRepository;
 import tr.com.tsmd.cengiz.service.AboutInfoService;
 import tr.com.tsmd.cengiz.service.ActivityAnalysisService;
+import tr.com.tsmd.cengiz.service.CompanyProfileInfoService;
 import tr.com.tsmd.cengiz.service.EmailService;
 import tr.com.tsmd.cengiz.service.NewsInfoService;
 import tr.com.tsmd.cengiz.service.NoticeInfoService;
 import tr.com.tsmd.cengiz.service.PatentPreService;
+import tr.com.tsmd.cengiz.service.ServicesInfoService;
 import tr.com.tsmd.cengiz.service.UserInfoService;
 
 import javax.validation.Valid;
@@ -75,6 +85,9 @@ public class CengizPublicController {
 
   @Autowired
   AboutInfoService aboutInfoService;
+
+  @Autowired
+  CompanyProfileInfoService companyProfileInfoService;
 
   @Autowired
   EmailService emailService;
@@ -105,6 +118,11 @@ public class CengizPublicController {
 
   @Autowired
   ContactMailRepository contactMailRepository;
+
+  @Autowired
+  ServicesInfoService servicesInfoService;
+
+
 
   /**
    * user list
@@ -167,7 +185,7 @@ public class CengizPublicController {
   }
 
   /**
-   * news list
+   * notice
    *
    * @return .
    */
@@ -176,6 +194,30 @@ public class CengizPublicController {
 
     Notice notice = noticeInfoService.getNoticeById(id);
     return notice;
+  }
+
+  /**
+   * about
+   *
+   * @return .
+   */
+  @GetMapping("/aboutBy")
+  public About getAboutBy() {
+
+    About about = aboutInfoService.getAboutBy();
+    return about;
+  }
+
+  /**
+   * companyprofile
+   *
+   * @return .
+   */
+  @GetMapping("/companyProfileBy")
+  public CompanyProfile getCompanyProfileBy() {
+
+    CompanyProfile companyProfile = companyProfileInfoService.getCompanyProfileBy();
+    return companyProfile;
   }
 
   /**
@@ -214,6 +256,33 @@ public class CengizPublicController {
 
 
     noticeInfoService.updateNoticePicture(id,picture);
+
+    return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @PostMapping(value = "/aboutUpdatePicture", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> updateAboutPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
+
+
+    aboutInfoService.updateAboutPicture(id,picture);
+
+    return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+  }
+
+  /**
+   * companyProfile list
+   *
+   * @return .
+   */
+  @PostMapping(value = "/companyProfileUpdatePicture", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> updateCompanyProfilePicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
+
+    companyProfileInfoService.updateCompanyProfilePicture(id,picture);
 
     return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
   }
@@ -724,4 +793,188 @@ public class CengizPublicController {
     return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
   }
 
+
+
+  @PostMapping(value = "/deneme")
+  public ResponseEntity<General> postTrademarkPre(@RequestBody String editor) {
+
+
+
+
+
+
+    General general = new General("Kayıt işleminiz başarılı...",1L);
+
+    return ResponseEntity.ok(general);
+  }
+
+
+
+
+  /**
+   * trademarkpreview
+   *
+   * @return .
+   */
+  @GetMapping("/trademarkPreBy")
+  public TrademarkPreView getTrademarkPreViewBy() {
+
+    TrademarkPreView trademarkPreView = servicesInfoService.getTrademarkPreViewBy();
+    return trademarkPreView;
+  }
+
+
+  /**
+   * trademarkpreview picture
+   *
+   * @return .
+   */
+  @PostMapping(value = "/trademarkPreUpdatePicture", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> updateTrademarkPreViewPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
+
+
+    servicesInfoService.updateTrademarkPreViewPicture(id,picture);
+
+    return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+  }
+
+  /**
+   * PatentPreView
+   *
+   * @return .
+   */
+  @GetMapping("patentPreBy")
+  public PatentPreView getPatentPreViewBy() {
+
+    PatentPreView patentPreView = servicesInfoService.getPatentPreViewBy();
+    return patentPreView;
+  }
+
+
+  /**
+   * PatentPreView picture
+   *
+   * @return .
+   */
+  @PostMapping(value = "/patentPreUpdatePicture", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> updatePatentPreViewPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
+
+
+    servicesInfoService.updatePatentPreViewPicture(id,picture);
+
+    return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+  }
+
+
+  /**
+   * ActivityAnalysisView
+   *
+   * @return .
+   */
+  @GetMapping("activityAnalysisBy")
+  public ActivityAnalysisView getActivityAnalysisViewBy() {
+
+    ActivityAnalysisView activityAnalysisView = servicesInfoService.getActivityAnalysisViewBy();
+    return activityAnalysisView;
+  }
+
+
+  /**
+   * ActivityAnalysisView picture
+   *
+   * @return .
+   */
+  @PostMapping(value = "/activityAnalysisUpdatePicture", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> updateActivityAnalysisViewPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
+
+
+    servicesInfoService.updateActivityAnalysisViewPicture(id,picture);
+
+    return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+  }
+
+
+  /**
+   * ValuationView
+   *
+   * @return .
+   */
+  @GetMapping("valuationBy")
+  public ValuationView getValuationViewBy() {
+
+    ValuationView valuationView = servicesInfoService.getValuationViewBy();
+    return valuationView;
+  }
+
+
+  /**
+   * ValuationView picture
+   *
+   * @return .
+   */
+  @PostMapping(value = "/valuationUpdatePicture", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> updateValuationViewPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
+
+
+    servicesInfoService.updateTrademarkPreViewPicture(id,picture);
+
+    return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+  }
+
+
+
+  /**
+   * EvaluationInvalidationView
+   *
+   * @return .
+   */
+  @GetMapping("evaluationInvalidationBy")
+  public EvaluationInvalidationView getEvaluationInvalidationViewBy() {
+
+    EvaluationInvalidationView evaluationInvalidationView = servicesInfoService.getEvaluationInvalidationViewBy();
+    return evaluationInvalidationView;
+  }
+
+
+  /**
+   * EvaluationInvalidationView picture
+   *
+   * @return .
+   */
+  @PostMapping(value = "/evaluationInvalidationUpdatePicture", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> updateEvaluationInvalidationViewPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
+
+
+    servicesInfoService.updateEvaluationInvalidationViewPicture(id,picture);
+
+    return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+  }
+
+
+  /**
+   * TechnologyConsultancyView
+   *
+   * @return .
+   */
+  @GetMapping("technologyConsultancyBy")
+  public TechnologyConsultancyView getTechnologyConsultancyViewBy() {
+
+    TechnologyConsultancyView technologyConsultancyView = servicesInfoService.getTechnologyConsultancyViewBy();
+    return technologyConsultancyView;
+  }
+
+
+  /**
+   * TechnologyConsultancyView picture
+   *
+   * @return .
+   */
+  @PostMapping(value = "/technologyConsultancyUpdatePicture", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> updateTechnologyConsultancyViewPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
+
+
+    servicesInfoService.updateTechnologyConsultancyViewPicture(id,picture);
+
+    return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+  }
 }

@@ -1,47 +1,47 @@
 package tr.com.tsmd.cengiz.models;
 
-public class About {
+public class PatentPreView {
 
   private Long id;
-  private String aboutExplain;
+  private String patentPreExplain;
   private byte[] picture;
   private String pictureBase64;
   private String fileName;
   private String fileType;
 
-  public About() {
+  public PatentPreView() {
   }
 
-  public About(Long id, String aboutExplain) {
+  public PatentPreView(Long id, String patentPreExplain) {
     this.id = id;
-    this.aboutExplain = aboutExplain;
+    this.patentPreExplain = patentPreExplain;
   }
-  public About(Long id, byte[] picture, String aboutExplain) {
+  public PatentPreView(Long id, byte[] picture, String patentPreExplain) {
     this.id = id;
     this.picture = picture;
-    this.aboutExplain = aboutExplain;
+    this.patentPreExplain = patentPreExplain;
   }
 
-  public About(byte[] picture, String aboutExplain, String fileName, String fileType) {
+  public PatentPreView(byte[] picture, String patentPreExplain, String fileName, String fileType) {
     this.picture = picture;
-    this.aboutExplain = aboutExplain;
+    this.patentPreExplain = patentPreExplain;
     this.fileName = fileName;
     this.fileType = fileType;
   }
 
 
-  public About(Long id, String aboutExplain, String pictureBase64, String fileName, String fileType) {
+  public PatentPreView(Long id, String patentPreExplain, String pictureBase64, String fileName, String fileType) {
     this.id = id;
-    this.aboutExplain = aboutExplain;
+    this.patentPreExplain = patentPreExplain;
     this.pictureBase64 = pictureBase64;
     this.fileName = fileName;
     this.fileType = fileType;
   }
 
-  public About(Long id, byte[] picture, String aboutExplain, String pictureBase64, String fileName, String fileType) {
+  public PatentPreView(Long id, byte[] picture, String patentPreExplain, String pictureBase64, String fileName, String fileType) {
     this.id = id;
     this.picture = picture;
-    this.aboutExplain = aboutExplain;
+    this.patentPreExplain = patentPreExplain;
     this.pictureBase64 = pictureBase64;
     this.fileName = fileName;
     this.fileType = fileType;
@@ -56,12 +56,20 @@ public class About {
     this.id = id;
   }
 
-  public String getAboutExplain() {
-    return aboutExplain;
+  public String getPatentPreExplain() {
+    return patentPreExplain;
   }
 
-  public void setAboutExplain(String aboutExplain) {
-    this.aboutExplain = aboutExplain;
+  public void setPatentPreExplain(String patentPreExplain) {
+    this.patentPreExplain = patentPreExplain;
+  }
+
+  public byte[] getPicture() {
+    return picture;
+  }
+
+  public void setPicture(byte[] picture) {
+    this.picture = picture;
   }
 
   public String getPictureBase64() {
@@ -86,13 +94,5 @@ public class About {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
-  }
-
-  public byte[] getPicture() {
-    return picture;
-  }
-
-  public void setPicture(byte[] picture) {
-    this.picture = picture;
   }
 }

@@ -13,7 +13,7 @@ spring:
       maximum-pool-size: 50
       minimum-idle: 20
       connection-timeout: 20500
-    url: jdbc:postgresql://localhost:5432/postgres #jdbc:postgresql://172.19.0.7:5432/postgres
+    url: jdbc:postgresql://tsmd-postgres:5432/postgres #jdbc:postgresql://172.18.0.5:5432/postgres
   jpa:
     hibernate:
       ddl-auto: update
@@ -38,4 +38,5 @@ management:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://eureka:8761/eureka/
+#      defaultZone: http://172.18.0.2:8761/eureka/

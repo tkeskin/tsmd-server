@@ -196,7 +196,7 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
   public void updateEvaluationInvalidationViewContent(EvaluationInvalidationView evaluationInvalidationView) {
 
     EvaluationInvalidationViewEntity entity = evaluationInvalidationViewRepository.getBy();
-    entity.setEvaluationInvalidationExplain(entity.getEvaluationInvalidationExplain());
+    entity.setEvaluationInvalidationExplain(evaluationInvalidationView.getEvaluationInvalidationExplain());
 
     evaluationInvalidationViewRepository.save(entity);
 

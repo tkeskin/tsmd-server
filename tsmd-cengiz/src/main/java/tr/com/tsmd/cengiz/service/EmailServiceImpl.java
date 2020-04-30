@@ -672,8 +672,8 @@ public class EmailServiceImpl implements EmailService {
 
     }
 
-    helper.setTo("damlaberber@turkpatent.gov.tr");
-    helper.setFrom("damlaberber@turkpatent.gov.tr");
+    helper.setTo("test@turksmd.com.tr");
+    helper.setFrom("test@turksmd.com.tr");
     emailSender.send(message);
   }
 }

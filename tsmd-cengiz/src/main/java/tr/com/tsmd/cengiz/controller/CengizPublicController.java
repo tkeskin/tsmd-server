@@ -530,7 +530,7 @@ public class CengizPublicController {
 
   private void sendMail(String replyText, String[] to, String subject, int id, String appNo) {
     Mail mail = new Mail();
-    mail.setFrom("damlaberber@turkpatent.gov.tr");
+    mail.setFrom("test@turksmd.com.tr");
     mail.setTo(to);
     mail.setSubject(subject);
     mail.setContent(replyText);
@@ -669,7 +669,7 @@ public class CengizPublicController {
 
     contactMailRepository.save(new ContactMailEntity(contactMail.getEmail(),contactMail.getNameSurname(),contactMail.getMessage()));
 
-    String[] to = {"damlaberber@turkpatent.gov.tr"};
+    String[] to = {"test@turksmd.com.tr"};
     String content= "Ad Soyad:"+contactMail.getNameSurname()+"Email:"+contactMail.getEmail()+"Message:"+contactMail.getMessage();
     sendMail(content, to, contactMail.getEmail(), 1, "");
 

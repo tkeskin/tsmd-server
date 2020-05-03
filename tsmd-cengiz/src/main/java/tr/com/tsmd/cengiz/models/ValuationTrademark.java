@@ -1,5 +1,7 @@
 package tr.com.tsmd.cengiz.models;
 
+import java.util.Date;
+
 public class ValuationTrademark {
 
   private Long id;
@@ -35,6 +37,8 @@ public class ValuationTrademark {
   private String totalexpenditure;
   private String countryoutside;
   private String europeanunion;
+
+  private Date createdAt;
 
   public ValuationTrademark() {
   }
@@ -337,5 +341,13 @@ public class ValuationTrademark {
 
   public void setEuropeanunion(String europeanunion) {
     this.europeanunion = europeanunion;
+  }
+
+  public Date getCreatedAt() {
+    return createdAt;
+  }
+
+  public void setCreatedAt(Date createdAt) {
+    this.createdAt = createdAt;
   }
 }

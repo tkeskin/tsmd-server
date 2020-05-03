@@ -1,5 +1,6 @@
 package tr.com.tsmd.cengiz.models;
 
+import java.util.Date;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -41,6 +42,9 @@ public class PatentPre {
   private String detailexplain;
   private String picture;
   private String otherpoint;
+
+  private Date createdAt;
+  private String dekontBase64;
 
   public PatentPre() {
   }
@@ -301,5 +305,21 @@ public class PatentPre {
 
   public void setOtherpoint(String otherpoint) {
     this.otherpoint = otherpoint;
+  }
+
+  public Date getCreatedAt() {
+    return createdAt;
+  }
+
+  public void setCreatedAt(Date createdAt) {
+    this.createdAt = createdAt;
+  }
+
+  public String getDekontBase64() {
+    return dekontBase64;
+  }
+
+  public void setDekontBase64(String dekontBase64) {
+    this.dekontBase64 = dekontBase64;
   }
 }

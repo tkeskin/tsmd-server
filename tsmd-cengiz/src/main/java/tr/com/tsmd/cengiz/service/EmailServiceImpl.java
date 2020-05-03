@@ -86,10 +86,15 @@ public class EmailServiceImpl implements EmailService {
     if (servicesType == 1) {
       TrademarkPreEntity trademarkPreEntity= trademarkPreRepository.getById(id);
       try {
-        ByteArrayDataSource bds = new ByteArrayDataSource(trademarkPreEntity.getTrademarkimagebyte(), "image/jpeg");
+        String inlineImage = "";
+        if (trademarkPreEntity.getTrademarkimagebyte() != null){
+          ByteArrayDataSource bds = new ByteArrayDataSource(trademarkPreEntity.getTrademarkimagebyte(), "image/jpeg");
+          helper.addAttachment("marka_ornegi.jpeg", bds);
+          inlineImage = "<img src=\"cid:marka_ornegi.jpeg\"></img><br/>";
+        }
 
-        helper.addAttachment("marka_ornegi.jpeg", bds);
-        String inlineImage = "<img src=\"cid:marka_ornegi.jpeg\"></img><br/>";
+
+
         helper.addAttachment("dekont.jpeg", new ByteArrayResource(trademarkPreEntity.getDekont()));
         String contentHtml="<h1 style=\"font-weight: bold;color: white;background-color: #d32f2f\">Marka Ön Araştırma Raporu </h1>\n"
             + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">Ad Soyad/Ticaret Unvanı</div>\n"

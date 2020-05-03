@@ -1,5 +1,6 @@
 package tr.com.tsmd.cengiz.models;
 
+import java.util.Date;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -38,6 +39,9 @@ public class ValuationPatent {
   private String caseexpense;
   private String countryoutside;
   private String europeanunio;
+
+  private Date createdAt;
+
 
   public ValuationPatent() {
   }
@@ -331,5 +335,13 @@ public class ValuationPatent {
 
   public void setEuropeanunio(String europeanunio) {
     this.europeanunio = europeanunio;
+  }
+
+  public Date getCreatedAt() {
+    return createdAt;
+  }
+
+  public void setCreatedAt(Date createdAt) {
+    this.createdAt = createdAt;
   }
 }

@@ -1,32 +1,46 @@
 package tr.com.tsmd.cengiz.controller;
 
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
+import javax.validation.Valid;
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import tr.com.tsmd.auth.payload.response.MessageResponse;
 import tr.com.tsmd.cengiz.entity.ActivityAnalysisEntity;
+import tr.com.tsmd.cengiz.entity.ActivityAnalysisPicturesEntity;
 import tr.com.tsmd.cengiz.entity.ContactMailEntity;
 import tr.com.tsmd.cengiz.entity.PatentPreEntity;
+import tr.com.tsmd.cengiz.entity.PatentPreRelatedPicturesEntity;
+import tr.com.tsmd.cengiz.entity.PatentPreTableEntity;
 import tr.com.tsmd.cengiz.entity.TrademarkPreEntity;
 import tr.com.tsmd.cengiz.entity.ValuationPatentEntity;
 import tr.com.tsmd.cengiz.entity.ValuationTrademarkEntity;
 import tr.com.tsmd.cengiz.models.About;
 import tr.com.tsmd.cengiz.models.AboutList;
 import tr.com.tsmd.cengiz.models.ActivityAnalysis;
+import tr.com.tsmd.cengiz.models.ActivityAnalysisList;
+import tr.com.tsmd.cengiz.models.ActivityAnalysisPictures;
+import tr.com.tsmd.cengiz.models.ActivityAnalysisPicturesList;
 import tr.com.tsmd.cengiz.models.ActivityAnalysisView;
 import tr.com.tsmd.cengiz.models.CompanyProfile;
 import tr.com.tsmd.cengiz.models.ContactMail;
 import tr.com.tsmd.cengiz.models.EvaluationInvalidationView;
+import tr.com.tsmd.cengiz.models.FullData;
 import tr.com.tsmd.cengiz.models.FullDataList;
 import tr.com.tsmd.cengiz.models.General;
 import tr.com.tsmd.cengiz.models.News;
@@ -35,19 +49,27 @@ import tr.com.tsmd.cengiz.models.NewsRelatedPicturesList;
 import tr.com.tsmd.cengiz.models.Notice;
 import tr.com.tsmd.cengiz.models.NoticeList;
 import tr.com.tsmd.cengiz.models.PatentPre;
+import tr.com.tsmd.cengiz.models.PatentPreList;
+import tr.com.tsmd.cengiz.models.PatentPreRelatedPictures;
+import tr.com.tsmd.cengiz.models.PatentPreRelatedPicturesList;
 import tr.com.tsmd.cengiz.models.PatentPreView;
 import tr.com.tsmd.cengiz.models.TechnologyConsultancyView;
 import tr.com.tsmd.cengiz.models.TrademarkPre;
+import tr.com.tsmd.cengiz.models.TrademarkPreList;
 import tr.com.tsmd.cengiz.models.TrademarkPreView;
 import tr.com.tsmd.cengiz.models.UserList;
 import tr.com.tsmd.cengiz.models.ValuationPatent;
+import tr.com.tsmd.cengiz.models.ValuationPatentList;
 import tr.com.tsmd.cengiz.models.ValuationTrademark;
+import tr.com.tsmd.cengiz.models.ValuationTrademarkList;
 import tr.com.tsmd.cengiz.models.ValuationView;
 import tr.com.tsmd.cengiz.payload.request.ServicesRequest;
-import tr.com.tsmd.cengiz.payload.request.TrademarkPreRequest;
+import tr.com.tsmd.cengiz.repository.ActivityAnalysisPicturesRepository;
 import tr.com.tsmd.cengiz.repository.ActivityAnalysisRepository;
 import tr.com.tsmd.cengiz.repository.ContactMailRepository;
+import tr.com.tsmd.cengiz.repository.PatentPreRelatedPicturesRepository;
 import tr.com.tsmd.cengiz.repository.PatentPreRepository;
+import tr.com.tsmd.cengiz.repository.PatentPreTableRepository;
 import tr.com.tsmd.cengiz.repository.TrademarkPreRepository;
 import tr.com.tsmd.cengiz.repository.ValuationPatentRepository;
 import tr.com.tsmd.cengiz.repository.ValuationTrademarkRepository;
@@ -60,8 +82,6 @@ import tr.com.tsmd.cengiz.service.NoticeInfoService;
 import tr.com.tsmd.cengiz.service.PatentPreService;
 import tr.com.tsmd.cengiz.service.ServicesInfoService;
 import tr.com.tsmd.cengiz.service.UserInfoService;
-
-import javax.validation.Valid;
 import tr.com.tsmd.cengiz.service.ValuationService;
 import tr.com.tsmd.cengiz.util.Mail;
 
@@ -122,6 +142,14 @@ public class CengizPublicController {
   @Autowired
   ServicesInfoService servicesInfoService;
 
+  @Autowired
+  PatentPreRelatedPicturesRepository patentPreRelatedPicturesRepository;
+
+  @Autowired
+  PatentPreTableRepository patentPreTableRepository;
+
+  @Autowired
+  ActivityAnalysisPicturesRepository activityAnalysisPicturesRepository;
 
 
   /**
@@ -170,6 +198,435 @@ public class CengizPublicController {
     //list dönen servis için bir class daha yazıp öyle handle ettik
     NewsList newsList = newsInfoService.getNewsPublishedList();
     return newsList;
+  }
+
+  /**
+   * trademarkpreapplications list
+   *
+   * @return .
+   */
+  @GetMapping("/trademarkPreApplications")
+  public TrademarkPreList getTrademarkPreApplications() {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    List<TrademarkPreEntity> trademarkPreEntities = trademarkPreRepository.findAll();
+    List<TrademarkPre> trademarkPres = new ArrayList<>();
+    for (TrademarkPreEntity entity: trademarkPreEntities) {
+      TrademarkPre trademarkPre = new TrademarkPre();
+          trademarkPre.setId(entity.getId());
+          trademarkPre.setTrademarktype(entity.getTrademarktype());
+          if (entity.getTrademarkimagebyte() != null) {
+            trademarkPre.setTrademarkimage( "data: image/jpeg;base64," +
+                new String(Base64.encodeBase64(entity.getTrademarkimagebyte()), StandardCharsets.US_ASCII));
+          } else {
+            trademarkPre.setTrademarkimage("");
+      }
+
+      trademarkPre.setTrademarktext(entity.getTrademarktext());
+      trademarkPre.setTrademarkclass(entity.getTrademarkclass());
+      trademarkPre.setName_surname(entity.getName_surname());
+      trademarkPre.setTc(entity.getTc());
+      trademarkPre.setAddress(entity.getAddress());
+      trademarkPre.setTel(entity.getTel());
+      trademarkPre.setEmail(entity.getEmail());
+      trademarkPre.setCreatedAt(entity.getCreatedAt());
+      trademarkPres.add(trademarkPre);
+    }
+
+    TrademarkPreList trademarkPreList = new TrademarkPreList();
+    trademarkPreList.setTrademarkPres(trademarkPres);
+    return trademarkPreList;
+  }
+
+
+  /**
+   * trademarkpreapplications list
+   *
+   * @return .
+   */
+  @GetMapping("/patentPreApplications")
+  public PatentPreList getPatentPreApplications() {
+    List<PatentPreEntity> patentPreEntities = patentPreRepository.findAll();
+    List<PatentPre> patentPres = new ArrayList<>();
+    for (PatentPreEntity entity: patentPreEntities) {
+      PatentPre patentPre = new PatentPre();
+      patentPre.setId(entity.getId());
+      if (entity.getProtectiontype().equals("5")){
+        patentPre.setProtectiontype("Patent");
+      }else if (entity.getProtectiontype().equals("6")){
+        patentPre.setProtectiontype("Faydalı Model");
+      }else if (entity.getProtectiontype().equals("7")){
+        patentPre.setProtectiontype("Rapor Sonrasında Belirleyeceğim");
+      }else {
+        patentPre.setProtectiontype(entity.getProtectiontype());
+      }
+
+      if (entity.getReporttype().equals("8")){
+        patentPre.setReporttype("Standart");
+      }else if (entity.getReporttype().equals("9")){
+        patentPre.setReporttype("Detaylı");
+      }else {
+        patentPre.setReporttype(entity.getReporttype());
+      }
+      patentPre.setName_surname(entity.getName_surname());
+      patentPre.setTc(entity.getTc());
+      patentPre.setAddress(entity.getAddress());
+      patentPre.setTel(entity.getTel());
+      patentPre.setEmail(entity.getEmail());
+      patentPre.setCreatedAt(entity.getCreatedAt());
+      patentPres.add(patentPre);
+    }
+
+    PatentPreList patentPreList = new PatentPreList();
+    patentPreList.setPatentPres(patentPres);
+    return patentPreList;
+  }
+
+
+  /**
+   * news list
+   *
+   * @return .
+   */
+  @GetMapping("/trademarkPreApplications/{id}")
+  public TrademarkPre getTrademarkPreApplicationsById(@PathVariable("id") Long id) {
+
+    TrademarkPreEntity entity = trademarkPreRepository.getById(id);
+    TrademarkPre trademarkPre = new TrademarkPre();
+    trademarkPre.setId(entity.getId());
+    trademarkPre.setTrademarktype(entity.getTrademarktype());
+    if (entity.getTrademarkimagebyte() != null) {
+      trademarkPre.setTrademarkimage( "data: image/jpeg;base64," +
+          new String(Base64.encodeBase64(entity.getTrademarkimagebyte()), StandardCharsets.US_ASCII));
+    } else {
+      trademarkPre.setTrademarkimage("");
+    }
+
+    trademarkPre.setTrademarktext(entity.getTrademarktext());
+    trademarkPre.setTrademarkclass(entity.getTrademarkclass());
+    trademarkPre.setName_surname(entity.getName_surname());
+    trademarkPre.setTc(entity.getTc());
+    trademarkPre.setAddress(entity.getAddress());
+    trademarkPre.setTel(entity.getTel());
+    trademarkPre.setEmail(entity.getEmail());
+    trademarkPre.setCreatedAt(entity.getCreatedAt());
+    trademarkPre.setDekontBase64("data: image/jpeg;base64," +
+        new String(Base64.encodeBase64(entity.getDekont()), StandardCharsets.US_ASCII));
+    return trademarkPre;
+  }
+
+  /**
+   * valuationTrademarkApplication list
+   *
+   * @return .
+   */
+  @GetMapping("/valuationTrademarkApplications/{id}")
+  public ValuationTrademark getValuationTrademarkApplicationsById(@PathVariable("id") Long id) {
+
+    ValuationTrademarkEntity entity = valuationTrademarkRepository.getById(id);
+    ValuationTrademark valuationTrademark = new ValuationTrademark();
+    valuationTrademark.setId(entity.getId());
+    valuationTrademark.setAddress(entity.getAddress());
+    valuationTrademark.setTrademarkclass(entity.getTrademarkclass());
+    valuationTrademark.setTrademarkpurpose(entity.getTrademarkpurpose());
+    valuationTrademark.setRegistrationdate(entity.getRegistrationdate());
+    valuationTrademark.setCommonusage(entity.getCommonusage());
+    valuationTrademark.setDominanttrademark(entity.getDominanttrademark());
+    valuationTrademark.setTargetcountry(entity.getTargetcountry());
+    valuationTrademark.setTrademarktime(entity.getTrademarktime());
+    valuationTrademark.setMarkettime(entity.getMarkettime());
+    valuationTrademark.setTrademarkcontribution(entity.getTrademarkcontribution());
+    valuationTrademark.setIncomepercent(entity.getIncomepercent());
+    valuationTrademark.setMainsector(entity.getMainsector());
+    valuationTrademark.setOthersector(entity.getOthersector());
+    valuationTrademark.setMarketshare(entity.getMarketshare());
+    valuationTrademark.setTotalturnover(entity.getTotalturnover());
+    valuationTrademark.setOverseasmarketshare(entity.getOverseasmarketshare());
+    valuationTrademark.setExportcountry(entity.getExportcountry());
+    valuationTrademark.setTurnoverpercent(entity.getTurnoverpercent());
+    valuationTrademark.setPercentroyalt(entity.getPercentroyalt());
+    valuationTrademark.setCompetingmarketshare(entity.getCompetingmarketshare());
+    valuationTrademark.setMarkethistory(entity.getMarkethistory());
+    valuationTrademark.setGrowthrate(entity.getGrowthrate());
+    valuationTrademark.setTurnovertarget(entity.getTurnovertarget());
+    valuationTrademark.setTrademarkturnoverpercent(entity.getTrademarkturnoverpercent());
+    valuationTrademark.setIncomeincreasepercent(entity.getIncomeincreasepercent());
+    valuationTrademark.setLicense(entity.getLicense());
+    valuationTrademark.setLicenseroyalt(entity.getLicenseroyalt());
+    valuationTrademark.setContract(entity.getContract());
+    valuationTrademark.setAdvertisement(entity.getAdvertisement());
+    valuationTrademark.setTotalexpenditure(entity.getTotalexpenditure());
+    valuationTrademark.setCountryoutside(entity.getCountryoutside());
+    valuationTrademark.setEuropeanunion(entity.getEuropeanunion());
+    return valuationTrademark;
+  }
+
+  /**
+   * valuationTrademarkApplication list
+   *
+   * @return .
+   */
+  @GetMapping("/valuationTrademarkApplications")
+  public ValuationTrademarkList getValuationTrademarkApplications() {
+
+    List<ValuationTrademarkEntity> entities = valuationTrademarkRepository.findAll();
+    List<ValuationTrademark> valuationTrademarkList = new ArrayList<>();
+    for (ValuationTrademarkEntity entity : entities) {
+      ValuationTrademark valuationTrademark = new ValuationTrademark();
+      valuationTrademark.setId(entity.getId());
+      valuationTrademark.setAddress(entity.getAddress());
+      valuationTrademark.setCreatedAt(entity.getCreatedAt());
+      valuationTrademarkList.add(valuationTrademark);
+    }
+    ValuationTrademarkList valuationTrademarkList1 = new ValuationTrademarkList();
+    valuationTrademarkList1.setValuationTrademarks(valuationTrademarkList);
+    return valuationTrademarkList1;
+  }
+
+  /**
+   * valuationTrademarkApplication list
+   *
+   * @return .
+   */
+  @GetMapping("/valuationPatentApplications")
+  public ValuationPatentList getValuationPatentkApplications() {
+
+    List<ValuationPatentEntity> entities = valuationPatentRepository.findAll();
+    List<ValuationPatent> valuationPatentList = new ArrayList<>();
+    for (ValuationPatentEntity entity : entities) {
+      ValuationPatent valuationPatent = new ValuationPatent();
+      valuationPatent.setId(entity.getId());
+      valuationPatent.setAddress(entity.getAddress());
+      valuationPatent.setCreatedAt(entity.getCreatedAt());
+      valuationPatentList.add(valuationPatent);
+    }
+    ValuationPatentList valuationPatentList1 = new ValuationPatentList();
+    valuationPatentList1.setValuationPatents(valuationPatentList);
+    return valuationPatentList1;
+  }
+
+  /**
+   * valuationTrademarkApplication list
+   *
+   * @return .
+   */
+  @GetMapping("/valuationPatentApplications/{id}")
+  public ValuationPatent getValuationPatentApplicationsById(@PathVariable("id") Long id) {
+
+    ValuationPatentEntity entity = valuationPatentRepository.getById(id);
+    ValuationPatent valuationPatent = new ValuationPatent();
+    valuationPatent.setId(entity.getId());
+    valuationPatent.setAddress(entity.getAddress());
+    valuationPatent.setPatentpurpose(entity.getPatentpurpose());
+    valuationPatent.setPatentappno(entity.getPatentappno());
+    valuationPatent.setPatentcountry(entity.getPatentcountry());
+    valuationPatent.setPatentmarket(entity.getPatentmarket());
+    valuationPatent.setPatentcontribution(entity.getPatentcontribution());
+    valuationPatent.setPatentsector(entity.getPatentsector());
+    valuationPatent.setPatentothersector(entity.getPatentothersector());
+    valuationPatent.setMarketshare(entity.getMarketshare());
+    valuationPatent.setPercentageturnover(entity.getPercentageturnover());
+    valuationPatent.setOverseasmarketshare(entity.getOverseasmarketshare());
+    valuationPatent.setExportcountry(entity.getExportcountry());
+    valuationPatent.setExportturnover(entity.getExportturnover());
+    valuationPatent.setRoyaltyrate(entity.getRoyaltyrate());
+    valuationPatent.setCompetingmarketshare(entity.getCompetingmarketshare());
+    valuationPatent.setCompetitordate(entity.getCompetitordate());
+    valuationPatent.setCompetinggrowthrate(entity.getCompetinggrowthrate());
+    valuationPatent.setTurnovertarget(entity.getTurnovertarget());
+    valuationPatent.setTurnoverpercent(entity.getTurnoverpercent());
+    valuationPatent.setIncomepercent(entity.getIncomepercent());
+    valuationPatent.setLicense(entity.getLicense());
+    valuationPatent.setLicenseroyalt(entity.getLicenseroyalt());
+    valuationPatent.setContract(entity.getContract());
+    valuationPatent.setAdvertisement(entity.getAdvertisement());
+    valuationPatent.setTotalexpenditure(entity.getTotalexpenditure());
+    valuationPatent.setSpending(entity.getSpending());
+    valuationPatent.setDevelopmentspending(entity.getDevelopmentspending());
+    valuationPatent.setWorldspending(entity.getWorldspending());
+    valuationPatent.setCaseexpense(entity.getCaseexpense());
+    valuationPatent.setCountryoutside(entity.getCountryoutside());
+    valuationPatent.setEuropeanunio(entity.getEuropeanunio());
+
+
+    return valuationPatent;
+  }
+
+
+  /**
+   * valuationTrademarkApplication list
+   *
+   * @return .
+   */
+  @GetMapping("/activityAnalysisApplications/{id}")
+  public ActivityAnalysis getActivityAnalysisApplicationsById(@PathVariable("id") Long id) {
+
+    ActivityAnalysisEntity entity = activityAnalysisRepository.getById(id);
+    ActivityAnalysis activityAnalysis = new ActivityAnalysis();
+    activityAnalysis.setId(entity.getId());
+    activityAnalysis.setAddress(entity.getAddress());
+    activityAnalysis.setName_surname(entity.getName_surname());
+    activityAnalysis.setTc(entity.getTc());
+    activityAnalysis.setTel(entity.getTel());
+    activityAnalysis.setEmail(entity.getEmail());
+    activityAnalysis.setKeyWord(entity.getKeyWord());
+    activityAnalysis.setOpponent(entity.getOpponent());
+    activityAnalysis.setTechnicalcomponent(entity.getTechnicalcomponent());
+    activityAnalysis.setImage(entity.getImage());
+    activityAnalysis.setOtherpoint(entity.getOtherpoint());
+    activityAnalysis.setDekontBase64("data: image/jpeg;base64," +
+        new String(Base64.encodeBase64(entity.getDekont()), StandardCharsets.US_ASCII));
+
+
+    return activityAnalysis;
+  }
+
+  /**
+   * valuationTrademarkApplication list
+   *
+   * @return .
+   */
+  @GetMapping("/activityAnalysisApplicationPicturesByActivityAnalysisId/{id}")
+  public ActivityAnalysisPicturesList getActivityAnalysisApplicationPicturesByActivityAnalysisId(@PathVariable("id") Long id) {
+
+    List<ActivityAnalysisPicturesEntity> entities = activityAnalysisPicturesRepository.getByActivityAnalysisId(id);
+    List<ActivityAnalysisPictures> activityAnalysisPictures = new ArrayList<>();
+    for (ActivityAnalysisPicturesEntity entity:entities) {
+      ActivityAnalysisPictures model = new ActivityAnalysisPictures();
+      model.setId(entity.getId());
+      model.setPictureBase64("data: image/jpeg;base64," +
+          new String(Base64.encodeBase64(entity.getPicture()), StandardCharsets.US_ASCII));
+      activityAnalysisPictures.add(model);
+    }
+
+    ActivityAnalysisPicturesList activityAnalysisPicturesList = new ActivityAnalysisPicturesList();
+    activityAnalysisPicturesList.setActivityAnalysesPicturesList(activityAnalysisPictures);
+
+    return activityAnalysisPicturesList;
+  }
+
+
+  /**
+   * trademarkpreapplications list
+   *
+   * @return .
+   */
+  @GetMapping("/activityAnalysisApplications")
+  public ActivityAnalysisList getActivityAnalysisApplications() {
+    List<ActivityAnalysisEntity> activityAnalysisEntities = activityAnalysisRepository.findAll();
+    List<ActivityAnalysis> activityAnalyses = new ArrayList<>();
+    for (ActivityAnalysisEntity entity: activityAnalysisEntities) {
+      ActivityAnalysis activityAnalysis = new ActivityAnalysis();
+      activityAnalysis.setId(entity.getId());
+      activityAnalysis.setName_surname(entity.getName_surname());
+      activityAnalysis.setTc(entity.getTc());
+      activityAnalysis.setAddress(entity.getAddress());
+      activityAnalysis.setTel(entity.getTel());
+      activityAnalysis.setEmail(entity.getEmail());
+      activityAnalysis.setCreatedAt(entity.getCreatedAt());
+      activityAnalyses.add(activityAnalysis);
+    }
+
+    ActivityAnalysisList activityAnalysisList = new ActivityAnalysisList();
+    activityAnalysisList.setActivityAnalyses(activityAnalyses);
+    return activityAnalysisList;
+  }
+
+
+
+  /**
+   * news list
+   *
+   * @return .
+   */
+  @GetMapping("/patentPreApplications/{id}")
+  public PatentPre getPatentPreApplicationsById(@PathVariable("id") Long id) {
+
+    PatentPreEntity entity = patentPreRepository.getById(id);
+    PatentPre patentPre = new PatentPre();
+    patentPre.setId(entity.getId());
+    patentPre.setName_surname(entity.getName_surname());
+    patentPre.setTc(entity.getTc());
+    patentPre.setAddress(entity.getAddress());
+    patentPre.setTel(entity.getTel());
+    patentPre.setEmail(entity.getEmail());
+    patentPre.setCreatedAt(entity.getCreatedAt());
+    patentPre.setDekontBase64("data: image/jpeg;base64," +
+        new String(Base64.encodeBase64(entity.getDekont()), StandardCharsets.US_ASCII));
+
+    patentPre.setProtectiontype(entity.getProtectiontype());
+    patentPre.setReporttype(entity.getReporttype());
+    patentPre.setComputerarea(entity.getComputerarea());
+    patentPre.setElectricityarea(entity.getElectricityarea());
+    patentPre.setElectronicarea(entity.getElectronicarea());
+    patentPre.setMachinearea(entity.getMachinearea());
+    patentPre.setMedicinearea(entity.getMedicinearea());
+    patentPre.setAutomotivearea(entity.getAutomotivearea());
+    patentPre.setMetallurgyarea(entity.getMetallurgyarea());
+    patentPre.setBiomedicalarea(entity.getBiomedicalarea());
+    patentPre.setChemistryarea(entity.getChemistryarea());
+    patentPre.setFoodarea(entity.getFoodarea());
+    patentPre.setBuildarea(entity.getBuildarea());
+    patentPre.setOtherarea(entity.getOtherarea());
+    patentPre.setTitle(entity.getTitle());
+    patentPre.setPatentkeyword(entity.getPatentkeyword());
+    patentPre.setPatentapplication(entity.getPatentapplication());
+    patentPre.setAdvantage(entity.getAdvantage());
+    patentPre.setPublications(entity.getPublications());
+    patentPre.setDetailexplain(entity.getDetailexplain());
+    patentPre.setPicture(entity.getPicture());
+    patentPre.setOtherpoint(entity.getOtherpoint());
+
+
+    return patentPre;
+  }
+
+  /**
+   * news list
+   *
+   * @return .
+   */
+  @GetMapping("/patentPreApplicationRelatedPicturesByPatentPreId/{id}")
+  public PatentPreRelatedPicturesList getPatentPreApplicationRelatedPicturesByPatentPreId(@PathVariable("id") Long id) {
+
+    List<PatentPreRelatedPicturesEntity> entities = patentPreRelatedPicturesRepository.getByPatentPreId(id);
+    List<PatentPreRelatedPictures> patentPreRelatedPictures = new ArrayList<>();
+    for (PatentPreRelatedPicturesEntity entity:entities) {
+      PatentPreRelatedPictures model = new PatentPreRelatedPictures();
+      model.setId(entity.getId());
+      model.setPictureBase64("data: image/jpeg;base64," +
+          new String(Base64.encodeBase64(entity.getPicture()), StandardCharsets.US_ASCII));
+      patentPreRelatedPictures.add(model);
+    }
+
+    PatentPreRelatedPicturesList patentPreRelatedPicturesList = new PatentPreRelatedPicturesList();
+    patentPreRelatedPicturesList.setPatentPreRelatedPictures(patentPreRelatedPictures);
+
+    return patentPreRelatedPicturesList;
+  }
+
+  /**
+   * news list
+   *
+   * @return .
+   */
+  @GetMapping("/patentPreApplicationFullDateTableByPatentPreId/{id}")
+  public FullDataList getPatentPreApplicationFullDateTableByPatentPreId(@PathVariable("id") Long id) {
+
+    List<PatentPreTableEntity> entities = patentPreTableRepository.getByPatentPreId(id);
+    List<FullData> fullDataList = new ArrayList<>();
+    for (PatentPreTableEntity entity:entities) {
+      FullData model = new FullData();
+      model.setId(entity.getId().toString());
+      model.setDeferencechoose(entity.getDeferencechoose());
+      model.setDeferenceno(entity.getDeferenceno());
+      model.setDeferencepriority(entity.getDeferencepriority());
+      fullDataList.add(model);
+    }
+
+    FullDataList fullDataList1 = new FullDataList();
+    fullDataList1.setFullData(fullDataList);
+
+    return fullDataList1;
   }
 
   /**
@@ -241,7 +698,7 @@ public class CengizPublicController {
   public ResponseEntity<?> updateNewsPicture(@RequestParam("id") Long id, @RequestParam("mainPicture") MultipartFile mainPicture) throws Exception {
 
 
-    newsInfoService.updateNewsPicture(id,mainPicture);
+    newsInfoService.updateNewsPicture(id, mainPicture);
 
     return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
   }
@@ -255,7 +712,7 @@ public class CengizPublicController {
   public ResponseEntity<?> updateNoticePicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
 
 
-    noticeInfoService.updateNoticePicture(id,picture);
+    noticeInfoService.updateNoticePicture(id, picture);
 
     return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
   }
@@ -269,7 +726,7 @@ public class CengizPublicController {
   public ResponseEntity<?> updateAboutPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
 
 
-    aboutInfoService.updateAboutPicture(id,picture);
+    aboutInfoService.updateAboutPicture(id, picture);
 
     return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
   }
@@ -282,7 +739,7 @@ public class CengizPublicController {
   @PostMapping(value = "/companyProfileUpdatePicture", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> updateCompanyProfilePicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
 
-    companyProfileInfoService.updateCompanyProfilePicture(id,picture);
+    companyProfileInfoService.updateCompanyProfilePicture(id, picture);
 
     return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
   }
@@ -404,7 +861,7 @@ public class CengizPublicController {
         patentPre.getPicture(),
         patentPre.getOtherpoint()
     ));
-    General general=new General();
+    General general = new General();
     general.setMessage("Kayıt işleminiz başarılı!");
     general.setId(patentPreEntity.getId());
 
@@ -415,7 +872,7 @@ public class CengizPublicController {
   @PostMapping(value = "/valuationPatentSave")
   public ResponseEntity<General> valuationPatentSave(@RequestBody ValuationPatent valuationPatent) {
 
-    ValuationPatentEntity valuationPatentEntity=valuationPatentRepository.save(new ValuationPatentEntity(
+    ValuationPatentEntity valuationPatentEntity = valuationPatentRepository.save(new ValuationPatentEntity(
         valuationPatent.getAddress(),
         valuationPatent.getPatentpurpose(),
         valuationPatent.getPatentappno(),
@@ -448,7 +905,7 @@ public class CengizPublicController {
         valuationPatent.getCountryoutside(),
         valuationPatent.getEuropeanunio()
     ));
-    General general=new General();
+    General general = new General();
     general.setMessage("Kayıt işleminiz başarılı!");
     general.setId(valuationPatentEntity.getId());
 
@@ -459,7 +916,7 @@ public class CengizPublicController {
   @PostMapping(value = "/valuationTrademarkSave")
   public ResponseEntity<General> valuationTrademarkSave(@RequestBody ValuationTrademark valuationTrademark) {
 
-    ValuationTrademarkEntity valuationTrademarkEntity=valuationTrademarkRepository.save(new ValuationTrademarkEntity(
+    ValuationTrademarkEntity valuationTrademarkEntity = valuationTrademarkRepository.save(new ValuationTrademarkEntity(
         valuationTrademark.getAddress(),
         valuationTrademark.getTrademarkclass(),
         valuationTrademark.getTrademarkpurpose(),
@@ -493,7 +950,7 @@ public class CengizPublicController {
         valuationTrademark.getCountryoutside(),
         valuationTrademark.getEuropeanunion()
     ));
-    General general=new General();
+    General general = new General();
     general.setMessage("Kayıt işleminiz başarılı!");
     general.setId(valuationTrademarkEntity.getId());
 
@@ -504,7 +961,7 @@ public class CengizPublicController {
   @PostMapping(value = "/activityAnalysisSave")
   public ResponseEntity<General> activityAnalysisSave(@RequestBody ActivityAnalysis activityAnalysis) {
 
-    ActivityAnalysisEntity activityAnalysisEntity=activityAnalysisRepository.save(new ActivityAnalysisEntity(
+    ActivityAnalysisEntity activityAnalysisEntity = activityAnalysisRepository.save(new ActivityAnalysisEntity(
         activityAnalysis.getName_surname(),
         activityAnalysis.getTc(),
         activityAnalysis.getAddress(),
@@ -518,9 +975,7 @@ public class CengizPublicController {
     ));
 
 
-
-
-    General general=new General();
+    General general = new General();
     general.setMessage("Kayıt işleminiz başarılı!");
     general.setId(activityAnalysisEntity.getId());
 
@@ -577,12 +1032,12 @@ public class CengizPublicController {
 
     try {
       emailService.sendMimeMessage(id, 1);
-
+      return ResponseEntity.ok(new MessageResponse("Mail Gönderilmiştir!"));
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Mail Gönderilememiştir! Lütfen sorumlu ile görüşürünüz."));
     }
 
-    return ResponseEntity.ok(new MessageResponse("Mail Gönderilmiştir!"));
   }
 
 
@@ -598,13 +1053,13 @@ public class CengizPublicController {
   @PostMapping(value = "/addNewsAll", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<General> addNewsAll(@RequestParam("newsTitle") String newsTitle, @RequestParam("newsExplain") String newsExplain,
                                             @RequestParam("published") Boolean published,
-                                      @RequestParam("mainPicture") MultipartFile mainPicture) throws Exception {
+                                            @RequestParam("mainPicture") MultipartFile mainPicture) throws Exception {
 
-    News news = new News(mainPicture.getBytes(), newsTitle, newsExplain,mainPicture.getOriginalFilename(),mainPicture.getContentType(),published);
+    News news = new News(mainPicture.getBytes(), newsTitle, newsExplain, mainPicture.getOriginalFilename(), mainPicture.getContentType(), published);
 
-    Long id=newsInfoService.addNews(news);
+    Long id = newsInfoService.addNews(news);
 
-    General general=new General();
+    General general = new General();
     general.setMessage("Kayıt işleminiz başarılı!");
     general.setId(id);
 
@@ -615,14 +1070,14 @@ public class CengizPublicController {
   @PostMapping(value = "/addNotice", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<General> addNotice(@RequestParam("noticeTitle") String noticeTitle, @RequestParam("noticeExplain") String noticeExplain,
                                            @RequestParam("published") Boolean published,
-                                            @RequestParam("picture") MultipartFile picture) throws Exception {
+                                           @RequestParam("picture") MultipartFile picture) throws Exception {
 
 
-    Notice notice = new Notice(picture.getBytes(), noticeTitle, noticeExplain,picture.getOriginalFilename(),picture.getContentType(),published);
+    Notice notice = new Notice(picture.getBytes(), noticeTitle, noticeExplain, picture.getOriginalFilename(), picture.getContentType(), published);
 
-    Long id=noticeInfoService.addNotice(notice);
+    Long id = noticeInfoService.addNotice(notice);
 
-    General general=new General();
+    General general = new General();
     general.setMessage("Kayıt işleminiz başarılı!");
     general.setId(id);
 
@@ -631,21 +1086,21 @@ public class CengizPublicController {
   }
 
   @PostMapping(value = "/addNewsFiles", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> addNewsFiles(@RequestParam("id") Long id,@RequestParam("relatedPictures") MultipartFile relatedPictures) throws Exception {
+  public ResponseEntity<?> addNewsFiles(@RequestParam("id") Long id, @RequestParam("relatedPictures") MultipartFile relatedPictures) throws Exception {
 
-      newsInfoService.addNewsRelatedPictures(id,relatedPictures);
+    newsInfoService.addNewsRelatedPictures(id, relatedPictures);
 
 
     return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
   }
 
   @PostMapping(value = "/addMultipartFiles", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> addMultipartFiles(@RequestParam("pictures") MultipartFile[] pictures,@RequestParam("dekont") MultipartFile dekont) throws Exception {
+  public ResponseEntity<?> addMultipartFiles(@RequestParam("pictures") MultipartFile[] pictures, @RequestParam("dekont") MultipartFile dekont) throws Exception {
 
-  System.out.println(pictures.length);
-  for (int i=0;i<pictures.length;i++){
-    String fileName=pictures[i].getOriginalFilename();
-  }
+    System.out.println(pictures.length);
+    for (int i = 0; i < pictures.length; i++) {
+      String fileName = pictures[i].getOriginalFilename();
+    }
 
     return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
   }
@@ -659,28 +1114,32 @@ public class CengizPublicController {
   public ResponseEntity<?> updateNewsRelatedPicture(@RequestParam("id") Long id, @RequestParam("relatedPicture") MultipartFile relatedPicture) throws Exception {
 
 
-    newsInfoService.updateNewsRelatedPicture(id,relatedPicture);
+    newsInfoService.updateNewsRelatedPicture(id, relatedPicture);
 
     return ResponseEntity.ok(new MessageResponse("Resim güncelleme başarılı!"));
   }
 
   @PostMapping(value = "/sendContactMail")
   public ResponseEntity<?> sendContactMail(@RequestBody ContactMail contactMail) {
+    try {
+      contactMailRepository.save(new ContactMailEntity(contactMail.getEmail(), contactMail.getNameSurname(), contactMail.getMessage()));
 
-    contactMailRepository.save(new ContactMailEntity(contactMail.getEmail(),contactMail.getNameSurname(),contactMail.getMessage()));
+      String[] to = {"test@turksmd.com.tr"};
+      String content = "Ad Soyad:" + contactMail.getNameSurname() + "Email:" + contactMail.getEmail() + "Message:" + contactMail.getMessage();
+      sendMail(content, to, contactMail.getEmail(), 1, "");
+      return ResponseEntity.ok(new MessageResponse("Mailiniz gönderilmiştir!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Mailiniz gönderilememiştir. Lütfen email bilginizi kontrol ediniz!"));
+    }
 
-    String[] to = {"test@turksmd.com.tr"};
-    String content= "Ad Soyad:"+contactMail.getNameSurname()+"Email:"+contactMail.getEmail()+"Message:"+contactMail.getMessage();
-    sendMail(content, to, contactMail.getEmail(), 1, "");
-
-    return ResponseEntity.ok(new MessageResponse("Mailiniz gönderilmiştir!"));
   }
 
 
-  @PostMapping(value = "/fullData/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> sendDataTable(@PathVariable("id") Long id,@RequestBody FullDataList fullDataList) {
+  @PostMapping(value = "/fullData/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> sendDataTable(@PathVariable("id") Long id, @RequestBody FullDataList fullDataList) {
 
-    patentPreService.savePatentPreTable(id,fullDataList);
+    patentPreService.savePatentPreTable(id, fullDataList);
 
     return ResponseEntity.ok(new MessageResponse("Başarılı"));
   }
@@ -691,12 +1150,14 @@ public class CengizPublicController {
 
     try {
       emailService.sendMimeMessage(id, 2);
+      return ResponseEntity.ok(new MessageResponse("Mail Gönderilmiştir!"));
 
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Mail Gönderilememiştir! Lütfen sorumlu ile görüşürünüz."));
     }
 
-    return ResponseEntity.ok(new MessageResponse("Mail Gönderilmiştir!"));
+
   }
 
   @PostMapping(value = "/sendEmailValuationPatent/{id}")
@@ -704,24 +1165,26 @@ public class CengizPublicController {
 
     try {
       emailService.sendMimeMessage(id, 3);
+      return ResponseEntity.ok(new MessageResponse("Mail Gönderilmiştir!"));
 
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Mail Gönderilememiştir! Lütfen sorumlu ile görüşürünüz."));
     }
 
-    return ResponseEntity.ok(new MessageResponse("Mail Gönderilmiştir!"));
   }
+
   @PostMapping(value = "/sendEmailValuationTrademark/{id}")
   public ResponseEntity<?> sendEmailValuationTrademark(@PathVariable("id") Long id) {
 
     try {
       emailService.sendMimeMessage(id, 4);
-
+      return ResponseEntity.ok(new MessageResponse("Mail Gönderilmiştir!"));
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Mail Gönderilememiştir! Lütfen sorumlu ile görüşürünüz."));
     }
 
-    return ResponseEntity.ok(new MessageResponse("Mail Gönderilmiştir!"));
   }
 
   @PostMapping(value = "/sendEmailActivityAnalysis/{id}")
@@ -729,86 +1192,79 @@ public class CengizPublicController {
 
     try {
       emailService.sendMimeMessage(id, 5);
-
+      return ResponseEntity.ok(new MessageResponse("Mail Gönderilmiştir!"));
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Mail Gönderilememiştir! Lütfen sorumlu ile görüşürünüz."));
     }
 
-    return ResponseEntity.ok(new MessageResponse("Mail Gönderilmiştir!"));
   }
 
   @PostMapping(value = "/addPatentPreRelatedPictures/{patentPreId}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> addPatentPreRelatedPictures(@PathVariable("patentPreId")Long patentPreId,
+  public ResponseEntity<?> addPatentPreRelatedPictures(@PathVariable("patentPreId") Long patentPreId,
                                                        @RequestParam("pictures") MultipartFile[] pictures)
       throws Exception {
 
-    patentPreService.addPatentPreRelatedPictures(patentPreId,pictures);
+    patentPreService.addPatentPreRelatedPictures(patentPreId, pictures);
 
     return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
   }
 
   @PostMapping(value = "/addPatentPreDekont/{patentPreId}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> addPatentPreDekont(@PathVariable("patentPreId")Long patentPreId,
-                                                       @RequestParam("dekont") MultipartFile dekont) throws Exception {
+  public ResponseEntity<?> addPatentPreDekont(@PathVariable("patentPreId") Long patentPreId,
+                                              @RequestParam("dekont") MultipartFile dekont) throws Exception {
 
-    patentPreService.addDekont(patentPreId,dekont);
+    patentPreService.addDekont(patentPreId, dekont);
 
     return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
   }
 
   @PostMapping(value = "/addValuationPatentDekont/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> addValuationPatentDekont(@PathVariable("id")Long id,
-                                              @RequestParam("dekont") MultipartFile dekont) throws Exception {
+  public ResponseEntity<?> addValuationPatentDekont(@PathVariable("id") Long id,
+                                                    @RequestParam("dekont") MultipartFile dekont) throws Exception {
 
-    valuationService.addValuationPatentDekont(id,dekont);
+    valuationService.addValuationPatentDekont(id, dekont);
 
     return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
   }
 
   @PostMapping(value = "/addValuationTrademarkDekont/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> addValuationTrademarkDekont(@PathVariable("id")Long id,
-                                                     @RequestParam("dekont") MultipartFile dekont) throws Exception {
+  public ResponseEntity<?> addValuationTrademarkDekont(@PathVariable("id") Long id,
+                                                       @RequestParam("dekont") MultipartFile dekont) throws Exception {
 
-    valuationService.addValuationTrademarkDekont(id,dekont);
+    valuationService.addValuationTrademarkDekont(id, dekont);
 
     return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
   }
 
   @PostMapping(value = "/addActivityAnalysisDekont/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> addActivityAnalysisDekont(@PathVariable("id")Long id,
-                                                        @RequestParam("dekont") MultipartFile dekont) throws Exception {
+  public ResponseEntity<?> addActivityAnalysisDekont(@PathVariable("id") Long id,
+                                                     @RequestParam("dekont") MultipartFile dekont) throws Exception {
 
-    activityAnalysisService.addActivityAnalysisDekont(id,dekont);
+    activityAnalysisService.addActivityAnalysisDekont(id, dekont);
 
     return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
   }
 
   @PostMapping(value = "/addActivityAnalysisPictures/{activityId}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> addActivityAnalysisPictures(@PathVariable("activityId")Long activityId,
+  public ResponseEntity<?> addActivityAnalysisPictures(@PathVariable("activityId") Long activityId,
                                                        @RequestParam("pictures") MultipartFile[] pictures)
       throws Exception {
 
-    activityAnalysisService.addActivityAnalysisPictures(activityId,pictures);
+    activityAnalysisService.addActivityAnalysisPictures(activityId, pictures);
 
     return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
   }
-
 
 
   @PostMapping(value = "/deneme")
   public ResponseEntity<General> postTrademarkPre(@RequestBody String editor) {
 
 
-
-
-
-
-    General general = new General("Kayıt işleminiz başarılı...",1L);
+    General general = new General("Kayıt işleminiz başarılı...", 1L);
 
     return ResponseEntity.ok(general);
   }
-
-
 
 
   /**
@@ -833,7 +1289,7 @@ public class CengizPublicController {
   public ResponseEntity<?> updateTrademarkPreViewPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
 
 
-    servicesInfoService.updateTrademarkPreViewPicture(id,picture);
+    servicesInfoService.updateTrademarkPreViewPicture(id, picture);
 
     return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
   }
@@ -860,7 +1316,7 @@ public class CengizPublicController {
   public ResponseEntity<?> updatePatentPreViewPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
 
 
-    servicesInfoService.updatePatentPreViewPicture(id,picture);
+    servicesInfoService.updatePatentPreViewPicture(id, picture);
 
     return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
   }
@@ -888,7 +1344,7 @@ public class CengizPublicController {
   public ResponseEntity<?> updateActivityAnalysisViewPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
 
 
-    servicesInfoService.updateActivityAnalysisViewPicture(id,picture);
+    servicesInfoService.updateActivityAnalysisViewPicture(id, picture);
 
     return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
   }
@@ -916,11 +1372,10 @@ public class CengizPublicController {
   public ResponseEntity<?> updateValuationViewPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
 
 
-    servicesInfoService.updateTrademarkPreViewPicture(id,picture);
+    servicesInfoService.updateTrademarkPreViewPicture(id, picture);
 
     return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
   }
-
 
 
   /**
@@ -945,7 +1400,7 @@ public class CengizPublicController {
   public ResponseEntity<?> updateEvaluationInvalidationViewPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
 
 
-    servicesInfoService.updateEvaluationInvalidationViewPicture(id,picture);
+    servicesInfoService.updateEvaluationInvalidationViewPicture(id, picture);
 
     return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
   }
@@ -973,7 +1428,7 @@ public class CengizPublicController {
   public ResponseEntity<?> updateTechnologyConsultancyViewPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
 
 
-    servicesInfoService.updateTechnologyConsultancyViewPicture(id,picture);
+    servicesInfoService.updateTechnologyConsultancyViewPicture(id, picture);
 
     return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
   }

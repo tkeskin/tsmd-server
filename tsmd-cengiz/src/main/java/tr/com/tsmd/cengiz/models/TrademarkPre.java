@@ -1,5 +1,6 @@
 package tr.com.tsmd.cengiz.models;
 
+import java.util.Date;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -20,6 +21,9 @@ public class TrademarkPre {
   @Email
   private String email;
 
+  private Date createdAt;
+  private String dekontBase64;
+
 
   public TrademarkPre() {
   }
@@ -35,6 +39,14 @@ public class TrademarkPre {
     this.address = address;
     this.tel = tel;
     this.email = email;
+  }
+
+  public Date getCreatedAt() {
+    return createdAt;
+  }
+
+  public void setCreatedAt(Date createdAt) {
+    this.createdAt = createdAt;
   }
 
   public Long getId() {
@@ -115,5 +127,13 @@ public class TrademarkPre {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public String getDekontBase64() {
+    return dekontBase64;
+  }
+
+  public void setDekontBase64(String dekontBase64) {
+    this.dekontBase64 = dekontBase64;
   }
 }

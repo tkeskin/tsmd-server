@@ -2,27 +2,53 @@ package tr.com.tsmd.cengiz.service;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import tr.com.tsmd.cengiz.entity.ActivityAnalysisViewEntity;
+import tr.com.tsmd.cengiz.entity.ActivityAnalysisViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.EvaluationInvalidationViewEntity;
+import tr.com.tsmd.cengiz.entity.EvaluationInvalidationViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.PatentPreViewEntity;
+import tr.com.tsmd.cengiz.entity.PatentPreViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.TechnologyConsultancyViewEntity;
+import tr.com.tsmd.cengiz.entity.TechnologyConsultancyViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.TrademarkPreViewEntity;
+import tr.com.tsmd.cengiz.entity.TrademarkPreViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.ValuationViewEntity;
+import tr.com.tsmd.cengiz.entity.ValuationViewPdfEntity;
 import tr.com.tsmd.cengiz.models.ActivityAnalysisView;
+import tr.com.tsmd.cengiz.models.ActivityAnalysisViewPdf;
+import tr.com.tsmd.cengiz.models.ActivityAnalysisViewPdfList;
 import tr.com.tsmd.cengiz.models.EvaluationInvalidationView;
+import tr.com.tsmd.cengiz.models.EvaluationInvalidationViewPdf;
+import tr.com.tsmd.cengiz.models.EvaluationInvalidationViewPdfList;
 import tr.com.tsmd.cengiz.models.PatentPreView;
+import tr.com.tsmd.cengiz.models.PatentPreViewPdf;
+import tr.com.tsmd.cengiz.models.PatentPreViewPdfList;
 import tr.com.tsmd.cengiz.models.TechnologyConsultancyView;
+import tr.com.tsmd.cengiz.models.TechnologyConsultancyViewPdf;
+import tr.com.tsmd.cengiz.models.TechnologyConsultancyViewPdfList;
 import tr.com.tsmd.cengiz.models.TrademarkPreView;
+import tr.com.tsmd.cengiz.models.TrademarkPreViewPdf;
+import tr.com.tsmd.cengiz.models.TrademarkPreViewPdfList;
 import tr.com.tsmd.cengiz.models.ValuationView;
+import tr.com.tsmd.cengiz.models.ValuationViewPdf;
+import tr.com.tsmd.cengiz.models.ValuationViewPdfList;
+import tr.com.tsmd.cengiz.repository.ActivityAnalysisViewPdfRepository;
 import tr.com.tsmd.cengiz.repository.ActivityAnalysisViewRepository;
+import tr.com.tsmd.cengiz.repository.EvaluationInvalidationViewPdfRepository;
 import tr.com.tsmd.cengiz.repository.EvaluationInvalidationViewRepository;
+import tr.com.tsmd.cengiz.repository.PatentPreViewPdfRepository;
 import tr.com.tsmd.cengiz.repository.PatentPreViewRepository;
+import tr.com.tsmd.cengiz.repository.TechnologyConsultancyViewPdfRepository;
 import tr.com.tsmd.cengiz.repository.TechnologyConsultancyViewRepository;
+import tr.com.tsmd.cengiz.repository.TrademarkPreViewPdfRepository;
 import tr.com.tsmd.cengiz.repository.TrademarkPreViewRepository;
+import tr.com.tsmd.cengiz.repository.ValuationViewPdfRepository;
 import tr.com.tsmd.cengiz.repository.ValuationViewRepository;
 
 @Service
@@ -36,7 +62,7 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
 
   @Autowired
   ActivityAnalysisViewRepository activityAnalysisViewRepository;
-  
+
   @Autowired
   ValuationViewRepository valuationViewRepository;
 
@@ -45,6 +71,24 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
 
   @Autowired
   TechnologyConsultancyViewRepository technologyConsultancyViewRepository;
+
+  @Autowired
+  TrademarkPreViewPdfRepository trademarkPreViewPdfRepository;
+
+  @Autowired
+  PatentPreViewPdfRepository patentPreViewPdfRepository;
+
+  @Autowired
+  ActivityAnalysisViewPdfRepository activityAnalysisViewPdfRepository;
+
+  @Autowired
+  ValuationViewPdfRepository valuationViewPdfRepository;
+
+  @Autowired
+  EvaluationInvalidationViewPdfRepository evaluationInvalidationViewPdfRepository;
+
+  @Autowired
+  TechnologyConsultancyViewPdfRepository technologyConsultancyViewPdfRepository;
 
 
   @Override
@@ -149,7 +193,6 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
   }
 
 
-
   @Override
   public ValuationView getValuationViewBy() {
     ValuationViewEntity entity = valuationViewRepository.getBy();
@@ -250,4 +293,274 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
       e.printStackTrace();
     }
   }
+
+
+  @Override
+  public void uploadPatentPreViewPdfFiles(Long id, MultipartFile[] pdfFiles) throws Exception {
+    for (MultipartFile multipartFile : pdfFiles) {
+      PatentPreViewPdfEntity patentPreViewPdfEntity = new PatentPreViewPdfEntity();
+      patentPreViewPdfEntity.setFileName(multipartFile.getOriginalFilename());
+      patentPreViewPdfEntity.setFileType(multipartFile.getContentType());
+      patentPreViewPdfEntity.setPdfFile(multipartFile.getBytes());
+      patentPreViewPdfEntity.setPatentPreViewId(id);
+      patentPreViewPdfRepository.save(patentPreViewPdfEntity);
+    }
+  }
+
+  @Override
+  public PatentPreViewPdfList getPatentPreViewPdfFiles(Long patentPreViewId) {
+    List<PatentPreViewPdfEntity> entities = new ArrayList<>();
+    List<PatentPreViewPdf> dtos = new ArrayList<>();
+    PatentPreViewPdfList patentPreViewPdfList = new PatentPreViewPdfList();
+    entities = patentPreViewPdfRepository.getByPatentPreViewId(patentPreViewId);
+
+    for (PatentPreViewPdfEntity entity : entities) {
+      PatentPreViewPdf patentPreViewPdf = new PatentPreViewPdf();
+      patentPreViewPdf.setFileName(entity.getFileName());
+      patentPreViewPdf.setFileType(entity.getFileType());
+      patentPreViewPdf.setId(entity.getId());
+      patentPreViewPdf.setPdf(entity.getPdfFile());
+      patentPreViewPdf.setBase64Pdf("data: image/jpeg;base64," +
+          new String(Base64.encodeBase64(entity.getPdfFile()), StandardCharsets.US_ASCII));
+      patentPreViewPdf.setPatentPreViewId(patentPreViewId);
+      dtos.add(patentPreViewPdf);
+    }
+    patentPreViewPdfList.setPatentPreViewPdfs(dtos);
+    return patentPreViewPdfList;
+  }
+
+  @Override
+  public void deletePatentPreViewPdfById(Long id) {
+    patentPreViewPdfRepository.deleteById(id);
+  }
+
+  @Override
+  public PatentPreViewPdfEntity getPatentPreViewPdfById(Long id) {
+    return patentPreViewPdfRepository.getById(id);
+  }
+
+
+  @Override
+  public void uploadTrademarkPreViewPdfFiles(Long id, MultipartFile[] pdfFiles) throws Exception {
+    for (MultipartFile multipartFile : pdfFiles) {
+      TrademarkPreViewPdfEntity trademarkPreViewPdfEntity = new TrademarkPreViewPdfEntity();
+      trademarkPreViewPdfEntity.setFileName(multipartFile.getOriginalFilename());
+      trademarkPreViewPdfEntity.setFileType(multipartFile.getContentType());
+      trademarkPreViewPdfEntity.setPdfFile(multipartFile.getBytes());
+      trademarkPreViewPdfEntity.setTrademarkPreViewId(id);
+      trademarkPreViewPdfRepository.save(trademarkPreViewPdfEntity);
+    }
+  }
+
+  @Override
+  public TrademarkPreViewPdfList getTrademarkPreViewPdfFiles(Long trademarkPreViewId) {
+    List<TrademarkPreViewPdfEntity> entities = new ArrayList<>();
+    List<TrademarkPreViewPdf> dtos = new ArrayList<>();
+    TrademarkPreViewPdfList trademarkPreViewPdfList = new TrademarkPreViewPdfList();
+    entities = trademarkPreViewPdfRepository.getByTrademarkPreViewId(trademarkPreViewId);
+
+    for (TrademarkPreViewPdfEntity entity : entities) {
+      TrademarkPreViewPdf trademarkPreViewPdf = new TrademarkPreViewPdf();
+      trademarkPreViewPdf.setFileName(entity.getFileName());
+      trademarkPreViewPdf.setFileType(entity.getFileType());
+      trademarkPreViewPdf.setId(entity.getId());
+      trademarkPreViewPdf.setPdf(entity.getPdfFile());
+      trademarkPreViewPdf.setBase64Pdf("data: image/jpeg;base64," +
+          new String(Base64.encodeBase64(entity.getPdfFile()), StandardCharsets.US_ASCII));
+      trademarkPreViewPdf.setTrademarkPreViewId(trademarkPreViewId);
+      dtos.add(trademarkPreViewPdf);
+    }
+    trademarkPreViewPdfList.setTrademarkPreViewPdfs(dtos);
+    return trademarkPreViewPdfList;
+  }
+
+  @Override
+  public void deleteTrademarkPreViewPdfById(Long id) {
+    trademarkPreViewPdfRepository.deleteById(id);
+  }
+
+  @Override
+  public TrademarkPreViewPdfEntity getTrademarkPreViewPdfById(Long id) {
+    return trademarkPreViewPdfRepository.getById(id);
+  }
+
+  @Override
+  public void uploadActivityAnalysisViewPdfFiles(Long id, MultipartFile[] pdfFiles) throws Exception {
+    for (MultipartFile multipartFile : pdfFiles) {
+      ActivityAnalysisViewPdfEntity activityAnalysisViewPdfEntity = new ActivityAnalysisViewPdfEntity();
+      activityAnalysisViewPdfEntity.setFileName(multipartFile.getOriginalFilename());
+      activityAnalysisViewPdfEntity.setFileType(multipartFile.getContentType());
+      activityAnalysisViewPdfEntity.setPdfFile(multipartFile.getBytes());
+      activityAnalysisViewPdfEntity.setActivityAnalysisViewId(id);
+      activityAnalysisViewPdfRepository.save(activityAnalysisViewPdfEntity);
+    }
+  }
+
+  @Override
+  public ActivityAnalysisViewPdfList getActivityAnalysisViewPdfFiles(Long activityAnalysisViewId) {
+    List<ActivityAnalysisViewPdfEntity> entities = new ArrayList<>();
+    List<ActivityAnalysisViewPdf> dtos = new ArrayList<>();
+    ActivityAnalysisViewPdfList activityAnalysisViewPdfList = new ActivityAnalysisViewPdfList();
+    entities = activityAnalysisViewPdfRepository.getByActivityAnalysisViewId(activityAnalysisViewId);
+
+    for (ActivityAnalysisViewPdfEntity entity : entities) {
+      ActivityAnalysisViewPdf activityAnalysisViewPdf = new ActivityAnalysisViewPdf();
+      activityAnalysisViewPdf.setFileName(entity.getFileName());
+      activityAnalysisViewPdf.setFileType(entity.getFileType());
+      activityAnalysisViewPdf.setId(entity.getId());
+      activityAnalysisViewPdf.setPdf(entity.getPdfFile());
+      activityAnalysisViewPdf.setBase64Pdf("data: image/jpeg;base64," +
+          new String(Base64.encodeBase64(entity.getPdfFile()), StandardCharsets.US_ASCII));
+      activityAnalysisViewPdf.setActivityAnalysisViewId(activityAnalysisViewId);
+      dtos.add(activityAnalysisViewPdf);
+    }
+    activityAnalysisViewPdfList.setActivityAnalysisViewPdfs(dtos);
+    return activityAnalysisViewPdfList;
+  }
+
+  @Override
+  public void deleteActivityAnalysisViewPdfById(Long id) {
+    activityAnalysisViewPdfRepository.deleteById(id);
+  }
+
+  @Override
+  public ActivityAnalysisViewPdfEntity getActivityAnalysisViewPdfById(Long id) {
+    return activityAnalysisViewPdfRepository.getById(id);
+  }
+
+
+  @Override
+  public void uploadValuationViewPdfFiles(Long id, MultipartFile[] pdfFiles) throws Exception {
+    for (MultipartFile multipartFile : pdfFiles) {
+      ValuationViewPdfEntity valuationViewPdfEntity = new ValuationViewPdfEntity();
+      valuationViewPdfEntity.setFileName(multipartFile.getOriginalFilename());
+      valuationViewPdfEntity.setFileType(multipartFile.getContentType());
+      valuationViewPdfEntity.setPdfFile(multipartFile.getBytes());
+      valuationViewPdfEntity.setValuationViewId(id);
+      valuationViewPdfRepository.save(valuationViewPdfEntity);
+    }
+  }
+
+  @Override
+  public ValuationViewPdfList getValuationViewPdfFiles(Long valuationViewId) {
+    List<ValuationViewPdfEntity> entities = new ArrayList<>();
+    List<ValuationViewPdf> dtos = new ArrayList<>();
+    ValuationViewPdfList valuationViewPdfList = new ValuationViewPdfList();
+    entities = valuationViewPdfRepository.getByValuationViewId(valuationViewId);
+
+    for (ValuationViewPdfEntity entity : entities) {
+      ValuationViewPdf valuationViewPdf = new ValuationViewPdf();
+      valuationViewPdf.setFileName(entity.getFileName());
+      valuationViewPdf.setFileType(entity.getFileType());
+      valuationViewPdf.setId(entity.getId());
+      valuationViewPdf.setPdf(entity.getPdfFile());
+      valuationViewPdf.setBase64Pdf("data: image/jpeg;base64," +
+          new String(Base64.encodeBase64(entity.getPdfFile()), StandardCharsets.US_ASCII));
+      valuationViewPdf.setValuationViewId(valuationViewId);
+      dtos.add(valuationViewPdf);
+    }
+    valuationViewPdfList.setValuationViewPdfs(dtos);
+    return valuationViewPdfList;
+  }
+
+  @Override
+  public void deleteValuationViewPdfById(Long id) {
+    valuationViewPdfRepository.deleteById(id);
+  }
+
+  @Override
+  public ValuationViewPdfEntity getValuationViewPdfById(Long id) {
+    return valuationViewPdfRepository.getById(id);
+  }
+
+
+  @Override
+  public void uploadEvaluationInvalidationViewPdfFiles(Long id, MultipartFile[] pdfFiles) throws Exception {
+    for (MultipartFile multipartFile : pdfFiles) {
+      EvaluationInvalidationViewPdfEntity evaluationInvalidationViewPdfEntity = new EvaluationInvalidationViewPdfEntity();
+      evaluationInvalidationViewPdfEntity.setFileName(multipartFile.getOriginalFilename());
+      evaluationInvalidationViewPdfEntity.setFileType(multipartFile.getContentType());
+      evaluationInvalidationViewPdfEntity.setPdfFile(multipartFile.getBytes());
+      evaluationInvalidationViewPdfEntity.setEvaluationInvalidationViewId(id);
+      evaluationInvalidationViewPdfRepository.save(evaluationInvalidationViewPdfEntity);
+    }
+  }
+
+  @Override
+  public EvaluationInvalidationViewPdfList getEvaluationInvalidationViewPdfFiles(Long evaluationInvalidationViewId) {
+    List<EvaluationInvalidationViewPdfEntity> entities = new ArrayList<>();
+    List<EvaluationInvalidationViewPdf> dtos = new ArrayList<>();
+    EvaluationInvalidationViewPdfList evaluationInvalidationViewPdfList = new EvaluationInvalidationViewPdfList();
+    entities = evaluationInvalidationViewPdfRepository.getByEvaluationInvalidationViewId(evaluationInvalidationViewId);
+
+    for (EvaluationInvalidationViewPdfEntity entity : entities) {
+      EvaluationInvalidationViewPdf evaluationInvalidationViewPdf = new EvaluationInvalidationViewPdf();
+      evaluationInvalidationViewPdf.setFileName(entity.getFileName());
+      evaluationInvalidationViewPdf.setFileType(entity.getFileType());
+      evaluationInvalidationViewPdf.setId(entity.getId());
+      evaluationInvalidationViewPdf.setPdf(entity.getPdfFile());
+      evaluationInvalidationViewPdf.setBase64Pdf("data: image/jpeg;base64," +
+          new String(Base64.encodeBase64(entity.getPdfFile()), StandardCharsets.US_ASCII));
+      evaluationInvalidationViewPdf.setEvaluationInvalidationViewId(evaluationInvalidationViewId);
+      dtos.add(evaluationInvalidationViewPdf);
+    }
+    evaluationInvalidationViewPdfList.setEvaluationInvalidationViewPdfs(dtos);
+    return evaluationInvalidationViewPdfList;
+  }
+
+  @Override
+  public void deleteEvaluationInvalidationViewPdfById(Long id) {
+    evaluationInvalidationViewPdfRepository.deleteById(id);
+  }
+
+  @Override
+  public EvaluationInvalidationViewPdfEntity getEvaluationInvalidationViewPdfById(Long id) {
+    return evaluationInvalidationViewPdfRepository.getById(id);
+  }
+
+
+  @Override
+  public void uploadTechnologyConsultancyViewPdfFiles(Long id, MultipartFile[] pdfFiles) throws Exception {
+    for (MultipartFile multipartFile : pdfFiles) {
+      TechnologyConsultancyViewPdfEntity technologyConsultancyViewPdfEntity = new TechnologyConsultancyViewPdfEntity();
+      technologyConsultancyViewPdfEntity.setFileName(multipartFile.getOriginalFilename());
+      technologyConsultancyViewPdfEntity.setFileType(multipartFile.getContentType());
+      technologyConsultancyViewPdfEntity.setPdfFile(multipartFile.getBytes());
+      technologyConsultancyViewPdfEntity.setTechnologyConsultancyViewId(id);
+      technologyConsultancyViewPdfRepository.save(technologyConsultancyViewPdfEntity);
+    }
+  }
+
+  @Override
+  public TechnologyConsultancyViewPdfList getTechnologyConsultancyViewPdfFiles(Long technologyConsultancyViewId) {
+    List<TechnologyConsultancyViewPdfEntity> entities = new ArrayList<>();
+    List<TechnologyConsultancyViewPdf> dtos = new ArrayList<>();
+    TechnologyConsultancyViewPdfList technologyConsultancyViewPdfList = new TechnologyConsultancyViewPdfList();
+    entities = technologyConsultancyViewPdfRepository.getByTechnologyConsultancyViewId(technologyConsultancyViewId);
+
+    for (TechnologyConsultancyViewPdfEntity entity : entities) {
+      TechnologyConsultancyViewPdf technologyConsultancyViewPdf = new TechnologyConsultancyViewPdf();
+      technologyConsultancyViewPdf.setFileName(entity.getFileName());
+      technologyConsultancyViewPdf.setFileType(entity.getFileType());
+      technologyConsultancyViewPdf.setId(entity.getId());
+      technologyConsultancyViewPdf.setPdf(entity.getPdfFile());
+      technologyConsultancyViewPdf.setBase64Pdf("data: image/jpeg;base64," +
+          new String(Base64.encodeBase64(entity.getPdfFile()), StandardCharsets.US_ASCII));
+      technologyConsultancyViewPdf.setTechnologyConsultancyViewId(technologyConsultancyViewId);
+      dtos.add(technologyConsultancyViewPdf);
+    }
+    technologyConsultancyViewPdfList.setTechnologyConsultancyViewPdfs(dtos);
+    return technologyConsultancyViewPdfList;
+  }
+
+  @Override
+  public void deleteTechnologyConsultancyViewPdfById(Long id) {
+    technologyConsultancyViewPdfRepository.deleteById(id);
+  }
+
+  @Override
+  public TechnologyConsultancyViewPdfEntity getTechnologyConsultancyViewPdfById(Long id) {
+    return technologyConsultancyViewPdfRepository.getById(id);
+  }
+
 }

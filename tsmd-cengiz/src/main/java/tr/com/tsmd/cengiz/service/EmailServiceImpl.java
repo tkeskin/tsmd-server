@@ -1,21 +1,19 @@
 package tr.com.tsmd.cengiz.service;
 
 import com.sun.istack.ByteArrayDataSource;
-import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import tr.com.tsmd.cengiz.entity.ActivityAnalysisEntity;
 import tr.com.tsmd.cengiz.entity.ActivityAnalysisPicturesEntity;
+import tr.com.tsmd.cengiz.entity.InvalidationAssessmentEntity;
 import tr.com.tsmd.cengiz.entity.PatentPreEntity;
 import tr.com.tsmd.cengiz.entity.PatentPreRelatedPicturesEntity;
 import tr.com.tsmd.cengiz.entity.PatentPreTableEntity;
@@ -24,6 +22,7 @@ import tr.com.tsmd.cengiz.entity.ValuationPatentEntity;
 import tr.com.tsmd.cengiz.entity.ValuationTrademarkEntity;
 import tr.com.tsmd.cengiz.repository.ActivityAnalysisPicturesRepository;
 import tr.com.tsmd.cengiz.repository.ActivityAnalysisRepository;
+import tr.com.tsmd.cengiz.repository.InvalidationAssessmentRepository;
 import tr.com.tsmd.cengiz.repository.PatentPreRelatedPicturesRepository;
 import tr.com.tsmd.cengiz.repository.PatentPreRepository;
 import tr.com.tsmd.cengiz.repository.PatentPreTableRepository;
@@ -63,6 +62,9 @@ public class EmailServiceImpl implements EmailService {
 
   @Autowired
   ActivityAnalysisPicturesRepository activityAnalysisPicturesRepository;
+
+  @Autowired
+  InvalidationAssessmentRepository invalidationAssessmentRepository;
 
 
   /**
@@ -673,6 +675,28 @@ public class EmailServiceImpl implements EmailService {
       helper.setSubject("Faaliyet Serbestliği Analizi");
 
     } else if (servicesType == 6) {
+      InvalidationAssessmentEntity invalidationAssessmentEntity= invalidationAssessmentRepository.getById(id);
+      try {
+
+        String contentHtml = "<h1 style=\"font-weight: bold;color: white;background-color: #d32f2f\">Sınai Mülkiyet Varlıkları Hükümsüzlük Değerlendirmesi </h1>\n"
+            + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">T.C. Kimlik No/Verdi D./Vergi No</div>\n"
+            + "<div>" + invalidationAssessmentEntity.getTc() + "</div>\n"
+            + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\"> Adres</div>\n"
+            + "<div>" + invalidationAssessmentEntity.getAddress() + "</div>\n"
+            + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">Telefon</div>\n"
+            + "<div>" + invalidationAssessmentEntity.getTel() + "</div>\n"
+            + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">E-posta</div>\n"
+            + "<div>" + invalidationAssessmentEntity.getEmail() + "</div>\n"
+            + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">Hükümsüzlük Analizine Konu Patent/Faydalı Modelin Başvuru Numarası</div>\n"
+            + "<div>" + invalidationAssessmentEntity.getAppNo() + "</div>\n";
+
+        helper.setText(contentHtml, true);
+        helper.setSubject("Sınai Mülkiyet Varlıkları Hükümsüzlük Değerlendirmesi");
+
+      } catch (MessagingException e){
+        e.getLocalizedMessage();
+      }
+
 
 
     }

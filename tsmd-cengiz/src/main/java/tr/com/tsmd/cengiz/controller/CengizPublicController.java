@@ -9,6 +9,9 @@ import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,13 +26,20 @@ import org.springframework.web.multipart.MultipartFile;
 import tr.com.tsmd.auth.payload.response.MessageResponse;
 import tr.com.tsmd.cengiz.entity.ActivityAnalysisEntity;
 import tr.com.tsmd.cengiz.entity.ActivityAnalysisPicturesEntity;
+import tr.com.tsmd.cengiz.entity.ActivityAnalysisViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.ContactMailEntity;
+import tr.com.tsmd.cengiz.entity.EvaluationInvalidationViewPdfEntity;
+import tr.com.tsmd.cengiz.entity.InvalidationAssessmentEntity;
 import tr.com.tsmd.cengiz.entity.PatentPreEntity;
 import tr.com.tsmd.cengiz.entity.PatentPreRelatedPicturesEntity;
 import tr.com.tsmd.cengiz.entity.PatentPreTableEntity;
+import tr.com.tsmd.cengiz.entity.PatentPreViewPdfEntity;
+import tr.com.tsmd.cengiz.entity.TechnologyConsultancyViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.TrademarkPreEntity;
+import tr.com.tsmd.cengiz.entity.TrademarkPreViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.ValuationPatentEntity;
 import tr.com.tsmd.cengiz.entity.ValuationTrademarkEntity;
+import tr.com.tsmd.cengiz.entity.ValuationViewPdfEntity;
 import tr.com.tsmd.cengiz.models.About;
 import tr.com.tsmd.cengiz.models.AboutList;
 import tr.com.tsmd.cengiz.models.ActivityAnalysis;
@@ -37,12 +47,16 @@ import tr.com.tsmd.cengiz.models.ActivityAnalysisList;
 import tr.com.tsmd.cengiz.models.ActivityAnalysisPictures;
 import tr.com.tsmd.cengiz.models.ActivityAnalysisPicturesList;
 import tr.com.tsmd.cengiz.models.ActivityAnalysisView;
+import tr.com.tsmd.cengiz.models.ActivityAnalysisViewPdfList;
 import tr.com.tsmd.cengiz.models.CompanyProfile;
 import tr.com.tsmd.cengiz.models.ContactMail;
 import tr.com.tsmd.cengiz.models.EvaluationInvalidationView;
+import tr.com.tsmd.cengiz.models.EvaluationInvalidationViewPdfList;
 import tr.com.tsmd.cengiz.models.FullData;
 import tr.com.tsmd.cengiz.models.FullDataList;
 import tr.com.tsmd.cengiz.models.General;
+import tr.com.tsmd.cengiz.models.InvalidationAssessment;
+import tr.com.tsmd.cengiz.models.InvalidationAssessmentList;
 import tr.com.tsmd.cengiz.models.News;
 import tr.com.tsmd.cengiz.models.NewsList;
 import tr.com.tsmd.cengiz.models.NewsRelatedPicturesList;
@@ -53,20 +67,25 @@ import tr.com.tsmd.cengiz.models.PatentPreList;
 import tr.com.tsmd.cengiz.models.PatentPreRelatedPictures;
 import tr.com.tsmd.cengiz.models.PatentPreRelatedPicturesList;
 import tr.com.tsmd.cengiz.models.PatentPreView;
+import tr.com.tsmd.cengiz.models.PatentPreViewPdfList;
 import tr.com.tsmd.cengiz.models.TechnologyConsultancyView;
+import tr.com.tsmd.cengiz.models.TechnologyConsultancyViewPdfList;
 import tr.com.tsmd.cengiz.models.TrademarkPre;
 import tr.com.tsmd.cengiz.models.TrademarkPreList;
 import tr.com.tsmd.cengiz.models.TrademarkPreView;
+import tr.com.tsmd.cengiz.models.TrademarkPreViewPdfList;
 import tr.com.tsmd.cengiz.models.UserList;
 import tr.com.tsmd.cengiz.models.ValuationPatent;
 import tr.com.tsmd.cengiz.models.ValuationPatentList;
 import tr.com.tsmd.cengiz.models.ValuationTrademark;
 import tr.com.tsmd.cengiz.models.ValuationTrademarkList;
 import tr.com.tsmd.cengiz.models.ValuationView;
+import tr.com.tsmd.cengiz.models.ValuationViewPdfList;
 import tr.com.tsmd.cengiz.payload.request.ServicesRequest;
 import tr.com.tsmd.cengiz.repository.ActivityAnalysisPicturesRepository;
 import tr.com.tsmd.cengiz.repository.ActivityAnalysisRepository;
 import tr.com.tsmd.cengiz.repository.ContactMailRepository;
+import tr.com.tsmd.cengiz.repository.InvalidationAssessmentRepository;
 import tr.com.tsmd.cengiz.repository.PatentPreRelatedPicturesRepository;
 import tr.com.tsmd.cengiz.repository.PatentPreRepository;
 import tr.com.tsmd.cengiz.repository.PatentPreTableRepository;
@@ -150,6 +169,9 @@ public class CengizPublicController {
 
   @Autowired
   ActivityAnalysisPicturesRepository activityAnalysisPicturesRepository;
+
+  @Autowired
+  InvalidationAssessmentRepository invalidationAssessmentRepository;
 
 
   /**
@@ -235,6 +257,34 @@ public class CengizPublicController {
     TrademarkPreList trademarkPreList = new TrademarkPreList();
     trademarkPreList.setTrademarkPres(trademarkPres);
     return trademarkPreList;
+  }
+
+
+  /**
+   * trademarkpreapplications list
+   *
+   * @return .
+   */
+  @GetMapping("/invalidationAssessmentApplications")
+  public InvalidationAssessmentList getInvalidationAssessmentApplications() {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    List<InvalidationAssessmentEntity> invalidationAssessmentEntities = invalidationAssessmentRepository.findAll();
+    List<InvalidationAssessment> invalidationAssessments = new ArrayList<>();
+    for (InvalidationAssessmentEntity entity: invalidationAssessmentEntities) {
+      InvalidationAssessment invalidationAssessment = new InvalidationAssessment();
+      invalidationAssessment.setId(entity.getId());
+      invalidationAssessment.setAppNo(entity.getAppNo());
+      invalidationAssessment.setTc(entity.getTc());
+      invalidationAssessment.setAddress(entity.getAddress());
+      invalidationAssessment.setTel(entity.getTel());
+      invalidationAssessment.setEmail(entity.getEmail());
+      invalidationAssessment.setCreatedAt(entity.getCreatedAt());
+      invalidationAssessments.add(invalidationAssessment);
+    }
+
+    InvalidationAssessmentList invalidationAssessmentList = new InvalidationAssessmentList();
+    invalidationAssessmentList.setInvalidationAssessments(invalidationAssessments);
+    return invalidationAssessmentList;
   }
 
 
@@ -829,6 +879,25 @@ public class CengizPublicController {
     return ResponseEntity.ok(general);
   }
 
+  @PostMapping(value = "/invalidationAssessmentSave")
+  public ResponseEntity<General> postInvalidationAssessment(@RequestBody InvalidationAssessment invalidationAssessment) {
+
+    InvalidationAssessmentEntity entity = invalidationAssessmentRepository.save(new InvalidationAssessmentEntity(
+        invalidationAssessment.getAppNo(),
+        invalidationAssessment.getTc(),
+        invalidationAssessment.getAddress(),
+        invalidationAssessment.getTel(),
+        invalidationAssessment.getEmail()));
+
+
+    InvalidationAssessment invalidationAssessment1 = new InvalidationAssessment(entity.getId(), entity.getAppNo(), entity.getTc(),
+        entity.getAddress(), entity.getTel(), entity.getEmail());
+
+    General general = new General("Kayıt işleminiz başarılı...", entity.getId());
+
+    return ResponseEntity.ok(general);
+  }
+
   @PostMapping(value = "/patentPreSave")
   public ResponseEntity<General> postPatentPre(@RequestBody PatentPre patentPre) {
 
@@ -1032,6 +1101,19 @@ public class CengizPublicController {
 
     try {
       emailService.sendMimeMessage(id, 1);
+      return ResponseEntity.ok(new MessageResponse("Mail Gönderilmiştir!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Mail Gönderilememiştir! Lütfen sorumlu ile görüşürünüz."));
+    }
+
+  }
+
+  @PostMapping(value = "/sendEmailInvalidationAssessment/{id}")
+  public ResponseEntity<?> sendEmailInvalidationAssessment(@PathVariable("id") Long id) {
+
+    try {
+      emailService.sendMimeMessage(id, 6);
       return ResponseEntity.ok(new MessageResponse("Mail Gönderilmiştir!"));
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
@@ -1431,5 +1513,313 @@ public class CengizPublicController {
     servicesInfoService.updateTechnologyConsultancyViewPicture(id, picture);
 
     return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+  }
+
+
+  @PostMapping(value = "/uploadTrademarkPreViewPdfFiles/{trademarkPreViewId}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> uploadTrademarkPreViewPdfFiles(@PathVariable("trademarkPreViewId") Long trademarkPreViewId,
+                                                       @RequestParam("pdfFiles") MultipartFile[] pdfFiles)
+      throws Exception {
+
+    servicesInfoService.uploadTrademarkPreViewPdfFiles(trademarkPreViewId, pdfFiles);
+
+    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/getTrademarkPreViewPdfFiles/{trademarkPreViewId}")
+  public TrademarkPreViewPdfList getTrademarkPreViewPdfFiles(@PathVariable("trademarkPreViewId") Long trademarkPreViewId) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    TrademarkPreViewPdfList trademarkPreViewPdfList = servicesInfoService.getTrademarkPreViewPdfFiles(trademarkPreViewId);
+    return trademarkPreViewPdfList;
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/deleteTrademarkPreViewPdf/{id}")
+  public ResponseEntity<?> deleteTrademarkPreViewPdf(@PathVariable("id") Long id) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    servicesInfoService.deleteTrademarkPreViewPdfById(id);
+    return ResponseEntity.ok(new MessageResponse("Silindi!"));
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/downloadTrademarkPreViewPdf/{id}")
+  public ResponseEntity<Resource> downloadTrademarkPreViewPdf(@PathVariable("id") Long id) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    TrademarkPreViewPdfEntity trademarkPreViewPdfEntity = servicesInfoService.getTrademarkPreViewPdfById(id);
+    return ResponseEntity.ok()
+        .contentType(MediaType.parseMediaType(trademarkPreViewPdfEntity.getFileType()))
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""
+            + trademarkPreViewPdfEntity.getFileName() + "\"")
+        .body(new ByteArrayResource(trademarkPreViewPdfEntity.getPdfFile()));
+  }
+
+  @PostMapping(value = "/uploadPatentPreViewPdfFiles/{patentPreViewId}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> uploadPatentPreViewPdfFiles(@PathVariable("patentPreViewId") Long patentPreViewId,
+                                                          @RequestParam("pdfFiles") MultipartFile[] pdfFiles)
+      throws Exception {
+
+    servicesInfoService.uploadPatentPreViewPdfFiles(patentPreViewId, pdfFiles);
+
+    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/getPatentPreViewPdfFiles/{patentPreViewId}")
+  public PatentPreViewPdfList getPatentPreViewPdfFiles(@PathVariable("patentPreViewId") Long patentPreViewId) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    PatentPreViewPdfList patentPreViewPdfList = servicesInfoService.getPatentPreViewPdfFiles(patentPreViewId);
+    return patentPreViewPdfList;
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/deletePatentPreViewPdf/{id}")
+  public ResponseEntity<?> deletePatentPreViewPdf(@PathVariable("id") Long id) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    servicesInfoService.deletePatentPreViewPdfById(id);
+    return ResponseEntity.ok(new MessageResponse("Silindi!"));
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/downloadPatentPreViewPdf/{id}")
+  public ResponseEntity<Resource> downloadPatentPreViewPdf(@PathVariable("id") Long id) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    PatentPreViewPdfEntity patentPreViewPdfEntity = servicesInfoService.getPatentPreViewPdfById(id);
+    return ResponseEntity.ok()
+        .contentType(MediaType.parseMediaType(patentPreViewPdfEntity.getFileType()))
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""
+            + patentPreViewPdfEntity.getFileName() + "\"")
+        .body(new ByteArrayResource(patentPreViewPdfEntity.getPdfFile()));
+  }
+
+  @PostMapping(value = "/uploadActivityAnalysisViewPdfFiles/{activityAnalysisViewId}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> uploadActivityAnalysisViewPdfFiles(@PathVariable("activityAnalysisViewId") Long activityAnalysisViewId,
+                                                       @RequestParam("pdfFiles") MultipartFile[] pdfFiles)
+      throws Exception {
+
+    servicesInfoService.uploadActivityAnalysisViewPdfFiles(activityAnalysisViewId, pdfFiles);
+
+    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/getActivityAnalysisViewPdfFiles/{activityAnalysisViewId}")
+  public ActivityAnalysisViewPdfList getActivityAnalysisViewPdfFiles(@PathVariable("activityAnalysisViewId") Long activityAnalysisViewId) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    ActivityAnalysisViewPdfList activityAnalysisViewPdfList = servicesInfoService.getActivityAnalysisViewPdfFiles(activityAnalysisViewId);
+    return activityAnalysisViewPdfList;
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/deleteActivityAnalysisViewPdf/{id}")
+  public ResponseEntity<?> deleteActivityAnalysisViewPdf(@PathVariable("id") Long id) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    servicesInfoService.deleteActivityAnalysisViewPdfById(id);
+    return ResponseEntity.ok(new MessageResponse("Silindi!"));
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/downloadActivityAnalysisViewPdf/{id}")
+  public ResponseEntity<Resource> downloadActivityAnalysisViewPdf(@PathVariable("id") Long id) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    ActivityAnalysisViewPdfEntity activityAnalysisViewPdfEntity = servicesInfoService.getActivityAnalysisViewPdfById(id);
+    return ResponseEntity.ok()
+        .contentType(MediaType.parseMediaType(activityAnalysisViewPdfEntity.getFileType()))
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""
+            + activityAnalysisViewPdfEntity.getFileName() + "\"")
+        .body(new ByteArrayResource(activityAnalysisViewPdfEntity.getPdfFile()));
+  }
+
+  @PostMapping(value = "/uploadValuationViewPdfFiles/{valuationViewId}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> uploadValuationViewPdfFiles(@PathVariable("valuationViewId") Long valuationViewId,
+                                                              @RequestParam("pdfFiles") MultipartFile[] pdfFiles)
+      throws Exception {
+
+    servicesInfoService.uploadValuationViewPdfFiles(valuationViewId, pdfFiles);
+
+    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/getValuationViewPdfFiles/{valuationViewId}")
+  public ValuationViewPdfList getValuationViewPdfFiles(@PathVariable("valuationViewId") Long valuationViewId) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    ValuationViewPdfList valuationViewPdfList = servicesInfoService.getValuationViewPdfFiles(valuationViewId);
+    return valuationViewPdfList;
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/deleteValuationViewPdf/{id}")
+  public ResponseEntity<?> deleteValuationViewPdf(@PathVariable("id") Long id) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    servicesInfoService.deleteValuationViewPdfById(id);
+    return ResponseEntity.ok(new MessageResponse("Silindi!"));
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/downloadValuationViewPdf/{id}")
+  public ResponseEntity<Resource> downloadValuationViewPdf(@PathVariable("id") Long id) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    ValuationViewPdfEntity valuationViewPdfEntity = servicesInfoService.getValuationViewPdfById(id);
+    return ResponseEntity.ok()
+        .contentType(MediaType.parseMediaType(valuationViewPdfEntity.getFileType()))
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""
+            + valuationViewPdfEntity.getFileName() + "\"")
+        .body(new ByteArrayResource(valuationViewPdfEntity.getPdfFile()));
+  }
+
+  @PostMapping(value = "/uploadEvaluationInvalidationViewPdfFiles/{evaluationInvalidationViewId}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> uploadEvaluationInvalidationViewPdfFiles(@PathVariable("evaluationInvalidationViewId") Long evaluationInvalidationViewId,
+                                                       @RequestParam("pdfFiles") MultipartFile[] pdfFiles)
+      throws Exception {
+
+    servicesInfoService.uploadEvaluationInvalidationViewPdfFiles(evaluationInvalidationViewId, pdfFiles);
+
+    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/getEvaluationInvalidationViewPdfFiles/{evaluationInvalidationViewId}")
+  public EvaluationInvalidationViewPdfList getEvaluationInvalidationViewPdfFiles(
+      @PathVariable("evaluationInvalidationViewId") Long evaluationInvalidationViewId) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    EvaluationInvalidationViewPdfList evaluationInvalidationViewPdfList =
+        servicesInfoService.getEvaluationInvalidationViewPdfFiles(evaluationInvalidationViewId);
+    return evaluationInvalidationViewPdfList;
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/deleteEvaluationInvalidationViewPdf/{id}")
+  public ResponseEntity<?> deleteEvaluationInvalidationViewPdf(@PathVariable("id") Long id) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    servicesInfoService.deleteEvaluationInvalidationViewPdfById(id);
+    return ResponseEntity.ok(new MessageResponse("Silindi!"));
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/downloadEvaluationInvalidationViewPdf/{id}")
+  public ResponseEntity<Resource> downloadEvaluationInvalidationViewPdf(@PathVariable("id") Long id) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    EvaluationInvalidationViewPdfEntity evaluationInvalidationViewPdfEntity =
+        servicesInfoService.getEvaluationInvalidationViewPdfById(id);
+    return ResponseEntity.ok()
+        .contentType(MediaType.parseMediaType(evaluationInvalidationViewPdfEntity.getFileType()))
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""
+            + evaluationInvalidationViewPdfEntity.getFileName() + "\"")
+        .body(new ByteArrayResource(evaluationInvalidationViewPdfEntity.getPdfFile()));
+  }
+
+  @PostMapping(value = "/uploadTechnologyConsultancyViewPdfFiles/{technologyConsultancyViewId}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> uploadTechnologyConsultancyViewPdfFiles(
+      @PathVariable("technologyConsultancyViewId") Long technologyConsultancyViewId,
+      @RequestParam("pdfFiles") MultipartFile[] pdfFiles)
+      throws Exception {
+
+    servicesInfoService.uploadTechnologyConsultancyViewPdfFiles(technologyConsultancyViewId, pdfFiles);
+
+    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/getTechnologyConsultancyViewPdfFiles/{technologyConsultancyViewId}")
+  public TechnologyConsultancyViewPdfList getTechnologyConsultancyViewPdfFiles(
+      @PathVariable("technologyConsultancyViewId") Long technologyConsultancyViewId) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    TechnologyConsultancyViewPdfList technologyConsultancyViewPdfList =
+        servicesInfoService.getTechnologyConsultancyViewPdfFiles(technologyConsultancyViewId);
+    return technologyConsultancyViewPdfList;
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/deleteTechnologyConsultancyViewPdf/{id}")
+  public ResponseEntity<?> deleteTechnologyConsultancyViewPdf(@PathVariable("id") Long id) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    servicesInfoService.deleteTechnologyConsultancyViewPdfById(id);
+    return ResponseEntity.ok(new MessageResponse("Silindi!"));
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @GetMapping("/downloadTechnologyConsultancyViewPdf/{id}")
+  public ResponseEntity<Resource> downloadTechnologyConsultancyViewPdf(@PathVariable("id") Long id) {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    TechnologyConsultancyViewPdfEntity technologyConsultancyViewPdfEntity =
+        servicesInfoService.getTechnologyConsultancyViewPdfById(id);
+    return ResponseEntity.ok()
+        .contentType(MediaType.parseMediaType(technologyConsultancyViewPdfEntity.getFileType()))
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""
+            + technologyConsultancyViewPdfEntity.getFileName() + "\"")
+        .body(new ByteArrayResource(technologyConsultancyViewPdfEntity.getPdfFile()));
   }
 }

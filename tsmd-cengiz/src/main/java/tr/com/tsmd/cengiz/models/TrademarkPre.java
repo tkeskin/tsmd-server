@@ -24,11 +24,14 @@ public class TrademarkPre {
   private Date createdAt;
   private String dekontBase64;
 
+  private String legalPerson;
+  private String trademarkItemList;
+
 
   public TrademarkPre() {
   }
 
-  public TrademarkPre(Long id, String trademarktype, String trademarkimage, String trademarktext, String trademarkclass, String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email) {
+  public TrademarkPre(Long id, String trademarktype, String trademarkimage, String trademarktext, String trademarkclass, String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String legalPerson, String trademarkItemList) {
     this.id = id;
     this.trademarktype = trademarktype;
     this.trademarkimage = trademarkimage;
@@ -39,6 +42,8 @@ public class TrademarkPre {
     this.address = address;
     this.tel = tel;
     this.email = email;
+    this.legalPerson = legalPerson;
+    this.trademarkItemList = trademarkItemList;
   }
 
   public Date getCreatedAt() {
@@ -135,5 +140,21 @@ public class TrademarkPre {
 
   public void setDekontBase64(String dekontBase64) {
     this.dekontBase64 = dekontBase64;
+  }
+
+  public String getLegalPerson() {
+    return legalPerson;
+  }
+
+  public void setLegalPerson(String legalPerson) {
+    this.legalPerson = legalPerson;
+  }
+
+  public String getTrademarkItemList() {
+    return trademarkItemList;
+  }
+
+  public void setTrademarkItemList(String trademarkItemList) {
+    this.trademarkItemList = trademarkItemList;
   }
 }

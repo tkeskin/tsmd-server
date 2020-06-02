@@ -54,12 +54,18 @@ public class TrademarkPreEntity extends AuditModel {
   private String dekontName;
   private String dekontFileType;
 
+  private String legalPerson;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
+  private String trademarkItemList;
+
 
 
   public TrademarkPreEntity() {
   }
 
-  public TrademarkPreEntity( String trademarktype, String trademarkimage, String trademarktext, String trademarkclass, String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email) {
+  public TrademarkPreEntity( String trademarktype, String trademarkimage, String trademarktext, String trademarkclass, String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email,String legalPerson, String trademarkItemList) {
 
     this.trademarktype = trademarktype;
     this.trademarkimage = trademarkimage;
@@ -70,6 +76,8 @@ public class TrademarkPreEntity extends AuditModel {
     this.address = address;
     this.tel = tel;
     this.email = email;
+    this.legalPerson = legalPerson;
+    this.trademarkItemList = trademarkItemList;
   }
 
   public Long getId() {
@@ -191,5 +199,22 @@ public class TrademarkPreEntity extends AuditModel {
 
   public void setDekontFileType(String dekontFileType) {
     this.dekontFileType = dekontFileType;
+  }
+
+  public String getLegalPerson() {
+    return legalPerson;
+  }
+
+  public void setLegalPerson(String legalPerson) {
+    this.legalPerson = legalPerson;
+  }
+
+
+  public String getTrademarkItemList() {
+    return trademarkItemList;
+  }
+
+  public void setTrademarkItemList(String trademarkItemList) {
+    this.trademarkItemList = trademarkItemList;
   }
 }

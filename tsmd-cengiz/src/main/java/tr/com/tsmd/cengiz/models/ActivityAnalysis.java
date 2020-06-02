@@ -25,10 +25,12 @@ public class ActivityAnalysis {
   private Date createdAt;
   private String dekontBase64;
 
+  private String legalPerson;
+
   public ActivityAnalysis() {
   }
 
-  public ActivityAnalysis(String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String keyWord, String opponent, String technicalcomponent, String image, String otherpoint) {
+  public ActivityAnalysis(String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String keyWord, String opponent, String technicalcomponent, String image, String otherpoint, String legalPerson) {
 
     this.name_surname = name_surname;
     this.tc = tc;
@@ -40,6 +42,7 @@ public class ActivityAnalysis {
     this.technicalcomponent = technicalcomponent;
     this.image = image;
     this.otherpoint = otherpoint;
+    this.legalPerson = legalPerson;
   }
 
   public Long getId() {
@@ -145,5 +148,13 @@ public class ActivityAnalysis {
 
   public void setDekontBase64(String dekontBase64) {
     this.dekontBase64 = dekontBase64;
+  }
+
+  public String getLegalPerson() {
+    return legalPerson;
+  }
+
+  public void setLegalPerson(String legalPerson) {
+    this.legalPerson = legalPerson;
   }
 }

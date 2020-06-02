@@ -85,11 +85,13 @@ public class PatentPreEntity extends AuditModel {
   private String dekontFileName;
   private String dekontFileType;
 
+  private String legalPerson;
+
 
   public PatentPreEntity() {
   }
 
-  public PatentPreEntity(String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String protectiontype, String reporttype, String computerarea, String electricityarea, String electronicarea, String machinearea, String medicinearea, String automotivearea, String metallurgyarea, String biomedicalarea, String chemistryarea, String foodarea, String buildarea, String otherarea, String title, String patentkeyword, String patentapplication, String advantage, String publications, String detailexplain, String picture, String otherpoint) {
+  public PatentPreEntity(String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String protectiontype, String reporttype, String computerarea, String electricityarea, String electronicarea, String machinearea, String medicinearea, String automotivearea, String metallurgyarea, String biomedicalarea, String chemistryarea, String foodarea, String buildarea, String otherarea, String title, String patentkeyword, String patentapplication, String advantage, String publications, String detailexplain, String picture, String otherpoint, String legalPerson) {
     this.name_surname = name_surname;
     this.tc = tc;
     this.address = address;
@@ -117,6 +119,7 @@ public class PatentPreEntity extends AuditModel {
     this.detailexplain = detailexplain;
     this.picture = picture;
     this.otherpoint = otherpoint;
+    this.legalPerson = legalPerson;
   }
 
   public Long getId() {
@@ -366,5 +369,13 @@ public class PatentPreEntity extends AuditModel {
 
   public void setDekontFileType(String dekontFileType) {
     this.dekontFileType = dekontFileType;
+  }
+
+  public String getLegalPerson() {
+    return legalPerson;
+  }
+
+  public void setLegalPerson(String legalPerson) {
+    this.legalPerson = legalPerson;
   }
 }

@@ -13,18 +13,18 @@ public class ValuationPatent {
   private String patentappno;
   private String patentcountry;
   private String patentmarket;
-  private String patentcontribution;
+//  private String patentcontribution;
   private String patentsector;
   private String patentothersector;
   private String marketshare;
-  private String percentageturnover;
+//  private String percentageturnover;
   private String overseasmarketshare;
   private String exportcountry;
   private String exportturnover;
-  private String royaltyrate;
+//  private String royaltyrate;
   private String competingmarketshare;
   private String competitordate;
-  private String competinggrowthrate;
+//  private String competinggrowthrate;
   private String turnovertarget;
   private String turnoverpercent;
   private String incomepercent;
@@ -34,7 +34,7 @@ public class ValuationPatent {
   private String advertisement;
   private String totalexpenditure;
   private String spending;
-  private String developmentspending;
+//  private String developmentspending;
   private String worldspending;
   private String caseexpense;
   private String countryoutside;
@@ -42,29 +42,39 @@ public class ValuationPatent {
 
   private Date createdAt;
 
+  private String name_surname;
+  private String tc;
+  private String tel;
+  @NotBlank
+  @Size(max = 50)
+  @Email
+  private String email;
+  private String legalPerson;
+  private String licenseChoose;
+
 
   public ValuationPatent() {
   }
 
-  public ValuationPatent(Long id, String address, String patentpurpose, String patentappno, String patentcountry, String patentmarket, String patentcontribution, String patentsector, String patentothersector, String marketshare, String percentageturnover, String overseasmarketshare, String exportcountry, String exportturnover, String royaltyrate, String competingmarketshare, String competitordate, String competinggrowthrate, String turnovertarget, String turnoverpercent, String incomepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String spending, String developmentspending, String worldspending, String caseexpense, String countryoutside, String europeanunio) {
+  public ValuationPatent(Long id, String address, String patentpurpose, String patentappno, String patentcountry, String patentmarket, String patentsector, String patentothersector, String marketshare, String overseasmarketshare, String exportcountry, String exportturnover, String competingmarketshare, String competitordate, String turnovertarget, String turnoverpercent, String incomepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String spending, String worldspending, String caseexpense, String countryoutside, String europeanunio, String name_surname, String tc, String tel, @NotBlank @Size(max = 50) @Email String email, String legalPerson,String licenseChoose) {
     this.id = id;
     this.address = address;
     this.patentpurpose = patentpurpose;
     this.patentappno = patentappno;
     this.patentcountry = patentcountry;
     this.patentmarket = patentmarket;
-    this.patentcontribution = patentcontribution;
+//    this.patentcontribution = patentcontribution;
     this.patentsector = patentsector;
     this.patentothersector = patentothersector;
     this.marketshare = marketshare;
-    this.percentageturnover = percentageturnover;
+//    this.percentageturnover = percentageturnover;
     this.overseasmarketshare = overseasmarketshare;
     this.exportcountry = exportcountry;
     this.exportturnover = exportturnover;
-    this.royaltyrate = royaltyrate;
+//    this.royaltyrate = royaltyrate;
     this.competingmarketshare = competingmarketshare;
     this.competitordate = competitordate;
-    this.competinggrowthrate = competinggrowthrate;
+//    this.competinggrowthrate = competinggrowthrate;
     this.turnovertarget = turnovertarget;
     this.turnoverpercent = turnoverpercent;
     this.incomepercent = incomepercent;
@@ -74,11 +84,17 @@ public class ValuationPatent {
     this.advertisement = advertisement;
     this.totalexpenditure = totalexpenditure;
     this.spending = spending;
-    this.developmentspending = developmentspending;
+//    this.developmentspending = developmentspending;
     this.worldspending = worldspending;
     this.caseexpense = caseexpense;
     this.countryoutside = countryoutside;
     this.europeanunio = europeanunio;
+    this.name_surname = name_surname;
+    this.tc = tc;
+    this.tel = tel;
+    this.email = email;
+    this.legalPerson = legalPerson;
+    this.licenseChoose = licenseChoose;
   }
 
   public Long getId() {
@@ -129,14 +145,6 @@ public class ValuationPatent {
     this.patentmarket = patentmarket;
   }
 
-  public String getPatentcontribution() {
-    return patentcontribution;
-  }
-
-  public void setPatentcontribution(String patentcontribution) {
-    this.patentcontribution = patentcontribution;
-  }
-
   public String getPatentsector() {
     return patentsector;
   }
@@ -159,14 +167,6 @@ public class ValuationPatent {
 
   public void setMarketshare(String marketshare) {
     this.marketshare = marketshare;
-  }
-
-  public String getPercentageturnover() {
-    return percentageturnover;
-  }
-
-  public void setPercentageturnover(String percentageturnover) {
-    this.percentageturnover = percentageturnover;
   }
 
   public String getOverseasmarketshare() {
@@ -193,14 +193,6 @@ public class ValuationPatent {
     this.exportturnover = exportturnover;
   }
 
-  public String getRoyaltyrate() {
-    return royaltyrate;
-  }
-
-  public void setRoyaltyrate(String royaltyrate) {
-    this.royaltyrate = royaltyrate;
-  }
-
   public String getCompetingmarketshare() {
     return competingmarketshare;
   }
@@ -215,14 +207,6 @@ public class ValuationPatent {
 
   public void setCompetitordate(String competitordate) {
     this.competitordate = competitordate;
-  }
-
-  public String getCompetinggrowthrate() {
-    return competinggrowthrate;
-  }
-
-  public void setCompetinggrowthrate(String competinggrowthrate) {
-    this.competinggrowthrate = competinggrowthrate;
   }
 
   public String getTurnovertarget() {
@@ -297,14 +281,6 @@ public class ValuationPatent {
     this.spending = spending;
   }
 
-  public String getDevelopmentspending() {
-    return developmentspending;
-  }
-
-  public void setDevelopmentspending(String developmentspending) {
-    this.developmentspending = developmentspending;
-  }
-
   public String getWorldspending() {
     return worldspending;
   }
@@ -343,5 +319,53 @@ public class ValuationPatent {
 
   public void setCreatedAt(Date createdAt) {
     this.createdAt = createdAt;
+  }
+
+  public String getName_surname() {
+    return name_surname;
+  }
+
+  public void setName_surname(String name_surname) {
+    this.name_surname = name_surname;
+  }
+
+  public String getTc() {
+    return tc;
+  }
+
+  public void setTc(String tc) {
+    this.tc = tc;
+  }
+
+  public String getTel() {
+    return tel;
+  }
+
+  public void setTel(String tel) {
+    this.tel = tel;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getLegalPerson() {
+    return legalPerson;
+  }
+
+  public void setLegalPerson(String legalPerson) {
+    this.legalPerson = legalPerson;
+  }
+
+  public String getLicenseChoose() {
+    return licenseChoose;
+  }
+
+  public void setLicenseChoose(String licenseChoose) {
+    this.licenseChoose = licenseChoose;
   }
 }

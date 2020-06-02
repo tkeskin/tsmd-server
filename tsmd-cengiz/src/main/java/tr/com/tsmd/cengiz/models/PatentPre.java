@@ -46,12 +46,14 @@ public class PatentPre {
   private Date createdAt;
   private String dekontBase64;
 
+  private String legalPerson;
+
   public PatentPre() {
   }
 
   public PatentPre(String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String protectiontype, String reporttype, String computerarea, String electricityarea, String electronicarea,
                    String machinearea, String medicinearea, String automotivearea, String metallurgyarea, String biomedicalarea, String chemistryarea, String foodarea, String buildarea, String otherarea, String title,
-                   String patentkeyword, String patentapplication, String advantage, String publications, String detailexplain, String picture, String otherpoint) {
+                   String patentkeyword, String patentapplication, String advantage, String publications, String detailexplain, String picture, String otherpoint, String legalPerson) {
 
     this.name_surname = name_surname;
     this.tc = tc;
@@ -80,6 +82,7 @@ public class PatentPre {
     this.detailexplain = detailexplain;
     this.picture = picture;
     this.otherpoint = otherpoint;
+    this.legalPerson = legalPerson;
   }
 
   public Long getId() {
@@ -321,5 +324,14 @@ public class PatentPre {
 
   public void setDekontBase64(String dekontBase64) {
     this.dekontBase64 = dekontBase64;
+  }
+
+
+  public String getLegalPerson() {
+    return legalPerson;
+  }
+
+  public void setLegalPerson(String legalPerson) {
+    this.legalPerson = legalPerson;
   }
 }

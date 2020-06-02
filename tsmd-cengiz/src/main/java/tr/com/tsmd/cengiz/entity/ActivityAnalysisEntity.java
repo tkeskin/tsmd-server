@@ -55,12 +55,14 @@ public class ActivityAnalysisEntity extends AuditModel {
   private String dekontFileName;
   private String dekontFileType;
 
+  private String legalPerson;
+
 
 
   public ActivityAnalysisEntity() {
   }
 
-  public ActivityAnalysisEntity(String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String keyWord, String opponent, String technicalcomponent, String image, String otherpoint) {
+  public ActivityAnalysisEntity(String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String keyWord, String opponent, String technicalcomponent, String image, String otherpoint, String legalPerson) {
     this.name_surname = name_surname;
     this.tc = tc;
     this.address = address;
@@ -71,6 +73,7 @@ public class ActivityAnalysisEntity extends AuditModel {
     this.technicalcomponent = technicalcomponent;
     this.image = image;
     this.otherpoint = otherpoint;
+    this.legalPerson = legalPerson;
   }
 
   public Long getId() {
@@ -183,5 +186,13 @@ public class ActivityAnalysisEntity extends AuditModel {
 
   public void setDekontFileType(String dekontFileType) {
     this.dekontFileType = dekontFileType;
+  }
+
+  public String getLegalPerson() {
+    return legalPerson;
+  }
+
+  public void setLegalPerson(String legalPerson) {
+    this.legalPerson = legalPerson;
   }
 }

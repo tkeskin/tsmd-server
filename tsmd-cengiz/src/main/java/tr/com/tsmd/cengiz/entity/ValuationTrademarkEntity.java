@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import org.hibernate.annotations.Type;
 import tr.com.tsmd.cengiz.util.Const;
 
@@ -19,25 +22,32 @@ public class ValuationTrademarkEntity extends AuditModel {
   private Long id;
   private String address;
 
-  @Lob
-  @Type(type="org.hibernate.type.TextType")
-  private String trademarkclass;
+  private String name_surname;
+  private String tc;
+  private String tel;
+  @NotBlank
+  @Size(max = 50)
+  @Email
+  private String email;
+  private String legalPerson;
+  private String valuationTrademarkAppNo;
+  private String licenseChoose;
+
+//  @Lob
+//  @Type(type="org.hibernate.type.TextType")
+//  private String trademarkclass;
 
   @Lob
   @Type(type="org.hibernate.type.TextType")
   private String trademarkpurpose;
 
-  @Lob
-  @Type(type="org.hibernate.type.TextType")
-  private String registrationdate;
+//  @Lob
+//  @Type(type="org.hibernate.type.TextType")
+//  private String registrationdate;
 
   @Lob
   @Type(type="org.hibernate.type.TextType")
   private String commonusage;
-
-  @Lob
-  @Type(type="org.hibernate.type.TextType")
-  private String dominanttrademark;
 
   @Lob
   @Type(type="org.hibernate.type.TextType")
@@ -57,10 +67,6 @@ public class ValuationTrademarkEntity extends AuditModel {
 
   @Lob
   @Type(type="org.hibernate.type.TextType")
-  private String incomepercent;
-
-  @Lob
-  @Type(type="org.hibernate.type.TextType")
   private String mainsector;
 
   @Lob
@@ -70,10 +76,6 @@ public class ValuationTrademarkEntity extends AuditModel {
   @Lob
   @Type(type="org.hibernate.type.TextType")
   private String marketshare;
-
-  @Lob
-  @Type(type="org.hibernate.type.TextType")
-  private String totalturnover;
 
   @Lob
   @Type(type="org.hibernate.type.TextType")
@@ -89,19 +91,11 @@ public class ValuationTrademarkEntity extends AuditModel {
 
   @Lob
   @Type(type="org.hibernate.type.TextType")
-  private String percentroyalt;
-
-  @Lob
-  @Type(type="org.hibernate.type.TextType")
   private String competingmarketshare;
 
   @Lob
   @Type(type="org.hibernate.type.TextType")
   private String markethistory;
-
-  @Lob
-  @Type(type="org.hibernate.type.TextType")
-  private String growthrate;
 
   @Lob
   @Type(type="org.hibernate.type.TextType")
@@ -154,29 +148,27 @@ public class ValuationTrademarkEntity extends AuditModel {
   public ValuationTrademarkEntity() {
   }
 
-  public ValuationTrademarkEntity(String address, String trademarkclass, String trademarkpurpose, String registrationdate, String commonusage, String dominanttrademark, String targetcountry, String trademarktime, String markettime, String trademarkcontribution, String incomepercent, String mainsector, String othersector, String marketshare, String totalturnover, String overseasmarketshare, String exportcountry, String turnoverpercent, String percentroyalt, String competingmarketshare, String markethistory, String growthrate, String turnovertarget, String trademarkturnoverpercent, String incomeincreasepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String countryoutside, String europeanunion) {
+  public ValuationTrademarkEntity(String address, String trademarkpurpose, String commonusage, String targetcountry, String trademarktime, String markettime, String trademarkcontribution, String mainsector, String othersector, String marketshare, String overseasmarketshare, String exportcountry, String turnoverpercent, String competingmarketshare, String markethistory,  String turnovertarget, String trademarkturnoverpercent, String incomeincreasepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String countryoutside, String europeanunion, String name_surname, String tc, String tel, @NotBlank @Size(max = 50) @Email String email,String legalPerson, String valuationTrademarkAppNo,String licenseChoose) {
     this.address = address;
-    this.trademarkclass = trademarkclass;
     this.trademarkpurpose = trademarkpurpose;
-    this.registrationdate = registrationdate;
     this.commonusage = commonusage;
-    this.dominanttrademark = dominanttrademark;
+//    this.dominanttrademark = dominanttrademark;
     this.targetcountry = targetcountry;
     this.trademarktime = trademarktime;
     this.markettime = markettime;
     this.trademarkcontribution = trademarkcontribution;
-    this.incomepercent = incomepercent;
+//    this.incomepercent = incomepercent;
     this.mainsector = mainsector;
     this.othersector = othersector;
     this.marketshare = marketshare;
-    this.totalturnover = totalturnover;
+//    this.totalturnover = totalturnover;
     this.overseasmarketshare = overseasmarketshare;
     this.exportcountry = exportcountry;
     this.turnoverpercent = turnoverpercent;
-    this.percentroyalt = percentroyalt;
+//    this.percentroyalt = percentroyalt;
     this.competingmarketshare = competingmarketshare;
     this.markethistory = markethistory;
-    this.growthrate = growthrate;
+//    this.growthrate = growthrate;
     this.turnovertarget = turnovertarget;
     this.trademarkturnoverpercent = trademarkturnoverpercent;
     this.incomeincreasepercent = incomeincreasepercent;
@@ -187,6 +179,13 @@ public class ValuationTrademarkEntity extends AuditModel {
     this.totalexpenditure = totalexpenditure;
     this.countryoutside = countryoutside;
     this.europeanunion = europeanunion;
+    this.name_surname = name_surname;
+    this.tc = tc;
+    this.tel = tel;
+    this.email = email;
+    this.legalPerson = legalPerson;
+    this.valuationTrademarkAppNo = valuationTrademarkAppNo;
+    this.licenseChoose = licenseChoose;
   }
 
   public Long getId() {
@@ -205,14 +204,6 @@ public class ValuationTrademarkEntity extends AuditModel {
     this.address = address;
   }
 
-  public String getTrademarkclass() {
-    return trademarkclass;
-  }
-
-  public void setTrademarkclass(String trademarkclass) {
-    this.trademarkclass = trademarkclass;
-  }
-
   public String getTrademarkpurpose() {
     return trademarkpurpose;
   }
@@ -221,28 +212,12 @@ public class ValuationTrademarkEntity extends AuditModel {
     this.trademarkpurpose = trademarkpurpose;
   }
 
-  public String getRegistrationdate() {
-    return registrationdate;
-  }
-
-  public void setRegistrationdate(String registrationdate) {
-    this.registrationdate = registrationdate;
-  }
-
   public String getCommonusage() {
     return commonusage;
   }
 
   public void setCommonusage(String commonusage) {
     this.commonusage = commonusage;
-  }
-
-  public String getDominanttrademark() {
-    return dominanttrademark;
-  }
-
-  public void setDominanttrademark(String dominanttrademark) {
-    this.dominanttrademark = dominanttrademark;
   }
 
   public String getTargetcountry() {
@@ -277,14 +252,6 @@ public class ValuationTrademarkEntity extends AuditModel {
     this.trademarkcontribution = trademarkcontribution;
   }
 
-  public String getIncomepercent() {
-    return incomepercent;
-  }
-
-  public void setIncomepercent(String incomepercent) {
-    this.incomepercent = incomepercent;
-  }
-
   public String getMainsector() {
     return mainsector;
   }
@@ -309,13 +276,6 @@ public class ValuationTrademarkEntity extends AuditModel {
     this.marketshare = marketshare;
   }
 
-  public String getTotalturnover() {
-    return totalturnover;
-  }
-
-  public void setTotalturnover(String totalturnover) {
-    this.totalturnover = totalturnover;
-  }
 
   public String getOverseasmarketshare() {
     return overseasmarketshare;
@@ -341,13 +301,6 @@ public class ValuationTrademarkEntity extends AuditModel {
     this.turnoverpercent = turnoverpercent;
   }
 
-  public String getPercentroyalt() {
-    return percentroyalt;
-  }
-
-  public void setPercentroyalt(String percentroyalt) {
-    this.percentroyalt = percentroyalt;
-  }
 
   public String getCompetingmarketshare() {
     return competingmarketshare;
@@ -363,14 +316,6 @@ public class ValuationTrademarkEntity extends AuditModel {
 
   public void setMarkethistory(String markethistory) {
     this.markethistory = markethistory;
-  }
-
-  public String getGrowthrate() {
-    return growthrate;
-  }
-
-  public void setGrowthrate(String growthrate) {
-    this.growthrate = growthrate;
   }
 
   public String getTurnovertarget() {
@@ -475,5 +420,62 @@ public class ValuationTrademarkEntity extends AuditModel {
 
   public void setDekontFileType(String dekontFileType) {
     this.dekontFileType = dekontFileType;
+  }
+
+  public String getName_surname() {
+    return name_surname;
+  }
+
+  public void setName_surname(String name_surname) {
+    this.name_surname = name_surname;
+  }
+
+  public String getTc() {
+    return tc;
+  }
+
+  public void setTc(String tc) {
+    this.tc = tc;
+  }
+
+  public String getTel() {
+    return tel;
+  }
+
+  public void setTel(String tel) {
+    this.tel = tel;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getLegalPerson() {
+    return legalPerson;
+  }
+
+  public void setLegalPerson(String legalPerson) {
+    this.legalPerson = legalPerson;
+  }
+
+
+  public String getValuationTrademarkAppNo() {
+    return valuationTrademarkAppNo;
+  }
+
+  public void setValuationTrademarkAppNo(String valuationTrademarkAppNo) {
+    this.valuationTrademarkAppNo = valuationTrademarkAppNo;
+  }
+
+  public String getLicenseChoose() {
+    return licenseChoose;
+  }
+
+  public void setLicenseChoose(String licenseChoose) {
+    this.licenseChoose = licenseChoose;
   }
 }

@@ -376,27 +376,27 @@ public class CengizPublicController {
     ValuationTrademark valuationTrademark = new ValuationTrademark();
     valuationTrademark.setId(entity.getId());
     valuationTrademark.setAddress(entity.getAddress());
-    valuationTrademark.setTrademarkclass(entity.getTrademarkclass());
+//    valuationTrademark.setTrademarkclass(entity.getTrademarkclass());
     valuationTrademark.setTrademarkpurpose(entity.getTrademarkpurpose());
-    valuationTrademark.setRegistrationdate(entity.getRegistrationdate());
+//    valuationTrademark.setRegistrationdate(entity.getRegistrationdate());
     valuationTrademark.setCommonusage(entity.getCommonusage());
-    valuationTrademark.setDominanttrademark(entity.getDominanttrademark());
+//    valuationTrademark.setDominanttrademark(entity.getDominanttrademark());
     valuationTrademark.setTargetcountry(entity.getTargetcountry());
     valuationTrademark.setTrademarktime(entity.getTrademarktime());
     valuationTrademark.setMarkettime(entity.getMarkettime());
     valuationTrademark.setTrademarkcontribution(entity.getTrademarkcontribution());
-    valuationTrademark.setIncomepercent(entity.getIncomepercent());
+//    valuationTrademark.setIncomepercent(entity.getIncomepercent());
     valuationTrademark.setMainsector(entity.getMainsector());
     valuationTrademark.setOthersector(entity.getOthersector());
     valuationTrademark.setMarketshare(entity.getMarketshare());
-    valuationTrademark.setTotalturnover(entity.getTotalturnover());
+//    valuationTrademark.setTotalturnover(entity.getTotalturnover());
     valuationTrademark.setOverseasmarketshare(entity.getOverseasmarketshare());
     valuationTrademark.setExportcountry(entity.getExportcountry());
     valuationTrademark.setTurnoverpercent(entity.getTurnoverpercent());
-    valuationTrademark.setPercentroyalt(entity.getPercentroyalt());
+//    valuationTrademark.setPercentroyalt(entity.getPercentroyalt());
     valuationTrademark.setCompetingmarketshare(entity.getCompetingmarketshare());
     valuationTrademark.setMarkethistory(entity.getMarkethistory());
-    valuationTrademark.setGrowthrate(entity.getGrowthrate());
+//    valuationTrademark.setGrowthrate(entity.getGrowthrate());
     valuationTrademark.setTurnovertarget(entity.getTurnovertarget());
     valuationTrademark.setTrademarkturnoverpercent(entity.getTrademarkturnoverpercent());
     valuationTrademark.setIncomeincreasepercent(entity.getIncomeincreasepercent());
@@ -470,18 +470,18 @@ public class CengizPublicController {
     valuationPatent.setPatentappno(entity.getPatentappno());
     valuationPatent.setPatentcountry(entity.getPatentcountry());
     valuationPatent.setPatentmarket(entity.getPatentmarket());
-    valuationPatent.setPatentcontribution(entity.getPatentcontribution());
+//    valuationPatent.setPatentcontribution(entity.getPatentcontribution());
     valuationPatent.setPatentsector(entity.getPatentsector());
     valuationPatent.setPatentothersector(entity.getPatentothersector());
     valuationPatent.setMarketshare(entity.getMarketshare());
-    valuationPatent.setPercentageturnover(entity.getPercentageturnover());
+//    valuationPatent.setPercentageturnover(entity.getPercentageturnover());
     valuationPatent.setOverseasmarketshare(entity.getOverseasmarketshare());
     valuationPatent.setExportcountry(entity.getExportcountry());
     valuationPatent.setExportturnover(entity.getExportturnover());
-    valuationPatent.setRoyaltyrate(entity.getRoyaltyrate());
+//    valuationPatent.setRoyaltyrate(entity.getRoyaltyrate());
     valuationPatent.setCompetingmarketshare(entity.getCompetingmarketshare());
     valuationPatent.setCompetitordate(entity.getCompetitordate());
-    valuationPatent.setCompetinggrowthrate(entity.getCompetinggrowthrate());
+//    valuationPatent.setCompetinggrowthrate(entity.getCompetinggrowthrate());
     valuationPatent.setTurnovertarget(entity.getTurnovertarget());
     valuationPatent.setTurnoverpercent(entity.getTurnoverpercent());
     valuationPatent.setIncomepercent(entity.getIncomepercent());
@@ -491,7 +491,7 @@ public class CengizPublicController {
     valuationPatent.setAdvertisement(entity.getAdvertisement());
     valuationPatent.setTotalexpenditure(entity.getTotalexpenditure());
     valuationPatent.setSpending(entity.getSpending());
-    valuationPatent.setDevelopmentspending(entity.getDevelopmentspending());
+//    valuationPatent.setDevelopmentspending(entity.getDevelopmentspending());
     valuationPatent.setWorldspending(entity.getWorldspending());
     valuationPatent.setCaseexpense(entity.getCaseexpense());
     valuationPatent.setCountryoutside(entity.getCountryoutside());
@@ -867,12 +867,15 @@ public class CengizPublicController {
         trademarkPre.getTc(),
         trademarkPre.getAddress(),
         trademarkPre.getTel(),
-        trademarkPre.getEmail()));
+        trademarkPre.getEmail(),
+        trademarkPre.getLegalPerson(),
+        trademarkPre.getTrademarkItemList()
+    ));
 
 
     TrademarkPre trademarkPre1 = new TrademarkPre(entity.getId(), entity.getTrademarktype(), entity.getTrademarkimage(),
         entity.getTrademarktext(), entity.getTrademarkclass(), entity.getName_surname(), entity.getTc(),
-        entity.getAddress(), entity.getTel(), entity.getEmail());
+        entity.getAddress(), entity.getTel(), entity.getEmail(), entity.getLegalPerson(), entity.getTrademarkItemList());
 
     General general = new General("Kayıt işleminiz başarılı...", entity.getId());
 
@@ -928,7 +931,8 @@ public class CengizPublicController {
         patentPre.getPublications(),
         patentPre.getDetailexplain(),
         patentPre.getPicture(),
-        patentPre.getOtherpoint()
+        patentPre.getOtherpoint(),
+        patentPre.getLegalPerson()
     ));
     General general = new General();
     general.setMessage("Kayıt işleminiz başarılı!");
@@ -947,18 +951,14 @@ public class CengizPublicController {
         valuationPatent.getPatentappno(),
         valuationPatent.getPatentcountry(),
         valuationPatent.getPatentmarket(),
-        valuationPatent.getPatentcontribution(),
         valuationPatent.getPatentsector(),
         valuationPatent.getPatentothersector(),
         valuationPatent.getMarketshare(),
-        valuationPatent.getPercentageturnover(),
         valuationPatent.getOverseasmarketshare(),
         valuationPatent.getExportcountry(),
         valuationPatent.getExportturnover(),
-        valuationPatent.getRoyaltyrate(),
         valuationPatent.getCompetingmarketshare(),
         valuationPatent.getCompetitordate(),
-        valuationPatent.getCompetinggrowthrate(),
         valuationPatent.getTurnovertarget(),
         valuationPatent.getTurnoverpercent(),
         valuationPatent.getIncomepercent(),
@@ -968,11 +968,16 @@ public class CengizPublicController {
         valuationPatent.getAdvertisement(),
         valuationPatent.getTotalexpenditure(),
         valuationPatent.getSpending(),
-        valuationPatent.getDevelopmentspending(),
         valuationPatent.getWorldspending(),
         valuationPatent.getCaseexpense(),
         valuationPatent.getCountryoutside(),
-        valuationPatent.getEuropeanunio()
+        valuationPatent.getEuropeanunio(),
+        valuationPatent.getName_surname(),
+        valuationPatent.getTc(),
+        valuationPatent.getTel(),
+        valuationPatent.getEmail(),
+        valuationPatent.getLegalPerson(),
+        valuationPatent.getLicenseChoose()
     ));
     General general = new General();
     general.setMessage("Kayıt işleminiz başarılı!");
@@ -987,27 +992,20 @@ public class CengizPublicController {
 
     ValuationTrademarkEntity valuationTrademarkEntity = valuationTrademarkRepository.save(new ValuationTrademarkEntity(
         valuationTrademark.getAddress(),
-        valuationTrademark.getTrademarkclass(),
         valuationTrademark.getTrademarkpurpose(),
-        valuationTrademark.getRegistrationdate(),
         valuationTrademark.getCommonusage(),
-        valuationTrademark.getDominanttrademark(),
         valuationTrademark.getTargetcountry(),
         valuationTrademark.getTrademarktime(),
         valuationTrademark.getMarkettime(),
         valuationTrademark.getTrademarkcontribution(),
-        valuationTrademark.getIncomepercent(),
         valuationTrademark.getMainsector(),
         valuationTrademark.getOthersector(),
         valuationTrademark.getMarketshare(),
-        valuationTrademark.getTotalturnover(),
         valuationTrademark.getOverseasmarketshare(),
         valuationTrademark.getExportcountry(),
         valuationTrademark.getTurnoverpercent(),
-        valuationTrademark.getPercentroyalt(),
         valuationTrademark.getCompetingmarketshare(),
         valuationTrademark.getMarkethistory(),
-        valuationTrademark.getGrowthrate(),
         valuationTrademark.getTurnovertarget(),
         valuationTrademark.getTrademarkturnoverpercent(),
         valuationTrademark.getIncomeincreasepercent(),
@@ -1017,7 +1015,14 @@ public class CengizPublicController {
         valuationTrademark.getAdvertisement(),
         valuationTrademark.getTotalexpenditure(),
         valuationTrademark.getCountryoutside(),
-        valuationTrademark.getEuropeanunion()
+        valuationTrademark.getEuropeanunion(),
+        valuationTrademark.getName_surname(),
+        valuationTrademark.getTc(),
+        valuationTrademark.getTel(),
+        valuationTrademark.getEmail(),
+        valuationTrademark.getLegalPerson(),
+        valuationTrademark.getValuationTrademarkAppNo(),
+        valuationTrademark.getLicenseChoose()
     ));
     General general = new General();
     general.setMessage("Kayıt işleminiz başarılı!");
@@ -1040,7 +1045,8 @@ public class CengizPublicController {
         activityAnalysis.getOpponent(),
         activityAnalysis.getTechnicalcomponent(),
         activityAnalysis.getImage(),
-        activityAnalysis.getOtherpoint()
+        activityAnalysis.getOtherpoint(),
+        activityAnalysis.getLegalPerson()
     ));
 
 

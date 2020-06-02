@@ -1,32 +1,35 @@
 package tr.com.tsmd.cengiz.models;
 
 import java.util.Date;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class ValuationTrademark {
 
   private Long id;
   private String address;
-  private String trademarkclass;
+//  private String trademarkclass;
   private String trademarkpurpose;
-  private String registrationdate;
+//  private String registrationdate;
   private String commonusage;
-  private String dominanttrademark;
+//  private String dominanttrademark;
   private String targetcountry;
   private String trademarktime;
   private String markettime;
   private String trademarkcontribution;
-  private String incomepercent;
+//  private String incomepercent;
   private String mainsector;
   private String othersector;
   private String marketshare;
-  private String totalturnover;
+//  private String totalturnover;
   private String overseasmarketshare;
   private String exportcountry;
   private String turnoverpercent;
-  private String percentroyalt;
+//  private String percentroyalt;
   private String competingmarketshare;
   private String markethistory;
-  private String growthrate;
+//  private String growthrate;
   private String turnovertarget;
   private String trademarkturnoverpercent;
   private String incomeincreasepercent;
@@ -40,33 +43,44 @@ public class ValuationTrademark {
 
   private Date createdAt;
 
+  private String name_surname;
+  private String tc;
+  private String tel;
+  @NotBlank
+  @Size(max = 50)
+  @Email
+  private String email;
+  private String legalPerson;
+  private String valuationTrademarkAppNo;
+  private String licenseChoose;
+
+
   public ValuationTrademark() {
   }
 
-  public ValuationTrademark( String address, String trademarkclass, String trademarkpurpose, String registrationdate, String commonusage, String dominanttrademark, String targetcountry, String trademarktime, String markettime, String trademarkcontribution, String incomepercent, String mainsector, String othersector, String marketshare, String totalturnover, String overseasmarketshare, String exportcountry, String turnoverpercent, String percentroyalt, String competingmarketshare, String markethistory, String growthrate, String turnovertarget, String trademarkturnoverpercent, String incomeincreasepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String countryoutside, String europeanunion) {
+  public ValuationTrademark( String address, String trademarkpurpose, String commonusage, String targetcountry, String trademarktime, String markettime, String trademarkcontribution, String mainsector, String othersector, String marketshare, String overseasmarketshare, String exportcountry, String turnoverpercent, String competingmarketshare, String markethistory, String turnovertarget, String trademarkturnoverpercent, String incomeincreasepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String countryoutside, String europeanunion, String name_surname, String tc, String tel, @NotBlank @Size(max = 50) @Email String email, String legalPerson, String valuationTrademarkAppNo,String licenseChoose) {
 
     this.address = address;
-    this.trademarkclass = trademarkclass;
+//    this.trademarkclass = trademarkclass;
     this.trademarkpurpose = trademarkpurpose;
-    this.registrationdate = registrationdate;
     this.commonusage = commonusage;
-    this.dominanttrademark = dominanttrademark;
+//    this.dominanttrademark = dominanttrademark;
     this.targetcountry = targetcountry;
     this.trademarktime = trademarktime;
     this.markettime = markettime;
     this.trademarkcontribution = trademarkcontribution;
-    this.incomepercent = incomepercent;
+//    this.incomepercent = incomepercent;
     this.mainsector = mainsector;
     this.othersector = othersector;
     this.marketshare = marketshare;
-    this.totalturnover = totalturnover;
+//    this.totalturnover = totalturnover;
     this.overseasmarketshare = overseasmarketshare;
     this.exportcountry = exportcountry;
     this.turnoverpercent = turnoverpercent;
-    this.percentroyalt = percentroyalt;
+//    this.percentroyalt = percentroyalt;
     this.competingmarketshare = competingmarketshare;
     this.markethistory = markethistory;
-    this.growthrate = growthrate;
+//    this.growthrate = growthrate;
     this.turnovertarget = turnovertarget;
     this.trademarkturnoverpercent = trademarkturnoverpercent;
     this.incomeincreasepercent = incomeincreasepercent;
@@ -77,6 +91,13 @@ public class ValuationTrademark {
     this.totalexpenditure = totalexpenditure;
     this.countryoutside = countryoutside;
     this.europeanunion = europeanunion;
+    this.name_surname = name_surname;
+    this.tc = tc;
+    this.tel = tel;
+    this.email = email;
+    this.legalPerson = legalPerson;
+    this.valuationTrademarkAppNo = valuationTrademarkAppNo;
+    this.licenseChoose = licenseChoose;
   }
 
   public Long getId() {
@@ -95,14 +116,6 @@ public class ValuationTrademark {
     this.address = address;
   }
 
-  public String getTrademarkclass() {
-    return trademarkclass;
-  }
-
-  public void setTrademarkclass(String trademarkclass) {
-    this.trademarkclass = trademarkclass;
-  }
-
   public String getTrademarkpurpose() {
     return trademarkpurpose;
   }
@@ -111,28 +124,12 @@ public class ValuationTrademark {
     this.trademarkpurpose = trademarkpurpose;
   }
 
-  public String getRegistrationdate() {
-    return registrationdate;
-  }
-
-  public void setRegistrationdate(String registrationdate) {
-    this.registrationdate = registrationdate;
-  }
-
   public String getCommonusage() {
     return commonusage;
   }
 
   public void setCommonusage(String commonusage) {
     this.commonusage = commonusage;
-  }
-
-  public String getDominanttrademark() {
-    return dominanttrademark;
-  }
-
-  public void setDominanttrademark(String dominanttrademark) {
-    this.dominanttrademark = dominanttrademark;
   }
 
   public String getTargetcountry() {
@@ -167,14 +164,6 @@ public class ValuationTrademark {
     this.trademarkcontribution = trademarkcontribution;
   }
 
-  public String getIncomepercent() {
-    return incomepercent;
-  }
-
-  public void setIncomepercent(String incomepercent) {
-    this.incomepercent = incomepercent;
-  }
-
   public String getMainsector() {
     return mainsector;
   }
@@ -197,14 +186,6 @@ public class ValuationTrademark {
 
   public void setMarketshare(String marketshare) {
     this.marketshare = marketshare;
-  }
-
-  public String getTotalturnover() {
-    return totalturnover;
-  }
-
-  public void setTotalturnover(String totalturnover) {
-    this.totalturnover = totalturnover;
   }
 
   public String getOverseasmarketshare() {
@@ -231,14 +212,6 @@ public class ValuationTrademark {
     this.turnoverpercent = turnoverpercent;
   }
 
-  public String getPercentroyalt() {
-    return percentroyalt;
-  }
-
-  public void setPercentroyalt(String percentroyalt) {
-    this.percentroyalt = percentroyalt;
-  }
-
   public String getCompetingmarketshare() {
     return competingmarketshare;
   }
@@ -253,14 +226,6 @@ public class ValuationTrademark {
 
   public void setMarkethistory(String markethistory) {
     this.markethistory = markethistory;
-  }
-
-  public String getGrowthrate() {
-    return growthrate;
-  }
-
-  public void setGrowthrate(String growthrate) {
-    this.growthrate = growthrate;
   }
 
   public String getTurnovertarget() {
@@ -349,5 +314,62 @@ public class ValuationTrademark {
 
   public void setCreatedAt(Date createdAt) {
     this.createdAt = createdAt;
+  }
+
+  public String getName_surname() {
+    return name_surname;
+  }
+
+  public void setName_surname(String name_surname) {
+    this.name_surname = name_surname;
+  }
+
+  public String getTc() {
+    return tc;
+  }
+
+  public void setTc(String tc) {
+    this.tc = tc;
+  }
+
+  public String getTel() {
+    return tel;
+  }
+
+  public void setTel(String tel) {
+    this.tel = tel;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getLegalPerson() {
+    return legalPerson;
+  }
+
+  public void setLegalPerson(String legalPerson) {
+    this.legalPerson = legalPerson;
+  }
+
+
+  public String getValuationTrademarkAppNo() {
+    return valuationTrademarkAppNo;
+  }
+
+  public void setValuationTrademarkAppNo(String valuationTrademarkAppNo) {
+    this.valuationTrademarkAppNo = valuationTrademarkAppNo;
+  }
+
+  public String getLicenseChoose() {
+    return licenseChoose;
+  }
+
+  public void setLicenseChoose(String licenseChoose) {
+    this.licenseChoose = licenseChoose;
   }
 }

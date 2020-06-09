@@ -103,7 +103,12 @@ public class EmailServiceImpl implements EmailService {
             + "<div>"+trademarkPreEntity.getName_surname()+"</div>\n"
             + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">T.C. Kimlik No/Verdi D./Vergi No</div>\n"
             + "<div>"+trademarkPreEntity.getTc()+"</div>\n"
-            + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\"> Adres</div>\n"
+            +"<div style=\"font-weight: bold;color: white;background-color: #6c757d\">İletişim Kurulacak Kişi (Talepte Bulunan Tüzel"
+            + " Kişi ise)</div>\n";
+            if (trademarkPreEntity.getLegalPerson() != null) {
+              contentHtml+="<div>" + trademarkPreEntity.getLegalPerson() + "</div>\n";
+            }
+        contentHtml+= "<div style=\"font-weight: bold;color: white;background-color: #6c757d\"> Adres</div>\n"
             + "<div>"+trademarkPreEntity.getAddress()+"</div>\n"
             + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">Telefon</div>\n"
             + "<div>"+trademarkPreEntity.getTel()+"</div>\n"
@@ -120,12 +125,26 @@ public class EmailServiceImpl implements EmailService {
           contentHtml+= "<div>Renk</div>\n";
         }
 
-        contentHtml+= "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">Marka Örneği</div>\n"
-            + "<div>"+inlineImage+"</div>\n"
-            + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">Marka Yazılı İfade Edilişi</div>\n"
-            + "<div>"+trademarkPreEntity.getTrademarktext()+"</div>\n"
-            + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">Mal/Hizmet Sınıfları</div>\n"
+        contentHtml += "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">Marka Örneği</div>\n";
+        if (inlineImage != null) {
+          contentHtml+= "<div>" + inlineImage + "</div>\n";
+        }else {
+          contentHtml+= "<div></div>\n";
+        }
+        contentHtml += "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">Marka Yazılı İfade Edilişi</div>\n";
+        if (trademarkPreEntity.getTrademarktext() != null) {
+          contentHtml += "<div>" + trademarkPreEntity.getTrademarktext() + "</div>\n";
+        } else {
+          contentHtml+= "<div></div>\n";
+        }
+            contentHtml+="<div style=\"font-weight: bold;color: white;background-color: #6c757d\">Mal/Hizmet Sınıfları</div>\n"
             + "<div>"+trademarkPreEntity.getTrademarkclass()+"</div>";
+        contentHtml+="<div style=\"font-weight: bold;color: white;background-color: #6c757d\">Eşya Listesi</div>\n";
+        if (trademarkPreEntity.getTrademarktext() != null) {
+          contentHtml+= "<div>" + trademarkPreEntity.getTrademarkItemList() + "</div>";
+        }else {
+          contentHtml+= "<div></div>\n";
+        }
         helper.setText(contentHtml, true);
         helper.setSubject("Marka Ön Araştırma Raporu Talebi");
 
@@ -162,7 +181,13 @@ public class EmailServiceImpl implements EmailService {
           + "<div>"+patentPreEntity.getName_surname()+"</div>\n"
           + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">T.C. Kimlik No/Verdi D./Vergi No</div>\n"
           + "<div>"+patentPreEntity.getTc()+"</div>\n"
-          + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\"> Adres</div>\n"
+          +"<div style=\"font-weight: bold;color: white;background-color: #6c757d\">İletişim Kurulacak Kişi (Talepte Bulunan Tüzel Kişi ise)</div>\n";
+      if (patentPreEntity.getLegalPerson() != null) {
+       contentHtml += "<div>" + patentPreEntity.getLegalPerson() + "</div>\n";
+      }else {
+        contentHtml += "<div></div>\n";
+      }
+         contentHtml += "<div style=\"font-weight: bold;color: white;background-color: #6c757d\"> Adres</div>\n"
           + "<div>"+patentPreEntity.getAddress()+"</div>\n"
           + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">Telefon</div>\n"
           + "<div>"+patentPreEntity.getTel()+"</div>\n"
@@ -226,15 +251,31 @@ public class EmailServiceImpl implements EmailService {
            +"<br>"
           + "<h4 style=\"font-weight: bold;color: white;background-color: #000\">2.1 BULUŞ BAŞLIĞI </h4><span>(Birkaç kelime ile buluşu kısaca tanımlayan bir başlık yazınız.)</span>\n"
           + "<div>"+patentPreEntity.getTitle()+"</div>\n"
-          + "<h4 style=\"font-weight: bold;color: white;background-color: #000\">2.2 ANAHTAR KELİME ÖNERİLERİ </h4><span>(Türkçe/İngilizce)</span>\n"
-          + "<div>"+patentPreEntity.getPatentkeyword()+"</div>\n"
-          + "<h4 style=\"font-weight: bold;color: white;background-color: #000\">2.3. TEKNİĞİN BİLİNEN DURUMUNDA YER ALAN UYGULAMALAR</h4><span>(Mevcutta var olan uygulamalar, patent, makale, internet siteleri, youtube videoları vb. görsel ve yazılı kaynakları belirtiniz.)</span>\n"
-          + "<div>"+patentPreEntity.getPatentapplication()+"</div>\n"
-          + "<h4 style=\"font-weight: bold;color: white;background-color: #000\">2.4. BULUŞUN SAĞLADIĞI AVANTAJLAR</h4><span>(Buluşun sağladığı kolaylıkları, iyileştirmeleri, teknik soruna çözümleri belirtiniz.)</span>\n"
-          + "<div>"+patentPreEntity.getAdvantage()+"</div>\n"
-          + "<h4 style=\"font-weight: bold;color: white;background-color: #000\">2.5. TARAFINIZCA YAPILMIŞ / YAPILMASI PLANLANAN YAYINLAR*</h4><span>(Buluşun sözlü ya da yazılı açıklaması daha önce bir yerde yapıldı ise lütfen belirtiniz. Örneğin; makale, haber, sergi, youtube vb. Bu kısımla ilgili kılavuzu incelemeniz önem arz etmektedir.)</span>\n"
-          + "<div>"+patentPreEntity.getPublications()+"</div>\n"
-          + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">3. BULUŞUN AYRINTILI AÇIKLAMASI</h3>\n"
+          + "<h4 style=\"font-weight: bold;color: white;background-color: #000\">2.2 ANAHTAR KELİME ÖNERİLERİ </h4><span>(Türkçe/İngilizce)</span>\n";
+           if(patentPreEntity.getPatentkeyword() != null) {
+             contentHtml+="<div>" + patentPreEntity.getPatentkeyword() + "</div>\n";
+           }else {
+            contentHtml+= "<div></div>\n";
+           }
+          contentHtml+= "<h4 style=\"font-weight: bold;color: white;background-color: #000\">2.3. TEKNİĞİN BİLİNEN DURUMUNDA YER ALAN UYGULAMALAR</h4><span>(Mevcutta var olan uygulamalar, patent, makale, internet siteleri, youtube videoları vb. görsel ve yazılı kaynakları belirtiniz.)</span>\n";
+      if(patentPreEntity.getPatentapplication() != null) {
+        contentHtml+="<div>" + patentPreEntity.getPatentapplication() + "</div>\n";
+      }else{
+        contentHtml+="<div></div>\n";
+      }
+          contentHtml+= "<h4 style=\"font-weight: bold;color: white;background-color: #000\">2.4. BULUŞUN SAĞLADIĞI AVANTAJLAR</h4><span>(Buluşun sağladığı kolaylıkları, iyileştirmeleri, teknik soruna çözümleri belirtiniz.)</span>\n";
+         if(patentPreEntity.getAdvantage() != null){
+          contentHtml+= "<div>"+patentPreEntity.getAdvantage()+"</div>\n";
+         }else{
+           contentHtml+="<div></div>\n";
+         }
+          contentHtml+= "<h4 style=\"font-weight: bold;color: white;background-color: #000\">2.5. TARAFINIZCA YAPILMIŞ / YAPILMASI PLANLANAN YAYINLAR*</h4><span>(Buluşun sözlü ya da yazılı açıklaması daha önce bir yerde yapıldı ise lütfen belirtiniz. Örneğin; makale, haber, sergi, youtube vb. Bu kısımla ilgili kılavuzu incelemeniz önem arz etmektedir.)</span>\n";
+              if(patentPreEntity.getPublications()!=null){
+              contentHtml+= "<div>"+patentPreEntity.getPublications()+"</div>\n";
+              }else{
+                contentHtml+="<div></div>\n";
+              }
+          contentHtml+= "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">3. BULUŞUN AYRINTILI AÇIKLAMASI</h3>\n"
           + "<h4 style=\"font-weight: bold;color: white;background-color: #000\">3.1. BULUŞUNUZLA MEVCUT SİSTEMLER / ÜRÜNLER / YÖNTEMLER ARASINDAKİ FARKLILIKLAR </h4><span>(Buluşunuzun korumayı amaçladığınız özelliklerini belirterek o özellik ilgili teknik alanda mevcut mu, yeni bir özellik mi bir işaret ile belirtiniz.)</span>\n"
           + "<div>\n";
            if(patentPreTableEntity != null) {
@@ -257,12 +298,19 @@ public class EmailServiceImpl implements EmailService {
                 contentHtml+= "</tbody>\n"
                  + "</table></div>\n";
            }
-          contentHtml+= "<h4 style=\"font-weight: bold;color: white;background-color: #000\">3.2. BULUŞUN AYRINTILI AÇIKLAMASI*</h4>\n"
-          + "<div>"+patentPreEntity.getDetailexplain()+"</div>\n"
-          + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">4. BULUŞLA İLGİLİ GÖRSELLER</h3>\n"
-          + "<div>(Buluşunuzun özellikle bir sistem/aparat/ürün/mekanizma olması durumunda buluşa ilişkin görsellerin eklenmesi önerilmektedir.)</div>\n"
-          +"<div>" + patentPreEntity.getPicture() + "</div>\n";
-
+          contentHtml+= "<h4 style=\"font-weight: bold;color: white;background-color: #000\">3.2. BULUŞUN AYRINTILI AÇIKLAMASI*</h4>\n";
+              if(patentPreEntity.getDetailexplain() != null){
+          contentHtml+= "<div>"+patentPreEntity.getDetailexplain()+"</div>\n";
+              }else{
+                contentHtml+="<div></div>\n";
+              }
+          contentHtml+= "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">4. BULUŞLA İLGİLİ GÖRSELLER</h3>\n"
+          + "<div>(Buluşunuzun özellikle bir sistem/aparat/ürün/mekanizma olması durumunda buluşa ilişkin görsellerin eklenmesi önerilmektedir.)</div>\n";
+              if(patentPreEntity.getPicture() != null){
+          contentHtml+="<div>" + patentPreEntity.getPicture() + "</div>\n";
+              }else{
+                contentHtml+="<div></div>\n";
+              }
            if (patentPreRelatedPicturesEntities.size()>0) {
              for (int i=0;i<relatedPicturesImg.length;i++) {
                contentHtml += "<div>" + relatedPicturesImg[i] + "</div>\n"
@@ -270,8 +318,12 @@ public class EmailServiceImpl implements EmailService {
              }
            }
           contentHtml+= "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">5. BELİRTMEK İSTEDİĞİNİZ DİĞER HUSUSLAR</h3>\n"
-          + "<div>(Buluşunuza ilişkin araştırmamıza katkı sağlayacağını düşündüğünüz başka hususlar varsa belirtiniz.)</div>\n"
-          + "<div>"+patentPreEntity.getOtherpoint()+"</div>\n";
+          + "<div>(Buluşunuza ilişkin araştırmamıza katkı sağlayacağını düşündüğünüz başka hususlar varsa belirtiniz.)</div>\n";
+      if(patentPreEntity.getOtherpoint() != null){
+        contentHtml+="<div>" + patentPreEntity.getOtherpoint() + "</div>\n";
+      }else{
+        contentHtml+="<div></div>\n";
+      }
 
       helper.setText(contentHtml, true);
       helper.setSubject("Patent Ön Araştırma Raporu Talebi");
@@ -282,6 +334,23 @@ public class EmailServiceImpl implements EmailService {
 //      helper.addAttachment("dekont.jpeg", new ByteArrayResource(valuationPatentEntity.getDekont()));
       String contentHtml="<h1 style=\"font-weight: bold;color: white;background-color: #d32f2f\">Patent Değerleme Talep Formu </h1>\n"
           + "<br>\n"
+          + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">BULUŞ SAHİBİ </h3>\n"
+          + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">Ad Soyad/Ticaret Unvanı</div>\n"
+          + "<div>"+valuationPatentEntity.getName_surname()+"</div>\n"
+          + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">T.C. Kimlik No/Verdi D./Vergi No</div>\n"
+          + "<div>"+valuationPatentEntity.getTc()+"</div>\n"
+          +"<div style=\"font-weight: bold;color: white;background-color: #6c757d\">İletişim Kurulacak Kişi (Talepte Bulunan Tüzel Kişi ise)</div>\n";
+      if (valuationPatentEntity.getLegalPerson() != null) {
+        contentHtml += "<div>" + valuationPatentEntity.getLegalPerson() + "</div>\n";
+      }else {
+        contentHtml += "<div></div>\n";
+      }
+      contentHtml += "<div style=\"font-weight: bold;color: white;background-color: #6c757d\"> Adres</div>\n"
+          + "<div>"+valuationPatentEntity.getAddress()+"</div>\n"
+          + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">Telefon</div>\n"
+          + "<div>"+valuationPatentEntity.getTel()+"</div>\n"
+          + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">E-posta</div>\n"
+          + "<div>"+valuationPatentEntity.getEmail()+"</div>\n"
           + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">BULUŞA İLİŞKİN GENEL BİLGİLER</h3>\n"
           + "<div>\n"
           + "<table>\n"
@@ -297,20 +366,16 @@ public class EmailServiceImpl implements EmailService {
           + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getPatentappno()+"</td>\n"
           + "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Buluşunuzu hangi ülkede ve ne amaçla kullanıyorsunuz/kullanmayı amaçlamaktasınız?</td>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Buluşunuzu hangi ülke/ülkelerde kullanmakta/kullanmayı amaçlamaktasınız?</td>\n"
           + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getPatentcountry()+"</td>\n"
           + "</tr>\n"
           + "<tr>\n"
           + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Değerlemesi amaçlanan buluş ilk defa piyasaya ne zaman sürülmüştür?</td>\n"
           + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getPatentmarket()+"</td>\n"
           + "</tr>\n"
-          + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Uzun vadede buluşunuzun gelirlerinizdeki katkısı ne kadar olacaktır?(Tahmini bir yüzde belirtiniz.)</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getPatentcontribution()+"</td>\n"
-          + "</tr>\n"
           + "</table>\n"
           + "</div>\n"
-          + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">BULUŞA İLİŞKİN SEKTÖR BİLGİLERİ</h3>\n"
+          + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">SEKTÖRE İLİŞKİN BİLGİLER</h3>\n"
           + "<div>\n"
           + "<table>\n"
           + "<tr>\n"
@@ -318,66 +383,86 @@ public class EmailServiceImpl implements EmailService {
           + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getPatentsector()+"</td>\n"
           + "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Buluşunuzun aktif olarak satışa konu olduğu diğer sektörler varsa nelerdir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getPatentothersector()+"</td></tr>\n"
-          + "<tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Buluşunuzun aktif olarak satışa konu olduğu diğer sektörler varsa nelerdir?</td>\n";
+      if (valuationPatentEntity.getPatentothersector() != null){
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getPatentothersector()+"</td></tr>\n";
+      }else {
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\"></td></tr>\n";
+      }
+
+          contentHtml+= "<tr>\n"
           + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Değerlenmesi istenen buluşun pazar payı nedir?</td>\n"
           + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getMarketshare()+"</td>\n"
           + "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Değerlenmesi istenen buluşun sağladığı ciro, toplam gelirinizde diğer buluşların sağladığı cirodan ayırt edilemiyorsa, değerlenmesi istenen buluşun toplam ciro içerisinde yüzdesi nedir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getPercentageturnover()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Değerlenmesi istenen buluşun yurtdışında pazar payı bulunmakta mıdır?</td>\n";
+      if (valuationPatentEntity.getOverseasmarketshare() != null){
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getOverseasmarketshare()+"</td>\n";
+      }else {
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+          contentHtml+= "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Değerlenmesi istenen buluşun yurtdışında pazar payı bulunmakta mıdır?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getOverseasmarketshare()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Yukarıdaki soruya 'Evet' cevabı vermeniz halinde, ihracaat yapılan ülkeler hangileridir?</td>\n";
+      if (valuationPatentEntity.getExportcountry() != null){
+        contentHtml +=  "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getExportcountry()+"</td>\n";
+      }else {
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+
+          contentHtml+= "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Yukarıdaki soruya 'Evet' cevabı vermeniz halinde, ihracaat yapılan ülkeler hangileridir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getExportcountry()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">İhracaat yapılan ülkelerden sağlanan gelirlerin toplam gelir içerisindeki yüzdeleri nelerdir?</td>\n";
+      if (valuationPatentEntity.getExportturnover() != null){
+        contentHtml +=  "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getExportturnover()+"</td>\n";
+      }else {
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+          contentHtml+= "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">İhracaat yapılan ülkelerden sağlanan gelirlerin toplam ciro içerisindeki yüzdeleri nelerdir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getExportturnover()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Sektörde en başarılı rakipleriniz kimlerdir? Bu rakiplere ait pazar payı tahmininiz nedir?</td>\n";
+      if (valuationPatentEntity.getCompetingmarketshare() != null){
+        contentHtml +=  "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getCompetingmarketshare()+"</td>\n";
+      }else {
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+          contentHtml+= "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Buluşunuzun ait olduğu sektörde royalty oranları yüzde kaç olmaktadır?(Bilginiz olması halinde lütfen belirtiniz.)</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getRoyaltyrate()+"</td>\n"
-          + "</tr>\n"
-          + "</table>\n"
-          + "</div>\n"
-          + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">PAZARA İLİŞKİN BİLGİLER</h3>\n"
-          + "<div>\n"
-          + "<table>\n"
-          + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Sektördeki en \"eski\" başarılı rakibinizin pazar payı tahmini nedir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getCompetingmarketshare()+"</td>\n"
-          + "</tr>\n"
-          + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Sektördeki en \"eski\" başarılı rakibinizin ilk piyasaya çıkış tarihi nedir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getCompetitordate()+"</td></tr>\n"
-          + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">\"En başarılı rakibnizin\" son 4 yıl gelirindeki ortalama yıllık büyüme oranı tahmininiz nedir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getCompetinggrowthrate()+"</td>\n"
-          + "</tr>\n"
-          + "</table>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Sektördeki en başarılı rakip/rakiplerinizin piyasaya giriş tarihi nedir?</td>\n";
+      if (valuationPatentEntity.getCompetitordate() != null){
+        contentHtml +=  "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getCompetitordate()+"</td></tr>\n";
+      }else {
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\"></td></tr>\n";
+      }
+
+          contentHtml+= "</table>\n"
           + "</div>\n"
           + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">BÜYÜME TAHMİNLERİ/PROJEKSİYONLARI\n"
           + "</h3>\n"
           + "<div>\n"
           + "<table>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Önümüzdeki beş yılda ciro artışı hedefiniz nedir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getTurnovertarget()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Önümüzdeki 5 yılda gelirlerinizde hedeflediğiniz artış oranı nedir?</td>\n";
+      if (valuationPatentEntity.getTurnovertarget() != null){
+        contentHtml +=  "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getTurnovertarget()+"</td>\n";
+      }else {
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+
+          contentHtml+= "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Değerlenmesi istenen buluşun ciro içerisindeki yüzdesi nedir?</td>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Değerlenmesi istenen buluşun sağladığı gelirlerin, toplam gelirleriniz içerisindeki yüzdesi nedir?</td>\n"
           + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getTurnoverpercent()+"</td>\n"
           + "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Değerlenmesi istenen buluşun gelir artışı yüzdesi nedir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getIncomepercent()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Önümüzdeki 5 yılda değerlenmesi istenen buluşun sağladığı gelirlerin tahmini artış yüzdesi nedir?</td>\n";
+      if (valuationPatentEntity.getIncomepercent() != null){
+        contentHtml +=  "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getIncomepercent()+"</td>\n";
+      }else {
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+
+          contentHtml+= "</tr>\n"
           + "</table>\n"
           + "</div>\n"
           + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">BULUŞUNUZA İLİŞKİN SÖZLEŞMELER</h3>\n"
@@ -388,15 +473,25 @@ public class EmailServiceImpl implements EmailService {
           + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getLicense()+"</td>\n"
           + "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Yukarıdaki soruya cevabınız \"Evet \" ise royalty oranı kaç olarak belirlenmiştir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getLicenseroyalt()+"</td></tr>\n"
-          + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Buluşunuzun konu olduğu başka bir sözleşme var mıdır?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getContract()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Yukarıdaki soruya cevabınız \"Evet \" ise royalty oranı kaç olarak belirlenmiştir?</td>\n";
+      if (valuationPatentEntity.getLicenseroyalt() != null){
+        contentHtml +=  "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getLicenseroyalt()+"</td></tr>\n";
+      }else {
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\"></td></tr>\n";
+      }
+
+          contentHtml+= "<tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Buluşunuzun konu olduğu başka bir sözleşme var mıdır?</td>\n";
+      if (valuationPatentEntity.getContract() != null){
+        contentHtml +=  "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getContract()+"</td>\n";
+      }else {
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+
+          contentHtml+= "</tr>\n"
           + "</table>\n"
           + "</div>\n"
-          + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">TANITIM GİDERLERİNE İLİŞKİN BİLGİLER</h3>\n"
+          + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">MALİYETLERE İLİŞKİN BİLGİLER</h3>\n"
           + "<div>\n"
           + "<table>\n"
           + "<tr>\n"
@@ -404,43 +499,65 @@ public class EmailServiceImpl implements EmailService {
           + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getAdvertisement()+"</td>\n"
           + "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Yukarıdaki soruya cevabınız \"Evet\" ise bu kapsamda ypaılan harcamaların toplamı ne kadardır?(Lütfen yıl bazında gösteriniz.)?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getTotalexpenditure()+"</td>\n"
-          + "</tr>\n"
-          + "</table>\n"
-          + "</div>\n"
-          + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">MALİYETLERE İLİŞKİN BİLGİLER</h3>\n"
-          + "<div>\n"
-          + "<table>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Yukarıdaki soruya cevabınız \"Evet\" ise bu kapsamda ypaılan harcamaların toplamı ne kadardır?(Lütfen yıl bazında gösteriniz.)?</td>\n";
+      if (valuationPatentEntity.getTotalexpenditure() != null){
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getTotalexpenditure()+"</td>\n";
+      }else {
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+
+          contentHtml+= "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Buluşunuzun ortaya çıkması için yapılan harcamaların toplamı ne kadardır?(Fiziksel sermaye ve beşeri sermaye ayrımı kapsamında karşılaştırarak belirtiniz.)</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getSpending()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Buluşunuz için yapılan Ar-Ge harcamalarının toplamı ne kadardır?</td>\n";
+      if (valuationPatentEntity.getSpending() != null){
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getSpending()+"</td>\n";
+      }else {
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+
+          contentHtml+= "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Buluşu geliştrimek için yapılan harcamaların toplamı ne kadardır?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getDevelopmentspending()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Buluşun tescili için dünya genelinde yapılan başvuru masrafları ve yıllık aidatların toplamı ne kadardır</td>\n";
+      if (valuationPatentEntity.getWorldspending() != null){
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getWorldspending()+"</td>\n";
+      }else {
+        contentHtml +="<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+
+          contentHtml+= "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Buluşun tescili için tüm dünya genelinde yapılan başvurularınız kapsamında yaptığınız toplam harcama ne kadarıdır?(Başvuru ve yıllık aidatları ayrı ayrı belirtiniz.)</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getWorldspending()+"</td>\n"
-          + "</tr>\n"
-          + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Buluşunuza ilişkin yspmış olduğunuz dava ya da takip masrafı (varsa) ne kadardır?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getCaseexpense()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Buluşunuza ilişkin dava/takip masrafı yapıldıysa dava/takip masraflarının toplamı ne kadardır?</td>\n";
+      if (valuationPatentEntity.getCaseexpense() != null){
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getCaseexpense()+"</td>\n";
+      }else {
+        contentHtml +="<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+
+          contentHtml+= "</tr>\n"
           + "</table>\n"
           + "</div>\n"
           + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">TESCİLE İLİŞKİN BİLGİLER</h3>\n"
           + "<div>\n"
           + "<table>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Türkiye dışındaki ülkelerde münferiden buluşunuza ait bir başvurunuz/tesciliniz bulunmakta mıdır?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getCountryoutside()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Türkiye dışındaki ülkelerde münferiden buluşunuza ait bir başvurunuz/tesciliniz bulunmakta mıdır?</td>\n";
+      if (valuationPatentEntity.getCountryoutside() != null){
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getCountryoutside()+"</td>\n";
+      }else {
+        contentHtml +="<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+
+          contentHtml+= "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Buluşunuza ilişkin Avrupa birliği patent, PCT ya da Benelux ülkelerine ilişkin bölgesel patent başvuru bulunmakta mıdır?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getEuropeanunio()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Buluşunuza ilişkin Avrupa birliği patent, PCT ya da Benelux ülkelerine ilişkin bölgesel patent başvuru bulunmakta mıdır?</td>\n";
+      if (valuationPatentEntity.getEuropeanunio() != null){
+        contentHtml += "<td style=\"width: 70%;border: 1px solid black;\">"+valuationPatentEntity.getEuropeanunio()+"</td>\n";
+      }else {
+        contentHtml +="<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+
+
+          contentHtml+= "</tr>\n"
           + "</table>\n"
           + "</div>\n";
 
@@ -452,55 +569,64 @@ public class EmailServiceImpl implements EmailService {
 //      helper.addAttachment("dekont.jpeg", new ByteArrayResource(valuationTrademarkEntity.getDekont()));
       String contentHtml="<h1 style=\"font-weight: bold;color: white;background-color: #d32f2f\">Marka Değerleme Talep Formu </h1>\n"
           + "<br>\n"
+          + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">MARKA SAHİBİ </h3>\n"
+          + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">Ad Soyad/Ticaret Unvanı</div>\n"
+          + "<div>"+valuationTrademarkEntity.getName_surname()+"</div>\n"
+          + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">T.C. Kimlik No/Verdi D./Vergi No</div>\n"
+          + "<div>"+valuationTrademarkEntity.getTc()+"</div>\n"
+          +"<div style=\"font-weight: bold;color: white;background-color: #6c757d\">İletişim Kurulacak Kişi (Talepte Bulunan Tüzel Kişi ise)</div>\n";
+      if (valuationTrademarkEntity.getLegalPerson() != null) {
+        contentHtml += "<div>" + valuationTrademarkEntity.getLegalPerson() + "</div>\n";
+      }else {
+        contentHtml += "<div></div>\n";
+      }
+      contentHtml += "<div style=\"font-weight: bold;color: white;background-color: #6c757d\"> Adres</div>\n"
+          + "<div>"+valuationTrademarkEntity.getAddress()+"</div>\n"
+          + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">Telefon</div>\n"
+          + "<div>"+valuationTrademarkEntity.getTel()+"</div>\n"
+          + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">E-posta</div>\n"
+          + "<div>"+valuationTrademarkEntity.getEmail()+"</div>\n"
           + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">MARKAYA İLİŞKİN GENEL BİLGİLER</h3>\n"
           + "<div>\n"
           + "<table>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">MARKA HAKKI SAHİBİ/ADRESİ</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getAddress()+"</td>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Marka Başvuru Numarası </td>\n"
+          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getValuationTrademarkAppNo()+"</td>\n"
           + "</tr>\n"
-          + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Markanızın tescilli olduğu ürün/hizmet sınıfları hangileridir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getTrademarkclass()+"</td></tr>\n"
-          + "<tr>\n"
           + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Marka değerlenmesi talebinizdeki amacınız nedir?</td>\n"
           + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getTrademarkpurpose()+"</td>\n"
           + "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Değerlenmesi istenen markanın tescil tarihi nedir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getRegistrationdate()+"</td>\n"
-          + "</tr>\n"
-          + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Değerlemesi istenen markanın diğer markalarınızla ortak kullanımı/ilişkisi bulunmakta mıdır?</td>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Değerlenmesi istenen markanın diğer markalarınızla ortak kullanımı/ilişkisi bulunmakta mıdır? Eğer bulunmakta ise değerlenmesi istenen marka hakim marka konumunda mıdır?</td>\n"
           + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getCommonusage()+"</td>\n"
           + "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Yukarıdaki soruya \"Evet\" cebanı vermeniz halinde, değerlenmesi istenen marka hakim marka mıdır?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getDominanttrademark()+"</td>\n"
-          + "</tr>\n"
-          + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Markanızı hangi ülkede ve ne amaçla kullanuyorsunuz/kullanmayı amaçlamktasınız?</td>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Markanızı hangi ülke/ülkelerde kullanmakta/kullanmayı amaçlamaktasınız?</td>\n"
           + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getTargetcountry()+"</td>\n"
           + "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Markanızı ne kadar süre kullanmayı planlamaktasınız?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getTrademarktime()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Markanızı ne kadar süre kullanmayı planlamaktasınız?</td>\n";
+          if(valuationTrademarkEntity.getTrademarktime() != null) {
+            contentHtml+="<td style=\"width: 70%;border: 1px solid black;\">" + valuationTrademarkEntity.getTrademarktime() + "</td>\n";
+          } else{
+            contentHtml+="<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+          }
+          contentHtml+= "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Değerlenmesi amaçlanan marka ilk defa piyasaya ne zaman sürülmüştür?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getMarkettime()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Değerlenmesi amaçlanan marka ilk defa piyasaya ne zaman sürülmüştür?</td>\n";
+      if(valuationTrademarkEntity.getMarkettime() != null) {
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\">" + valuationTrademarkEntity.getMarkettime() + "</td>\n";
+      } else{
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+        contentHtml+= "</tr>\n"
           + "<tr>\n"
           + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Müşterilerin marka adı altında satılan ürünü/hizmeti talep etmesinde markanızın katkısı ne kadardır?(Lütfen tahmini bir yüzde belirtiniz.)</td>\n"
           + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getTrademarkcontribution()+"</td>\n"
           + "</tr>\n"
-          + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Uzun vadede markanızın gelirlerinizdeki katkısı (ürün/hizmete gelen talep haricinde) ne kadar olacaktır?(Tahmini bir yüzde belirtiniz.)</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getIncomepercent()+"</td>\n"
-          + "</tr>\n"
           + "</table>\n"
           + "</div>\n"
-          + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">MARKAYA İLİŞKİN SEKTÖR BİLGİLERİ</h3>\n"
+          + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">SEKTÖRE İLİŞKİN BİLGİLER</h3>\n"
           + "<div>\n"
           + "<table>\n"
           + "<tr>\n"
@@ -508,67 +634,83 @@ public class EmailServiceImpl implements EmailService {
           + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getMainsector()+"</td>\n"
           + "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Markanızın aktif olarak satışa konu olduğu diğer sektörler varsa nelerdir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getOthersector()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Markanızın aktif olarak satışa konu olduğu diğer sektörler varsa nelerdir?</td>\n";
+
+      if(valuationTrademarkEntity.getOthersector() != null) {
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\">" + valuationTrademarkEntity.getOthersector() + "</td>\n";
+      } else{
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+         contentHtml += "</tr>\n"
           + "<tr>\n"
           + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Değerlenmesi istenen markanızın pazar payı nedir?</td>\n"
           + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getMarketshare()+"</td>\n"
           + "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Değerlenmesi istenen markanın sağladığı ciro, toplam gelirinizde diğer markaların sağladığı cirodan ayırt edilemiyorsa, değerlenmesi istenen markanın toplam ciro içerisinde yüzdesi nedir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getTotalturnover()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Değerlenmesi istenen markanun yurtdışında pazar payı bulunmakta mıdır?</td>\n";
+      if(valuationTrademarkEntity.getOverseasmarketshare() != null) {
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\">" + valuationTrademarkEntity.getOverseasmarketshare() + "</td>\n";
+      } else{
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+          contentHtml+= "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Değerlenmesi istenen markanun yurtdışında pazar payı bulunmakta mıdır?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getOverseasmarketshare()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Yukarıdaki soruya 'Evet' cevabı vermeniz halinde, ihracaat yapılan ülkeler hangileridir?</td>\n";
+      if(valuationTrademarkEntity.getExportcountry() != null) {
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\">" + valuationTrademarkEntity.getExportcountry() + "</td>\n";
+      } else{
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+          contentHtml+= "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Yukarıdaki soruya 'Evet' cevabı vermeniz halinde, ihracaat yapılan ülkeler hangileridir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getExportcountry()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">İhracaat yapılan ülkelerden sağlanan gelirlerin toplam gelir içerisindeki yüzdeleri nelerdir?</td>\n";
+      if(valuationTrademarkEntity.getTurnoverpercent() != null) {
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\">" + valuationTrademarkEntity.getTurnoverpercent() + "</td>\n";
+      } else{
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+         contentHtml += "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">İhracaat yapılan ülkelerden sağlanan gelirlerin toplam ciro içerisindeki yüzdeleri nelerdir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getTurnoverpercent()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">•\tSektörde en başarılı rakip marka/markalar kimlerdir? Bu rakip/rakiplere ait pazar payı tahmininiz nedir?</td>\n";
+      if(valuationTrademarkEntity.getCompetingmarketshare() != null) {
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\">" + valuationTrademarkEntity.getCompetingmarketshare() + "</td>\n";
+      } else{
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+         contentHtml += "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Markanızın ait olduğu sektörde royalty oranları yüzde kaç olmaktadır?(Bilginiz olması halinde lütfen belirtiniz.)</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getPercentroyalt()+"</td>\n"
-          + "</tr>\n"
-          + "</table>\n"
-          + "</div>\n"
-          + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">PAZARA İLİŞKİN BİLGİLER</h3>\n"
-          + "<div>\n"
-          + "<table>\n"
-          + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Sektördeki en \"eski\" başarılı rakip markanızın pazar payı tahmini nedir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getCompetingmarketshare()+"</td>\n"
-          + "</tr>\n"
-          + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Sektördeki en \"eski\" başarılı rakip markanın ilk piyasaya çıkış tarihi nedir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getMarkethistory()+"</td>\n"
-          + "</tr>\n"
-          + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">\"En başarılı rakip markanın\" son 4 yıl gelirlerindeki ortalama yıllık büyüme oranı tahmininiz nedir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getGrowthrate()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">•\tSektördeki en başarılı rakip/rakiplerinizin piyasaya giriş tarihi nedir?</td>\n";
+      if(valuationTrademarkEntity.getMarkethistory() != null) {
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\">" + valuationTrademarkEntity.getMarkethistory() + "</td>\n";
+      } else{
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+      contentHtml += "</tr>\n"
           + "</table>\n"
           + "</div>\n"
           + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">BÜYÜME TAHMİNLERİ/PROJEKSİYONLARI</h3>\n"
           + "<div>\n"
           + "<table>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Önümüzdeki beş yılda ciro artışı hedefiniz nedir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getTurnovertarget()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">•\tÖnümüzdeki 5 yılda gelirlerinizde hedeflediğiniz artış oranı nedir?</td>\n";
+      if(valuationTrademarkEntity.getTurnovertarget() != null) {
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\">" + valuationTrademarkEntity.getTurnovertarget() + "</td>\n";
+      } else{
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+      contentHtml += "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Değerlenmesi istenen markanın ciro içerisindeki yüzdesi nedir?</td>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">•\tDeğerlenmesi istenen markanın sağladığı gelirlerin, toplam gelirleriniz içerisindeki yüzdesi nedir?</td>\n"
           + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getTrademarkturnoverpercent()+"</td>\n"
           + "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Değerlenmesi istenen markanın gelir artışı yüzdesi nedir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getIncomeincreasepercent()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">•\tÖnümüzdeki 5 yılda değerlenmesi istenen markanın sağladığı gelirlerin tahmini artış yüzdesi nedir?</td>\n";
+      if(valuationTrademarkEntity.getIncomeincreasepercent() != null) {
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\">" + valuationTrademarkEntity.getIncomeincreasepercent() + "</td>\n";
+      } else{
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+      contentHtml += "</tr>\n"
           + "</table>\n"
           + "</div>\n"
           + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">MARKANIZA İLİŞKİN SÖZLEŞMELER</h3>\n"
@@ -576,16 +718,30 @@ public class EmailServiceImpl implements EmailService {
           + "<table>\n"
           + "<tr>\n"
           + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Markanıza ilişkin lisans sözleşmesi yapılmış mıdır? Yapıldıysa kaç adet lisans verilmiştir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getLicense()+"</td>\n"
+          + "<td style=\"width: 70%;border: 1px solid black;\">";
+      if(valuationTrademarkEntity.getLicenseChoose().equals("1")){
+          contentHtml+="Evet\n";
+      }else {
+        contentHtml+="Hayır\n";
+      }
+          contentHtml+=valuationTrademarkEntity.getLicense()+"</td>\n"
           + "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Yukarıdaki soruya cevabınız \"Evet \" ise royalty oranı kaç olarak belirlenmiştir?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getLicenseroyalt()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Yukarıdaki soruya cevabınız \"Evet \" ise royalty oranı kaç olarak belirlenmiştir?</td>\n";
+      if(valuationTrademarkEntity.getLicenseroyalt() != null) {
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\">" + valuationTrademarkEntity.getLicenseroyalt() + "</td>\n";
+      } else{
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+      contentHtml += "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Markanızın konu olduğu başka bir sözleşme var mıdır?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getContract()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Markanızın konu olduğu başka bir sözleşme var mıdır?</td>\n";
+      if(valuationTrademarkEntity.getContract() != null) {
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\">" + valuationTrademarkEntity.getContract() + "</td>\n";
+      } else{
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+      contentHtml += "</tr>\n"
           + "</table>\n"
           + "</div>\n"
           + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">TANITIM GİDERLERİNE İLİŞKİN BİLGİLER</h3>\n"
@@ -596,22 +752,34 @@ public class EmailServiceImpl implements EmailService {
           + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getAdvertisement()+"</td>\n"
           + "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Yukarıdaki soruya cevabınız \"Evet\" ise bu kapsamda ypaılan harcamaların toplamı ne kadardır?(Lütfen yıl bazında gösteriniz.)?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getTotalexpenditure()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Yukarıdaki soruya cevabınız \"Evet\" ise bu kapsamda ypaılan harcamaların toplamı ne kadardır?(Lütfen yıl bazında gösteriniz.)?</td>\n";
+      if(valuationTrademarkEntity.getTotalexpenditure() != null) {
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\">" + valuationTrademarkEntity.getTotalexpenditure() + "</td>\n";
+      } else{
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+      contentHtml += "</tr>\n"
           + "</table>\n"
           + "</div>\n"
           + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">MARKA TESCİLİNE İLİŞKİN BİLGİLER</h3>\n"
           + "<div>\n"
           + "<table>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Türkiye dışındaki ülkelerde münferiden markanıza ait bir başvurunuz/tesciliniz bulunmakta mıdır?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getCountryoutside()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Türkiye dışındaki ülkelerde münferiden markanıza ait bir başvurunuz/tesciliniz bulunmakta mıdır?</td>\n";
+      if(valuationTrademarkEntity.getCountryoutside() != null) {
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\">" + valuationTrademarkEntity.getCountryoutside() + "</td>\n";
+      } else{
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+      contentHtml += "</tr>\n"
           + "<tr>\n"
-          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Markanıza ilişkin Avrupa birliği markası, Madrid Protokolü ya da Benelux ülkelerine ilişkin bölgesel marka başvurusu bulunmakta mıdır?</td>\n"
-          + "<td style=\"width: 70%;border: 1px solid black;\">"+valuationTrademarkEntity.getEuropeanunion()+"</td>\n"
-          + "</tr>\n"
+          + "<td style=\"font-weight: bold;color: white;background-color: #6c757d;width: 30%;\">Markanıza ilişkin Avrupa birliği markası, Madrid Protokolü ya da Benelux ülkelerine ilişkin bölgesel marka başvurusu bulunmakta mıdır?</td>\n";
+      if(valuationTrademarkEntity.getEuropeanunion() != null) {
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\">" + valuationTrademarkEntity.getEuropeanunion() + "</td>\n";
+      } else{
+        contentHtml+="<td style=\"width: 70%;border: 1px solid black;\"></td>\n";
+      }
+      contentHtml += "</tr>\n"
           + "</table>\n"
           + "</div>";
 
@@ -645,19 +813,34 @@ public class EmailServiceImpl implements EmailService {
           + "<div>"+activityAnalysisEntity.getName_surname()+"</div>\n"
           + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">T.C. Kimlik No/Verdi D./Vergi No</div>\n"
           + "<div>"+activityAnalysisEntity.getTc()+"</div>\n"
-          + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\"> Adres</div>\n"
+          +"<div style=\"font-weight: bold;color: white;background-color: #6c757d\">letişim Kurulacak Kişi "
+          + "(Talepte Bulunan Tüzel Kişi ise)</div>\n";
+      if (activityAnalysisEntity.getLegalPerson() != null) {
+        contentHtml+="<div>" + activityAnalysisEntity.getLegalPerson() + "</div>\n";
+      }else {
+        contentHtml+= "<div></div>\n";
+      }
+          contentHtml+= "<div style=\"font-weight: bold;color: white;background-color: #6c757d\"> Adres</div>\n"
           + "<div>"+activityAnalysisEntity.getAddress()+"</div>\n"
           + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">Telefon</div>\n"
           + "<div>"+activityAnalysisEntity.getTel()+"</div>\n"
           + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">E-posta</div>\n"
           + "<div>"+activityAnalysisEntity.getEmail()+"</div>\n"
           + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">2. ÜRÜNE/YÖNTEME İLİŞKİN BİLGİLER </h3>\n"
-          + "<h4 style=\"font-weight: bold;color: white;background-color: #000\">2.1 ANAHTAR KELİME ÖNERİLERİ  </h4><span>(Türkçe/İngilizce)</span>\n"
-          + "<div>"+activityAnalysisEntity.getKeyWord()+"</div>\n"
-          + "<h4 style=\"font-weight: bold;color: white;background-color: #000\">2.2 TEKNİĞİN BİLİNEN DURUMUNDA YER ALAN UYGULAMALAR  </h4><span>(Mevcutta var olan uygulamalar, patent, makale, internet siteleri, youtube videoları vb. görsel ve yazılı kaynakları ve muhtemel rakipleri belirtiniz.)\n"
-          + "</span>\n"
-          + "<div>"+activityAnalysisEntity.getOpponent()+"</div>\n"
-          + "<h4 style=\"font-weight: bold;color: white;background-color: #000\">2.3. ÜRÜNÜN/YÖNTEMİN AYRINTILI AÇIKLAMASI </h4><span>(Faaliyet serbestliği araştırmasına konu bir ürün ise, bu ürünün içerdiği parçaları, bu parçaların işlevlerinin anlatılması gerekmektedir. Eğer faaliyet serbestliğine konu olan bir yöntem ise, bu yöntemin her bir adımının ve bu adımların gerçekleştirilmesi için kullanılan teknik unsurların açıklanması gerekmektedir.)\n"
+              +"<h4 style=\"font-weight: bold;color: white;background-color: #000\">2.1 ANAHTAR KELİME ÖNERİLERİ  </h4><span>(Türkçe/İngilizce)</span>\n";
+              if(activityAnalysisEntity.getKeyWord() != null) {
+                contentHtml+= "<div>" + activityAnalysisEntity.getKeyWord() + "</div>\n";
+              }else {
+                contentHtml+= "<div></div>\n";
+              }
+      contentHtml += "<h4 style=\"font-weight: bold;color: white;background-color: #000\">2.2 TEKNİĞİN BİLİNEN DURUMUNDA YER ALAN UYGULAMALAR  </h4><span>(Mevcutta var olan uygulamalar, patent, makale, internet siteleri, youtube videoları vb. görsel ve yazılı kaynakları ve muhtemel rakipleri belirtiniz.)\n"
+          + "</span>\n";
+      if(activityAnalysisEntity.getOpponent() != null) {
+        contentHtml+= "<div>" + activityAnalysisEntity.getOpponent() + "</div>\n";
+      }else {
+        contentHtml+= "<div></div>\n";
+      }
+          contentHtml+= "<h4 style=\"font-weight: bold;color: white;background-color: #000\">2.3. ÜRÜNÜN/YÖNTEMİN AYRINTILI AÇIKLAMASI </h4><span>(Faaliyet serbestliği araştırmasına konu bir ürün ise, bu ürünün içerdiği parçaları, bu parçaların işlevlerinin anlatılması gerekmektedir. Eğer faaliyet serbestliğine konu olan bir yöntem ise, bu yöntemin her bir adımının ve bu adımların gerçekleştirilmesi için kullanılan teknik unsurların açıklanması gerekmektedir.)\n"
           + "</span>\n"
           + "<div>"+activityAnalysisEntity.getTechnicalcomponent()+"</div>\n"
           + "<h3 style=\"font-weight: bold;color: white;background-color: #d32f2f\">3. ÜRÜN/YÖNTEM İLE İLGİLİ GÖRSELLER</h3><span>(Faaliyet serbestliği araştırmasına konu bir sistem/aparat/ürün/mekanizma olması durumunda buluşa ilişkin görsellerin eklenmesi önerilmektedir.)</span>\n"

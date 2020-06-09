@@ -251,6 +251,7 @@ public class CengizPublicController {
       trademarkPre.setTel(entity.getTel());
       trademarkPre.setEmail(entity.getEmail());
       trademarkPre.setCreatedAt(entity.getCreatedAt());
+      trademarkPre.setLegalPerson(entity.getLegalPerson());
       trademarkPres.add(trademarkPre);
     }
 
@@ -323,6 +324,7 @@ public class CengizPublicController {
       patentPre.setTel(entity.getTel());
       patentPre.setEmail(entity.getEmail());
       patentPre.setCreatedAt(entity.getCreatedAt());
+      patentPre.setLegalPerson(entity.getLegalPerson());
       patentPres.add(patentPre);
     }
 
@@ -361,6 +363,8 @@ public class CengizPublicController {
     trademarkPre.setCreatedAt(entity.getCreatedAt());
     trademarkPre.setDekontBase64("data: image/jpeg;base64," +
         new String(Base64.encodeBase64(entity.getDekont()), StandardCharsets.US_ASCII));
+    trademarkPre.setLegalPerson(entity.getLegalPerson());
+    trademarkPre.setTrademarkItemList(entity.getTrademarkItemList());
     return trademarkPre;
   }
 
@@ -375,7 +379,14 @@ public class CengizPublicController {
     ValuationTrademarkEntity entity = valuationTrademarkRepository.getById(id);
     ValuationTrademark valuationTrademark = new ValuationTrademark();
     valuationTrademark.setId(entity.getId());
+    valuationTrademark.setName_surname(entity.getName_surname());
+    valuationTrademark.setValuationTrademarkAppNo(entity.getValuationTrademarkAppNo());
+    valuationTrademark.setLegalPerson(entity.getLegalPerson());
+    valuationTrademark.setEmail(entity.getEmail());
+    valuationTrademark.setTc(entity.getTc());
+    valuationTrademark.setTel(entity.getTel());
     valuationTrademark.setAddress(entity.getAddress());
+    valuationTrademark.setLicenseChoose(entity.getLicenseChoose());
 //    valuationTrademark.setTrademarkclass(entity.getTrademarkclass());
     valuationTrademark.setTrademarkpurpose(entity.getTrademarkpurpose());
 //    valuationTrademark.setRegistrationdate(entity.getRegistrationdate());
@@ -425,6 +436,12 @@ public class CengizPublicController {
       valuationTrademark.setId(entity.getId());
       valuationTrademark.setAddress(entity.getAddress());
       valuationTrademark.setCreatedAt(entity.getCreatedAt());
+      valuationTrademark.setName_surname(entity.getName_surname());
+      valuationTrademark.setValuationTrademarkAppNo(entity.getValuationTrademarkAppNo());
+      valuationTrademark.setLegalPerson(entity.getLegalPerson());
+      valuationTrademark.setEmail(entity.getEmail());
+      valuationTrademark.setTc(entity.getTc());
+      valuationTrademark.setTel(entity.getTel());
       valuationTrademarkList.add(valuationTrademark);
     }
     ValuationTrademarkList valuationTrademarkList1 = new ValuationTrademarkList();
@@ -447,6 +464,11 @@ public class CengizPublicController {
       valuationPatent.setId(entity.getId());
       valuationPatent.setAddress(entity.getAddress());
       valuationPatent.setCreatedAt(entity.getCreatedAt());
+      valuationPatent.setName_surname(entity.getName_surname());
+      valuationPatent.setLegalPerson(entity.getLegalPerson());
+      valuationPatent.setEmail(entity.getEmail());
+      valuationPatent.setTc(entity.getTc());
+      valuationPatent.setTel(entity.getTel());
       valuationPatentList.add(valuationPatent);
     }
     ValuationPatentList valuationPatentList1 = new ValuationPatentList();
@@ -465,11 +487,17 @@ public class CengizPublicController {
     ValuationPatentEntity entity = valuationPatentRepository.getById(id);
     ValuationPatent valuationPatent = new ValuationPatent();
     valuationPatent.setId(entity.getId());
+    valuationPatent.setName_surname(entity.getName_surname());
+    valuationPatent.setLegalPerson(entity.getLegalPerson());
+    valuationPatent.setEmail(entity.getEmail());
+    valuationPatent.setTc(entity.getTc());
+    valuationPatent.setTel(entity.getTel());
     valuationPatent.setAddress(entity.getAddress());
     valuationPatent.setPatentpurpose(entity.getPatentpurpose());
     valuationPatent.setPatentappno(entity.getPatentappno());
     valuationPatent.setPatentcountry(entity.getPatentcountry());
     valuationPatent.setPatentmarket(entity.getPatentmarket());
+    valuationPatent.setLicenseChoose(entity.getLicenseChoose());
 //    valuationPatent.setPatentcontribution(entity.getPatentcontribution());
     valuationPatent.setPatentsector(entity.getPatentsector());
     valuationPatent.setPatentothersector(entity.getPatentothersector());
@@ -525,6 +553,7 @@ public class CengizPublicController {
     activityAnalysis.setOtherpoint(entity.getOtherpoint());
     activityAnalysis.setDekontBase64("data: image/jpeg;base64," +
         new String(Base64.encodeBase64(entity.getDekont()), StandardCharsets.US_ASCII));
+    activityAnalysis.setLegalPerson(entity.getLegalPerson());
 
 
     return activityAnalysis;
@@ -573,6 +602,7 @@ public class CengizPublicController {
       activityAnalysis.setTel(entity.getTel());
       activityAnalysis.setEmail(entity.getEmail());
       activityAnalysis.setCreatedAt(entity.getCreatedAt());
+      activityAnalysis.setLegalPerson(entity.getLegalPerson());
       activityAnalyses.add(activityAnalysis);
     }
 
@@ -625,6 +655,7 @@ public class CengizPublicController {
     patentPre.setDetailexplain(entity.getDetailexplain());
     patentPre.setPicture(entity.getPicture());
     patentPre.setOtherpoint(entity.getOtherpoint());
+    patentPre.setLegalPerson(entity.getLegalPerson());
 
 
     return patentPre;

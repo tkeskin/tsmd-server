@@ -1198,6 +1198,7 @@ public class CengizPublicController {
     try {
       emailService.sendMimeMessage(id, 1);
       return ResponseEntity.ok(new MessageResponse("Mail Gönderilmiştir!"));
+
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
       return ResponseEntity.ok(new MessageResponse("Mail Gönderilememiştir! Lütfen sorumlu ile görüşürünüz."));

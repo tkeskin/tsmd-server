@@ -53,12 +53,13 @@ public class ValuationTrademark {
   private String legalPerson;
   private String valuationTrademarkAppNo;
   private String licenseChoose;
+  private boolean kvvk;
 
 
   public ValuationTrademark() {
   }
 
-  public ValuationTrademark( String address, String trademarkpurpose, String commonusage, String targetcountry, String trademarktime, String markettime, String trademarkcontribution, String mainsector, String othersector, String marketshare, String overseasmarketshare, String exportcountry, String turnoverpercent, String competingmarketshare, String markethistory, String turnovertarget, String trademarkturnoverpercent, String incomeincreasepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String countryoutside, String europeanunion, String name_surname, String tc, String tel, @NotBlank @Size(max = 50) @Email String email, String legalPerson, String valuationTrademarkAppNo,String licenseChoose) {
+  public ValuationTrademark( String address, String trademarkpurpose, String commonusage, String targetcountry, String trademarktime, String markettime, String trademarkcontribution, String mainsector, String othersector, String marketshare, String overseasmarketshare, String exportcountry, String turnoverpercent, String competingmarketshare, String markethistory, String turnovertarget, String trademarkturnoverpercent, String incomeincreasepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String countryoutside, String europeanunion, String name_surname, String tc, String tel, @NotBlank @Size(max = 50) @Email String email, String legalPerson, String valuationTrademarkAppNo,String licenseChoose, boolean kvvk) {
 
     this.address = address;
 //    this.trademarkclass = trademarkclass;
@@ -98,6 +99,7 @@ public class ValuationTrademark {
     this.legalPerson = legalPerson;
     this.valuationTrademarkAppNo = valuationTrademarkAppNo;
     this.licenseChoose = licenseChoose;
+    this.kvvk = kvvk;
   }
 
   public Long getId() {
@@ -371,5 +373,13 @@ public class ValuationTrademark {
 
   public void setLicenseChoose(String licenseChoose) {
     this.licenseChoose = licenseChoose;
+  }
+
+  public boolean isKvvk() {
+    return kvvk;
+  }
+
+  public void setKvvk(boolean kvvk) {
+    this.kvvk = kvvk;
   }
 }

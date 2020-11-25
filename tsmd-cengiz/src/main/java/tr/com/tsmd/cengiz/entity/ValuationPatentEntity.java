@@ -160,11 +160,13 @@ public class ValuationPatentEntity extends AuditModel {
 
   private String licenseChoose;
 
+  private boolean kvvk;
+
 
   public ValuationPatentEntity() {
   }
 
-  public ValuationPatentEntity(String address, String patentpurpose, String patentappno, String patentcountry, String patentmarket, String patentsector, String patentothersector, String marketshare, String overseasmarketshare, String exportcountry, String exportturnover, String competingmarketshare, String competitordate, String turnovertarget, String turnoverpercent, String incomepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String spending, String worldspending, String caseexpense, String countryoutside, String europeanunio, String name_surname, String tc, String tel, @NotBlank @Size(max = 50) @Email String email,String legalPerson,String licenseChoose) {
+  public ValuationPatentEntity(String address, String patentpurpose, String patentappno, String patentcountry, String patentmarket, String patentsector, String patentothersector, String marketshare, String overseasmarketshare, String exportcountry, String exportturnover, String competingmarketshare, String competitordate, String turnovertarget, String turnoverpercent, String incomepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String spending, String worldspending, String caseexpense, String countryoutside, String europeanunio, String name_surname, String tc, String tel, @NotBlank @Size(max = 50) @Email String email,String legalPerson,String licenseChoose, boolean kvvk) {
     this.address = address;
     this.patentpurpose = patentpurpose;
     this.patentappno = patentappno;
@@ -202,6 +204,7 @@ public class ValuationPatentEntity extends AuditModel {
     this.email = email;
     this.legalPerson = legalPerson;
     this.licenseChoose = licenseChoose;
+    this.kvvk = kvvk;
   }
 
 
@@ -491,5 +494,13 @@ public class ValuationPatentEntity extends AuditModel {
 
   public void setLicenseChoose(String licenseChoose) {
     this.licenseChoose = licenseChoose;
+  }
+
+  public boolean isKvvk() {
+    return kvvk;
+  }
+
+  public void setKvvk(boolean kvvk) {
+    this.kvvk = kvvk;
   }
 }

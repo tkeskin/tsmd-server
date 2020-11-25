@@ -29,17 +29,21 @@ public class InvalidationAssessmentEntity extends AuditModel {
   @Email
   private String email;
 
+  private boolean kvvk;
+
 
   public InvalidationAssessmentEntity() {
   }
 
-  public InvalidationAssessmentEntity(String appNo, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email) {
+  public InvalidationAssessmentEntity(String appNo, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email,
+                                      boolean kvvk) {
 
     this.appNo = appNo;
     this.tc = tc;
     this.address = address;
     this.tel = tel;
     this.email = email;
+    this.kvvk = kvvk;
   }
 
   public Long getId() {
@@ -88,5 +92,13 @@ public class InvalidationAssessmentEntity extends AuditModel {
 
   public void setAppNo(String appNo) {
     this.appNo = appNo;
+  }
+
+  public boolean isKvvk() {
+    return kvvk;
+  }
+
+  public void setKvvk(boolean kvvk) {
+    this.kvvk = kvvk;
   }
 }

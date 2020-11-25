@@ -30,6 +30,7 @@ import tr.com.tsmd.cengiz.entity.ActivityAnalysisViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.ContactMailEntity;
 import tr.com.tsmd.cengiz.entity.EvaluationInvalidationViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.InvalidationAssessmentEntity;
+import tr.com.tsmd.cengiz.entity.KvvkEntity;
 import tr.com.tsmd.cengiz.entity.PatentPreEntity;
 import tr.com.tsmd.cengiz.entity.PatentPreRelatedPicturesEntity;
 import tr.com.tsmd.cengiz.entity.PatentPreTableEntity;
@@ -96,6 +97,7 @@ import tr.com.tsmd.cengiz.service.AboutInfoService;
 import tr.com.tsmd.cengiz.service.ActivityAnalysisService;
 import tr.com.tsmd.cengiz.service.CompanyProfileInfoService;
 import tr.com.tsmd.cengiz.service.EmailService;
+import tr.com.tsmd.cengiz.service.KvvkInfoService;
 import tr.com.tsmd.cengiz.service.NewsInfoService;
 import tr.com.tsmd.cengiz.service.NoticeInfoService;
 import tr.com.tsmd.cengiz.service.PatentPreService;
@@ -173,6 +175,9 @@ public class CengizPublicController {
   @Autowired
   InvalidationAssessmentRepository invalidationAssessmentRepository;
 
+  @Autowired
+  KvvkInfoService kvvkInfoService;
+
 
   /**
    * user list
@@ -232,15 +237,15 @@ public class CengizPublicController {
     //list dönen servis için bir class daha yazıp öyle handle ettik
     List<TrademarkPreEntity> trademarkPreEntities = trademarkPreRepository.findAll();
     List<TrademarkPre> trademarkPres = new ArrayList<>();
-    for (TrademarkPreEntity entity: trademarkPreEntities) {
+    for (TrademarkPreEntity entity : trademarkPreEntities) {
       TrademarkPre trademarkPre = new TrademarkPre();
-          trademarkPre.setId(entity.getId());
-          trademarkPre.setTrademarktype(entity.getTrademarktype());
-          if (entity.getTrademarkimagebyte() != null) {
-            trademarkPre.setTrademarkimage( "data: image/jpeg;base64," +
-                new String(Base64.encodeBase64(entity.getTrademarkimagebyte()), StandardCharsets.US_ASCII));
-          } else {
-            trademarkPre.setTrademarkimage("");
+      trademarkPre.setId(entity.getId());
+      trademarkPre.setTrademarktype(entity.getTrademarktype());
+      if (entity.getTrademarkimagebyte() != null) {
+        trademarkPre.setTrademarkimage("data: image/jpeg;base64," +
+            new String(Base64.encodeBase64(entity.getTrademarkimagebyte()), StandardCharsets.US_ASCII));
+      } else {
+        trademarkPre.setTrademarkimage("");
       }
 
       trademarkPre.setTrademarktext(entity.getTrademarktext());
@@ -271,7 +276,7 @@ public class CengizPublicController {
     //list dönen servis için bir class daha yazıp öyle handle ettik
     List<InvalidationAssessmentEntity> invalidationAssessmentEntities = invalidationAssessmentRepository.findAll();
     List<InvalidationAssessment> invalidationAssessments = new ArrayList<>();
-    for (InvalidationAssessmentEntity entity: invalidationAssessmentEntities) {
+    for (InvalidationAssessmentEntity entity : invalidationAssessmentEntities) {
       InvalidationAssessment invalidationAssessment = new InvalidationAssessment();
       invalidationAssessment.setId(entity.getId());
       invalidationAssessment.setAppNo(entity.getAppNo());
@@ -298,24 +303,24 @@ public class CengizPublicController {
   public PatentPreList getPatentPreApplications() {
     List<PatentPreEntity> patentPreEntities = patentPreRepository.findAll();
     List<PatentPre> patentPres = new ArrayList<>();
-    for (PatentPreEntity entity: patentPreEntities) {
+    for (PatentPreEntity entity : patentPreEntities) {
       PatentPre patentPre = new PatentPre();
       patentPre.setId(entity.getId());
-      if (entity.getProtectiontype().equals("5")){
+      if (entity.getProtectiontype().equals("5")) {
         patentPre.setProtectiontype("Patent");
-      }else if (entity.getProtectiontype().equals("6")){
+      } else if (entity.getProtectiontype().equals("6")) {
         patentPre.setProtectiontype("Faydalı Model");
-      }else if (entity.getProtectiontype().equals("7")){
+      } else if (entity.getProtectiontype().equals("7")) {
         patentPre.setProtectiontype("Rapor Sonrasında Belirleyeceğim");
-      }else {
+      } else {
         patentPre.setProtectiontype(entity.getProtectiontype());
       }
 
-      if (entity.getReporttype().equals("8")){
+      if (entity.getReporttype().equals("8")) {
         patentPre.setReporttype("Standart");
-      }else if (entity.getReporttype().equals("9")){
+      } else if (entity.getReporttype().equals("9")) {
         patentPre.setReporttype("Detaylı");
-      }else {
+      } else {
         patentPre.setReporttype(entity.getReporttype());
       }
       patentPre.setName_surname(entity.getName_surname());
@@ -347,7 +352,7 @@ public class CengizPublicController {
     trademarkPre.setId(entity.getId());
     trademarkPre.setTrademarktype(entity.getTrademarktype());
     if (entity.getTrademarkimagebyte() != null) {
-      trademarkPre.setTrademarkimage( "data: image/jpeg;base64," +
+      trademarkPre.setTrademarkimage("data: image/jpeg;base64," +
           new String(Base64.encodeBase64(entity.getTrademarkimagebyte()), StandardCharsets.US_ASCII));
     } else {
       trademarkPre.setTrademarkimage("");
@@ -569,7 +574,7 @@ public class CengizPublicController {
 
     List<ActivityAnalysisPicturesEntity> entities = activityAnalysisPicturesRepository.getByActivityAnalysisId(id);
     List<ActivityAnalysisPictures> activityAnalysisPictures = new ArrayList<>();
-    for (ActivityAnalysisPicturesEntity entity:entities) {
+    for (ActivityAnalysisPicturesEntity entity : entities) {
       ActivityAnalysisPictures model = new ActivityAnalysisPictures();
       model.setId(entity.getId());
       model.setPictureBase64("data: image/jpeg;base64," +
@@ -593,7 +598,7 @@ public class CengizPublicController {
   public ActivityAnalysisList getActivityAnalysisApplications() {
     List<ActivityAnalysisEntity> activityAnalysisEntities = activityAnalysisRepository.findAll();
     List<ActivityAnalysis> activityAnalyses = new ArrayList<>();
-    for (ActivityAnalysisEntity entity: activityAnalysisEntities) {
+    for (ActivityAnalysisEntity entity : activityAnalysisEntities) {
       ActivityAnalysis activityAnalysis = new ActivityAnalysis();
       activityAnalysis.setId(entity.getId());
       activityAnalysis.setName_surname(entity.getName_surname());
@@ -610,7 +615,6 @@ public class CengizPublicController {
     activityAnalysisList.setActivityAnalyses(activityAnalyses);
     return activityAnalysisList;
   }
-
 
 
   /**
@@ -671,7 +675,7 @@ public class CengizPublicController {
 
     List<PatentPreRelatedPicturesEntity> entities = patentPreRelatedPicturesRepository.getByPatentPreId(id);
     List<PatentPreRelatedPictures> patentPreRelatedPictures = new ArrayList<>();
-    for (PatentPreRelatedPicturesEntity entity:entities) {
+    for (PatentPreRelatedPicturesEntity entity : entities) {
       PatentPreRelatedPictures model = new PatentPreRelatedPictures();
       model.setId(entity.getId());
       model.setPictureBase64("data: image/jpeg;base64," +
@@ -695,7 +699,7 @@ public class CengizPublicController {
 
     List<PatentPreTableEntity> entities = patentPreTableRepository.getByPatentPreId(id);
     List<FullData> fullDataList = new ArrayList<>();
-    for (PatentPreTableEntity entity:entities) {
+    for (PatentPreTableEntity entity : entities) {
       FullData model = new FullData();
       model.setId(entity.getId().toString());
       model.setDeferencechoose(entity.getDeferencechoose());
@@ -792,10 +796,14 @@ public class CengizPublicController {
   @PostMapping(value = "/noticeUpdatePicture", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> updateNoticePicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
 
+    try {
+      noticeInfoService.updateNoticePicture(id, picture);
+      return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarısız! Yetkili ile görüşünüz."));
+    }
 
-    noticeInfoService.updateNoticePicture(id, picture);
-
-    return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
   }
 
   /**
@@ -806,10 +814,14 @@ public class CengizPublicController {
   @PostMapping(value = "/aboutUpdatePicture", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> updateAboutPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
 
+    try {
+      aboutInfoService.updateAboutPicture(id, picture);
 
-    aboutInfoService.updateAboutPicture(id, picture);
-
-    return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+      return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarısız!!! Yetkili ile görüşünüz."));
+    }
   }
 
   /**
@@ -820,9 +832,13 @@ public class CengizPublicController {
   @PostMapping(value = "/companyProfileUpdatePicture", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> updateCompanyProfilePicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
 
-    companyProfileInfoService.updateCompanyProfilePicture(id, picture);
-
-    return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+    try {
+      companyProfileInfoService.updateCompanyProfilePicture(id, picture);
+      return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarısız! Yetkili ile görüşünüz."));
+    }
   }
 
 
@@ -881,93 +897,116 @@ public class CengizPublicController {
    */
   @GetMapping("/deleteNewsRelatedPictures/{id}")
   public ResponseEntity<?> deleteNewsRelatedPictures(@PathVariable("id") Long id) {
-    //list dönen servis için bir class daha yazıp öyle handle ettik
-    newsInfoService.deleteNewsRelatedPicturesById(id);
-    return ResponseEntity.ok(new MessageResponse("Silindi!"));
+    try {
+      newsInfoService.deleteNewsRelatedPicturesById(id);
+      return ResponseEntity.ok(new MessageResponse("Silindi!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Silinemedi!!! Yetkili ile görüşünüz."));
+    }
+
   }
 
   @PostMapping(value = "/trademarkPreSave")
   public ResponseEntity<General> postTrademarkPre(@RequestBody TrademarkPre trademarkPre) {
+    General general;
+    try {
+      TrademarkPreEntity entity = trademarkPreRepository.save(new TrademarkPreEntity(
+          trademarkPre.getTrademarktype(),
+          trademarkPre.getTrademarkimage(),
+          trademarkPre.getTrademarktext(),
+          trademarkPre.getTrademarkclass(),
+          trademarkPre.getName_surname(),
+          trademarkPre.getTc(),
+          trademarkPre.getAddress(),
+          trademarkPre.getTel(),
+          trademarkPre.getEmail(),
+          trademarkPre.getLegalPerson(),
+          trademarkPre.getTrademarkItemList(),
+          trademarkPre.isKvvk()
+      ));
 
-    TrademarkPreEntity entity = trademarkPreRepository.save(new TrademarkPreEntity(
-        trademarkPre.getTrademarktype(),
-        trademarkPre.getTrademarkimage(),
-        trademarkPre.getTrademarktext(),
-        trademarkPre.getTrademarkclass(),
-        trademarkPre.getName_surname(),
-        trademarkPre.getTc(),
-        trademarkPre.getAddress(),
-        trademarkPre.getTel(),
-        trademarkPre.getEmail(),
-        trademarkPre.getLegalPerson(),
-        trademarkPre.getTrademarkItemList()
-    ));
 
+      TrademarkPre trademarkPre1 = new TrademarkPre(entity.getId(), entity.getTrademarktype(), entity.getTrademarkimage(),
+          entity.getTrademarktext(), entity.getTrademarkclass(), entity.getName_surname(), entity.getTc(),
+          entity.getAddress(), entity.getTel(), entity.getEmail(), entity.getLegalPerson(), entity.getTrademarkItemList(), entity.isKvvk());
 
-    TrademarkPre trademarkPre1 = new TrademarkPre(entity.getId(), entity.getTrademarktype(), entity.getTrademarkimage(),
-        entity.getTrademarktext(), entity.getTrademarkclass(), entity.getName_surname(), entity.getTc(),
-        entity.getAddress(), entity.getTel(), entity.getEmail(), entity.getLegalPerson(), entity.getTrademarkItemList());
-
-    General general = new General("Kayıt işleminiz başarılı...", entity.getId());
-
+      general = new General("Kayıt işleminiz başarılı...", entity.getId());
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      general = new General("Kayıt işleminiz başarısız!!!", 5L);
+    }
     return ResponseEntity.ok(general);
+
   }
 
   @PostMapping(value = "/invalidationAssessmentSave")
   public ResponseEntity<General> postInvalidationAssessment(@RequestBody InvalidationAssessment invalidationAssessment) {
+    General general;
+    try {
+      InvalidationAssessmentEntity entity = invalidationAssessmentRepository.save(new InvalidationAssessmentEntity(
+          invalidationAssessment.getAppNo(),
+          invalidationAssessment.getTc(),
+          invalidationAssessment.getAddress(),
+          invalidationAssessment.getTel(),
+          invalidationAssessment.getEmail(),
+          invalidationAssessment.isKvvk()));
 
-    InvalidationAssessmentEntity entity = invalidationAssessmentRepository.save(new InvalidationAssessmentEntity(
-        invalidationAssessment.getAppNo(),
-        invalidationAssessment.getTc(),
-        invalidationAssessment.getAddress(),
-        invalidationAssessment.getTel(),
-        invalidationAssessment.getEmail()));
 
+      InvalidationAssessment invalidationAssessment1 = new InvalidationAssessment(entity.getId(), entity.getAppNo(), entity.getTc(),
+          entity.getAddress(), entity.getTel(), entity.getEmail(), entity.isKvvk());
 
-    InvalidationAssessment invalidationAssessment1 = new InvalidationAssessment(entity.getId(), entity.getAppNo(), entity.getTc(),
-        entity.getAddress(), entity.getTel(), entity.getEmail());
-
-    General general = new General("Kayıt işleminiz başarılı...", entity.getId());
-
+      general = new General("Kayıt işleminiz başarılı...", entity.getId());
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      general = new General("Kayıt işleminiz başarısız!!!", 5L);
+    }
     return ResponseEntity.ok(general);
   }
 
   @PostMapping(value = "/patentPreSave")
   public ResponseEntity<General> postPatentPre(@RequestBody PatentPre patentPre) {
-
-    PatentPreEntity patentPreEntity = patentPreRepository.save(new PatentPreEntity(
-        patentPre.getName_surname(),
-        patentPre.getTc(),
-        patentPre.getAddress(),
-        patentPre.getTel(),
-        patentPre.getEmail(),
-        patentPre.getProtectiontype(),
-        patentPre.getReporttype(),
-        patentPre.getComputerarea(),
-        patentPre.getElectricityarea(),
-        patentPre.getElectronicarea(),
-        patentPre.getMachinearea(),
-        patentPre.getMedicinearea(),
-        patentPre.getAutomotivearea(),
-        patentPre.getMetallurgyarea(),
-        patentPre.getBiomedicalarea(),
-        patentPre.getChemistryarea(),
-        patentPre.getFoodarea(),
-        patentPre.getBuildarea(),
-        patentPre.getOtherarea(),
-        patentPre.getTitle(),
-        patentPre.getPatentkeyword(),
-        patentPre.getPatentapplication(),
-        patentPre.getAdvantage(),
-        patentPre.getPublications(),
-        patentPre.getDetailexplain(),
-        patentPre.getPicture(),
-        patentPre.getOtherpoint(),
-        patentPre.getLegalPerson()
-    ));
     General general = new General();
-    general.setMessage("Kayıt işleminiz başarılı!");
-    general.setId(patentPreEntity.getId());
+    try {
+      PatentPreEntity patentPreEntity = patentPreRepository.save(new PatentPreEntity(
+          patentPre.getName_surname(),
+          patentPre.getTc(),
+          patentPre.getAddress(),
+          patentPre.getTel(),
+          patentPre.getEmail(),
+          patentPre.getProtectiontype(),
+          patentPre.getReporttype(),
+          patentPre.getComputerarea(),
+          patentPre.getElectricityarea(),
+          patentPre.getElectronicarea(),
+          patentPre.getMachinearea(),
+          patentPre.getMedicinearea(),
+          patentPre.getAutomotivearea(),
+          patentPre.getMetallurgyarea(),
+          patentPre.getBiomedicalarea(),
+          patentPre.getChemistryarea(),
+          patentPre.getFoodarea(),
+          patentPre.getBuildarea(),
+          patentPre.getOtherarea(),
+          patentPre.getTitle(),
+          patentPre.getPatentkeyword(),
+          patentPre.getPatentapplication(),
+          patentPre.getAdvantage(),
+          patentPre.getPublications(),
+          patentPre.getDetailexplain(),
+          patentPre.getPicture(),
+          patentPre.getOtherpoint(),
+          patentPre.getLegalPerson(),
+          patentPre.isKvvk()
+      ));
+
+      general.setMessage("Kayıt işleminiz başarılı!");
+      general.setId(patentPreEntity.getId());
+
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      general = new General("Kayıt işleminiz başarısız!!!", 5L);
+    }
 
 
     return ResponseEntity.ok(general);
@@ -975,44 +1014,50 @@ public class CengizPublicController {
 
   @PostMapping(value = "/valuationPatentSave")
   public ResponseEntity<General> valuationPatentSave(@RequestBody ValuationPatent valuationPatent) {
-
-    ValuationPatentEntity valuationPatentEntity = valuationPatentRepository.save(new ValuationPatentEntity(
-        valuationPatent.getAddress(),
-        valuationPatent.getPatentpurpose(),
-        valuationPatent.getPatentappno(),
-        valuationPatent.getPatentcountry(),
-        valuationPatent.getPatentmarket(),
-        valuationPatent.getPatentsector(),
-        valuationPatent.getPatentothersector(),
-        valuationPatent.getMarketshare(),
-        valuationPatent.getOverseasmarketshare(),
-        valuationPatent.getExportcountry(),
-        valuationPatent.getExportturnover(),
-        valuationPatent.getCompetingmarketshare(),
-        valuationPatent.getCompetitordate(),
-        valuationPatent.getTurnovertarget(),
-        valuationPatent.getTurnoverpercent(),
-        valuationPatent.getIncomepercent(),
-        valuationPatent.getLicense(),
-        valuationPatent.getLicenseroyalt(),
-        valuationPatent.getContract(),
-        valuationPatent.getAdvertisement(),
-        valuationPatent.getTotalexpenditure(),
-        valuationPatent.getSpending(),
-        valuationPatent.getWorldspending(),
-        valuationPatent.getCaseexpense(),
-        valuationPatent.getCountryoutside(),
-        valuationPatent.getEuropeanunio(),
-        valuationPatent.getName_surname(),
-        valuationPatent.getTc(),
-        valuationPatent.getTel(),
-        valuationPatent.getEmail(),
-        valuationPatent.getLegalPerson(),
-        valuationPatent.getLicenseChoose()
-    ));
     General general = new General();
-    general.setMessage("Kayıt işleminiz başarılı!");
-    general.setId(valuationPatentEntity.getId());
+    try {
+      ValuationPatentEntity valuationPatentEntity = valuationPatentRepository.save(new ValuationPatentEntity(
+          valuationPatent.getAddress(),
+          valuationPatent.getPatentpurpose(),
+          valuationPatent.getPatentappno(),
+          valuationPatent.getPatentcountry(),
+          valuationPatent.getPatentmarket(),
+          valuationPatent.getPatentsector(),
+          valuationPatent.getPatentothersector(),
+          valuationPatent.getMarketshare(),
+          valuationPatent.getOverseasmarketshare(),
+          valuationPatent.getExportcountry(),
+          valuationPatent.getExportturnover(),
+          valuationPatent.getCompetingmarketshare(),
+          valuationPatent.getCompetitordate(),
+          valuationPatent.getTurnovertarget(),
+          valuationPatent.getTurnoverpercent(),
+          valuationPatent.getIncomepercent(),
+          valuationPatent.getLicense(),
+          valuationPatent.getLicenseroyalt(),
+          valuationPatent.getContract(),
+          valuationPatent.getAdvertisement(),
+          valuationPatent.getTotalexpenditure(),
+          valuationPatent.getSpending(),
+          valuationPatent.getWorldspending(),
+          valuationPatent.getCaseexpense(),
+          valuationPatent.getCountryoutside(),
+          valuationPatent.getEuropeanunio(),
+          valuationPatent.getName_surname(),
+          valuationPatent.getTc(),
+          valuationPatent.getTel(),
+          valuationPatent.getEmail(),
+          valuationPatent.getLegalPerson(),
+          valuationPatent.getLicenseChoose(),
+          valuationPatent.isKvvk()
+      ));
+
+      general.setMessage("Kayıt işleminiz başarılı!");
+      general.setId(valuationPatentEntity.getId());
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      general = new General("Kayıt işleminiz başarısız!!!", 5L);
+    }
 
 
     return ResponseEntity.ok(general);
@@ -1020,44 +1065,50 @@ public class CengizPublicController {
 
   @PostMapping(value = "/valuationTrademarkSave")
   public ResponseEntity<General> valuationTrademarkSave(@RequestBody ValuationTrademark valuationTrademark) {
-
-    ValuationTrademarkEntity valuationTrademarkEntity = valuationTrademarkRepository.save(new ValuationTrademarkEntity(
-        valuationTrademark.getAddress(),
-        valuationTrademark.getTrademarkpurpose(),
-        valuationTrademark.getCommonusage(),
-        valuationTrademark.getTargetcountry(),
-        valuationTrademark.getTrademarktime(),
-        valuationTrademark.getMarkettime(),
-        valuationTrademark.getTrademarkcontribution(),
-        valuationTrademark.getMainsector(),
-        valuationTrademark.getOthersector(),
-        valuationTrademark.getMarketshare(),
-        valuationTrademark.getOverseasmarketshare(),
-        valuationTrademark.getExportcountry(),
-        valuationTrademark.getTurnoverpercent(),
-        valuationTrademark.getCompetingmarketshare(),
-        valuationTrademark.getMarkethistory(),
-        valuationTrademark.getTurnovertarget(),
-        valuationTrademark.getTrademarkturnoverpercent(),
-        valuationTrademark.getIncomeincreasepercent(),
-        valuationTrademark.getLicense(),
-        valuationTrademark.getLicenseroyalt(),
-        valuationTrademark.getContract(),
-        valuationTrademark.getAdvertisement(),
-        valuationTrademark.getTotalexpenditure(),
-        valuationTrademark.getCountryoutside(),
-        valuationTrademark.getEuropeanunion(),
-        valuationTrademark.getName_surname(),
-        valuationTrademark.getTc(),
-        valuationTrademark.getTel(),
-        valuationTrademark.getEmail(),
-        valuationTrademark.getLegalPerson(),
-        valuationTrademark.getValuationTrademarkAppNo(),
-        valuationTrademark.getLicenseChoose()
-    ));
     General general = new General();
-    general.setMessage("Kayıt işleminiz başarılı!");
-    general.setId(valuationTrademarkEntity.getId());
+    try {
+      ValuationTrademarkEntity valuationTrademarkEntity = valuationTrademarkRepository.save(new ValuationTrademarkEntity(
+          valuationTrademark.getAddress(),
+          valuationTrademark.getTrademarkpurpose(),
+          valuationTrademark.getCommonusage(),
+          valuationTrademark.getTargetcountry(),
+          valuationTrademark.getTrademarktime(),
+          valuationTrademark.getMarkettime(),
+          valuationTrademark.getTrademarkcontribution(),
+          valuationTrademark.getMainsector(),
+          valuationTrademark.getOthersector(),
+          valuationTrademark.getMarketshare(),
+          valuationTrademark.getOverseasmarketshare(),
+          valuationTrademark.getExportcountry(),
+          valuationTrademark.getTurnoverpercent(),
+          valuationTrademark.getCompetingmarketshare(),
+          valuationTrademark.getMarkethistory(),
+          valuationTrademark.getTurnovertarget(),
+          valuationTrademark.getTrademarkturnoverpercent(),
+          valuationTrademark.getIncomeincreasepercent(),
+          valuationTrademark.getLicense(),
+          valuationTrademark.getLicenseroyalt(),
+          valuationTrademark.getContract(),
+          valuationTrademark.getAdvertisement(),
+          valuationTrademark.getTotalexpenditure(),
+          valuationTrademark.getCountryoutside(),
+          valuationTrademark.getEuropeanunion(),
+          valuationTrademark.getName_surname(),
+          valuationTrademark.getTc(),
+          valuationTrademark.getTel(),
+          valuationTrademark.getEmail(),
+          valuationTrademark.getLegalPerson(),
+          valuationTrademark.getValuationTrademarkAppNo(),
+          valuationTrademark.getLicenseChoose(),
+          valuationTrademark.isKvvk()
+      ));
+
+      general.setMessage("Kayıt işleminiz başarılı!");
+      general.setId(valuationTrademarkEntity.getId());
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      general = new General("Kayıt işleminiz başarısız!!!", 5L);
+    }
 
 
     return ResponseEntity.ok(general);
@@ -1065,26 +1116,30 @@ public class CengizPublicController {
 
   @PostMapping(value = "/activityAnalysisSave")
   public ResponseEntity<General> activityAnalysisSave(@RequestBody ActivityAnalysis activityAnalysis) {
-
-    ActivityAnalysisEntity activityAnalysisEntity = activityAnalysisRepository.save(new ActivityAnalysisEntity(
-        activityAnalysis.getName_surname(),
-        activityAnalysis.getTc(),
-        activityAnalysis.getAddress(),
-        activityAnalysis.getTel(),
-        activityAnalysis.getEmail(),
-        activityAnalysis.getKeyWord(),
-        activityAnalysis.getOpponent(),
-        activityAnalysis.getTechnicalcomponent(),
-        activityAnalysis.getImage(),
-        activityAnalysis.getOtherpoint(),
-        activityAnalysis.getLegalPerson()
-    ));
-
-
     General general = new General();
-    general.setMessage("Kayıt işleminiz başarılı!");
-    general.setId(activityAnalysisEntity.getId());
+    try {
+      ActivityAnalysisEntity activityAnalysisEntity = activityAnalysisRepository.save(new ActivityAnalysisEntity(
+          activityAnalysis.getName_surname(),
+          activityAnalysis.getTc(),
+          activityAnalysis.getAddress(),
+          activityAnalysis.getTel(),
+          activityAnalysis.getEmail(),
+          activityAnalysis.getKeyWord(),
+          activityAnalysis.getOpponent(),
+          activityAnalysis.getTechnicalcomponent(),
+          activityAnalysis.getImage(),
+          activityAnalysis.getOtherpoint(),
+          activityAnalysis.getLegalPerson(),
+          activityAnalysis.isKvvk()
+      ));
 
+
+      general.setMessage("Kayıt işleminiz başarılı!");
+      general.setId(activityAnalysisEntity.getId());
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      general = new General("Kayıt işleminiz başarısız!!!", 5L);
+    }
 
     return ResponseEntity.ok(general);
   }
@@ -1127,9 +1182,13 @@ public class CengizPublicController {
       entity.setDekontName(uploadFile.getOriginalFilename());
     }
 
-    trademarkPreRepository.save(entity);
-
-    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    try {
+      trademarkPreRepository.save(entity);
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!"));
+    }
   }
 
 
@@ -1163,9 +1222,13 @@ public class CengizPublicController {
   @PostMapping(value = "/addNews")
   public ResponseEntity<?> addNews(@RequestBody News news) {
 
-    newsInfoService.addNews(news);
-
-    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    try {
+      newsInfoService.addNews(news);
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!"));
+    }
   }
 
 
@@ -1175,12 +1238,18 @@ public class CengizPublicController {
                                             @RequestParam("mainPicture") MultipartFile mainPicture) throws Exception {
 
     News news = new News(mainPicture.getBytes(), newsTitle, newsExplain, mainPicture.getOriginalFilename(), mainPicture.getContentType(), published);
-
-    Long id = newsInfoService.addNews(news);
-
     General general = new General();
-    general.setMessage("Kayıt işleminiz başarılı!");
-    general.setId(id);
+    try {
+      Long id = newsInfoService.addNews(news);
+
+
+      general.setMessage("Kayıt işleminiz başarılı!");
+      general.setId(id);
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      general.setMessage("Kayıt işleminiz başarısız!!!");
+      general.setId(-1L);
+    }
 
 
     return ResponseEntity.ok(general);
@@ -1193,12 +1262,16 @@ public class CengizPublicController {
 
 
     Notice notice = new Notice(picture.getBytes(), noticeTitle, noticeExplain, picture.getOriginalFilename(), picture.getContentType(), published);
-
-    Long id = noticeInfoService.addNotice(notice);
-
     General general = new General();
-    general.setMessage("Kayıt işleminiz başarılı!");
-    general.setId(id);
+    try {
+      Long id = noticeInfoService.addNotice(notice);
+      general.setMessage("Kayıt işleminiz başarılı!");
+      general.setId(id);
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      general.setMessage("Kayıt işleminiz başarısız!!!");
+      general.setId(-1L);
+    }
 
 
     return ResponseEntity.ok(general);
@@ -1207,21 +1280,27 @@ public class CengizPublicController {
   @PostMapping(value = "/addNewsFiles", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> addNewsFiles(@RequestParam("id") Long id, @RequestParam("relatedPictures") MultipartFile relatedPictures) throws Exception {
 
-    newsInfoService.addNewsRelatedPictures(id, relatedPictures);
-
-
-    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    try {
+      newsInfoService.addNewsRelatedPictures(id, relatedPictures);
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!!"));
+    }
   }
 
   @PostMapping(value = "/addMultipartFiles", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> addMultipartFiles(@RequestParam("pictures") MultipartFile[] pictures, @RequestParam("dekont") MultipartFile dekont) throws Exception {
-
-    System.out.println(pictures.length);
-    for (int i = 0; i < pictures.length; i++) {
-      String fileName = pictures[i].getOriginalFilename();
+    try {
+      System.out.println(pictures.length);
+      for (int i = 0; i < pictures.length; i++) {
+        String fileName = pictures[i].getOriginalFilename();
+      }
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!!"));
     }
-
-    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
   }
 
   /**
@@ -1232,10 +1311,13 @@ public class CengizPublicController {
   @PostMapping(value = "/newsUpdateRelatedPicture", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> updateNewsRelatedPicture(@RequestParam("id") Long id, @RequestParam("relatedPicture") MultipartFile relatedPicture) throws Exception {
 
-
-    newsInfoService.updateNewsRelatedPicture(id, relatedPicture);
-
-    return ResponseEntity.ok(new MessageResponse("Resim güncelleme başarılı!"));
+    try {
+      newsInfoService.updateNewsRelatedPicture(id, relatedPicture);
+      return ResponseEntity.ok(new MessageResponse("Resim güncelleme başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Resim güncelleme işleminiz başarısız!!"));
+    }
   }
 
   @PostMapping(value = "/sendContactMail")
@@ -1258,9 +1340,13 @@ public class CengizPublicController {
   @PostMapping(value = "/fullData/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> sendDataTable(@PathVariable("id") Long id, @RequestBody FullDataList fullDataList) {
 
-    patentPreService.savePatentPreTable(id, fullDataList);
-
-    return ResponseEntity.ok(new MessageResponse("Başarılı"));
+    try {
+      patentPreService.savePatentPreTable(id, fullDataList);
+      return ResponseEntity.ok(new MessageResponse("Başarılı"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Başarısız!!"));
+    }
   }
 
 
@@ -1323,46 +1409,66 @@ public class CengizPublicController {
   public ResponseEntity<?> addPatentPreRelatedPictures(@PathVariable("patentPreId") Long patentPreId,
                                                        @RequestParam("pictures") MultipartFile[] pictures)
       throws Exception {
-
-    patentPreService.addPatentPreRelatedPictures(patentPreId, pictures);
-
-    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    try {
+      patentPreService.addPatentPreRelatedPictures(patentPreId, pictures);
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!!"));
+    }
   }
 
   @PostMapping(value = "/addPatentPreDekont/{patentPreId}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> addPatentPreDekont(@PathVariable("patentPreId") Long patentPreId,
                                               @RequestParam("dekont") MultipartFile dekont) throws Exception {
 
-    patentPreService.addDekont(patentPreId, dekont);
+    try {
+      patentPreService.addDekont(patentPreId, dekont);
 
-    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!!"));
+    }
   }
 
   @PostMapping(value = "/addValuationPatentDekont/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> addValuationPatentDekont(@PathVariable("id") Long id,
                                                     @RequestParam("dekont") MultipartFile dekont) throws Exception {
 
-    valuationService.addValuationPatentDekont(id, dekont);
-
-    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    try {
+      valuationService.addValuationPatentDekont(id, dekont);
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!!"));
+    }
   }
 
   @PostMapping(value = "/addValuationTrademarkDekont/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> addValuationTrademarkDekont(@PathVariable("id") Long id,
                                                        @RequestParam("dekont") MultipartFile dekont) throws Exception {
 
-    valuationService.addValuationTrademarkDekont(id, dekont);
-
-    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    try {
+      valuationService.addValuationTrademarkDekont(id, dekont);
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!!"));
+    }
   }
 
   @PostMapping(value = "/addActivityAnalysisDekont/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> addActivityAnalysisDekont(@PathVariable("id") Long id,
                                                      @RequestParam("dekont") MultipartFile dekont) throws Exception {
 
-    activityAnalysisService.addActivityAnalysisDekont(id, dekont);
-
-    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    try {
+      activityAnalysisService.addActivityAnalysisDekont(id, dekont);
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!!"));
+    }
   }
 
   @PostMapping(value = "/addActivityAnalysisPictures/{activityId}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -1370,9 +1476,13 @@ public class CengizPublicController {
                                                        @RequestParam("pictures") MultipartFile[] pictures)
       throws Exception {
 
-    activityAnalysisService.addActivityAnalysisPictures(activityId, pictures);
-
-    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    try {
+      activityAnalysisService.addActivityAnalysisPictures(activityId, pictures);
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!!"));
+    }
   }
 
 
@@ -1407,10 +1517,13 @@ public class CengizPublicController {
   @PostMapping(value = "/trademarkPreUpdatePicture", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> updateTrademarkPreViewPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
 
-
-    servicesInfoService.updateTrademarkPreViewPicture(id, picture);
-
-    return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+    try {
+      servicesInfoService.updateTrademarkPreViewPicture(id, picture);
+      return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarısız!!"));
+    }
   }
 
   /**
@@ -1435,9 +1548,13 @@ public class CengizPublicController {
   public ResponseEntity<?> updatePatentPreViewPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
 
 
-    servicesInfoService.updatePatentPreViewPicture(id, picture);
-
-    return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+    try {
+      servicesInfoService.updatePatentPreViewPicture(id, picture);
+      return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarısız!!"));
+    }
   }
 
 
@@ -1463,9 +1580,13 @@ public class CengizPublicController {
   public ResponseEntity<?> updateActivityAnalysisViewPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
 
 
-    servicesInfoService.updateActivityAnalysisViewPicture(id, picture);
-
-    return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+    try {
+      servicesInfoService.updateActivityAnalysisViewPicture(id, picture);
+      return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarısız!!"));
+    }
   }
 
 
@@ -1490,10 +1611,14 @@ public class CengizPublicController {
   @PostMapping(value = "/valuationUpdatePicture", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> updateValuationViewPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
 
+    try {
+      servicesInfoService.updateTrademarkPreViewPicture(id, picture);
 
-    servicesInfoService.updateTrademarkPreViewPicture(id, picture);
-
-    return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+      return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarısız!!"));
+    }
   }
 
 
@@ -1518,10 +1643,13 @@ public class CengizPublicController {
   @PostMapping(value = "/evaluationInvalidationUpdatePicture", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> updateEvaluationInvalidationViewPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
 
-
-    servicesInfoService.updateEvaluationInvalidationViewPicture(id, picture);
-
-    return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+    try {
+      servicesInfoService.updateEvaluationInvalidationViewPicture(id, picture);
+      return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarısız!!"));
+    }
   }
 
 
@@ -1546,21 +1674,30 @@ public class CengizPublicController {
   @PostMapping(value = "/technologyConsultancyUpdatePicture", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> updateTechnologyConsultancyViewPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
 
+    try {
+      servicesInfoService.updateTechnologyConsultancyViewPicture(id, picture);
 
-    servicesInfoService.updateTechnologyConsultancyViewPicture(id, picture);
-
-    return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+      return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarısız!!"));
+    }
   }
 
 
   @PostMapping(value = "/uploadTrademarkPreViewPdfFiles/{trademarkPreViewId}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> uploadTrademarkPreViewPdfFiles(@PathVariable("trademarkPreViewId") Long trademarkPreViewId,
-                                                       @RequestParam("pdfFiles") MultipartFile[] pdfFiles)
+                                                          @RequestParam("pdfFiles") MultipartFile[] pdfFiles)
       throws Exception {
 
-    servicesInfoService.uploadTrademarkPreViewPdfFiles(trademarkPreViewId, pdfFiles);
+    try {
+      servicesInfoService.uploadTrademarkPreViewPdfFiles(trademarkPreViewId, pdfFiles);
 
-    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!!"));
+    }
   }
 
   /**
@@ -1583,8 +1720,13 @@ public class CengizPublicController {
   @GetMapping("/deleteTrademarkPreViewPdf/{id}")
   public ResponseEntity<?> deleteTrademarkPreViewPdf(@PathVariable("id") Long id) {
     //list dönen servis için bir class daha yazıp öyle handle ettik
-    servicesInfoService.deleteTrademarkPreViewPdfById(id);
-    return ResponseEntity.ok(new MessageResponse("Silindi!"));
+    try {
+      servicesInfoService.deleteTrademarkPreViewPdfById(id);
+      return ResponseEntity.ok(new MessageResponse("Silindi."));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Silinemedi!!!"));
+    }
   }
 
   /**
@@ -1605,12 +1747,16 @@ public class CengizPublicController {
 
   @PostMapping(value = "/uploadPatentPreViewPdfFiles/{patentPreViewId}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> uploadPatentPreViewPdfFiles(@PathVariable("patentPreViewId") Long patentPreViewId,
-                                                          @RequestParam("pdfFiles") MultipartFile[] pdfFiles)
+                                                       @RequestParam("pdfFiles") MultipartFile[] pdfFiles)
       throws Exception {
 
-    servicesInfoService.uploadPatentPreViewPdfFiles(patentPreViewId, pdfFiles);
-
-    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    try {
+      servicesInfoService.uploadPatentPreViewPdfFiles(patentPreViewId, pdfFiles);
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!!!"));
+    }
   }
 
   /**
@@ -1633,8 +1779,13 @@ public class CengizPublicController {
   @GetMapping("/deletePatentPreViewPdf/{id}")
   public ResponseEntity<?> deletePatentPreViewPdf(@PathVariable("id") Long id) {
     //list dönen servis için bir class daha yazıp öyle handle ettik
-    servicesInfoService.deletePatentPreViewPdfById(id);
-    return ResponseEntity.ok(new MessageResponse("Silindi!"));
+    try {
+      servicesInfoService.deletePatentPreViewPdfById(id);
+      return ResponseEntity.ok(new MessageResponse("Silindi!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Silinemedi!!!"));
+    }
   }
 
   /**
@@ -1655,12 +1806,17 @@ public class CengizPublicController {
 
   @PostMapping(value = "/uploadActivityAnalysisViewPdfFiles/{activityAnalysisViewId}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> uploadActivityAnalysisViewPdfFiles(@PathVariable("activityAnalysisViewId") Long activityAnalysisViewId,
-                                                       @RequestParam("pdfFiles") MultipartFile[] pdfFiles)
+                                                              @RequestParam("pdfFiles") MultipartFile[] pdfFiles)
       throws Exception {
 
-    servicesInfoService.uploadActivityAnalysisViewPdfFiles(activityAnalysisViewId, pdfFiles);
+    try {
+      servicesInfoService.uploadActivityAnalysisViewPdfFiles(activityAnalysisViewId, pdfFiles);
 
-    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!!!"));
+    }
   }
 
   /**
@@ -1683,8 +1839,13 @@ public class CengizPublicController {
   @GetMapping("/deleteActivityAnalysisViewPdf/{id}")
   public ResponseEntity<?> deleteActivityAnalysisViewPdf(@PathVariable("id") Long id) {
     //list dönen servis için bir class daha yazıp öyle handle ettik
-    servicesInfoService.deleteActivityAnalysisViewPdfById(id);
-    return ResponseEntity.ok(new MessageResponse("Silindi!"));
+    try {
+      servicesInfoService.deleteActivityAnalysisViewPdfById(id);
+      return ResponseEntity.ok(new MessageResponse("Silindi!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Silinemedi!!!"));
+    }
   }
 
   /**
@@ -1705,12 +1866,16 @@ public class CengizPublicController {
 
   @PostMapping(value = "/uploadValuationViewPdfFiles/{valuationViewId}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> uploadValuationViewPdfFiles(@PathVariable("valuationViewId") Long valuationViewId,
-                                                              @RequestParam("pdfFiles") MultipartFile[] pdfFiles)
+                                                       @RequestParam("pdfFiles") MultipartFile[] pdfFiles)
       throws Exception {
 
-    servicesInfoService.uploadValuationViewPdfFiles(valuationViewId, pdfFiles);
-
-    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    try {
+      servicesInfoService.uploadValuationViewPdfFiles(valuationViewId, pdfFiles);
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!!!"));
+    }
   }
 
   /**
@@ -1733,8 +1898,13 @@ public class CengizPublicController {
   @GetMapping("/deleteValuationViewPdf/{id}")
   public ResponseEntity<?> deleteValuationViewPdf(@PathVariable("id") Long id) {
     //list dönen servis için bir class daha yazıp öyle handle ettik
-    servicesInfoService.deleteValuationViewPdfById(id);
-    return ResponseEntity.ok(new MessageResponse("Silindi!"));
+    try {
+      servicesInfoService.deleteValuationViewPdfById(id);
+      return ResponseEntity.ok(new MessageResponse("Silindi!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Silinemedi!!!"));
+    }
   }
 
   /**
@@ -1755,12 +1925,16 @@ public class CengizPublicController {
 
   @PostMapping(value = "/uploadEvaluationInvalidationViewPdfFiles/{evaluationInvalidationViewId}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> uploadEvaluationInvalidationViewPdfFiles(@PathVariable("evaluationInvalidationViewId") Long evaluationInvalidationViewId,
-                                                       @RequestParam("pdfFiles") MultipartFile[] pdfFiles)
+                                                                    @RequestParam("pdfFiles") MultipartFile[] pdfFiles)
       throws Exception {
 
-    servicesInfoService.uploadEvaluationInvalidationViewPdfFiles(evaluationInvalidationViewId, pdfFiles);
-
-    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    try {
+      servicesInfoService.uploadEvaluationInvalidationViewPdfFiles(evaluationInvalidationViewId, pdfFiles);
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!!!"));
+    }
   }
 
   /**
@@ -1785,8 +1959,13 @@ public class CengizPublicController {
   @GetMapping("/deleteEvaluationInvalidationViewPdf/{id}")
   public ResponseEntity<?> deleteEvaluationInvalidationViewPdf(@PathVariable("id") Long id) {
     //list dönen servis için bir class daha yazıp öyle handle ettik
-    servicesInfoService.deleteEvaluationInvalidationViewPdfById(id);
-    return ResponseEntity.ok(new MessageResponse("Silindi!"));
+    try {
+      servicesInfoService.deleteEvaluationInvalidationViewPdfById(id);
+      return ResponseEntity.ok(new MessageResponse("Silindi!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Silinemedi!!!"));
+    }
   }
 
   /**
@@ -1812,9 +1991,13 @@ public class CengizPublicController {
       @RequestParam("pdfFiles") MultipartFile[] pdfFiles)
       throws Exception {
 
-    servicesInfoService.uploadTechnologyConsultancyViewPdfFiles(technologyConsultancyViewId, pdfFiles);
-
-    return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    try {
+      servicesInfoService.uploadTechnologyConsultancyViewPdfFiles(technologyConsultancyViewId, pdfFiles);
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!!!"));
+    }
   }
 
   /**
@@ -1839,8 +2022,13 @@ public class CengizPublicController {
   @GetMapping("/deleteTechnologyConsultancyViewPdf/{id}")
   public ResponseEntity<?> deleteTechnologyConsultancyViewPdf(@PathVariable("id") Long id) {
     //list dönen servis için bir class daha yazıp öyle handle ettik
-    servicesInfoService.deleteTechnologyConsultancyViewPdfById(id);
-    return ResponseEntity.ok(new MessageResponse("Silindi!"));
+    try {
+      servicesInfoService.deleteTechnologyConsultancyViewPdfById(id);
+      return ResponseEntity.ok(new MessageResponse("Silindi!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Silinemedi!!!"));
+    }
   }
 
   /**
@@ -1859,4 +2047,61 @@ public class CengizPublicController {
             + technologyConsultancyViewPdfEntity.getFileName() + "\"")
         .body(new ByteArrayResource(technologyConsultancyViewPdfEntity.getPdfFile()));
   }
+
+  /**
+   * @param kvkk .
+   * @return .
+   * @throws Exception .
+   */
+  @PostMapping(value = "/saveKvkk", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<General> saveKvkk(@RequestParam("kvkk") MultipartFile kvkk) throws Exception {
+
+
+    KvvkEntity kvvkEntity = new KvvkEntity(kvkk.getBytes(), kvkk.getOriginalFilename(), kvkk.getContentType());
+    General general = new General();
+    try {
+      Long id = kvvkInfoService.saveKvvk(kvvkEntity);
+
+
+      general.setMessage("Kayıt işleminiz başarılı!");
+      general.setId(id);
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      general.setMessage("Kayıt işleminiz başarısız!!!");
+      general.setId(-1L);
+    }
+
+
+    return ResponseEntity.ok(general);
+  }
+
+  /**
+   * Kvvk download
+   *
+   * @return .
+   */
+  @GetMapping("/downloadKvvk")
+  public ResponseEntity<Resource> downloadKvvk() {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    KvvkEntity kvvkEntity = kvvkInfoService.getKvvkFile();
+    return ResponseEntity.ok()
+        .contentType(MediaType.parseMediaType(kvvkEntity.getFileType()))
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""
+            + kvvkEntity.getFileName() + "\"")
+        .body(new ByteArrayResource(kvvkEntity.getKvvk()));
+  }
+
+  /**
+   * Kvvk download
+   *
+   * @return .
+   */
+  @GetMapping("/getKvkk")
+  public String getKvkk() {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    KvvkEntity kvvkEntity = kvvkInfoService.getKvvkFile();
+    return "data: image/jpeg;base64," +
+        new String(Base64.encodeBase64(kvvkEntity.getKvvk()), StandardCharsets.US_ASCII);
+  }
+
 }

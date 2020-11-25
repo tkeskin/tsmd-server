@@ -31,5 +31,6 @@ public class Const {
   public static final String TABLE_VALUATION_VIEW_PDF = "valuationviewpdf";
   public static final String TABLE_EVALUATIONINVALIDATION_VIEW_PDF = "evaluationinvalidationviewpdf";
   public static final String TABLE_TECHNOLOGYCONSULTANCY_VIEW_PDF = "technologyconsultancyviewpdf";
+  public static final String TABLE_KVVK = "kvvk";
 
 }

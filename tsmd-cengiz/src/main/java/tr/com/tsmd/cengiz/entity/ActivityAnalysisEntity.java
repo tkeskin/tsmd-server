@@ -57,12 +57,14 @@ public class ActivityAnalysisEntity extends AuditModel {
 
   private String legalPerson;
 
+  private boolean kvvk;
+
 
 
   public ActivityAnalysisEntity() {
   }
 
-  public ActivityAnalysisEntity(String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String keyWord, String opponent, String technicalcomponent, String image, String otherpoint, String legalPerson) {
+  public ActivityAnalysisEntity(String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String keyWord, String opponent, String technicalcomponent, String image, String otherpoint, String legalPerson, boolean kvvk) {
     this.name_surname = name_surname;
     this.tc = tc;
     this.address = address;
@@ -74,6 +76,7 @@ public class ActivityAnalysisEntity extends AuditModel {
     this.image = image;
     this.otherpoint = otherpoint;
     this.legalPerson = legalPerson;
+    this.kvvk = kvvk;
   }
 
   public Long getId() {
@@ -194,5 +197,13 @@ public class ActivityAnalysisEntity extends AuditModel {
 
   public void setLegalPerson(String legalPerson) {
     this.legalPerson = legalPerson;
+  }
+
+  public boolean isKvvk() {
+    return kvvk;
+  }
+
+  public void setKvvk(boolean kvvk) {
+    this.kvvk = kvvk;
   }
 }

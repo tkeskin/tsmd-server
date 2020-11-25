@@ -48,12 +48,14 @@ public class PatentPre {
 
   private String legalPerson;
 
+  private boolean kvvk;
+
   public PatentPre() {
   }
 
   public PatentPre(String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String protectiontype, String reporttype, String computerarea, String electricityarea, String electronicarea,
                    String machinearea, String medicinearea, String automotivearea, String metallurgyarea, String biomedicalarea, String chemistryarea, String foodarea, String buildarea, String otherarea, String title,
-                   String patentkeyword, String patentapplication, String advantage, String publications, String detailexplain, String picture, String otherpoint, String legalPerson) {
+                   String patentkeyword, String patentapplication, String advantage, String publications, String detailexplain, String picture, String otherpoint, String legalPerson, boolean kvvk) {
 
     this.name_surname = name_surname;
     this.tc = tc;
@@ -83,6 +85,7 @@ public class PatentPre {
     this.picture = picture;
     this.otherpoint = otherpoint;
     this.legalPerson = legalPerson;
+    this.kvvk = kvvk;
   }
 
   public Long getId() {
@@ -333,5 +336,13 @@ public class PatentPre {
 
   public void setLegalPerson(String legalPerson) {
     this.legalPerson = legalPerson;
+  }
+
+  public boolean isKvvk() {
+    return kvvk;
+  }
+
+  public void setKvvk(boolean kvvk) {
+    this.kvvk = kvvk;
   }
 }

@@ -19,18 +19,21 @@ public class InvalidationAssessment {
 
   private Date createdAt;
 
+  private boolean kvvk;
 
 
   public InvalidationAssessment() {
   }
 
-  public InvalidationAssessment(Long id, String appNo, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email) {
+  public InvalidationAssessment(Long id, String appNo, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email,
+                                boolean kvvk) {
     this.id = id;
     this.tc = tc;
     this.address = address;
     this.tel = tel;
     this.email = email;
     this.appNo = appNo;
+    this.kvvk = kvvk;
   }
 
   public Date getCreatedAt() {
@@ -88,5 +91,13 @@ public class InvalidationAssessment {
 
   public void setAppNo(String appNo) {
     this.appNo = appNo;
+  }
+
+  public boolean isKvvk() {
+    return kvvk;
+  }
+
+  public void setKvvk(boolean kvvk) {
+    this.kvvk = kvvk;
   }
 }

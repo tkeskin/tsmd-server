@@ -38,7 +38,7 @@ public class ValuationTrademarkEntity extends AuditModel {
 //  private String trademarkclass;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String trademarkpurpose;
 
 //  @Lob
@@ -46,109 +46,110 @@ public class ValuationTrademarkEntity extends AuditModel {
 //  private String registrationdate;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String commonusage;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String targetcountry;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String trademarktime;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String markettime;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String trademarkcontribution;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String mainsector;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String othersector;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String marketshare;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String overseasmarketshare;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String exportcountry;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String turnoverpercent;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String competingmarketshare;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String markethistory;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String turnovertarget;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String trademarkturnoverpercent;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String incomeincreasepercent;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String license;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String licenseroyalt;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String contract;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String advertisement;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String totalexpenditure;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String countryoutside;
 
   @Lob
-  @Type(type="org.hibernate.type.TextType")
+  @Type(type = "org.hibernate.type.TextType")
   private String europeanunion;
 
 
   @Lob
-  @Type(type="org.hibernate.type.BinaryType")
+  @Type(type = "org.hibernate.type.BinaryType")
   private byte[] dekont;
   private String dekontFileName;
   private String dekontFileType;
+  private boolean kvvk;
 
 
   public ValuationTrademarkEntity() {
   }
 
-  public ValuationTrademarkEntity(String address, String trademarkpurpose, String commonusage, String targetcountry, String trademarktime, String markettime, String trademarkcontribution, String mainsector, String othersector, String marketshare, String overseasmarketshare, String exportcountry, String turnoverpercent, String competingmarketshare, String markethistory,  String turnovertarget, String trademarkturnoverpercent, String incomeincreasepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String countryoutside, String europeanunion, String name_surname, String tc, String tel, @NotBlank @Size(max = 50) @Email String email,String legalPerson, String valuationTrademarkAppNo,String licenseChoose) {
+  public ValuationTrademarkEntity(String address, String trademarkpurpose, String commonusage, String targetcountry, String trademarktime, String markettime, String trademarkcontribution, String mainsector, String othersector, String marketshare, String overseasmarketshare, String exportcountry, String turnoverpercent, String competingmarketshare, String markethistory, String turnovertarget, String trademarkturnoverpercent, String incomeincreasepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String countryoutside, String europeanunion, String name_surname, String tc, String tel, @NotBlank @Size(max = 50) @Email String email, String legalPerson, String valuationTrademarkAppNo, String licenseChoose, boolean kvvk) {
     this.address = address;
     this.trademarkpurpose = trademarkpurpose;
     this.commonusage = commonusage;
@@ -186,6 +187,7 @@ public class ValuationTrademarkEntity extends AuditModel {
     this.legalPerson = legalPerson;
     this.valuationTrademarkAppNo = valuationTrademarkAppNo;
     this.licenseChoose = licenseChoose;
+    this.kvvk = kvvk;
   }
 
   public Long getId() {
@@ -477,5 +479,13 @@ public class ValuationTrademarkEntity extends AuditModel {
 
   public void setLicenseChoose(String licenseChoose) {
     this.licenseChoose = licenseChoose;
+  }
+
+  public boolean isKvvk() {
+    return kvvk;
+  }
+
+  public void setKvvk(boolean kvvk) {
+    this.kvvk = kvvk;
   }
 }

@@ -10,18 +10,13 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 import tr.com.tsmd.auth.payload.response.MessageResponse;
-import tr.com.tsmd.cengiz.entity.TrademarkPreEntity;
 import tr.com.tsmd.cengiz.models.About;
 import tr.com.tsmd.cengiz.models.ActivityAnalysisView;
 import tr.com.tsmd.cengiz.models.CatalogItem;
@@ -31,12 +26,9 @@ import tr.com.tsmd.cengiz.models.News;
 import tr.com.tsmd.cengiz.models.Notice;
 import tr.com.tsmd.cengiz.models.PatentPreView;
 import tr.com.tsmd.cengiz.models.TechnologyConsultancyView;
-import tr.com.tsmd.cengiz.models.TrademarkPre;
-import tr.com.tsmd.cengiz.models.TrademarkPreList;
 import tr.com.tsmd.cengiz.models.TrademarkPreView;
 import tr.com.tsmd.cengiz.models.UserRating;
 import tr.com.tsmd.cengiz.models.ValuationView;
-import tr.com.tsmd.cengiz.repository.TrademarkPreRepository;
 import tr.com.tsmd.cengiz.service.AboutInfoService;
 import tr.com.tsmd.cengiz.service.CompanyProfileInfoService;
 import tr.com.tsmd.cengiz.service.MovieInfoService;
@@ -74,7 +66,6 @@ public class CengizController {
 
   @Autowired
   ServicesInfoService servicesInfoService;
-
 
 
   /**
@@ -121,9 +112,13 @@ public class CengizController {
   @PostMapping("/newsUpdateContent")
   public ResponseEntity<?> updateNewsContent(@RequestBody News news) {
 
-    newsInfoService.updateNewsContent(news);
-
-    return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+    try {
+      newsInfoService.updateNewsContent(news);
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarısız!"));
+    }
   }
 
   /**
@@ -134,9 +129,13 @@ public class CengizController {
   @PostMapping("/noticeUpdateContent")
   public ResponseEntity<?> updateNoticeContent(@RequestBody Notice notice) {
 
-    noticeInfoService.updateNoticeContent(notice);
-
-    return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+    try {
+      noticeInfoService.updateNoticeContent(notice);
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarısız!"));
+    }
   }
 
   /**
@@ -146,10 +145,14 @@ public class CengizController {
    */
   @PostMapping("/aboutUpdateContent")
   public ResponseEntity<?> updateAboutContent(@RequestBody About about) {
+    try {
+      aboutInfoService.updateAboutContent(about);
 
-    aboutInfoService.updateAboutContent(about);
-
-    return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarısız!"));
+    }
   }
 
   /**
@@ -159,12 +162,15 @@ public class CengizController {
    */
   @PostMapping("/companyProfileUpdateContent")
   public ResponseEntity<?> updateCompanyProfileContent(@RequestBody CompanyProfile companyProfile) {
+    try {
+      companyProfileInfoService.updateCompanyProfileContent(companyProfile);
 
-    companyProfileInfoService.updateCompanyProfileContent(companyProfile);
-
-    return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarısız!"));
+    }
   }
-
 
 
   /**
@@ -217,9 +223,13 @@ public class CengizController {
   @PostMapping("/patentPreUpdateContent")
   public ResponseEntity<?> updatePatentPreViewContent(@RequestBody PatentPreView patentPreView) {
 
-    servicesInfoService.updatePatentPreViewContent(patentPreView);
-
-    return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+    try {
+      servicesInfoService.updatePatentPreViewContent(patentPreView);
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarısız!"));
+    }
   }
 
   /**
@@ -230,9 +240,14 @@ public class CengizController {
   @PostMapping("/trademarkPreUpdateContent")
   public ResponseEntity<?> updateTrademarkPreViewContent(@RequestBody TrademarkPreView trademarkPreView) {
 
-    servicesInfoService.updateTrademarkPreViewContent(trademarkPreView);
+    try {
+      servicesInfoService.updateTrademarkPreViewContent(trademarkPreView);
 
-    return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarısız!"));
+    }
   }
 
   /**
@@ -243,9 +258,13 @@ public class CengizController {
   @PostMapping("/activityAnalysisUpdateContent")
   public ResponseEntity<?> activityAnalysisViewUpdateContent(@RequestBody ActivityAnalysisView activityAnalysisView) {
 
-    servicesInfoService.updateActivityAnalysisViewContent(activityAnalysisView);
-
-    return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+    try {
+      servicesInfoService.updateActivityAnalysisViewContent(activityAnalysisView);
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarısız!"));
+    }
   }
 
   /**
@@ -256,9 +275,14 @@ public class CengizController {
   @PostMapping("/valuationUpdateContent")
   public ResponseEntity<?> valuationViewUpdateContent(@RequestBody ValuationView valuationView) {
 
-    servicesInfoService.updateValuationViewContent(valuationView);
+    try {
+      servicesInfoService.updateValuationViewContent(valuationView);
 
-    return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarısız!"));
+    }
   }
 
   /**
@@ -269,9 +293,14 @@ public class CengizController {
   @PostMapping("/evaluationInvalidationUpdateContent")
   public ResponseEntity<?> evaluationInvalidationViewUpdateContent(@RequestBody EvaluationInvalidationView evaluationInvalidationView) {
 
-    servicesInfoService.updateEvaluationInvalidationViewContent(evaluationInvalidationView);
+    try {
+      servicesInfoService.updateEvaluationInvalidationViewContent(evaluationInvalidationView);
 
-    return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarısız!"));
+    }
   }
 
   /**
@@ -282,9 +311,13 @@ public class CengizController {
   @PostMapping("/technologyConsultancyUpdateContent")
   public ResponseEntity<?> technologyConsultancyViewUpdateContent(@RequestBody TechnologyConsultancyView technologyConsultancyView) {
 
-    servicesInfoService.updateTechnologyConsultancyViewContent(technologyConsultancyView);
-
-    return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+    try {
+      servicesInfoService.updateTechnologyConsultancyViewContent(technologyConsultancyView);
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarısız!"));
+    }
   }
 
 

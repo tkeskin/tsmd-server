@@ -51,12 +51,13 @@ public class ValuationPatent {
   private String email;
   private String legalPerson;
   private String licenseChoose;
+  private boolean kvvk;
 
 
   public ValuationPatent() {
   }
 
-  public ValuationPatent(Long id, String address, String patentpurpose, String patentappno, String patentcountry, String patentmarket, String patentsector, String patentothersector, String marketshare, String overseasmarketshare, String exportcountry, String exportturnover, String competingmarketshare, String competitordate, String turnovertarget, String turnoverpercent, String incomepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String spending, String worldspending, String caseexpense, String countryoutside, String europeanunio, String name_surname, String tc, String tel, @NotBlank @Size(max = 50) @Email String email, String legalPerson,String licenseChoose) {
+  public ValuationPatent(Long id, String address, String patentpurpose, String patentappno, String patentcountry, String patentmarket, String patentsector, String patentothersector, String marketshare, String overseasmarketshare, String exportcountry, String exportturnover, String competingmarketshare, String competitordate, String turnovertarget, String turnoverpercent, String incomepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String spending, String worldspending, String caseexpense, String countryoutside, String europeanunio, String name_surname, String tc, String tel, @NotBlank @Size(max = 50) @Email String email, String legalPerson,String licenseChoose, boolean kvvk) {
     this.id = id;
     this.address = address;
     this.patentpurpose = patentpurpose;
@@ -95,6 +96,7 @@ public class ValuationPatent {
     this.email = email;
     this.legalPerson = legalPerson;
     this.licenseChoose = licenseChoose;
+    this.kvvk = kvvk;
   }
 
   public Long getId() {
@@ -367,5 +369,13 @@ public class ValuationPatent {
 
   public void setLicenseChoose(String licenseChoose) {
     this.licenseChoose = licenseChoose;
+  }
+
+  public boolean isKvvk() {
+    return kvvk;
+  }
+
+  public void setKvvk(boolean kvvk) {
+    this.kvvk = kvvk;
   }
 }

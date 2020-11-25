@@ -26,12 +26,13 @@ public class TrademarkPre {
 
   private String legalPerson;
   private String trademarkItemList;
-
+  private boolean kvvk;
 
   public TrademarkPre() {
   }
 
-  public TrademarkPre(Long id, String trademarktype, String trademarkimage, String trademarktext, String trademarkclass, String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String legalPerson, String trademarkItemList) {
+  public TrademarkPre(Long id, String trademarktype, String trademarkimage, String trademarktext, String trademarkclass, String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String legalPerson, String trademarkItemList,
+                      boolean kvvk) {
     this.id = id;
     this.trademarktype = trademarktype;
     this.trademarkimage = trademarkimage;
@@ -44,6 +45,7 @@ public class TrademarkPre {
     this.email = email;
     this.legalPerson = legalPerson;
     this.trademarkItemList = trademarkItemList;
+    this.kvvk = kvvk;
   }
 
   public Date getCreatedAt() {
@@ -156,5 +158,13 @@ public class TrademarkPre {
 
   public void setTrademarkItemList(String trademarkItemList) {
     this.trademarkItemList = trademarkItemList;
+  }
+
+  public boolean isKvvk() {
+    return kvvk;
+  }
+
+  public void setKvvk(boolean kvvk) {
+    this.kvvk = kvvk;
   }
 }

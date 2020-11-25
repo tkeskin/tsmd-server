@@ -27,10 +27,12 @@ public class ActivityAnalysis {
 
   private String legalPerson;
 
+  private boolean kvvk;
+
   public ActivityAnalysis() {
   }
 
-  public ActivityAnalysis(String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String keyWord, String opponent, String technicalcomponent, String image, String otherpoint, String legalPerson) {
+  public ActivityAnalysis(String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String keyWord, String opponent, String technicalcomponent, String image, String otherpoint, String legalPerson,boolean kvvk) {
 
     this.name_surname = name_surname;
     this.tc = tc;
@@ -43,6 +45,7 @@ public class ActivityAnalysis {
     this.image = image;
     this.otherpoint = otherpoint;
     this.legalPerson = legalPerson;
+    this.kvvk = kvvk;
   }
 
   public Long getId() {
@@ -156,5 +159,13 @@ public class ActivityAnalysis {
 
   public void setLegalPerson(String legalPerson) {
     this.legalPerson = legalPerson;
+  }
+
+  public boolean isKvvk() {
+    return kvvk;
+  }
+
+  public void setKvvk(boolean kvvk) {
+    this.kvvk = kvvk;
   }
 }

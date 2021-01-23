@@ -38,6 +38,12 @@ public class NewsEntity extends AuditModel {
   private Boolean published;
   private String publishedDate;
 
+  @OneToMany(
+      mappedBy = "newsEntity",
+      cascade = CascadeType.ALL,
+      fetch = FetchType.LAZY
+  )
+  private Set<NewsRelatedPicturesEntity> newsRelatedPicturesEntities = new HashSet<>();
 
   public NewsEntity() {
   }
@@ -121,5 +127,13 @@ public class NewsEntity extends AuditModel {
 
   public void setPublishedDate(String publishedDate) {
     this.publishedDate = publishedDate;
+  }
+
+  public Set<NewsRelatedPicturesEntity> getNewsRelatedPicturesEntities() {
+    return newsRelatedPicturesEntities;
+  }
+
+  public void setNewsRelatedPicturesEntities(Set<NewsRelatedPicturesEntity> newsRelatedPicturesEntities) {
+    this.newsRelatedPicturesEntities = newsRelatedPicturesEntities;
   }
 }

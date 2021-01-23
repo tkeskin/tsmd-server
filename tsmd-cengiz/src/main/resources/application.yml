@@ -6,6 +6,11 @@ server:
 spring:
   application:
     name: tsmd-cengiz
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 8MB
+      max-request-size: 8MB
   mail:
     host: 10.10.50.14
     username: test
@@ -29,8 +34,8 @@ spring:
       maximum-pool-size: 50
       minimum-idle: 20
       connection-timeout: 20500
-#    url: jdbc:postgresql://localhost:5432/postgres
-    url: jdbc:postgresql://tsmd-postgres:5432/postgres
+    url: jdbc:postgresql://localhost:5432/postgres
+#    url: jdbc:postgresql://tsmd-postgres:5432/postgres
   jpa:
     hibernate:
       ddl-auto: update
@@ -66,5 +71,5 @@ hystrix:
 eureka:
   client:
     serviceUrl:
-#      defaultZone: http://localhost:8761/eureka/
-      defaultZone: http://eureka:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
+#      defaultZone: http://eureka:8761/eureka/

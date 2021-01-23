@@ -28,7 +28,30 @@
     <option name="FILTER_BY_CURRENT_PROJECT" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6917e23-ab4c-4ded-9eb7-886bb2c0a7e7" name="Default Changelist" comment="geliştirme" />
+    <list default="true" id="a6917e23-ab4c-4ded-9eb7-886bb2c0a7e7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/CengizApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/CengizApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ActivityAnalysisEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/ActivityAnalysisEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/InvalidationAssessmentEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/InvalidationAssessmentEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/NewsEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/NewsEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/NewsRelatedPicturesEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/NewsRelatedPicturesEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/TrademarkPreEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/entity/TrademarkPreEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/ActivityAnalysis.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/ActivityAnalysis.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/InvalidationAssessment.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/InvalidationAssessment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/PatentPre.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/PatentPre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/TrademarkPre.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/models/TrademarkPre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/NewsRelatedPicturesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/repository/NewsRelatedPicturesRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/ActivityAnalysisServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/ActivityAnalysisServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/EmailServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/EmailServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NewsInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NewsInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/util/Const.java" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/util/Const.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsmd-cengiz/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/tsmd-cengiz/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zuul-server/src/main/java/tr/com/tsmd/zuulserver/ZuulServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/zuul-server/src/main/java/tr/com/tsmd/zuulserver/ZuulServerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zuul-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/zuul-server/src/main/resources/application.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,16 +133,7 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="eureka-server" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="tsmd-cengiz" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="tsmd-cengiz" type="f1a62948:ProjectNode" />
-                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -129,6 +143,21 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="tsmd-cengiz" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="zuul-server" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="zuul-server" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="zuul-server" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
@@ -206,10 +235,10 @@
       <recent name="tr.com.tsmd.cengiz.controller.payload.request" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="tr.com.tsmd.cengiz.repository" />
-      <recent name="tr.com.tsmd.cengiz.service" />
-      <recent name="tr.com.tsmd.cengiz.entity" />
       <recent name="tr.com.tsmd.cengiz.models" />
+      <recent name="tr.com.tsmd.cengiz.repository" />
+      <recent name="tr.com.tsmd.cengiz.entity" />
+      <recent name="tr.com.tsmd.cengiz.service" />
       <recent name="tr.com.tsmd.cengiz.payload.request" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
@@ -286,6 +315,25 @@
         <option name="taskNames">
           <list>
             <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="tsmd-cengiz [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/tsmd-cengiz" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -412,6 +460,7 @@
       <item itemvalue="Gradle.eureka-server [build]" />
       <item itemvalue="Gradle.tsmd-auth [build]" />
       <item itemvalue="Gradle.tsmd-common [build]" />
+      <item itemvalue="Gradle.tsmd-cengiz [clean]" />
       <item itemvalue="Spring Boot.CommonApplication" />
       <item itemvalue="Spring Boot.ZuulServerApplication" />
       <item itemvalue="Spring Boot.AuthApplication" />
@@ -422,6 +471,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.tsmd-cengiz [clean]" />
         <item itemvalue="Gradle.tsmd-common [build]" />
         <item itemvalue="Gradle.tsmd-auth [build]" />
         <item itemvalue="Gradle.eureka-server [build]" />
@@ -535,7 +585,20 @@
       <workItem from="1605523043668" duration="21545000" />
       <workItem from="1606221981323" duration="413000" />
       <workItem from="1606222399710" duration="8310000" />
-      <workItem from="1606296164680" duration="3754000" />
+      <workItem from="1606296164680" duration="4081000" />
+      <workItem from="1607320458963" duration="4127000" />
+      <workItem from="1607419974137" duration="9158000" />
+      <workItem from="1607431134027" duration="2990000" />
+      <workItem from="1607496417461" duration="9093000" />
+      <workItem from="1608468927123" duration="4374000" />
+      <workItem from="1608625296726" duration="14711000" />
+      <workItem from="1608817687755" duration="6385000" />
+      <workItem from="1609150720540" duration="4449000" />
+      <workItem from="1609320838475" duration="1328000" />
+      <workItem from="1609748428833" duration="10000" />
+      <workItem from="1609748448968" duration="27386000" />
+      <workItem from="1610631450420" duration="2378000" />
+      <workItem from="1611339471223" duration="9829000" />
     </task>
     <task id="LOCAL-00001" summary="- bağımlılık eklendi...">
       <created>1581597049281</created>
@@ -642,7 +705,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591128683632</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="@geliştirme">
+      <created>1606312948374</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1606312948374</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,9 +731,18 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="- bağımlılık eklendi..." />
     <MESSAGE value="geliştirme" />
-    <option name="LAST_COMMIT_MESSAGE" value="geliştirme" />
+    <MESSAGE value="@geliştirme" />
+    <option name="LAST_COMMIT_MESSAGE" value="@geliştirme" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="361" y="71" key="#Assign_Data_Sources" timestamp="1607429624628">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="71" key="#Assign_Data_Sources/0.0.1536.824@0.0.1536.824" timestamp="1607429624628" />
+    <state x="361" y="71" key="#Inspections" timestamp="1607424144893">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="71" key="#Inspections/0.0.1536.824@0.0.1536.824" timestamp="1607424144893" />
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606222391170">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -672,94 +751,106 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="488" y="215" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1605694836980" />
-    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser" timestamp="1605274087484">
+    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser" timestamp="1611423038677">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1605274087484" />
-    <state x="393" y="7" key="CommitChangelistDialog2" timestamp="1606312776481">
+    <state x="574" y="96" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1611423038677" />
+    <state x="116" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1610528685523">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="393" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1606312776481" />
-    <state width="404" height="466" key="DebuggerActiveHint" timestamp="1606290821785">
+    <state x="116" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1610528685523" />
+    <state x="393" y="7" key="CommitChangelistDialog2" timestamp="1606312947087">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="404" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1606290821785" />
+    <state x="393" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1606312947087" />
+    <state width="795" height="466" key="DebuggerActiveHint" timestamp="1610544498906">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="795" height="466" key="DebuggerActiveHint/0.0.1536.824@0.0.1536.824" timestamp="1610544498906" />
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1605525052103">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1605525052103" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1599736062077">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1611432193202">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1599736062077" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1606312654052">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1611432193202" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1611432193202">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606312654052" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1606312654052">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1611432193202" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1611432193202">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606312654052" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1606312654052">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1611432193202" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1611432193202">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606312654052" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1606312654052">
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1611432193202" />
+    <state width="1493" height="215" key="GridCell.Tab.1.bottom" timestamp="1611431651259">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606312654052" />
-    <state width="1493" height="221" key="GridCell.Tab.1.bottom" timestamp="1606305622563">
+    <state width="1493" height="215" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1611431651259" />
+    <state width="1493" height="215" key="GridCell.Tab.1.center" timestamp="1611431651259">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="221" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606305622563" />
-    <state width="1493" height="221" key="GridCell.Tab.1.center" timestamp="1606305622562">
+    <state width="1493" height="215" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1611431651259" />
+    <state width="1493" height="215" key="GridCell.Tab.1.left" timestamp="1611431651259">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="221" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1606305622562" />
-    <state width="1493" height="221" key="GridCell.Tab.1.left" timestamp="1606305622562">
+    <state width="1493" height="215" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1611431651259" />
+    <state width="1493" height="215" key="GridCell.Tab.1.right" timestamp="1611431651259">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="221" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1606305622562" />
-    <state width="1493" height="221" key="GridCell.Tab.1.right" timestamp="1606305622563">
+    <state width="1493" height="215" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1611431651259" />
+    <state width="1493" height="215" key="GridCell.Tab.2.bottom" timestamp="1611431651259">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="221" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1606305622563" />
-    <state width="1493" height="221" key="GridCell.Tab.2.bottom" timestamp="1606305622563">
+    <state width="1493" height="215" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1611431651259" />
+    <state width="1493" height="215" key="GridCell.Tab.2.center" timestamp="1611431651259">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="221" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606305622563" />
-    <state width="1493" height="221" key="GridCell.Tab.2.center" timestamp="1606305622563">
+    <state width="1493" height="215" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1611431651259" />
+    <state width="1493" height="215" key="GridCell.Tab.2.left" timestamp="1611431651259">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="221" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1606305622563" />
-    <state width="1493" height="221" key="GridCell.Tab.2.left" timestamp="1606305622563">
+    <state width="1493" height="215" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1611431651259" />
+    <state width="1493" height="215" key="GridCell.Tab.2.right" timestamp="1611431651259">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="221" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1606305622563" />
-    <state width="1493" height="221" key="GridCell.Tab.2.right" timestamp="1606305622563">
+    <state width="1493" height="215" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1611431651259" />
+    <state x="463" y="123" key="RollbackChangesDialog" timestamp="1609838937872">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="221" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1606305622563" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1605265540225">
+    <state x="463" y="123" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1609838937872" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1607430931625">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1605265540225" />
-    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606223416894">
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1607430931625" />
+    <state x="361" y="134" key="Vcs.Push.Dialog.v2" timestamp="1606312952555">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1606223416894" />
-    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606312716841">
+    <state x="361" y="134" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1606312952555" />
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1608644257162">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1606312716841" />
-    <state x="463" y="144" width="609" height="536" key="find.popup" timestamp="1606225869033">
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1608644257162" />
+    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1611432209083">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="463" y="144" width="609" height="536" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1606225869033" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1605697207320">
+    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1611432209083" />
+    <state x="463" y="144" width="609" height="536" key="find.popup" timestamp="1611423296326">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1605697207320" />
+    <state x="463" y="144" width="609" height="536" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1611423296326" />
+    <state x="209" y="33" key="new project wizard" timestamp="1607497624956">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="209" y="33" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1607497624956" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1607420186287">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1607420186287" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -771,32 +862,32 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>201</line>
+          <line>206</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>913</line>
+          <line>921</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>938</line>
+          <line>946</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>970</line>
+          <line>981</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1120</line>
+          <line>1131</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1147</line>
+          <line>1158</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -806,17 +897,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1162</line>
+          <line>1173</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>933</line>
+          <line>941</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1225</line>
+          <line>1240</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -826,47 +917,47 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1239</line>
+          <line>1254</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizController.java</url>
-          <line>207</line>
+          <line>237</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>888</line>
+          <line>896</line>
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>900</line>
+          <line>908</line>
           <option name="timeStamp" value="56" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1314</line>
+          <line>1329</line>
           <option name="timeStamp" value="57" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NewsInfoServiceImpl.java</url>
-          <line>191</line>
+          <line>193</line>
           <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1283</line>
+          <line>1298</line>
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1344</line>
+          <line>1359</line>
           <option name="timeStamp" value="62" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1343</line>
+          <line>1358</line>
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -876,7 +967,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1198</line>
+          <line>1211</line>
           <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -891,13 +982,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1294</line>
+          <line>1309</line>
           <option name="timeStamp" value="72" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/PatentPreServiceImpl.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/PatentPreServiceImpl.java</url>
@@ -911,32 +997,32 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1425</line>
+          <line>1443</line>
           <option name="timeStamp" value="78" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1452</line>
+          <line>1470</line>
           <option name="timeStamp" value="79" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1465</line>
+          <line>1483</line>
           <option name="timeStamp" value="80" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1479</line>
+          <line>1497</line>
           <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1439</line>
+          <line>1457</line>
           <option name="timeStamp" value="82" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1263</line>
+          <line>1278</line>
           <option name="timeStamp" value="83" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -946,7 +1032,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizController.java</url>
-          <line>132</line>
+          <line>138</line>
           <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -956,12 +1042,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1492</line>
+          <line>1510</line>
           <option name="timeStamp" value="90" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizController.java</url>
-          <line>115</line>
+          <line>121</line>
           <option name="timeStamp" value="91" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -971,73 +1057,118 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>748</line>
+          <line>756</line>
           <option name="timeStamp" value="94" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>817</line>
+          <line>825</line>
           <option name="timeStamp" value="95" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/EmailServiceImpl.java</url>
-          <line>886</line>
+          <line>891</line>
           <option name="timeStamp" value="96" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1325</line>
+          <line>1340</line>
           <option name="timeStamp" value="97" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>318</line>
+          <line>323</line>
           <option name="timeStamp" value="99" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1693</line>
+          <line>1711</line>
           <option name="timeStamp" value="100" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1739</line>
+          <line>1757</line>
           <option name="timeStamp" value="105" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>2059</line>
+          <line>2077</line>
           <option name="timeStamp" value="107" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>1987</line>
+          <line>2005</line>
           <option name="timeStamp" value="108" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>2085</line>
+          <line>2103</line>
           <option name="timeStamp" value="110" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>2101</line>
+          <line>2119</line>
           <option name="timeStamp" value="112" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
-          <line>772</line>
+          <line>780</line>
           <option name="timeStamp" value="113" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizController.java</url>
-          <line>195</line>
+          <line>213</line>
           <option name="timeStamp" value="115" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizController.java</url>
-          <line>169</line>
+          <line>175</line>
           <option name="timeStamp" value="118" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/EmailServiceImpl.java</url>
+          <line>798</line>
+          <option name="timeStamp" value="119" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/zuul-server/src/main/java/tr/com/tsmd/zuulserver/filter/RouteFilter.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="129" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/NewsInfoServiceImpl.java</url>
+          <line>105</line>
+          <option name="timeStamp" value="130" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
+          <line>1741</line>
+          <option name="timeStamp" value="131" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
+          <line>687</line>
+          <option name="timeStamp" value="132" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizPublicController.java</url>
+          <line>696</line>
+          <option name="timeStamp" value="133" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/HomeServiceImpl.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="134" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/controller/CengizController.java</url>
+          <line>362</line>
+          <option name="timeStamp" value="135" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/tsmd-cengiz/src/main/java/tr/com/tsmd/cengiz/service/HomeServiceImpl.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="138" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

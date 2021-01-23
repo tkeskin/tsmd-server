@@ -90,14 +90,14 @@ public class EmailServiceImpl implements EmailService {
       try {
         String inlineImage = "";
         if (trademarkPreEntity.getTrademarkimagebyte() != null){
-          ByteArrayDataSource bds = new ByteArrayDataSource(trademarkPreEntity.getTrademarkimagebyte(), "image/jpeg");
-          helper.addAttachment("marka_ornegi.jpeg", bds);
-          inlineImage = "<img src=\"cid:marka_ornegi.jpeg\"></img><br/>";
+          ByteArrayDataSource bds = new ByteArrayDataSource(trademarkPreEntity.getTrademarkimagebyte(), trademarkPreEntity.getTrademarkimageFileType());
+          String markaOrnegiIsim = attachmentNameControl("marka_ornegi",trademarkPreEntity.getTrademarkimageFileType());
+          helper.addAttachment(markaOrnegiIsim, bds);
+          inlineImage = "<img src=\"cid:"+markaOrnegiIsim+"\"></img><br/>";
         }
 
-
-
-        helper.addAttachment("dekont.jpeg", new ByteArrayResource(trademarkPreEntity.getDekont()));
+        String dekontName = attachmentNameControl("dekont",trademarkPreEntity.getDekontFileType());
+        helper.addAttachment(dekontName, new ByteArrayResource(trademarkPreEntity.getDekont()));
         String contentHtml="<h1 style=\"font-weight: bold;color: white;background-color: #d32f2f\">Marka Ön Araştırma Raporu </h1>\n"
             + "<div style=\"font-weight: bold;color: white;background-color: #6c757d\">Ad Soyad/Ticaret Unvanı</div>\n"
             + "<div>"+trademarkPreEntity.getName_surname()+"</div>\n"
@@ -165,14 +165,17 @@ public class EmailServiceImpl implements EmailService {
          relatedPicturesImg = new String[patentPreRelatedPicturesEntities.size()];
 
          for (int i=0;i<patentPreRelatedPicturesEntities.size();i++){
-           relatedPictures[i] = new ByteArrayDataSource(patentPreRelatedPicturesEntities.get(i).getPicture(), "image/jpeg");
-           helper.addAttachment(i+".jpeg", relatedPictures[i]);
-           relatedPicturesImg[i] = "<img src=\"cid:"+i+".jpeg\"></img><br/>";
+           relatedPictures[i] = new ByteArrayDataSource(
+               patentPreRelatedPicturesEntities.get(i).getPicture(), patentPreRelatedPicturesEntities.get(i).getFileType());
+           String ilgiliResimIsim = attachmentNameControl("ilgiliGorsel"+i,patentPreRelatedPicturesEntities.get(i).getFileType());
+           helper.addAttachment(ilgiliResimIsim, relatedPictures[i]);
+           relatedPicturesImg[i] = "<img src=\"cid:"+ilgiliResimIsim+"\"></img><br/>";
 
          }
       }
 
-      helper.addAttachment("dekont.jpeg", new ByteArrayResource(patentPreEntity.getDekont()));
+      String dakontName = attachmentNameControl("dekont",patentPreEntity.getDekontFileType());
+      helper.addAttachment(dakontName, new ByteArrayResource(patentPreEntity.getDekont()));
 
       String contentHtml="<h1 style=\"font-weight: bold;color: white;background-color: #d32f2f\">Patent Ön Araştırma Raporu </h1>\n"
           +"<br>"
@@ -791,7 +794,7 @@ public class EmailServiceImpl implements EmailService {
 
       ActivityAnalysisEntity activityAnalysisEntity = activityAnalysisRepository.getById(id);
       List<ActivityAnalysisPicturesEntity> activityAnalysisPicturesEntities = activityAnalysisPicturesRepository.getByActivityAnalysisId(id);
-      helper.addAttachment("dekont.jpeg", new ByteArrayResource(activityAnalysisEntity.getDekont()));
+      //helper.addAttachment("dekont.jpeg", new ByteArrayResource(activityAnalysisEntity.getDekont()));
 
       String[] relatedPicturesImg = null;
       if (activityAnalysisPicturesEntities.size()>0){
@@ -799,9 +802,11 @@ public class EmailServiceImpl implements EmailService {
         relatedPicturesImg = new String[activityAnalysisPicturesEntities.size()];
 
         for (int i=0;i<activityAnalysisPicturesEntities.size();i++){
-          relatedPictures[i] = new ByteArrayDataSource(activityAnalysisPicturesEntities.get(i).getPicture(), "image/jpeg");
-          helper.addAttachment(i+".jpeg", relatedPictures[i]);
-          relatedPicturesImg[i] = "<img src=\"cid:"+i+".jpeg\"></img><br/>";
+          relatedPictures[i] = new ByteArrayDataSource(
+              activityAnalysisPicturesEntities.get(i).getPicture(), activityAnalysisPicturesEntities.get(i).getFileType());
+          String ilgiliResimIsim = attachmentNameControl("ilgiliGorsel"+i,activityAnalysisPicturesEntities.get(i).getFileType());
+          helper.addAttachment(ilgiliResimIsim, relatedPictures[i]);
+          relatedPicturesImg[i] = "<img src=\"cid:"+ilgiliResimIsim+"\"></img><br/>";
 
         }
       }
@@ -887,5 +892,16 @@ public class EmailServiceImpl implements EmailService {
     helper.setTo("test@turksmd.com.tr");
     helper.setFrom("test@turksmd.com.tr");
     emailSender.send(message);
+  }
+
+  public String attachmentNameControl(String attachmentName, String attachmentContentType){
+    if (attachmentContentType.equals("image/jpeg")){
+      return attachmentName+".jpg";
+    } else if (attachmentContentType.equals("image/png")){
+      return attachmentName+".png";
+    } else if (attachmentContentType.equals("application/pdf")){
+      return attachmentName+".pdf";
+    }
+    return "";
   }
 }

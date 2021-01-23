@@ -23,6 +23,8 @@ public class TrademarkPre {
 
   private Date createdAt;
   private String dekontBase64;
+  private String dekontFileType;
+  private String trademarkImageFileType;
 
   private String legalPerson;
   private String trademarkItemList;
@@ -166,5 +168,21 @@ public class TrademarkPre {
 
   public void setKvvk(boolean kvvk) {
     this.kvvk = kvvk;
+  }
+
+  public String getDekontFileType() {
+    return dekontFileType;
+  }
+
+  public void setDekontFileType(String dekontFileType) {
+    this.dekontFileType = dekontFileType;
+  }
+
+  public String getTrademarkImageFileType() {
+    return trademarkImageFileType;
+  }
+
+  public void setTrademarkImageFileType(String trademarkImageFileType) {
+    this.trademarkImageFileType = trademarkImageFileType;
   }
 }

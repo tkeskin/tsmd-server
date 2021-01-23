@@ -21,6 +21,7 @@ public class InvalidationAssessmentEntity extends AuditModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String appNo;
+  private String name_surname;
   private String tc;
   private String address;
   private String tel;
@@ -35,10 +36,13 @@ public class InvalidationAssessmentEntity extends AuditModel {
   public InvalidationAssessmentEntity() {
   }
 
-  public InvalidationAssessmentEntity(String appNo, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email,
+  public InvalidationAssessmentEntity(String appNo, String name_surname, String tc,
+                                      String address, String tel,
+                                      @NotBlank @Size(max = 50) @Email String email,
                                       boolean kvvk) {
 
     this.appNo = appNo;
+    this.name_surname = name_surname;
     this.tc = tc;
     this.address = address;
     this.tel = tel;
@@ -100,5 +104,13 @@ public class InvalidationAssessmentEntity extends AuditModel {
 
   public void setKvvk(boolean kvvk) {
     this.kvvk = kvvk;
+  }
+
+  public String getName_surname() {
+    return name_surname;
+  }
+
+  public void setName_surname(String name_surname) {
+    this.name_surname = name_surname;
   }
 }

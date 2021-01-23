@@ -8,6 +8,7 @@ import javax.validation.constraints.Size;
 public class InvalidationAssessment {
 
   private Long id;
+  private String name_surname;
   private String appNo;
   private String tc;
   private String address;
@@ -25,9 +26,12 @@ public class InvalidationAssessment {
   public InvalidationAssessment() {
   }
 
-  public InvalidationAssessment(Long id, String appNo, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email,
+  public InvalidationAssessment(Long id, String appNo, String name_surname,
+                                String tc, String address, String tel,
+                                @NotBlank @Size(max = 50) @Email String email,
                                 boolean kvvk) {
     this.id = id;
+    this.name_surname = name_surname;
     this.tc = tc;
     this.address = address;
     this.tel = tel;
@@ -99,5 +103,13 @@ public class InvalidationAssessment {
 
   public void setKvvk(boolean kvvk) {
     this.kvvk = kvvk;
+  }
+
+  public String getName_surname() {
+    return name_surname;
+  }
+
+  public void setName_surname(String name_surname) {
+    this.name_surname = name_surname;
   }
 }

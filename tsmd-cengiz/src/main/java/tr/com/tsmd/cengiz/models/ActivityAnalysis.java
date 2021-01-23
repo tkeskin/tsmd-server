@@ -23,7 +23,7 @@ public class ActivityAnalysis {
   private String otherpoint;
 
   private Date createdAt;
-  private String dekontBase64;
+//  private String dekontBase64;
 
   private String legalPerson;
 
@@ -145,13 +145,13 @@ public class ActivityAnalysis {
     this.createdAt = createdAt;
   }
 
-  public String getDekontBase64() {
-    return dekontBase64;
-  }
-
-  public void setDekontBase64(String dekontBase64) {
-    this.dekontBase64 = dekontBase64;
-  }
+//  public String getDekontBase64() {
+//    return dekontBase64;
+//  }
+//
+//  public void setDekontBase64(String dekontBase64) {
+//    this.dekontBase64 = dekontBase64;
+//  }
 
   public String getLegalPerson() {
     return legalPerson;

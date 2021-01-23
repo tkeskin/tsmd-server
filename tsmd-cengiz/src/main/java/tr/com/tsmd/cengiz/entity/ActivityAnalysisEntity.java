@@ -49,11 +49,11 @@ public class ActivityAnalysisEntity extends AuditModel {
   @Type(type="org.hibernate.type.TextType")
   private String otherpoint;
 
-  @Lob
-  @Type(type="org.hibernate.type.BinaryType")
-  private byte[] dekont;
-  private String dekontFileName;
-  private String dekontFileType;
+//  @Lob
+//  @Type(type="org.hibernate.type.BinaryType")
+//  private byte[] dekont;
+//  private String dekontFileName;
+//  private String dekontFileType;
 
   private String legalPerson;
 
@@ -167,29 +167,29 @@ public class ActivityAnalysisEntity extends AuditModel {
     this.otherpoint = otherpoint;
   }
 
-  public byte[] getDekont() {
-    return dekont;
-  }
-
-  public void setDekont(byte[] dekont) {
-    this.dekont = dekont;
-  }
-
-  public String getDekontFileName() {
-    return dekontFileName;
-  }
-
-  public void setDekontFileName(String dekontFileName) {
-    this.dekontFileName = dekontFileName;
-  }
-
-  public String getDekontFileType() {
-    return dekontFileType;
-  }
-
-  public void setDekontFileType(String dekontFileType) {
-    this.dekontFileType = dekontFileType;
-  }
+//  public byte[] getDekont() {
+//    return dekont;
+//  }
+//
+//  public void setDekont(byte[] dekont) {
+//    this.dekont = dekont;
+//  }
+//
+//  public String getDekontFileName() {
+//    return dekontFileName;
+//  }
+//
+//  public void setDekontFileName(String dekontFileName) {
+//    this.dekontFileName = dekontFileName;
+//  }
+//
+//  public String getDekontFileType() {
+//    return dekontFileType;
+//  }
+//
+//  public void setDekontFileType(String dekontFileType) {
+//    this.dekontFileType = dekontFileType;
+//  }
 
   public String getLegalPerson() {
     return legalPerson;

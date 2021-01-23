@@ -27,9 +27,9 @@ public class ActivityAnalysisServiceImpl implements ActivityAnalysisService {
   public void addActivityAnalysisDekont(Long id, MultipartFile dekont)  throws Exception {
     ActivityAnalysisEntity activityAnalysisEntity = activityAnalysisRepository.getById(id);
 
-    activityAnalysisEntity.setDekont(dekont.getBytes());
-    activityAnalysisEntity.setDekontFileName(dekont.getOriginalFilename());
-    activityAnalysisEntity.setDekontFileType(dekont.getContentType());
+//    activityAnalysisEntity.setDekont(dekont.getBytes());
+//    activityAnalysisEntity.setDekontFileName(dekont.getOriginalFilename());
+//    activityAnalysisEntity.setDekontFileType(dekont.getContentType());
     activityAnalysisRepository.save(activityAnalysisEntity);
 
   }

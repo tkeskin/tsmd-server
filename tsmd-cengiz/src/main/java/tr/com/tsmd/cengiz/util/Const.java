@@ -32,5 +32,7 @@ public class Const {
   public static final String TABLE_EVALUATIONINVALIDATION_VIEW_PDF = "evaluationinvalidationviewpdf";
   public static final String TABLE_TECHNOLOGYCONSULTANCY_VIEW_PDF = "technologyconsultancyviewpdf";
   public static final String TABLE_KVVK = "kvvk";
+  public static final String TABLE_SLIDER = "slider";
+  public static final String TABLE_SLOGAN = "slogan";
 
 }

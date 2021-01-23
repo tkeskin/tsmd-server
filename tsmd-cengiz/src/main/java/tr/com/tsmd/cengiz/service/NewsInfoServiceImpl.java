@@ -154,6 +154,8 @@ public class NewsInfoServiceImpl implements NewsInfoService {
       e.printStackTrace();
     }
     entity.setNewsId(id);
+    NewsEntity newsEntity = newsRepository.getById(id);
+    entity.setNewsEntity(newsEntity);
     newsRelatedPicturesRepository.save(entity);
   }
 

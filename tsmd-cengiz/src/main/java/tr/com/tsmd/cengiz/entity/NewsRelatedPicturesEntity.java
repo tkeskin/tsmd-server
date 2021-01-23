@@ -2,10 +2,12 @@ package tr.com.tsmd.cengiz.entity;
 
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import org.hibernate.annotations.Type;
@@ -28,6 +30,9 @@ public class NewsRelatedPicturesEntity extends AuditModel {
   private String fileType;
 
   private Long newsId;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  private NewsEntity newsEntity;
 
 
   public NewsRelatedPicturesEntity() {
@@ -78,5 +83,13 @@ public class NewsRelatedPicturesEntity extends AuditModel {
 
   public void setNewsId(Long newsId) {
     this.newsId = newsId;
+  }
+
+  public NewsEntity getNewsEntity() {
+    return newsEntity;
+  }
+
+  public void setNewsEntity(NewsEntity newsEntity) {
+    this.newsEntity = newsEntity;
   }
 }

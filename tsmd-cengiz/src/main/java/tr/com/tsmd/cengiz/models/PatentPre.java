@@ -45,6 +45,7 @@ public class PatentPre {
 
   private Date createdAt;
   private String dekontBase64;
+  private String dekontFileType;
 
   private String legalPerson;
 
@@ -344,5 +345,13 @@ public class PatentPre {
 
   public void setKvvk(boolean kvvk) {
     this.kvvk = kvvk;
+  }
+
+  public String getDekontFileType() {
+    return dekontFileType;
+  }
+
+  public void setDekontFileType(String dekontFileType) {
+    this.dekontFileType = dekontFileType;
   }
 }

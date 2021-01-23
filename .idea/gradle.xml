@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/eureka-server" />
           </set>
         </option>
+        <option name="useAutoImport" value="true" />
         <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
       <GradleProjectSettings>
@@ -21,6 +22,7 @@
             <option value="$PROJECT_DIR$/tsmd-aras" />
           </set>
         </option>
+        <option name="useAutoImport" value="true" />
         <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
       <GradleProjectSettings>
@@ -31,6 +33,7 @@
             <option value="$PROJECT_DIR$/tsmd-auth" />
           </set>
         </option>
+        <option name="useAutoImport" value="true" />
         <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
       <GradleProjectSettings>
@@ -41,6 +44,7 @@
             <option value="$PROJECT_DIR$/tsmd-cengiz" />
           </set>
         </option>
+        <option name="useAutoImport" value="true" />
         <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
       <GradleProjectSettings>
@@ -51,6 +55,7 @@
             <option value="$PROJECT_DIR$/tsmd-common" />
           </set>
         </option>
+        <option name="useAutoImport" value="true" />
         <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
       <GradleProjectSettings>
@@ -71,6 +76,7 @@
             <option value="$PROJECT_DIR$/zuul-server" />
           </set>
         </option>
+        <option name="useAutoImport" value="true" />
         <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
     </option>

@@ -10,6 +10,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,12 +26,14 @@ import tr.com.tsmd.cengiz.models.EvaluationInvalidationView;
 import tr.com.tsmd.cengiz.models.News;
 import tr.com.tsmd.cengiz.models.Notice;
 import tr.com.tsmd.cengiz.models.PatentPreView;
+import tr.com.tsmd.cengiz.models.Slogan;
 import tr.com.tsmd.cengiz.models.TechnologyConsultancyView;
 import tr.com.tsmd.cengiz.models.TrademarkPreView;
 import tr.com.tsmd.cengiz.models.UserRating;
 import tr.com.tsmd.cengiz.models.ValuationView;
 import tr.com.tsmd.cengiz.service.AboutInfoService;
 import tr.com.tsmd.cengiz.service.CompanyProfileInfoService;
+import tr.com.tsmd.cengiz.service.HomeService;
 import tr.com.tsmd.cengiz.service.MovieInfoService;
 import tr.com.tsmd.cengiz.service.NewsInfoService;
 import tr.com.tsmd.cengiz.service.NoticeInfoService;
@@ -66,6 +69,9 @@ public class CengizController {
 
   @Autowired
   ServicesInfoService servicesInfoService;
+
+  @Autowired
+  HomeService homeService;
 
 
   /**
@@ -179,6 +185,18 @@ public class CengizController {
    * @return .
    */
   @GetMapping("/newsDelete/{id}")
+  public void deleteNewss(@PathVariable("id") Long id) {
+
+    newsInfoService.deleteNews(id);
+
+  }
+
+  /**
+   * news delete
+   *
+   * @return .
+   */
+  @DeleteMapping("/newsDelete/{id}")
   public void deleteNews(@PathVariable("id") Long id) {
 
     newsInfoService.deleteNews(id);
@@ -192,6 +210,18 @@ public class CengizController {
    */
   @GetMapping("/noticeDelete/{id}")
   public void deleteNotice(@PathVariable("id") Long id) {
+
+    noticeInfoService.deleteNotice(id);
+
+  }
+
+  /**
+   * notice delete
+   *
+   * @return .
+   */
+  @DeleteMapping("/noticeDelete/{id}")
+  public void deleteNoticee(@PathVariable("id") Long id) {
 
     noticeInfoService.deleteNotice(id);
 
@@ -320,5 +350,22 @@ public class CengizController {
     }
   }
 
+
+  /**
+   * slogan list
+   *
+   * @return .
+   */
+  @PostMapping("/sloganUpdate")
+  public ResponseEntity<?> sloganUpdate(@RequestBody Slogan slogan) {
+
+    try {
+      homeService.sloganUpdate(slogan);
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarısız!"));
+    }
+  }
 
 }

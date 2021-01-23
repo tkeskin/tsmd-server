@@ -69,6 +69,7 @@ import tr.com.tsmd.cengiz.models.PatentPreRelatedPictures;
 import tr.com.tsmd.cengiz.models.PatentPreRelatedPicturesList;
 import tr.com.tsmd.cengiz.models.PatentPreView;
 import tr.com.tsmd.cengiz.models.PatentPreViewPdfList;
+import tr.com.tsmd.cengiz.models.HomePage;
 import tr.com.tsmd.cengiz.models.TechnologyConsultancyView;
 import tr.com.tsmd.cengiz.models.TechnologyConsultancyViewPdfList;
 import tr.com.tsmd.cengiz.models.TrademarkPre;
@@ -102,6 +103,7 @@ import tr.com.tsmd.cengiz.service.NewsInfoService;
 import tr.com.tsmd.cengiz.service.NoticeInfoService;
 import tr.com.tsmd.cengiz.service.PatentPreService;
 import tr.com.tsmd.cengiz.service.ServicesInfoService;
+import tr.com.tsmd.cengiz.service.HomeService;
 import tr.com.tsmd.cengiz.service.UserInfoService;
 import tr.com.tsmd.cengiz.service.ValuationService;
 import tr.com.tsmd.cengiz.util.Mail;
@@ -177,6 +179,9 @@ public class CengizPublicController {
 
   @Autowired
   KvvkInfoService kvvkInfoService;
+
+  @Autowired
+  HomeService homeService;
 
 
   /**
@@ -370,6 +375,8 @@ public class CengizPublicController {
         new String(Base64.encodeBase64(entity.getDekont()), StandardCharsets.US_ASCII));
     trademarkPre.setLegalPerson(entity.getLegalPerson());
     trademarkPre.setTrademarkItemList(entity.getTrademarkItemList());
+    trademarkPre.setDekontFileType(entity.getDekontFileType());
+    trademarkPre.setTrademarkImageFileType(entity.getTrademarkimageFileType());
     return trademarkPre;
   }
 
@@ -556,8 +563,6 @@ public class CengizPublicController {
     activityAnalysis.setTechnicalcomponent(entity.getTechnicalcomponent());
     activityAnalysis.setImage(entity.getImage());
     activityAnalysis.setOtherpoint(entity.getOtherpoint());
-    activityAnalysis.setDekontBase64("data: image/jpeg;base64," +
-        new String(Base64.encodeBase64(entity.getDekont()), StandardCharsets.US_ASCII));
     activityAnalysis.setLegalPerson(entity.getLegalPerson());
 
 
@@ -579,6 +584,7 @@ public class CengizPublicController {
       model.setId(entity.getId());
       model.setPictureBase64("data: image/jpeg;base64," +
           new String(Base64.encodeBase64(entity.getPicture()), StandardCharsets.US_ASCII));
+      model.setFileType(entity.getFileType());
       activityAnalysisPictures.add(model);
     }
 
@@ -660,6 +666,7 @@ public class CengizPublicController {
     patentPre.setPicture(entity.getPicture());
     patentPre.setOtherpoint(entity.getOtherpoint());
     patentPre.setLegalPerson(entity.getLegalPerson());
+    patentPre.setDekontFileType(entity.getDekontFileType());
 
 
     return patentPre;
@@ -680,6 +687,7 @@ public class CengizPublicController {
       model.setId(entity.getId());
       model.setPictureBase64("data: image/jpeg;base64," +
           new String(Base64.encodeBase64(entity.getPicture()), StandardCharsets.US_ASCII));
+      model.setFileType(entity.getFileType());
       patentPreRelatedPictures.add(model);
     }
 
@@ -895,7 +903,7 @@ public class CengizPublicController {
    *
    * @return .
    */
-  @GetMapping("/deleteNewsRelatedPictures/{id}")
+  @DeleteMapping("/deleteNewsRelatedPictures/{id}")
   public ResponseEntity<?> deleteNewsRelatedPictures(@PathVariable("id") Long id) {
     try {
       newsInfoService.deleteNewsRelatedPicturesById(id);
@@ -946,6 +954,7 @@ public class CengizPublicController {
     try {
       InvalidationAssessmentEntity entity = invalidationAssessmentRepository.save(new InvalidationAssessmentEntity(
           invalidationAssessment.getAppNo(),
+          invalidationAssessment.getName_surname(),
           invalidationAssessment.getTc(),
           invalidationAssessment.getAddress(),
           invalidationAssessment.getTel(),
@@ -953,8 +962,10 @@ public class CengizPublicController {
           invalidationAssessment.isKvvk()));
 
 
-      InvalidationAssessment invalidationAssessment1 = new InvalidationAssessment(entity.getId(), entity.getAppNo(), entity.getTc(),
-          entity.getAddress(), entity.getTel(), entity.getEmail(), entity.isKvvk());
+      InvalidationAssessment invalidationAssessment1 = new InvalidationAssessment(entity.getId(), entity.getAppNo(),
+          entity.getName_surname(), entity.getTc(),
+          entity.getAddress(), entity.getTel(),
+          entity.getEmail(), entity.isKvvk());
 
       general = new General("Kayıt işleminiz başarılı...", entity.getId());
     } catch (Exception e) {
@@ -1144,7 +1155,7 @@ public class CengizPublicController {
     return ResponseEntity.ok(general);
   }
 
-  private void sendMail(String replyText, String[] to, String subject, int id, String appNo) {
+  private void sendMail(String replyText, String[] to, String subject) {
     Mail mail = new Mail();
     mail.setFrom("test@turksmd.com.tr");
     mail.setTo(to);
@@ -1152,7 +1163,7 @@ public class CengizPublicController {
     mail.setContent(replyText);
     try {
       emailService.sendSimpleMessage(mail);
-      logger.info("Mail Gonderildi:" + id + " Basvuru no: " + appNo);
+      logger.info("Bizimle iletişime Geçinden Mail Gonderildi:");
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
     }
@@ -1177,9 +1188,11 @@ public class CengizPublicController {
     if (type == 1) {
       entity.setTrademarkimagebyte(image);
       entity.setTrademarkimagename(uploadFile.getOriginalFilename());
+      entity.setTrademarkimageFileType(uploadFile.getContentType());
     } else if (type == 2) {
       entity.setDekont(image);
       entity.setDekontName(uploadFile.getOriginalFilename());
+      entity.setDekontFileType(uploadFile.getContentType());
     }
 
     try {
@@ -1197,11 +1210,11 @@ public class CengizPublicController {
 
     try {
       emailService.sendMimeMessage(id, 1);
-      return ResponseEntity.ok(new MessageResponse("Mail Gönderilmiştir!"));
+      return ResponseEntity.ok(new MessageResponse("Başvurunuz alınmıştır."));
 
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
-      return ResponseEntity.ok(new MessageResponse("Mail Gönderilememiştir! Lütfen sorumlu ile görüşürünüz."));
+      return ResponseEntity.ok(new MessageResponse("Başvurunuz alınamamıştır! Lütfen sorumlu ile görüşürünüz."));
     }
 
   }
@@ -1211,10 +1224,11 @@ public class CengizPublicController {
 
     try {
       emailService.sendMimeMessage(id, 6);
-      return ResponseEntity.ok(new MessageResponse("Mail Gönderilmiştir!"));
+      return ResponseEntity.ok(new MessageResponse("Başvurunuz alınmış olup hizmet bedeline ilişkin tarafınızla "
+          + "en kısa sürede iletişime geçilecektir."));
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
-      return ResponseEntity.ok(new MessageResponse("Mail Gönderilememiştir! Lütfen sorumlu ile görüşürünüz."));
+      return ResponseEntity.ok(new MessageResponse("Başvurunuz alınamamıştır! Lütfen sorumlu ile görüşürünüz."));
     }
 
   }
@@ -1327,8 +1341,8 @@ public class CengizPublicController {
       contactMailRepository.save(new ContactMailEntity(contactMail.getEmail(), contactMail.getNameSurname(), contactMail.getMessage()));
 
       String[] to = {"test@turksmd.com.tr"};
-      String content = "Ad Soyad:" + contactMail.getNameSurname() + "Email:" + contactMail.getEmail() + "Message:" + contactMail.getMessage();
-      sendMail(content, to, contactMail.getEmail(), 1, "");
+      String content = "Ad Soyad = " + contactMail.getNameSurname() + "\nEmail = " + contactMail.getEmail() + "\nMesaj =" + contactMail.getMessage();
+      sendMail(content, to, "Bizimle İletişime Geçin");
       return ResponseEntity.ok(new MessageResponse("Mailiniz gönderilmiştir!"));
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
@@ -1356,11 +1370,11 @@ public class CengizPublicController {
 
     try {
       emailService.sendMimeMessage(id, 2);
-      return ResponseEntity.ok(new MessageResponse("Mail Gönderilmiştir!"));
+      return ResponseEntity.ok(new MessageResponse("Başvurunuz Alınmıştır."));
 
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
-      return ResponseEntity.ok(new MessageResponse("Mail Gönderilememiştir! Lütfen sorumlu ile görüşürünüz."));
+      return ResponseEntity.ok(new MessageResponse("Başvurunuz Alınamamıştır.! Lütfen sorumlu ile görüşürünüz."));
     }
 
 
@@ -1371,11 +1385,12 @@ public class CengizPublicController {
 
     try {
       emailService.sendMimeMessage(id, 3);
-      return ResponseEntity.ok(new MessageResponse("Mail Gönderilmiştir!"));
+      return ResponseEntity.ok(new MessageResponse("Başvurunuz alınmış olup hizmet bedeline ilişkin tarafınızla "
+          + "en kısa sürede iletişime geçilecektir."));
 
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
-      return ResponseEntity.ok(new MessageResponse("Mail Gönderilememiştir! Lütfen sorumlu ile görüşürünüz."));
+      return ResponseEntity.ok(new MessageResponse("Başvurunuz alınmamıştır. Lütfen sorumlu ile görüşürünüz."));
     }
 
   }
@@ -1385,10 +1400,11 @@ public class CengizPublicController {
 
     try {
       emailService.sendMimeMessage(id, 4);
-      return ResponseEntity.ok(new MessageResponse("Mail Gönderilmiştir!"));
+      return ResponseEntity.ok(new MessageResponse("Başvurunuz alınmış olup hizmet bedeline ilişkin tarafınızla "
+          + "en kısa sürede iletişime geçilecektir."));
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
-      return ResponseEntity.ok(new MessageResponse("Mail Gönderilememiştir! Lütfen sorumlu ile görüşürünüz."));
+      return ResponseEntity.ok(new MessageResponse("Başvurunuz alınmamıştır! Lütfen sorumlu ile görüşürünüz."));
     }
 
   }
@@ -1398,10 +1414,11 @@ public class CengizPublicController {
 
     try {
       emailService.sendMimeMessage(id, 5);
-      return ResponseEntity.ok(new MessageResponse("Mail Gönderilmiştir!"));
+      return ResponseEntity.ok(new MessageResponse("Başvurunuz alınmış olup hizmet bedeline ilişkin tarafınızla "
+          + "en kısa sürede iletişime geçilecektir."));
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
-      return ResponseEntity.ok(new MessageResponse("Mail Gönderilememiştir! Lütfen sorumlu ile görüşürünüz."));
+      return ResponseEntity.ok(new MessageResponse("Başvurunuz alınamamıştır! Lütfen sorumlu ile görüşürünüz."));
     }
 
   }
@@ -1613,7 +1630,7 @@ public class CengizPublicController {
   public ResponseEntity<?> updateValuationViewPicture(@RequestParam("id") Long id, @RequestParam("picture") MultipartFile picture) throws Exception {
 
     try {
-      servicesInfoService.updateTrademarkPreViewPicture(id, picture);
+      servicesInfoService.updateValuationViewPicture(id, picture);
 
       return ResponseEntity.ok(new MessageResponse("Ana resmi Güncelleme işleminiz başarılı!"));
     } catch (Exception e) {
@@ -1718,7 +1735,7 @@ public class CengizPublicController {
    *
    * @return .
    */
-  @GetMapping("/deleteTrademarkPreViewPdf/{id}")
+  @DeleteMapping("/deleteTrademarkPreViewPdf/{id}")
   public ResponseEntity<?> deleteTrademarkPreViewPdf(@PathVariable("id") Long id) {
     //list dönen servis için bir class daha yazıp öyle handle ettik
     try {
@@ -1777,7 +1794,7 @@ public class CengizPublicController {
    *
    * @return .
    */
-  @GetMapping("/deletePatentPreViewPdf/{id}")
+  @DeleteMapping("/deletePatentPreViewPdf/{id}")
   public ResponseEntity<?> deletePatentPreViewPdf(@PathVariable("id") Long id) {
     //list dönen servis için bir class daha yazıp öyle handle ettik
     try {
@@ -1837,7 +1854,7 @@ public class CengizPublicController {
    *
    * @return .
    */
-  @GetMapping("/deleteActivityAnalysisViewPdf/{id}")
+  @DeleteMapping("/deleteActivityAnalysisViewPdf/{id}")
   public ResponseEntity<?> deleteActivityAnalysisViewPdf(@PathVariable("id") Long id) {
     //list dönen servis için bir class daha yazıp öyle handle ettik
     try {
@@ -1896,7 +1913,7 @@ public class CengizPublicController {
    *
    * @return .
    */
-  @GetMapping("/deleteValuationViewPdf/{id}")
+  @DeleteMapping("/deleteValuationViewPdf/{id}")
   public ResponseEntity<?> deleteValuationViewPdf(@PathVariable("id") Long id) {
     //list dönen servis için bir class daha yazıp öyle handle ettik
     try {
@@ -1957,7 +1974,7 @@ public class CengizPublicController {
    *
    * @return .
    */
-  @GetMapping("/deleteEvaluationInvalidationViewPdf/{id}")
+  @DeleteMapping("/deleteEvaluationInvalidationViewPdf/{id}")
   public ResponseEntity<?> deleteEvaluationInvalidationViewPdf(@PathVariable("id") Long id) {
     //list dönen servis için bir class daha yazıp öyle handle ettik
     try {
@@ -2020,7 +2037,7 @@ public class CengizPublicController {
    *
    * @return .
    */
-  @GetMapping("/deleteTechnologyConsultancyViewPdf/{id}")
+  @DeleteMapping("/deleteTechnologyConsultancyViewPdf/{id}")
   public ResponseEntity<?> deleteTechnologyConsultancyViewPdf(@PathVariable("id") Long id) {
     //list dönen servis için bir class daha yazıp öyle handle ettik
     try {
@@ -2103,6 +2120,100 @@ public class CengizPublicController {
     KvvkEntity kvvkEntity = kvvkInfoService.getKvvkFile();
     return "data: image/jpeg;base64," +
         new String(Base64.encodeBase64(kvvkEntity.getKvvk()), StandardCharsets.US_ASCII);
+  }
+
+
+  /**
+   * slider list
+   *
+   * @return .
+   */
+  @GetMapping("/sliderList")
+  public HomePage getSliderList() {
+    HomePage sliderList = homeService.getSliderList();
+    return sliderList;
+  }
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @DeleteMapping("/deleteSliderPictures/{id}")
+  public ResponseEntity<?> deleteSliderPictures(@PathVariable("id") Long id) {
+    try {
+      homeService.deletePictureById(id);
+      return ResponseEntity.ok(new MessageResponse("Silindi!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Silinemedi!!! Yetkili ile görüşünüz."));
+    }
+
+  }
+
+  @PostMapping(value = "/uploadSliderPictures", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> uploadSliderPictures(@RequestParam("sliderExplain") String sliderExplain, @RequestParam("pictures") MultipartFile picture)
+      throws Exception {
+    try {
+      homeService.uploadSliderPictures(sliderExplain,picture);
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!!"));
+    }
+  }
+
+
+  /**
+   * news list
+   *
+   * @return .
+   */
+  @PostMapping(value = "/updateSliderRelatedPicture", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> updateSliderRelatedPicture(@RequestParam("id") Long id, @RequestParam("relatedPicture") MultipartFile relatedPicture) throws Exception {
+
+    try {
+      homeService.updateSliderRelatedPicture(id, relatedPicture);
+      return ResponseEntity.ok(new MessageResponse("Resim güncelleme başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Resim güncelleme işleminiz başarısız!!"));
+    }
+  }
+
+
+  /**
+   * about list
+   *
+   * @return .
+   */
+  @DeleteMapping("/deleteSliderRelatedPictures/{id}")
+  public ResponseEntity<?> deleteSliderRelatedPictures(@PathVariable("id") Long id) {
+    try {
+      String message = homeService.deleteSliderRelatedPictures(id);
+      return ResponseEntity.ok(new MessageResponse(message));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Silinemedi!!! Yetkili ile görüşünüz."));
+    }
+
+  }
+
+  /**
+   * news list
+   *
+   * @return .
+   */
+  @PostMapping(value = "/updateSliderPictureExplain", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> updateSliderPictureExplain(@RequestParam("id") Long id,@RequestParam("sliderExplain") String sliderExplain) throws Exception {
+
+    try {
+      homeService.updateSliderPictureExplain(id, sliderExplain);
+      return ResponseEntity.ok(new MessageResponse("Başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarısız!!"));
+    }
   }
 
 }

@@ -32,6 +32,8 @@ public class TrademarkPreEntity extends AuditModel {
   @Type(type="org.hibernate.type.BinaryType")
   private byte[] trademarkimagebyte;
 
+  private String trademarkimageFileType;
+
   @Lob
   @Type(type="org.hibernate.type.TextType")
   private String trademarktext;
@@ -228,5 +230,13 @@ public class TrademarkPreEntity extends AuditModel {
 
   public void setKvvk(boolean kvvk) {
     this.kvvk = kvvk;
+  }
+
+  public String getTrademarkimageFileType() {
+    return trademarkimageFileType;
+  }
+
+  public void setTrademarkimageFileType(String trademarkimageFileType) {
+    this.trademarkimageFileType = trademarkimageFileType;
   }
 }

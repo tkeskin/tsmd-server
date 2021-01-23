@@ -13,4 +13,6 @@ public interface NewsRelatedPicturesRepository extends JpaRepository<NewsRelated
   List<NewsRelatedPicturesEntity> getByNewsId(Long id);
 
   NewsRelatedPicturesEntity getById(Long id);
+
+  void deleteAllByNewsId(Long newsId);
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +13,12 @@ import tr.com.tsmd.cengiz.entity.ActivityAnalysisViewEntity;
 import tr.com.tsmd.cengiz.entity.ActivityAnalysisViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.EvaluationInvalidationViewEntity;
 import tr.com.tsmd.cengiz.entity.EvaluationInvalidationViewPdfEntity;
+import tr.com.tsmd.cengiz.entity.PatentPreServiceChargesEntity;
 import tr.com.tsmd.cengiz.entity.PatentPreViewEntity;
 import tr.com.tsmd.cengiz.entity.PatentPreViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.TechnologyConsultancyViewEntity;
 import tr.com.tsmd.cengiz.entity.TechnologyConsultancyViewPdfEntity;
+import tr.com.tsmd.cengiz.entity.TrademarkPreServiceChargesEntity;
 import tr.com.tsmd.cengiz.entity.TrademarkPreViewEntity;
 import tr.com.tsmd.cengiz.entity.TrademarkPreViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.ValuationViewEntity;
@@ -26,12 +29,14 @@ import tr.com.tsmd.cengiz.models.ActivityAnalysisViewPdfList;
 import tr.com.tsmd.cengiz.models.EvaluationInvalidationView;
 import tr.com.tsmd.cengiz.models.EvaluationInvalidationViewPdf;
 import tr.com.tsmd.cengiz.models.EvaluationInvalidationViewPdfList;
+import tr.com.tsmd.cengiz.models.PatentPreServiceCharges;
 import tr.com.tsmd.cengiz.models.PatentPreView;
 import tr.com.tsmd.cengiz.models.PatentPreViewPdf;
 import tr.com.tsmd.cengiz.models.PatentPreViewPdfList;
 import tr.com.tsmd.cengiz.models.TechnologyConsultancyView;
 import tr.com.tsmd.cengiz.models.TechnologyConsultancyViewPdf;
 import tr.com.tsmd.cengiz.models.TechnologyConsultancyViewPdfList;
+import tr.com.tsmd.cengiz.models.TrademarkPreServiceCharges;
 import tr.com.tsmd.cengiz.models.TrademarkPreView;
 import tr.com.tsmd.cengiz.models.TrademarkPreViewPdf;
 import tr.com.tsmd.cengiz.models.TrademarkPreViewPdfList;
@@ -42,10 +47,12 @@ import tr.com.tsmd.cengiz.repository.ActivityAnalysisViewPdfRepository;
 import tr.com.tsmd.cengiz.repository.ActivityAnalysisViewRepository;
 import tr.com.tsmd.cengiz.repository.EvaluationInvalidationViewPdfRepository;
 import tr.com.tsmd.cengiz.repository.EvaluationInvalidationViewRepository;
+import tr.com.tsmd.cengiz.repository.PatentPreServiceChargesRepository;
 import tr.com.tsmd.cengiz.repository.PatentPreViewPdfRepository;
 import tr.com.tsmd.cengiz.repository.PatentPreViewRepository;
 import tr.com.tsmd.cengiz.repository.TechnologyConsultancyViewPdfRepository;
 import tr.com.tsmd.cengiz.repository.TechnologyConsultancyViewRepository;
+import tr.com.tsmd.cengiz.repository.TrademarkPreServiceChargesRepository;
 import tr.com.tsmd.cengiz.repository.TrademarkPreViewPdfRepository;
 import tr.com.tsmd.cengiz.repository.TrademarkPreViewRepository;
 import tr.com.tsmd.cengiz.repository.ValuationViewPdfRepository;
@@ -90,6 +97,12 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
   @Autowired
   TechnologyConsultancyViewPdfRepository technologyConsultancyViewPdfRepository;
 
+  @Autowired
+  TrademarkPreServiceChargesRepository trademarkPreServiceChargesRepository;
+
+  @Autowired
+  PatentPreServiceChargesRepository patentPreServiceChargesRepository;
+
 
   @Override
   public PatentPreView getPatentPreViewBy() {
@@ -128,8 +141,16 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
   @Override
   public TrademarkPreView getTrademarkPreViewBy() {
     TrademarkPreViewEntity entity = trademarkPreViewRepository.getBy();
-    TrademarkPreView trademarkPreView = new TrademarkPreView(entity.getId(), entity.getPicture(), entity.getTrademarkPreExplain(), "data: image/jpeg;base64," +
-        new String(Base64.encodeBase64(entity.getPicture()), StandardCharsets.US_ASCII), entity.getFileName(), entity.getFileType());
+    TrademarkPreView trademarkPreView = null;
+    if (entity.getNice() != null) {
+      trademarkPreView = new TrademarkPreView(entity.getId(), entity.getTrademarkPreExplain(), entity.getPicture(), "data: image/jpeg;base64," +
+          new String(Base64.encodeBase64(entity.getPicture()), StandardCharsets.US_ASCII), entity.getFileName(), entity.getFileType(),
+          entity.getNice(), "data: image/jpeg;base64," +
+          new String(Base64.encodeBase64(entity.getNice()), StandardCharsets.US_ASCII), entity.getNiceFileName(), entity.getNiceFileType());
+    } else {
+      trademarkPreView = new TrademarkPreView(entity.getId(), entity.getPicture(), entity.getTrademarkPreExplain(), "data: image/jpeg;base64," +
+          new String(Base64.encodeBase64(entity.getPicture()), StandardCharsets.US_ASCII), entity.getFileName(), entity.getFileType());
+    }
     return trademarkPreView;
   }
 
@@ -563,4 +584,67 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
     return technologyConsultancyViewPdfRepository.getById(id);
   }
 
+
+
+  @Override
+  public void saveTrademarkPreViewNice(MultipartFile nice) {
+    TrademarkPreViewEntity entity = trademarkPreViewRepository.getBy();
+
+    try {
+      entity.setNiceFileName(nice.getOriginalFilename());
+      entity.setNiceFileType(nice.getContentType());
+      entity.setNice(nice.getBytes());
+
+      trademarkPreViewRepository.save(entity);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @Override
+  public TrademarkPreServiceCharges getTrademarkPreServiceCharges() {
+    Optional<TrademarkPreServiceChargesEntity> optional = trademarkPreServiceChargesRepository.getBy();
+    if (optional.isPresent()) {
+     return new TrademarkPreServiceCharges(optional.get().getId(),optional.get().getExplain());
+    } else {
+      return new TrademarkPreServiceCharges();
+    }
+  }
+
+  @Override
+  public void updateTrademarkPreServiceCharges(TrademarkPreServiceCharges trademarkPreServiceCharges) {
+    Optional<TrademarkPreServiceChargesEntity> optional = trademarkPreServiceChargesRepository.getBy();
+    if (optional.isPresent()) {
+      optional.get().setExplain(trademarkPreServiceCharges.getExplain());
+      trademarkPreServiceChargesRepository.save(optional.get());
+    } else {
+      TrademarkPreServiceChargesEntity trademarkPreServiceChargesEntity = new TrademarkPreServiceChargesEntity();
+      trademarkPreServiceCharges.setExplain(trademarkPreServiceCharges.getExplain());
+      trademarkPreServiceChargesRepository.save(trademarkPreServiceChargesEntity);
+    }
+
+  }
+
+  @Override
+  public PatentPreServiceCharges getPatentPreServiceCharges() {
+    Optional<PatentPreServiceChargesEntity> optional = patentPreServiceChargesRepository.getBy();
+    if (optional.isPresent()) {
+      return new PatentPreServiceCharges(optional.get().getId(),optional.get().getExplain());
+    } else {
+      return new PatentPreServiceCharges();
+    }
+  }
+
+  @Override
+  public void updatePatentPreServiceCharges(PatentPreServiceCharges patentPreServiceCharges) {
+    Optional<PatentPreServiceChargesEntity> optional = patentPreServiceChargesRepository.getBy();
+    if (optional.isPresent()) {
+      optional.get().setExplain(patentPreServiceCharges.getExplain());
+      patentPreServiceChargesRepository.save(optional.get());
+    } else {
+      PatentPreServiceChargesEntity patentPreServiceChargesEntity = new PatentPreServiceChargesEntity();
+      patentPreServiceChargesEntity.setExplain(patentPreServiceCharges.getExplain());
+      patentPreServiceChargesRepository.save(patentPreServiceChargesEntity);
+    }
+  }
 }

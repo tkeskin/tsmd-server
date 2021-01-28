@@ -32,6 +32,12 @@ public class TrademarkPreViewEntity extends AuditModel {
 
   private String fileType;
 
+  @Lob
+  @Type(type="org.hibernate.type.BinaryType")
+  private byte[] nice;
+  private String niceFileName;
+  private String niceFileType;
+
 
   public TrademarkPreViewEntity() {
   }
@@ -88,5 +94,29 @@ public class TrademarkPreViewEntity extends AuditModel {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public byte[] getNice() {
+    return nice;
+  }
+
+  public void setNice(byte[] nice) {
+    this.nice = nice;
+  }
+
+  public String getNiceFileName() {
+    return niceFileName;
+  }
+
+  public void setNiceFileName(String niceFileName) {
+    this.niceFileName = niceFileName;
+  }
+
+  public String getNiceFileType() {
+    return niceFileType;
+  }
+
+  public void setNiceFileType(String niceFileType) {
+    this.niceFileType = niceFileType;
   }
 }

@@ -5,6 +5,7 @@ import tr.com.tsmd.cengiz.entity.ActivityAnalysisViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.EvaluationInvalidationViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.PatentPreViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.TechnologyConsultancyViewPdfEntity;
+import tr.com.tsmd.cengiz.entity.TrademarkPreViewEntity;
 import tr.com.tsmd.cengiz.entity.TrademarkPreViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.ValuationViewPdfEntity;
 import tr.com.tsmd.cengiz.models.ActivityAnalysisView;
@@ -12,10 +13,12 @@ import tr.com.tsmd.cengiz.models.ActivityAnalysisViewPdfList;
 import tr.com.tsmd.cengiz.models.EvaluationInvalidationView;
 import tr.com.tsmd.cengiz.models.EvaluationInvalidationViewPdfList;
 import tr.com.tsmd.cengiz.models.NewsRelatedPicturesList;
+import tr.com.tsmd.cengiz.models.PatentPreServiceCharges;
 import tr.com.tsmd.cengiz.models.PatentPreView;
 import tr.com.tsmd.cengiz.models.PatentPreViewPdfList;
 import tr.com.tsmd.cengiz.models.TechnologyConsultancyView;
 import tr.com.tsmd.cengiz.models.TechnologyConsultancyViewPdfList;
+import tr.com.tsmd.cengiz.models.TrademarkPreServiceCharges;
 import tr.com.tsmd.cengiz.models.TrademarkPreView;
 import tr.com.tsmd.cengiz.models.TrademarkPreViewPdfList;
 import tr.com.tsmd.cengiz.models.ValuationView;
@@ -112,4 +115,15 @@ public interface ServicesInfoService {
   void deleteTechnologyConsultancyViewPdfById(Long id);
 
   TechnologyConsultancyViewPdfEntity getTechnologyConsultancyViewPdfById(Long id);
+
+
+  void saveTrademarkPreViewNice(MultipartFile nice);
+
+  TrademarkPreServiceCharges getTrademarkPreServiceCharges();
+
+  void updateTrademarkPreServiceCharges(TrademarkPreServiceCharges trademarkPreServiceCharges);
+
+  PatentPreServiceCharges getPatentPreServiceCharges();
+
+  void updatePatentPreServiceCharges(PatentPreServiceCharges patentPreServiceCharges);
 }

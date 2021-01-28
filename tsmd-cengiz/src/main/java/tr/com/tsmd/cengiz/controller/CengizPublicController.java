@@ -37,6 +37,7 @@ import tr.com.tsmd.cengiz.entity.PatentPreTableEntity;
 import tr.com.tsmd.cengiz.entity.PatentPreViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.TechnologyConsultancyViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.TrademarkPreEntity;
+import tr.com.tsmd.cengiz.entity.TrademarkPreViewEntity;
 import tr.com.tsmd.cengiz.entity.TrademarkPreViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.ValuationPatentEntity;
 import tr.com.tsmd.cengiz.entity.ValuationTrademarkEntity;
@@ -67,6 +68,7 @@ import tr.com.tsmd.cengiz.models.PatentPre;
 import tr.com.tsmd.cengiz.models.PatentPreList;
 import tr.com.tsmd.cengiz.models.PatentPreRelatedPictures;
 import tr.com.tsmd.cengiz.models.PatentPreRelatedPicturesList;
+import tr.com.tsmd.cengiz.models.PatentPreServiceCharges;
 import tr.com.tsmd.cengiz.models.PatentPreView;
 import tr.com.tsmd.cengiz.models.PatentPreViewPdfList;
 import tr.com.tsmd.cengiz.models.HomePage;
@@ -74,6 +76,7 @@ import tr.com.tsmd.cengiz.models.TechnologyConsultancyView;
 import tr.com.tsmd.cengiz.models.TechnologyConsultancyViewPdfList;
 import tr.com.tsmd.cengiz.models.TrademarkPre;
 import tr.com.tsmd.cengiz.models.TrademarkPreList;
+import tr.com.tsmd.cengiz.models.TrademarkPreServiceCharges;
 import tr.com.tsmd.cengiz.models.TrademarkPreView;
 import tr.com.tsmd.cengiz.models.TrademarkPreViewPdfList;
 import tr.com.tsmd.cengiz.models.UserList;
@@ -508,7 +511,7 @@ public class CengizPublicController {
     valuationPatent.setPatentpurpose(entity.getPatentpurpose());
     valuationPatent.setPatentappno(entity.getPatentappno());
     valuationPatent.setPatentcountry(entity.getPatentcountry());
-    valuationPatent.setPatentmarket(entity.getPatentmarket());
+//    valuationPatent.setPatentmarket(entity.getPatentmarket());
     valuationPatent.setLicenseChoose(entity.getLicenseChoose());
 //    valuationPatent.setPatentcontribution(entity.getPatentcontribution());
     valuationPatent.setPatentsector(entity.getPatentsector());
@@ -519,8 +522,8 @@ public class CengizPublicController {
     valuationPatent.setExportcountry(entity.getExportcountry());
     valuationPatent.setExportturnover(entity.getExportturnover());
 //    valuationPatent.setRoyaltyrate(entity.getRoyaltyrate());
-    valuationPatent.setCompetingmarketshare(entity.getCompetingmarketshare());
-    valuationPatent.setCompetitordate(entity.getCompetitordate());
+//    valuationPatent.setCompetingmarketshare(entity.getCompetingmarketshare());
+//    valuationPatent.setCompetitordate(entity.getCompetitordate());
 //    valuationPatent.setCompetinggrowthrate(entity.getCompetinggrowthrate());
     valuationPatent.setTurnovertarget(entity.getTurnovertarget());
     valuationPatent.setTurnoverpercent(entity.getTurnoverpercent());
@@ -536,6 +539,10 @@ public class CengizPublicController {
     valuationPatent.setCaseexpense(entity.getCaseexpense());
     valuationPatent.setCountryoutside(entity.getCountryoutside());
     valuationPatent.setEuropeanunio(entity.getEuropeanunio());
+    valuationPatent.setEuropeanunio(entity.getPatentcontribution());
+    valuationPatent.setEuropeanunio(entity.getPatentmarketchoose());
+    valuationPatent.setEuropeanunio(entity.getPatentmarkettime());
+    valuationPatent.setEuropeanunio(entity.getPatentmarkettimeplan());
 
 
     return valuationPatent;
@@ -1008,7 +1015,8 @@ public class CengizPublicController {
           patentPre.getPicture(),
           patentPre.getOtherpoint(),
           patentPre.getLegalPerson(),
-          patentPre.isKvvk()
+          patentPre.isKvvk(),
+          patentPre.getAppNo()
       ));
 
       general.setMessage("Kayıt işleminiz başarılı!");
@@ -1032,15 +1040,12 @@ public class CengizPublicController {
           valuationPatent.getPatentpurpose(),
           valuationPatent.getPatentappno(),
           valuationPatent.getPatentcountry(),
-          valuationPatent.getPatentmarket(),
           valuationPatent.getPatentsector(),
           valuationPatent.getPatentothersector(),
           valuationPatent.getMarketshare(),
           valuationPatent.getOverseasmarketshare(),
           valuationPatent.getExportcountry(),
           valuationPatent.getExportturnover(),
-          valuationPatent.getCompetingmarketshare(),
-          valuationPatent.getCompetitordate(),
           valuationPatent.getTurnovertarget(),
           valuationPatent.getTurnoverpercent(),
           valuationPatent.getIncomepercent(),
@@ -1060,7 +1065,12 @@ public class CengizPublicController {
           valuationPatent.getEmail(),
           valuationPatent.getLegalPerson(),
           valuationPatent.getLicenseChoose(),
-          valuationPatent.isKvvk()
+          valuationPatent.isKvvk(),
+          valuationPatent.getPatentmarketchoose(),
+          valuationPatent.getPatentcontribution(),
+          valuationPatent.getPatentmarkettime(),
+          valuationPatent.getPatentmarkettimeplan()
+
       ));
 
       general.setMessage("Kayıt işleminiz başarılı!");
@@ -1210,7 +1220,8 @@ public class CengizPublicController {
 
     try {
       emailService.sendMimeMessage(id, 1);
-      return ResponseEntity.ok(new MessageResponse("Başvurunuz alınmıştır."));
+      return ResponseEntity.ok(new MessageResponse("Başvurunuz incelemeye alınmış olup eksiklik "
+          + "bulunmaması halinde bir hafta içersinde raporunuz tamamlanarak tarafınıza mail gönderilecektir."));
 
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
@@ -1370,7 +1381,9 @@ public class CengizPublicController {
 
     try {
       emailService.sendMimeMessage(id, 2);
-      return ResponseEntity.ok(new MessageResponse("Başvurunuz Alınmıştır."));
+      return ResponseEntity.ok(new MessageResponse("Başvurunuz incelemeye "
+          + "alınmış olup eksiklik bulunmaması halinde iki hafta içersinde raporunuz "
+          + "tamamlanarak tarafınıza mail gönderilecektir."));
 
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
@@ -2214,6 +2227,66 @@ public class CengizPublicController {
       logger.error(e.getLocalizedMessage());
       return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarısız!!"));
     }
+  }
+
+
+
+  /**
+   * trademarkpreview nice
+   *
+   * @return .
+   */
+  @PostMapping(value = "/saveTrademarkPreViewNice", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<?> saveTrademarkPreViewNice(@RequestParam("nice") MultipartFile nice) throws Exception {
+
+    try {
+      servicesInfoService.saveTrademarkPreViewNice(nice);
+      return ResponseEntity.ok(new MessageResponse("başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("başarısız!!"));
+    }
+  }
+
+  /**
+   * downloadTrademarkPreViewNice
+   *
+   * @return .
+   */
+  @GetMapping("/downloadTrademarkPreViewNice")
+  public ResponseEntity<Resource> downloadTrademarkPreViewNice() {
+    //list dönen servis için bir class daha yazıp öyle handle ettik
+    TrademarkPreView trademarkPreViewEntity = servicesInfoService.getTrademarkPreViewBy();
+    return ResponseEntity.ok()
+        .contentType(MediaType.parseMediaType(trademarkPreViewEntity.getNiceFileType()))
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""
+            + trademarkPreViewEntity.getNiceFileName() + "\"")
+        .body(new ByteArrayResource(trademarkPreViewEntity.getNice()));
+  }
+
+
+  /**
+   * getTrademarkPreServiceCharges
+   *
+   * @return .
+   */
+  @GetMapping("/getTrademarkPreServiceCharges")
+  public TrademarkPreServiceCharges getTrademarkPreServiceCharges() {
+
+    TrademarkPreServiceCharges trademarkPreServiceCharges = servicesInfoService.getTrademarkPreServiceCharges();
+    return trademarkPreServiceCharges;
+  }
+
+  /**
+   * getPatentPreServiceCharges
+   *
+   * @return .
+   */
+  @GetMapping("/getPatentPreServiceCharges")
+  public PatentPreServiceCharges getPatentPreServiceCharges() {
+
+    PatentPreServiceCharges patentPreServiceCharges = servicesInfoService.getPatentPreServiceCharges();
+    return patentPreServiceCharges;
   }
 
 }

@@ -12,7 +12,7 @@ public class ValuationPatent {
   private String patentpurpose;
   private String patentappno;
   private String patentcountry;
-  private String patentmarket;
+//  private String patentmarket;
 //  private String patentcontribution;
   private String patentsector;
   private String patentothersector;
@@ -22,8 +22,8 @@ public class ValuationPatent {
   private String exportcountry;
   private String exportturnover;
 //  private String royaltyrate;
-  private String competingmarketshare;
-  private String competitordate;
+//  private String competingmarketshare;
+//  private String competitordate;
 //  private String competinggrowthrate;
   private String turnovertarget;
   private String turnoverpercent;
@@ -52,18 +52,24 @@ public class ValuationPatent {
   private String legalPerson;
   private String licenseChoose;
   private boolean kvvk;
+  private String patentmarketchoose;
+  private String patentcontribution;
+  private String patentmarkettime;
+  private String patentmarkettimeplan;
+
+
 
 
   public ValuationPatent() {
   }
 
-  public ValuationPatent(Long id, String address, String patentpurpose, String patentappno, String patentcountry, String patentmarket, String patentsector, String patentothersector, String marketshare, String overseasmarketshare, String exportcountry, String exportturnover, String competingmarketshare, String competitordate, String turnovertarget, String turnoverpercent, String incomepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String spending, String worldspending, String caseexpense, String countryoutside, String europeanunio, String name_surname, String tc, String tel, @NotBlank @Size(max = 50) @Email String email, String legalPerson,String licenseChoose, boolean kvvk) {
+  public ValuationPatent(Long id, String address, String patentpurpose, String patentappno, String patentcountry, String patentsector, String patentothersector, String marketshare, String overseasmarketshare, String exportcountry, String exportturnover, String turnovertarget, String turnoverpercent, String incomepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String spending, String worldspending, String caseexpense, String countryoutside, String europeanunio, String name_surname, String tc, String tel, @NotBlank @Size(max = 50) @Email String email, String legalPerson,String licenseChoose, boolean kvvk, String patentmarketchoose, String patentcontribution, String patentmarkettime, String patentmarkettimeplan) {
     this.id = id;
     this.address = address;
     this.patentpurpose = patentpurpose;
     this.patentappno = patentappno;
     this.patentcountry = patentcountry;
-    this.patentmarket = patentmarket;
+//    this.patentmarket = patentmarket;
 //    this.patentcontribution = patentcontribution;
     this.patentsector = patentsector;
     this.patentothersector = patentothersector;
@@ -73,8 +79,8 @@ public class ValuationPatent {
     this.exportcountry = exportcountry;
     this.exportturnover = exportturnover;
 //    this.royaltyrate = royaltyrate;
-    this.competingmarketshare = competingmarketshare;
-    this.competitordate = competitordate;
+//    this.competingmarketshare = competingmarketshare;
+//    this.competitordate = competitordate;
 //    this.competinggrowthrate = competinggrowthrate;
     this.turnovertarget = turnovertarget;
     this.turnoverpercent = turnoverpercent;
@@ -97,6 +103,10 @@ public class ValuationPatent {
     this.legalPerson = legalPerson;
     this.licenseChoose = licenseChoose;
     this.kvvk = kvvk;
+    this.patentmarketchoose = patentmarketchoose;
+    this.patentcontribution = patentcontribution;
+    this.patentmarkettime = patentmarkettime;
+    this.patentmarkettimeplan = patentmarkettimeplan;
   }
 
   public Long getId() {
@@ -137,14 +147,6 @@ public class ValuationPatent {
 
   public void setPatentcountry(String patentcountry) {
     this.patentcountry = patentcountry;
-  }
-
-  public String getPatentmarket() {
-    return patentmarket;
-  }
-
-  public void setPatentmarket(String patentmarket) {
-    this.patentmarket = patentmarket;
   }
 
   public String getPatentsector() {
@@ -193,22 +195,6 @@ public class ValuationPatent {
 
   public void setExportturnover(String exportturnover) {
     this.exportturnover = exportturnover;
-  }
-
-  public String getCompetingmarketshare() {
-    return competingmarketshare;
-  }
-
-  public void setCompetingmarketshare(String competingmarketshare) {
-    this.competingmarketshare = competingmarketshare;
-  }
-
-  public String getCompetitordate() {
-    return competitordate;
-  }
-
-  public void setCompetitordate(String competitordate) {
-    this.competitordate = competitordate;
   }
 
   public String getTurnovertarget() {
@@ -377,5 +363,37 @@ public class ValuationPatent {
 
   public void setKvvk(boolean kvvk) {
     this.kvvk = kvvk;
+  }
+
+  public String getPatentmarketchoose() {
+    return patentmarketchoose;
+  }
+
+  public void setPatentmarketchoose(String patentmarketchoose) {
+    this.patentmarketchoose = patentmarketchoose;
+  }
+
+  public String getPatentcontribution() {
+    return patentcontribution;
+  }
+
+  public void setPatentcontribution(String patentcontribution) {
+    this.patentcontribution = patentcontribution;
+  }
+
+  public String getPatentmarkettime() {
+    return patentmarkettime;
+  }
+
+  public void setPatentmarkettime(String patentmarkettime) {
+    this.patentmarkettime = patentmarkettime;
+  }
+
+  public String getPatentmarkettimeplan() {
+    return patentmarkettimeplan;
+  }
+
+  public void setPatentmarkettimeplan(String patentmarkettimeplan) {
+    this.patentmarkettimeplan = patentmarkettimeplan;
   }
 }

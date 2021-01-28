@@ -28,12 +28,12 @@ public class ValuationServiceImpl implements ValuationService {
 
   @Override
   public void addValuationPatentDekont(Long id, MultipartFile dekont)  throws Exception {
-    ValuationPatentEntity valuationPatentEntity = valuationPatentRepository.getById(id);
-
-    valuationPatentEntity.setDekont(dekont.getBytes());
-    valuationPatentEntity.setDekontFileName(dekont.getOriginalFilename());
-    valuationPatentEntity.setDekontFileType(dekont.getContentType());
-    valuationPatentRepository.save(valuationPatentEntity);
+//    ValuationPatentEntity valuationPatentEntity = valuationPatentRepository.getById(id);
+//
+//    valuationPatentEntity.setDekont(dekont.getBytes());
+//    valuationPatentEntity.setDekontFileName(dekont.getOriginalFilename());
+//    valuationPatentEntity.setDekontFileType(dekont.getContentType());
+//    valuationPatentRepository.save(valuationPatentEntity);
 
   }
 

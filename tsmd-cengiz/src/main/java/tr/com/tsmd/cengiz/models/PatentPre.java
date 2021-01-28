@@ -50,13 +50,14 @@ public class PatentPre {
   private String legalPerson;
 
   private boolean kvvk;
+  private String appNo;
 
   public PatentPre() {
   }
 
   public PatentPre(String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String protectiontype, String reporttype, String computerarea, String electricityarea, String electronicarea,
                    String machinearea, String medicinearea, String automotivearea, String metallurgyarea, String biomedicalarea, String chemistryarea, String foodarea, String buildarea, String otherarea, String title,
-                   String patentkeyword, String patentapplication, String advantage, String publications, String detailexplain, String picture, String otherpoint, String legalPerson, boolean kvvk) {
+                   String patentkeyword, String patentapplication, String advantage, String publications, String detailexplain, String picture, String otherpoint, String legalPerson, boolean kvvk,String appNo) {
 
     this.name_surname = name_surname;
     this.tc = tc;
@@ -87,6 +88,7 @@ public class PatentPre {
     this.otherpoint = otherpoint;
     this.legalPerson = legalPerson;
     this.kvvk = kvvk;
+    this.appNo = appNo;
   }
 
   public Long getId() {
@@ -353,5 +355,13 @@ public class PatentPre {
 
   public void setDekontFileType(String dekontFileType) {
     this.dekontFileType = dekontFileType;
+  }
+
+  public String getAppNo() {
+    return appNo;
+  }
+
+  public void setAppNo(String appNo) {
+    this.appNo = appNo;
   }
 }

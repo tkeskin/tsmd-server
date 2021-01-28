@@ -34,5 +34,7 @@ public class Const {
   public static final String TABLE_KVVK = "kvvk";
   public static final String TABLE_SLIDER = "slider";
   public static final String TABLE_SLOGAN = "slogan";
+  public static final String TABLE_TRADEMARKPRE_SERVICE_CHARGES = "trademarkpreservicecharges";
+  public static final String TABLE_PATENTPRE_SERVICE_CHARGES = "patentpreservicecharges";
 
 }

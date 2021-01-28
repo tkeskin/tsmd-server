@@ -8,6 +8,10 @@ public class TrademarkPreView {
   private String pictureBase64;
   private String fileName;
   private String fileType;
+  private byte[] nice;
+  private String niceBase64;
+  private String niceFileName;
+  private String niceFileType;
 
   public TrademarkPreView() {
   }
@@ -45,6 +49,19 @@ public class TrademarkPreView {
     this.pictureBase64 = pictureBase64;
     this.fileName = fileName;
     this.fileType = fileType;
+  }
+
+  public TrademarkPreView(Long id, String trademarkPreExplain, byte[] picture, String pictureBase64, String fileName, String fileType, byte[] nice, String niceBase64, String niceFileName, String niceFileType) {
+    this.id = id;
+    this.trademarkPreExplain = trademarkPreExplain;
+    this.picture = picture;
+    this.pictureBase64 = pictureBase64;
+    this.fileName = fileName;
+    this.fileType = fileType;
+    this.nice = nice;
+    this.niceBase64 = niceBase64;
+    this.niceFileName = niceFileName;
+    this.niceFileType = niceFileType;
   }
 
   public Long getId() {
@@ -93,5 +110,37 @@ public class TrademarkPreView {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public byte[] getNice() {
+    return nice;
+  }
+
+  public void setNice(byte[] nice) {
+    this.nice = nice;
+  }
+
+  public String getNiceBase64() {
+    return niceBase64;
+  }
+
+  public void setNiceBase64(String niceBase64) {
+    this.niceBase64 = niceBase64;
+  }
+
+  public String getNiceFileName() {
+    return niceFileName;
+  }
+
+  public void setNiceFileName(String niceFileName) {
+    this.niceFileName = niceFileName;
+  }
+
+  public String getNiceFileType() {
+    return niceFileType;
+  }
+
+  public void setNiceFileType(String niceFileType) {
+    this.niceFileType = niceFileType;
   }
 }

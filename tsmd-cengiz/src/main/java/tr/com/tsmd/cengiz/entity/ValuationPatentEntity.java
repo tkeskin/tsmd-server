@@ -44,9 +44,9 @@ public class ValuationPatentEntity extends AuditModel {
   @Type(type="org.hibernate.type.TextType")
   private String patentcountry;
 
-  @Lob
-  @Type(type="org.hibernate.type.TextType")
-  private String patentmarket;
+//  @Lob
+//  @Type(type="org.hibernate.type.TextType")
+//  private String patentmarket;
 
 //  @Lob
 //  @Type(type="org.hibernate.type.TextType")
@@ -84,13 +84,13 @@ public class ValuationPatentEntity extends AuditModel {
 //  @Type(type="org.hibernate.type.TextType")
 //  private String royaltyrate;
 
-  @Lob
-  @Type(type="org.hibernate.type.TextType")
-  private String competingmarketshare;
-
-  @Lob
-  @Type(type="org.hibernate.type.TextType")
-  private String competitordate;
+//  @Lob
+//  @Type(type="org.hibernate.type.TextType")
+//  private String competingmarketshare;
+//
+//  @Lob
+//  @Type(type="org.hibernate.type.TextType")
+//  private String competitordate;
 
 //  @Lob
 //  @Type(type="org.hibernate.type.TextType")
@@ -152,26 +152,31 @@ public class ValuationPatentEntity extends AuditModel {
   @Type(type="org.hibernate.type.TextType")
   private String europeanunio;
 
-  @Lob
-  @Type(type="org.hibernate.type.BinaryType")
-  private byte[] dekont;
-  private String dekontFileName;
-  private String dekontFileType;
+//  @Lob
+//  @Type(type="org.hibernate.type.BinaryType")
+//  private byte[] dekont;
+//  private String dekontFileName;
+//  private String dekontFileType;
 
   private String licenseChoose;
 
   private boolean kvvk;
 
+  private String patentmarketchoose;
+  private String patentcontribution;
+  private String patentmarkettime;
+  private String patentmarkettimeplan;
+
 
   public ValuationPatentEntity() {
   }
 
-  public ValuationPatentEntity(String address, String patentpurpose, String patentappno, String patentcountry, String patentmarket, String patentsector, String patentothersector, String marketshare, String overseasmarketshare, String exportcountry, String exportturnover, String competingmarketshare, String competitordate, String turnovertarget, String turnoverpercent, String incomepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String spending, String worldspending, String caseexpense, String countryoutside, String europeanunio, String name_surname, String tc, String tel, @NotBlank @Size(max = 50) @Email String email,String legalPerson,String licenseChoose, boolean kvvk) {
+  public ValuationPatentEntity(String address, String patentpurpose, String patentappno, String patentcountry, String patentsector, String patentothersector, String marketshare, String overseasmarketshare, String exportcountry, String exportturnover, String turnovertarget, String turnoverpercent, String incomepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String spending, String worldspending, String caseexpense, String countryoutside, String europeanunio, String name_surname, String tc, String tel, @NotBlank @Size(max = 50) @Email String email,String legalPerson,String licenseChoose, boolean kvvk, String patentmarketchoose, String patentcontribution, String patentmarkettime, String patentmarkettimeplan) {
     this.address = address;
     this.patentpurpose = patentpurpose;
     this.patentappno = patentappno;
     this.patentcountry = patentcountry;
-    this.patentmarket = patentmarket;
+//    this.patentmarket = patentmarket;
 //    this.patentcontribution = patentcontribution;
     this.patentsector = patentsector;
     this.patentothersector = patentothersector;
@@ -181,8 +186,8 @@ public class ValuationPatentEntity extends AuditModel {
     this.exportcountry = exportcountry;
     this.exportturnover = exportturnover;
 //    this.royaltyrate = royaltyrate;
-    this.competingmarketshare = competingmarketshare;
-    this.competitordate = competitordate;
+//    this.competingmarketshare = competingmarketshare;
+//    this.competitordate = competitordate;
 //    this.competinggrowthrate = competinggrowthrate;
     this.turnovertarget = turnovertarget;
     this.turnoverpercent = turnoverpercent;
@@ -205,8 +210,11 @@ public class ValuationPatentEntity extends AuditModel {
     this.legalPerson = legalPerson;
     this.licenseChoose = licenseChoose;
     this.kvvk = kvvk;
+    this.patentmarketchoose = patentmarketchoose;
+    this.patentcontribution = patentcontribution;
+    this.patentmarkettime = patentmarkettime;
+    this.patentmarkettimeplan = patentmarkettimeplan;
   }
-
 
   public Long getId() {
     return id;
@@ -248,13 +256,6 @@ public class ValuationPatentEntity extends AuditModel {
     this.patentcountry = patentcountry;
   }
 
-  public String getPatentmarket() {
-    return patentmarket;
-  }
-
-  public void setPatentmarket(String patentmarket) {
-    this.patentmarket = patentmarket;
-  }
 
   public String getPatentsector() {
     return patentsector;
@@ -302,22 +303,6 @@ public class ValuationPatentEntity extends AuditModel {
 
   public void setExportturnover(String exportturnover) {
     this.exportturnover = exportturnover;
-  }
-
-  public String getCompetingmarketshare() {
-    return competingmarketshare;
-  }
-
-  public void setCompetingmarketshare(String competingmarketshare) {
-    this.competingmarketshare = competingmarketshare;
-  }
-
-  public String getCompetitordate() {
-    return competitordate;
-  }
-
-  public void setCompetitordate(String competitordate) {
-    this.competitordate = competitordate;
   }
 
   public String getTurnovertarget() {
@@ -424,30 +409,6 @@ public class ValuationPatentEntity extends AuditModel {
     this.europeanunio = europeanunio;
   }
 
-  public byte[] getDekont() {
-    return dekont;
-  }
-
-  public void setDekont(byte[] dekont) {
-    this.dekont = dekont;
-  }
-
-  public String getDekontFileName() {
-    return dekontFileName;
-  }
-
-  public void setDekontFileName(String dekontFileName) {
-    this.dekontFileName = dekontFileName;
-  }
-
-  public String getDekontFileType() {
-    return dekontFileType;
-  }
-
-  public void setDekontFileType(String dekontFileType) {
-    this.dekontFileType = dekontFileType;
-  }
-
   public String getName_surname() {
     return name_surname;
   }
@@ -502,5 +463,37 @@ public class ValuationPatentEntity extends AuditModel {
 
   public void setKvvk(boolean kvvk) {
     this.kvvk = kvvk;
+  }
+
+  public String getPatentmarketchoose() {
+    return patentmarketchoose;
+  }
+
+  public void setPatentmarketchoose(String patentmarketchoose) {
+    this.patentmarketchoose = patentmarketchoose;
+  }
+
+  public String getPatentcontribution() {
+    return patentcontribution;
+  }
+
+  public void setPatentcontribution(String patentcontribution) {
+    this.patentcontribution = patentcontribution;
+  }
+
+  public String getPatentmarkettime() {
+    return patentmarkettime;
+  }
+
+  public void setPatentmarkettime(String patentmarkettime) {
+    this.patentmarkettime = patentmarkettime;
+  }
+
+  public String getPatentmarkettimeplan() {
+    return patentmarkettimeplan;
+  }
+
+  public void setPatentmarkettimeplan(String patentmarkettimeplan) {
+    this.patentmarkettimeplan = patentmarkettimeplan;
   }
 }

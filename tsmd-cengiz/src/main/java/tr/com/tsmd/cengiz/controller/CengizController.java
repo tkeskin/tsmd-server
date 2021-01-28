@@ -25,9 +25,11 @@ import tr.com.tsmd.cengiz.models.CompanyProfile;
 import tr.com.tsmd.cengiz.models.EvaluationInvalidationView;
 import tr.com.tsmd.cengiz.models.News;
 import tr.com.tsmd.cengiz.models.Notice;
+import tr.com.tsmd.cengiz.models.PatentPreServiceCharges;
 import tr.com.tsmd.cengiz.models.PatentPreView;
 import tr.com.tsmd.cengiz.models.Slogan;
 import tr.com.tsmd.cengiz.models.TechnologyConsultancyView;
+import tr.com.tsmd.cengiz.models.TrademarkPreServiceCharges;
 import tr.com.tsmd.cengiz.models.TrademarkPreView;
 import tr.com.tsmd.cengiz.models.UserRating;
 import tr.com.tsmd.cengiz.models.ValuationView;
@@ -368,4 +370,39 @@ public class CengizController {
     }
   }
 
+  /**
+   * updateTrademarkPreServiceCharges updateContent
+   *
+   * @return .
+   */
+  @PostMapping("/updateTrademarkPreServiceCharges")
+  public ResponseEntity<?> updateTrademarkPreServiceCharges(@RequestBody TrademarkPreServiceCharges trademarkPreServiceCharges) {
+
+    try {
+      servicesInfoService.updateTrademarkPreServiceCharges(trademarkPreServiceCharges);
+
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarısız!"));
+    }
+  }
+
+  /**
+   * updateTrademarkPreServiceCharges updateContent
+   *
+   * @return .
+   */
+  @PostMapping("/updatePatentPreServiceCharges")
+  public ResponseEntity<?> updatePatentPreServiceCharges(@RequestBody PatentPreServiceCharges patentPreServiceCharges) {
+
+    try {
+      servicesInfoService.updatePatentPreServiceCharges(patentPreServiceCharges);
+
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarılı!"));
+    } catch (Exception e) {
+      logger.error(e.getLocalizedMessage());
+      return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarısız!"));
+    }
+  }
 }

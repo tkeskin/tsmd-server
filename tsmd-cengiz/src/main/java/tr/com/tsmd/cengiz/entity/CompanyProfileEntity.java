@@ -31,6 +31,11 @@ public class CompanyProfileEntity extends AuditModel {
   @Type(type="org.hibernate.type.TextType")
   private String companyProfileExplain;
 
+  @NotBlank
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
+  private String companyProfileExplainEn;
+
   private String fileName;
 
   private String fileType;
@@ -95,5 +100,13 @@ public class CompanyProfileEntity extends AuditModel {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public String getCompanyProfileExplainEn() {
+    return companyProfileExplainEn;
+  }
+
+  public void setCompanyProfileExplainEn(String companyProfileExplainEn) {
+    this.companyProfileExplainEn = companyProfileExplainEn;
   }
 }

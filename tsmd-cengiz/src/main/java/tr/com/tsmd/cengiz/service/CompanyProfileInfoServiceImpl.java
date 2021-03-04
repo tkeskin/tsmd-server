@@ -19,7 +19,7 @@ public class CompanyProfileInfoServiceImpl implements CompanyProfileInfoService 
   @Override
   public CompanyProfile getCompanyProfileBy() {
     CompanyProfileEntity entity = CompanyProfileRepository.getBy();
-    CompanyProfile CompanyProfile = new CompanyProfile(entity.getId(), entity.getPicture(), entity.getCompanyPresident(),entity.getCompanyProfileExplain(), "data: image/jpeg;base64," +
+    CompanyProfile CompanyProfile = new CompanyProfile(entity.getId(), entity.getPicture(), entity.getCompanyPresident(),entity.getCompanyProfileExplain(),entity.getCompanyProfileExplainEn(), "data: image/jpeg;base64," +
         new String(Base64.encodeBase64(entity.getPicture()), StandardCharsets.US_ASCII), entity.getFileName(), entity.getFileType());
     return CompanyProfile;
   }
@@ -29,6 +29,7 @@ public class CompanyProfileInfoServiceImpl implements CompanyProfileInfoService 
 
     CompanyProfileEntity entity = CompanyProfileRepository.getBy();
     entity.setCompanyProfileExplain(companyProfile.getCompanyProfileExplain());
+    entity.setCompanyProfileExplainEn(companyProfile.getCompanyProfileExplainEn());
     entity.setCompanyPresident(companyProfile.getCompanyPresident());
 
     CompanyProfileRepository.save(entity);

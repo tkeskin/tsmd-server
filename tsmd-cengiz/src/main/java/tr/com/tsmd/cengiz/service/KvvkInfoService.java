@@ -7,5 +7,5 @@ public interface KvvkInfoService {
 
   Long saveKvvk(KvvkEntity kvvkEntity);
 
-  KvvkEntity getKvvkFile();
+  KvvkEntity getKvvkFile(String language);
 }

@@ -24,6 +24,11 @@ public class PatentPreViewEntity extends AuditModel {
   @Type(type="org.hibernate.type.TextType")
   private String patentPreExplain;
 
+  @NotBlank
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
+  private String patentPreExplainEn;
+
   @Lob
   @Type(type="org.hibernate.type.BinaryType")
   private byte[] picture;
@@ -88,5 +93,13 @@ public class PatentPreViewEntity extends AuditModel {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public String getPatentPreExplainEn() {
+    return patentPreExplainEn;
+  }
+
+  public void setPatentPreExplainEn(String patentPreExplainEn) {
+    this.patentPreExplainEn = patentPreExplainEn;
   }
 }

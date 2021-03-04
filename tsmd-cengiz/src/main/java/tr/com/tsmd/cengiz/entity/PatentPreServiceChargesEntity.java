@@ -19,10 +19,13 @@ public class PatentPreServiceChargesEntity extends AuditModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank
   @Lob
   @Type(type="org.hibernate.type.TextType")
   private String explain;
+
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
+  private String explainEn;
 
   public PatentPreServiceChargesEntity() {
   }
@@ -42,5 +45,13 @@ public class PatentPreServiceChargesEntity extends AuditModel {
 
   public void setExplain(String explain) {
     this.explain = explain;
+  }
+
+  public String getExplainEn() {
+    return explainEn;
+  }
+
+  public void setExplainEn(String explainEn) {
+    this.explainEn = explainEn;
   }
 }

@@ -64,6 +64,8 @@ public class TrademarkPreEntity extends AuditModel {
   @Type(type="org.hibernate.type.TextType")
   private String trademarkItemList;
 
+  private String trackingNumber;
+
 
 
   public TrademarkPreEntity() {
@@ -84,6 +86,25 @@ public class TrademarkPreEntity extends AuditModel {
     this.legalPerson = legalPerson;
     this.trademarkItemList = trademarkItemList;
     this.kvvk = kvvk;
+  }
+
+
+  public TrademarkPreEntity( String trademarktype, String trademarkimage, String trademarktext, String trademarkclass, String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email,String legalPerson, String trademarkItemList,
+                             boolean kvvk,String trackingNumber) {
+
+    this.trademarktype = trademarktype;
+    this.trademarkimage = trademarkimage;
+    this.trademarktext = trademarktext;
+    this.trademarkclass = trademarkclass;
+    this.name_surname = name_surname;
+    this.tc = tc;
+    this.address = address;
+    this.tel = tel;
+    this.email = email;
+    this.legalPerson = legalPerson;
+    this.trademarkItemList = trademarkItemList;
+    this.kvvk = kvvk;
+    this.trackingNumber = trackingNumber;
   }
 
   public Long getId() {
@@ -238,5 +259,13 @@ public class TrademarkPreEntity extends AuditModel {
 
   public void setTrademarkimageFileType(String trademarkimageFileType) {
     this.trademarkimageFileType = trademarkimageFileType;
+  }
+
+  public String getTrackingNumber() {
+    return trackingNumber;
+  }
+
+  public void setTrackingNumber(String trackingNumber) {
+    this.trackingNumber = trackingNumber;
   }
 }

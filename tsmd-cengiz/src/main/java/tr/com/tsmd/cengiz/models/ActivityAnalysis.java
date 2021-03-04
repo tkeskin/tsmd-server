@@ -28,6 +28,7 @@ public class ActivityAnalysis {
   private String legalPerson;
 
   private boolean kvvk;
+  private String trackingNumber;
 
   public ActivityAnalysis() {
   }
@@ -167,5 +168,13 @@ public class ActivityAnalysis {
 
   public void setKvvk(boolean kvvk) {
     this.kvvk = kvvk;
+  }
+
+  public String getTrackingNumber() {
+    return trackingNumber;
+  }
+
+  public void setTrackingNumber(String trackingNumber) {
+    this.trackingNumber = trackingNumber;
   }
 }

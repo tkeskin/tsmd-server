@@ -4,6 +4,7 @@ public class PatentPreView {
 
   private Long id;
   private String patentPreExplain;
+  private String patentPreExplainEn;
   private byte[] picture;
   private String pictureBase64;
   private String fileName;
@@ -42,6 +43,16 @@ public class PatentPreView {
     this.id = id;
     this.picture = picture;
     this.patentPreExplain = patentPreExplain;
+    this.pictureBase64 = pictureBase64;
+    this.fileName = fileName;
+    this.fileType = fileType;
+  }
+
+  public PatentPreView(Long id, byte[] picture, String patentPreExplain,String patentPreExplainEn, String pictureBase64, String fileName, String fileType) {
+    this.id = id;
+    this.picture = picture;
+    this.patentPreExplain = patentPreExplain;
+    this.patentPreExplainEn = patentPreExplainEn;
     this.pictureBase64 = pictureBase64;
     this.fileName = fileName;
     this.fileType = fileType;
@@ -94,5 +105,13 @@ public class PatentPreView {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public String getPatentPreExplainEn() {
+    return patentPreExplainEn;
+  }
+
+  public void setPatentPreExplainEn(String patentPreExplainEn) {
+    this.patentPreExplainEn = patentPreExplainEn;
   }
 }

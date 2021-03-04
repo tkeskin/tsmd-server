@@ -4,6 +4,7 @@ public class About {
 
   private Long id;
   private String aboutExplain;
+  private String aboutExplainEn;
   private byte[] picture;
   private String pictureBase64;
   private String fileName;
@@ -47,6 +48,15 @@ public class About {
     this.fileType = fileType;
   }
 
+  public About(Long id, String aboutExplain, String aboutExplainEn, byte[] picture, String pictureBase64, String fileName, String fileType) {
+    this.id = id;
+    this.aboutExplain = aboutExplain;
+    this.aboutExplainEn = aboutExplainEn;
+    this.picture = picture;
+    this.pictureBase64 = pictureBase64;
+    this.fileName = fileName;
+    this.fileType = fileType;
+  }
 
   public Long getId() {
     return id;
@@ -94,5 +104,13 @@ public class About {
 
   public void setPicture(byte[] picture) {
     this.picture = picture;
+  }
+
+  public String getAboutExplainEn() {
+    return aboutExplainEn;
+  }
+
+  public void setAboutExplainEn(String aboutExplainEn) {
+    this.aboutExplainEn = aboutExplainEn;
   }
 }

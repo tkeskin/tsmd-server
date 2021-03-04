@@ -4,6 +4,7 @@ public class TechnologyConsultancyView {
 
   private Long id;
   private String technologyConsultancyExplain;
+  private String technologyConsultancyExplainEn;
   private byte[] picture;
   private String pictureBase64;
   private String fileName;
@@ -42,6 +43,16 @@ public class TechnologyConsultancyView {
     this.id = id;
     this.picture = picture;
     this.technologyConsultancyExplain = technologyConsultancyExplain;
+    this.pictureBase64 = pictureBase64;
+    this.fileName = fileName;
+    this.fileType = fileType;
+  }
+
+  public TechnologyConsultancyView(Long id, byte[] picture, String technologyConsultancyExplain,String technologyConsultancyExplainEn, String pictureBase64, String fileName, String fileType) {
+    this.id = id;
+    this.picture = picture;
+    this.technologyConsultancyExplain = technologyConsultancyExplain;
+    this.technologyConsultancyExplainEn = technologyConsultancyExplainEn;
     this.pictureBase64 = pictureBase64;
     this.fileName = fileName;
     this.fileType = fileType;
@@ -94,5 +105,13 @@ public class TechnologyConsultancyView {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public String getTechnologyConsultancyExplainEn() {
+    return technologyConsultancyExplainEn;
+  }
+
+  public void setTechnologyConsultancyExplainEn(String technologyConsultancyExplainEn) {
+    this.technologyConsultancyExplainEn = technologyConsultancyExplainEn;
   }
 }

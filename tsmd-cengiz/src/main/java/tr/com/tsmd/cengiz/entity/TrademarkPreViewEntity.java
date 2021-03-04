@@ -24,6 +24,11 @@ public class TrademarkPreViewEntity extends AuditModel {
   @Type(type="org.hibernate.type.TextType")
   private String trademarkPreExplain;
 
+  @NotBlank
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
+  private String trademarkPreExplainEn;
+
   @Lob
   @Type(type="org.hibernate.type.BinaryType")
   private byte[] picture;
@@ -118,5 +123,13 @@ public class TrademarkPreViewEntity extends AuditModel {
 
   public void setNiceFileType(String niceFileType) {
     this.niceFileType = niceFileType;
+  }
+
+  public String getTrademarkPreExplainEn() {
+    return trademarkPreExplainEn;
+  }
+
+  public void setTrademarkPreExplainEn(String trademarkPreExplainEn) {
+    this.trademarkPreExplainEn = trademarkPreExplainEn;
   }
 }

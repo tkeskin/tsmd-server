@@ -29,6 +29,7 @@ public class TrademarkPre {
   private String legalPerson;
   private String trademarkItemList;
   private boolean kvvk;
+  private String trackingNumber;
 
   public TrademarkPre() {
   }
@@ -184,5 +185,13 @@ public class TrademarkPre {
 
   public void setTrademarkImageFileType(String trademarkImageFileType) {
     this.trademarkImageFileType = trademarkImageFileType;
+  }
+
+  public String getTrackingNumber() {
+    return trackingNumber;
+  }
+
+  public void setTrackingNumber(String trackingNumber) {
+    this.trackingNumber = trackingNumber;
   }
 }

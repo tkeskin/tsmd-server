@@ -56,7 +56,7 @@ public class ValuationPatent {
   private String patentcontribution;
   private String patentmarkettime;
   private String patentmarkettimeplan;
-
+  private String trackingNumber;
 
 
 
@@ -395,5 +395,13 @@ public class ValuationPatent {
 
   public void setPatentmarkettimeplan(String patentmarkettimeplan) {
     this.patentmarkettimeplan = patentmarkettimeplan;
+  }
+
+  public String getTrackingNumber() {
+    return trackingNumber;
+  }
+
+  public void setTrackingNumber(String trackingNumber) {
+    this.trackingNumber = trackingNumber;
   }
 }

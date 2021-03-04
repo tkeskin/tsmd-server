@@ -4,6 +4,7 @@ public class ActivityAnalysisView {
 
   private Long id;
   private String activityAnalysisExplain;
+  private String activityAnalysisExplainEn;
   private byte[] picture;
   private String pictureBase64;
   private String fileName;
@@ -42,6 +43,16 @@ public class ActivityAnalysisView {
     this.id = id;
     this.picture = picture;
     this.activityAnalysisExplain = activityAnalysisExplain;
+    this.pictureBase64 = pictureBase64;
+    this.fileName = fileName;
+    this.fileType = fileType;
+  }
+
+  public ActivityAnalysisView(Long id, byte[] picture, String activityAnalysisExplain,String activityAnalysisExplainEn, String pictureBase64, String fileName, String fileType) {
+    this.id = id;
+    this.picture = picture;
+    this.activityAnalysisExplain = activityAnalysisExplain;
+    this.activityAnalysisExplainEn = activityAnalysisExplainEn;
     this.pictureBase64 = pictureBase64;
     this.fileName = fileName;
     this.fileType = fileType;
@@ -94,5 +105,13 @@ public class ActivityAnalysisView {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public String getActivityAnalysisExplainEn() {
+    return activityAnalysisExplainEn;
+  }
+
+  public void setActivityAnalysisExplainEn(String activityAnalysisExplainEn) {
+    this.activityAnalysisExplainEn = activityAnalysisExplainEn;
   }
 }

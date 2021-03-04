@@ -6,6 +6,7 @@ public class TrademarkPreServiceCharges {
 
 
   private String explain;
+  private String explainEn;
 
   public TrademarkPreServiceCharges() {
   }
@@ -13,6 +14,12 @@ public class TrademarkPreServiceCharges {
   public TrademarkPreServiceCharges(Long id, String explain) {
     this.id = id;
     this.explain = explain;
+  }
+
+  public TrademarkPreServiceCharges(Long id, String explain, String explainEn) {
+    this.id = id;
+    this.explain = explain;
+    this.explainEn = explainEn;
   }
 
   public Long getId() {
@@ -29,5 +36,13 @@ public class TrademarkPreServiceCharges {
 
   public void setExplain(String explain) {
     this.explain = explain;
+  }
+
+  public String getExplainEn() {
+    return explainEn;
+  }
+
+  public void setExplainEn(String explainEn) {
+    this.explainEn = explainEn;
   }
 }

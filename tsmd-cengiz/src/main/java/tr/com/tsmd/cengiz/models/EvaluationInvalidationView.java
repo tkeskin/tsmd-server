@@ -4,6 +4,7 @@ public class EvaluationInvalidationView {
 
   private Long id;
   private String evaluationInvalidationExplain;
+  private String evaluationInvalidationExplainEn;
   private byte[] picture;
   private String pictureBase64;
   private String fileName;
@@ -42,6 +43,16 @@ public class EvaluationInvalidationView {
     this.id = id;
     this.picture = picture;
     this.evaluationInvalidationExplain = evaluationInvalidationExplain;
+    this.pictureBase64 = pictureBase64;
+    this.fileName = fileName;
+    this.fileType = fileType;
+  }
+
+  public EvaluationInvalidationView(Long id, byte[] picture, String evaluationInvalidationExplain,String evaluationInvalidationExplainEn, String pictureBase64, String fileName, String fileType) {
+    this.id = id;
+    this.picture = picture;
+    this.evaluationInvalidationExplain = evaluationInvalidationExplain;
+    this.evaluationInvalidationExplainEn = evaluationInvalidationExplainEn;
     this.pictureBase64 = pictureBase64;
     this.fileName = fileName;
     this.fileType = fileType;
@@ -94,5 +105,13 @@ public class EvaluationInvalidationView {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public String getEvaluationInvalidationExplainEn() {
+    return evaluationInvalidationExplainEn;
+  }
+
+  public void setEvaluationInvalidationExplainEn(String evaluationInvalidationExplainEn) {
+    this.evaluationInvalidationExplainEn = evaluationInvalidationExplainEn;
   }
 }

@@ -166,6 +166,7 @@ public class ValuationPatentEntity extends AuditModel {
   private String patentcontribution;
   private String patentmarkettime;
   private String patentmarkettimeplan;
+  private String trackingNumber;
 
 
   public ValuationPatentEntity() {
@@ -215,6 +216,53 @@ public class ValuationPatentEntity extends AuditModel {
     this.patentmarkettime = patentmarkettime;
     this.patentmarkettimeplan = patentmarkettimeplan;
   }
+
+  public ValuationPatentEntity(String address, String patentpurpose, String patentappno, String patentcountry, String patentsector, String patentothersector, String marketshare, String overseasmarketshare, String exportcountry, String exportturnover, String turnovertarget, String turnoverpercent, String incomepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String spending, String worldspending, String caseexpense, String countryoutside, String europeanunio, String name_surname, String tc, String tel, @NotBlank @Size(max = 50) @Email String email,String legalPerson,String licenseChoose, boolean kvvk, String patentmarketchoose, String patentcontribution, String patentmarkettime, String patentmarkettimeplan,String trackingNumber) {
+    this.address = address;
+    this.patentpurpose = patentpurpose;
+    this.patentappno = patentappno;
+    this.patentcountry = patentcountry;
+//    this.patentmarket = patentmarket;
+//    this.patentcontribution = patentcontribution;
+    this.patentsector = patentsector;
+    this.patentothersector = patentothersector;
+    this.marketshare = marketshare;
+//    this.percentageturnover = percentageturnover;
+    this.overseasmarketshare = overseasmarketshare;
+    this.exportcountry = exportcountry;
+    this.exportturnover = exportturnover;
+//    this.royaltyrate = royaltyrate;
+//    this.competingmarketshare = competingmarketshare;
+//    this.competitordate = competitordate;
+//    this.competinggrowthrate = competinggrowthrate;
+    this.turnovertarget = turnovertarget;
+    this.turnoverpercent = turnoverpercent;
+    this.incomepercent = incomepercent;
+    this.license = license;
+    this.licenseroyalt = licenseroyalt;
+    this.contract = contract;
+    this.advertisement = advertisement;
+    this.totalexpenditure = totalexpenditure;
+    this.spending = spending;
+//    this.developmentspending = developmentspending;
+    this.worldspending = worldspending;
+    this.caseexpense = caseexpense;
+    this.countryoutside = countryoutside;
+    this.europeanunio = europeanunio;
+    this.name_surname = name_surname;
+    this.tc = tc;
+    this.tel = tel;
+    this.email = email;
+    this.legalPerson = legalPerson;
+    this.licenseChoose = licenseChoose;
+    this.kvvk = kvvk;
+    this.patentmarketchoose = patentmarketchoose;
+    this.patentcontribution = patentcontribution;
+    this.patentmarkettime = patentmarkettime;
+    this.patentmarkettimeplan = patentmarkettimeplan;
+    this.trackingNumber = trackingNumber;
+  }
+
 
   public Long getId() {
     return id;
@@ -495,5 +543,13 @@ public class ValuationPatentEntity extends AuditModel {
 
   public void setPatentmarkettimeplan(String patentmarkettimeplan) {
     this.patentmarkettimeplan = patentmarkettimeplan;
+  }
+
+  public String getTrackingNumber() {
+    return trackingNumber;
+  }
+
+  public void setTrackingNumber(String trackingNumber) {
+    this.trackingNumber = trackingNumber;
   }
 }

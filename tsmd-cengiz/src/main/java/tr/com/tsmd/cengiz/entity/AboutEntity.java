@@ -20,6 +20,11 @@ public class AboutEntity extends AuditModel {
   @Type(type="org.hibernate.type.TextType")
   private String aboutExplain;
 
+  @NotBlank
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
+  private String aboutExplainEn;
+
   @Lob
   @Type(type="org.hibernate.type.BinaryType")
   private byte[] picture;
@@ -84,5 +89,13 @@ public class AboutEntity extends AuditModel {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public String getAboutExplainEn() {
+    return aboutExplainEn;
+  }
+
+  public void setAboutExplainEn(String aboutExplainEn) {
+    this.aboutExplainEn = aboutExplainEn;
   }
 }

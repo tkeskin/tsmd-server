@@ -144,6 +144,7 @@ public class ValuationTrademarkEntity extends AuditModel {
   private String dekontFileName;
   private String dekontFileType;
   private boolean kvvk;
+  private String trackingNumber;
 
 
   public ValuationTrademarkEntity() {
@@ -188,6 +189,48 @@ public class ValuationTrademarkEntity extends AuditModel {
     this.valuationTrademarkAppNo = valuationTrademarkAppNo;
     this.licenseChoose = licenseChoose;
     this.kvvk = kvvk;
+  }
+
+  public ValuationTrademarkEntity(String address, String trademarkpurpose, String commonusage, String targetcountry, String trademarktime, String markettime, String trademarkcontribution, String mainsector, String othersector, String marketshare, String overseasmarketshare, String exportcountry, String turnoverpercent, String competingmarketshare, String markethistory, String turnovertarget, String trademarkturnoverpercent, String incomeincreasepercent, String license, String licenseroyalt, String contract, String advertisement, String totalexpenditure, String countryoutside, String europeanunion, String name_surname, String tc, String tel, @NotBlank @Size(max = 50) @Email String email, String legalPerson, String valuationTrademarkAppNo, String licenseChoose, boolean kvvk,String trackingNumber) {
+    this.address = address;
+    this.trademarkpurpose = trademarkpurpose;
+    this.commonusage = commonusage;
+//    this.dominanttrademark = dominanttrademark;
+    this.targetcountry = targetcountry;
+    this.trademarktime = trademarktime;
+    this.markettime = markettime;
+    this.trademarkcontribution = trademarkcontribution;
+//    this.incomepercent = incomepercent;
+    this.mainsector = mainsector;
+    this.othersector = othersector;
+    this.marketshare = marketshare;
+//    this.totalturnover = totalturnover;
+    this.overseasmarketshare = overseasmarketshare;
+    this.exportcountry = exportcountry;
+    this.turnoverpercent = turnoverpercent;
+//    this.percentroyalt = percentroyalt;
+    this.competingmarketshare = competingmarketshare;
+    this.markethistory = markethistory;
+//    this.growthrate = growthrate;
+    this.turnovertarget = turnovertarget;
+    this.trademarkturnoverpercent = trademarkturnoverpercent;
+    this.incomeincreasepercent = incomeincreasepercent;
+    this.license = license;
+    this.licenseroyalt = licenseroyalt;
+    this.contract = contract;
+    this.advertisement = advertisement;
+    this.totalexpenditure = totalexpenditure;
+    this.countryoutside = countryoutside;
+    this.europeanunion = europeanunion;
+    this.name_surname = name_surname;
+    this.tc = tc;
+    this.tel = tel;
+    this.email = email;
+    this.legalPerson = legalPerson;
+    this.valuationTrademarkAppNo = valuationTrademarkAppNo;
+    this.licenseChoose = licenseChoose;
+    this.kvvk = kvvk;
+    this.trackingNumber = trackingNumber;
   }
 
   public Long getId() {
@@ -487,5 +530,13 @@ public class ValuationTrademarkEntity extends AuditModel {
 
   public void setKvvk(boolean kvvk) {
     this.kvvk = kvvk;
+  }
+
+  public String getTrackingNumber() {
+    return trackingNumber;
+  }
+
+  public void setTrackingNumber(String trackingNumber) {
+    this.trackingNumber = trackingNumber;
   }
 }

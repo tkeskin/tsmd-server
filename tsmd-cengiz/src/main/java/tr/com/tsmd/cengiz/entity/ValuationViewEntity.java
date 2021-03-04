@@ -24,6 +24,11 @@ public class ValuationViewEntity extends AuditModel {
   @Type(type="org.hibernate.type.TextType")
   private String valuationExplain;
 
+  @NotBlank
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
+  private String valuationExplainEn;
+
   @Lob
   @Type(type="org.hibernate.type.BinaryType")
   private byte[] picture;
@@ -87,5 +92,13 @@ public class ValuationViewEntity extends AuditModel {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public String getValuationExplainEn() {
+    return valuationExplainEn;
+  }
+
+  public void setValuationExplainEn(String valuationExplainEn) {
+    this.valuationExplainEn = valuationExplainEn;
   }
 }

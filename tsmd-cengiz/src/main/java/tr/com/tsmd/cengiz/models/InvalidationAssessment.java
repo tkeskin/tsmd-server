@@ -21,6 +21,7 @@ public class InvalidationAssessment {
   private Date createdAt;
 
   private boolean kvvk;
+  private String trackingNumber;
 
 
   public InvalidationAssessment() {
@@ -111,5 +112,13 @@ public class InvalidationAssessment {
 
   public void setName_surname(String name_surname) {
     this.name_surname = name_surname;
+  }
+
+  public String getTrackingNumber() {
+    return trackingNumber;
+  }
+
+  public void setTrackingNumber(String trackingNumber) {
+    this.trackingNumber = trackingNumber;
   }
 }

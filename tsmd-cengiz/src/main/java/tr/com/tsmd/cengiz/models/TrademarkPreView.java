@@ -4,6 +4,7 @@ public class TrademarkPreView {
 
   private Long id;
   private String trademarkPreExplain;
+  private String trademarkPreExplainEn;
   private byte[] picture;
   private String pictureBase64;
   private String fileName;
@@ -54,6 +55,20 @@ public class TrademarkPreView {
   public TrademarkPreView(Long id, String trademarkPreExplain, byte[] picture, String pictureBase64, String fileName, String fileType, byte[] nice, String niceBase64, String niceFileName, String niceFileType) {
     this.id = id;
     this.trademarkPreExplain = trademarkPreExplain;
+    this.picture = picture;
+    this.pictureBase64 = pictureBase64;
+    this.fileName = fileName;
+    this.fileType = fileType;
+    this.nice = nice;
+    this.niceBase64 = niceBase64;
+    this.niceFileName = niceFileName;
+    this.niceFileType = niceFileType;
+  }
+
+  public TrademarkPreView(Long id, String trademarkPreExplain,String trademarkPreExplainEn, byte[] picture, String pictureBase64, String fileName, String fileType, byte[] nice, String niceBase64, String niceFileName, String niceFileType) {
+    this.id = id;
+    this.trademarkPreExplain = trademarkPreExplain;
+    this.trademarkPreExplainEn = trademarkPreExplainEn;
     this.picture = picture;
     this.pictureBase64 = pictureBase64;
     this.fileName = fileName;
@@ -142,5 +157,13 @@ public class TrademarkPreView {
 
   public void setNiceFileType(String niceFileType) {
     this.niceFileType = niceFileType;
+  }
+
+  public String getTrademarkPreExplainEn() {
+    return trademarkPreExplainEn;
+  }
+
+  public void setTrademarkPreExplainEn(String trademarkPreExplainEn) {
+    this.trademarkPreExplainEn = trademarkPreExplainEn;
   }
 }

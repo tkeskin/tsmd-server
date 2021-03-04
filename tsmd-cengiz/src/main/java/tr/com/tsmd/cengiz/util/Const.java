@@ -36,5 +36,6 @@ public class Const {
   public static final String TABLE_SLOGAN = "slogan";
   public static final String TABLE_TRADEMARKPRE_SERVICE_CHARGES = "trademarkpreservicecharges";
   public static final String TABLE_PATENTPRE_SERVICE_CHARGES = "patentpreservicecharges";
+  public static final String TABLE_GENERATOR_APP_TRAKING_NO = "generatorapptrackingno";
 
 }

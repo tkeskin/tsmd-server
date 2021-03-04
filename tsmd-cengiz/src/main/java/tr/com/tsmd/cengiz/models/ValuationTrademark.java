@@ -54,7 +54,7 @@ public class ValuationTrademark {
   private String valuationTrademarkAppNo;
   private String licenseChoose;
   private boolean kvvk;
-
+  private String trackingNumber;
 
   public ValuationTrademark() {
   }
@@ -381,5 +381,13 @@ public class ValuationTrademark {
 
   public void setKvvk(boolean kvvk) {
     this.kvvk = kvvk;
+  }
+
+  public String getTrackingNumber() {
+    return trackingNumber;
+  }
+
+  public void setTrackingNumber(String trackingNumber) {
+    this.trackingNumber = trackingNumber;
   }
 }

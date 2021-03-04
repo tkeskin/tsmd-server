@@ -24,6 +24,11 @@ public class TechnologyConsultancyViewEntity extends AuditModel {
   @Type(type="org.hibernate.type.TextType")
   private String technologyConsultancyExplain;
 
+  @NotBlank
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
+  private String technologyConsultancyExplainEn;
+
   @Lob
   @Type(type="org.hibernate.type.BinaryType")
   private byte[] picture;
@@ -87,5 +92,13 @@ public class TechnologyConsultancyViewEntity extends AuditModel {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public String getTechnologyConsultancyExplainEn() {
+    return technologyConsultancyExplainEn;
+  }
+
+  public void setTechnologyConsultancyExplainEn(String technologyConsultancyExplainEn) {
+    this.technologyConsultancyExplainEn = technologyConsultancyExplainEn;
   }
 }

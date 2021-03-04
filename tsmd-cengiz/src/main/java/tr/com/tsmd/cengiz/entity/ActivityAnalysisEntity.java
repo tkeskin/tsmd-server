@@ -58,13 +58,14 @@ public class ActivityAnalysisEntity extends AuditModel {
   private String legalPerson;
 
   private boolean kvvk;
+  private String trackingNumber;
 
 
 
   public ActivityAnalysisEntity() {
   }
 
-  public ActivityAnalysisEntity(String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String keyWord, String opponent, String technicalcomponent, String image, String otherpoint, String legalPerson, boolean kvvk) {
+  public ActivityAnalysisEntity(String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String keyWord, String opponent, String technicalcomponent, String image, String otherpoint, String legalPerson, boolean kvvk,String trackingNumber) {
     this.name_surname = name_surname;
     this.tc = tc;
     this.address = address;
@@ -77,6 +78,7 @@ public class ActivityAnalysisEntity extends AuditModel {
     this.otherpoint = otherpoint;
     this.legalPerson = legalPerson;
     this.kvvk = kvvk;
+    this.trackingNumber = trackingNumber;
   }
 
   public Long getId() {
@@ -205,5 +207,13 @@ public class ActivityAnalysisEntity extends AuditModel {
 
   public void setKvvk(boolean kvvk) {
     this.kvvk = kvvk;
+  }
+
+  public String getTrackingNumber() {
+    return trackingNumber;
+  }
+
+  public void setTrackingNumber(String trackingNumber) {
+    this.trackingNumber = trackingNumber;
   }
 }

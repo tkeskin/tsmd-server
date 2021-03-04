@@ -29,6 +29,12 @@ import tr.com.tsmd.cengiz.entity.ActivityAnalysisPicturesEntity;
 import tr.com.tsmd.cengiz.entity.ActivityAnalysisViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.ContactMailEntity;
 import tr.com.tsmd.cengiz.entity.EvaluationInvalidationViewPdfEntity;
+import tr.com.tsmd.cengiz.entity.GeneratorActivityAnalysisEntity;
+import tr.com.tsmd.cengiz.entity.GeneratorInvalidationAssessmentEntity;
+import tr.com.tsmd.cengiz.entity.GeneratorPatentPreEntity;
+import tr.com.tsmd.cengiz.entity.GeneratorTrademarkPreEntity;
+import tr.com.tsmd.cengiz.entity.GeneratorValuationPatentEntity;
+import tr.com.tsmd.cengiz.entity.GeneratorValuationTrademarkEntity;
 import tr.com.tsmd.cengiz.entity.InvalidationAssessmentEntity;
 import tr.com.tsmd.cengiz.entity.KvvkEntity;
 import tr.com.tsmd.cengiz.entity.PatentPreEntity;
@@ -37,7 +43,6 @@ import tr.com.tsmd.cengiz.entity.PatentPreTableEntity;
 import tr.com.tsmd.cengiz.entity.PatentPreViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.TechnologyConsultancyViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.TrademarkPreEntity;
-import tr.com.tsmd.cengiz.entity.TrademarkPreViewEntity;
 import tr.com.tsmd.cengiz.entity.TrademarkPreViewPdfEntity;
 import tr.com.tsmd.cengiz.entity.ValuationPatentEntity;
 import tr.com.tsmd.cengiz.entity.ValuationTrademarkEntity;
@@ -57,6 +62,7 @@ import tr.com.tsmd.cengiz.models.EvaluationInvalidationViewPdfList;
 import tr.com.tsmd.cengiz.models.FullData;
 import tr.com.tsmd.cengiz.models.FullDataList;
 import tr.com.tsmd.cengiz.models.General;
+import tr.com.tsmd.cengiz.models.HomePage;
 import tr.com.tsmd.cengiz.models.InvalidationAssessment;
 import tr.com.tsmd.cengiz.models.InvalidationAssessmentList;
 import tr.com.tsmd.cengiz.models.News;
@@ -71,7 +77,6 @@ import tr.com.tsmd.cengiz.models.PatentPreRelatedPicturesList;
 import tr.com.tsmd.cengiz.models.PatentPreServiceCharges;
 import tr.com.tsmd.cengiz.models.PatentPreView;
 import tr.com.tsmd.cengiz.models.PatentPreViewPdfList;
-import tr.com.tsmd.cengiz.models.HomePage;
 import tr.com.tsmd.cengiz.models.TechnologyConsultancyView;
 import tr.com.tsmd.cengiz.models.TechnologyConsultancyViewPdfList;
 import tr.com.tsmd.cengiz.models.TrademarkPre;
@@ -90,6 +95,12 @@ import tr.com.tsmd.cengiz.payload.request.ServicesRequest;
 import tr.com.tsmd.cengiz.repository.ActivityAnalysisPicturesRepository;
 import tr.com.tsmd.cengiz.repository.ActivityAnalysisRepository;
 import tr.com.tsmd.cengiz.repository.ContactMailRepository;
+import tr.com.tsmd.cengiz.repository.GeneratorActivityAnalysisRepository;
+import tr.com.tsmd.cengiz.repository.GeneratorInvalidationAssessmentRepository;
+import tr.com.tsmd.cengiz.repository.GeneratorPatentPreRepository;
+import tr.com.tsmd.cengiz.repository.GeneratorTrademarkPreRepository;
+import tr.com.tsmd.cengiz.repository.GeneratorValuationPatentRepository;
+import tr.com.tsmd.cengiz.repository.GeneratorValuationTrademarkRepository;
 import tr.com.tsmd.cengiz.repository.InvalidationAssessmentRepository;
 import tr.com.tsmd.cengiz.repository.PatentPreRelatedPicturesRepository;
 import tr.com.tsmd.cengiz.repository.PatentPreRepository;
@@ -101,12 +112,12 @@ import tr.com.tsmd.cengiz.service.AboutInfoService;
 import tr.com.tsmd.cengiz.service.ActivityAnalysisService;
 import tr.com.tsmd.cengiz.service.CompanyProfileInfoService;
 import tr.com.tsmd.cengiz.service.EmailService;
+import tr.com.tsmd.cengiz.service.HomeService;
 import tr.com.tsmd.cengiz.service.KvvkInfoService;
 import tr.com.tsmd.cengiz.service.NewsInfoService;
 import tr.com.tsmd.cengiz.service.NoticeInfoService;
 import tr.com.tsmd.cengiz.service.PatentPreService;
 import tr.com.tsmd.cengiz.service.ServicesInfoService;
-import tr.com.tsmd.cengiz.service.HomeService;
 import tr.com.tsmd.cengiz.service.UserInfoService;
 import tr.com.tsmd.cengiz.service.ValuationService;
 import tr.com.tsmd.cengiz.util.Mail;
@@ -186,6 +197,23 @@ public class CengizPublicController {
   @Autowired
   HomeService homeService;
 
+  @Autowired
+  GeneratorTrademarkPreRepository generatorTrademarkPreRepository;
+
+  @Autowired
+  GeneratorInvalidationAssessmentRepository generatorInvalidationAssessmentRepository;
+
+  @Autowired
+  GeneratorActivityAnalysisRepository generatorActivityAnalysisRepository;
+
+  @Autowired
+  GeneratorPatentPreRepository generatorPatentPreRepository;
+
+  @Autowired
+  GeneratorValuationPatentRepository generatorValuationPatentRepository;
+
+  @Autowired
+  GeneratorValuationTrademarkRepository generatorValuationTrademarkRepository;
 
   /**
    * user list
@@ -265,6 +293,7 @@ public class CengizPublicController {
       trademarkPre.setEmail(entity.getEmail());
       trademarkPre.setCreatedAt(entity.getCreatedAt());
       trademarkPre.setLegalPerson(entity.getLegalPerson());
+      trademarkPre.setTrackingNumber(entity.getTrackingNumber());
       trademarkPres.add(trademarkPre);
     }
 
@@ -293,6 +322,7 @@ public class CengizPublicController {
       invalidationAssessment.setTel(entity.getTel());
       invalidationAssessment.setEmail(entity.getEmail());
       invalidationAssessment.setCreatedAt(entity.getCreatedAt());
+      invalidationAssessment.setTrackingNumber(entity.getTrackingNumber());
       invalidationAssessments.add(invalidationAssessment);
     }
 
@@ -338,6 +368,7 @@ public class CengizPublicController {
       patentPre.setEmail(entity.getEmail());
       patentPre.setCreatedAt(entity.getCreatedAt());
       patentPre.setLegalPerson(entity.getLegalPerson());
+      patentPre.setTrackingNumber(entity.getTrackingNumber());
       patentPres.add(patentPre);
     }
 
@@ -380,6 +411,7 @@ public class CengizPublicController {
     trademarkPre.setTrademarkItemList(entity.getTrademarkItemList());
     trademarkPre.setDekontFileType(entity.getDekontFileType());
     trademarkPre.setTrademarkImageFileType(entity.getTrademarkimageFileType());
+    trademarkPre.setTrackingNumber(entity.getTrackingNumber());
     return trademarkPre;
   }
 
@@ -433,6 +465,7 @@ public class CengizPublicController {
     valuationTrademark.setTotalexpenditure(entity.getTotalexpenditure());
     valuationTrademark.setCountryoutside(entity.getCountryoutside());
     valuationTrademark.setEuropeanunion(entity.getEuropeanunion());
+    valuationTrademark.setTrackingNumber(entity.getTrackingNumber());
     return valuationTrademark;
   }
 
@@ -457,6 +490,7 @@ public class CengizPublicController {
       valuationTrademark.setEmail(entity.getEmail());
       valuationTrademark.setTc(entity.getTc());
       valuationTrademark.setTel(entity.getTel());
+      valuationTrademark.setTrackingNumber(entity.getTrackingNumber());
       valuationTrademarkList.add(valuationTrademark);
     }
     ValuationTrademarkList valuationTrademarkList1 = new ValuationTrademarkList();
@@ -484,6 +518,7 @@ public class CengizPublicController {
       valuationPatent.setEmail(entity.getEmail());
       valuationPatent.setTc(entity.getTc());
       valuationPatent.setTel(entity.getTel());
+      valuationPatent.setTrackingNumber(entity.getTrackingNumber());
       valuationPatentList.add(valuationPatent);
     }
     ValuationPatentList valuationPatentList1 = new ValuationPatentList();
@@ -543,6 +578,7 @@ public class CengizPublicController {
     valuationPatent.setEuropeanunio(entity.getPatentmarketchoose());
     valuationPatent.setEuropeanunio(entity.getPatentmarkettime());
     valuationPatent.setEuropeanunio(entity.getPatentmarkettimeplan());
+    valuationPatent.setTrackingNumber(entity.getTrackingNumber());
 
 
     return valuationPatent;
@@ -571,6 +607,7 @@ public class CengizPublicController {
     activityAnalysis.setImage(entity.getImage());
     activityAnalysis.setOtherpoint(entity.getOtherpoint());
     activityAnalysis.setLegalPerson(entity.getLegalPerson());
+    activityAnalysis.setTrackingNumber(entity.getTrackingNumber());
 
 
     return activityAnalysis;
@@ -621,6 +658,7 @@ public class CengizPublicController {
       activityAnalysis.setEmail(entity.getEmail());
       activityAnalysis.setCreatedAt(entity.getCreatedAt());
       activityAnalysis.setLegalPerson(entity.getLegalPerson());
+      activityAnalysis.setTrackingNumber(entity.getTrackingNumber());
       activityAnalyses.add(activityAnalysis);
     }
 
@@ -674,6 +712,7 @@ public class CengizPublicController {
     patentPre.setOtherpoint(entity.getOtherpoint());
     patentPre.setLegalPerson(entity.getLegalPerson());
     patentPre.setDekontFileType(entity.getDekontFileType());
+    patentPre.setTrackingNumber(entity.getTrackingNumber());
 
 
     return patentPre;
@@ -924,6 +963,13 @@ public class CengizPublicController {
 
   @PostMapping(value = "/trademarkPreSave")
   public ResponseEntity<General> postTrademarkPre(@RequestBody TrademarkPre trademarkPre) {
+
+    GeneratorTrademarkPreEntity generatorTrademarkPreEntity = new GeneratorTrademarkPreEntity();
+    generatorTrademarkPreEntity.setServicesType("Marka Ön Araştırma Talebi");
+    generatorTrademarkPreEntity.setType("MA");
+    GeneratorTrademarkPreEntity entity1 =
+        generatorTrademarkPreRepository.save(generatorTrademarkPreEntity);
+
     General general;
     try {
       TrademarkPreEntity entity = trademarkPreRepository.save(new TrademarkPreEntity(
@@ -938,7 +984,8 @@ public class CengizPublicController {
           trademarkPre.getEmail(),
           trademarkPre.getLegalPerson(),
           trademarkPre.getTrademarkItemList(),
-          trademarkPre.isKvvk()
+          trademarkPre.isKvvk(),
+          entity1.getId()
       ));
 
 
@@ -957,6 +1004,13 @@ public class CengizPublicController {
 
   @PostMapping(value = "/invalidationAssessmentSave")
   public ResponseEntity<General> postInvalidationAssessment(@RequestBody InvalidationAssessment invalidationAssessment) {
+
+    GeneratorInvalidationAssessmentEntity generatorInvalidationAssessmentEntity = new GeneratorInvalidationAssessmentEntity();
+    generatorInvalidationAssessmentEntity.setServicesType("Sınai Mülkiyet Varlıkları Hükümsüzlük Analizi");
+    generatorInvalidationAssessmentEntity.setType("HA");
+    GeneratorInvalidationAssessmentEntity entity1 =
+        generatorInvalidationAssessmentRepository.save(generatorInvalidationAssessmentEntity);
+
     General general;
     try {
       InvalidationAssessmentEntity entity = invalidationAssessmentRepository.save(new InvalidationAssessmentEntity(
@@ -966,7 +1020,8 @@ public class CengizPublicController {
           invalidationAssessment.getAddress(),
           invalidationAssessment.getTel(),
           invalidationAssessment.getEmail(),
-          invalidationAssessment.isKvvk()));
+          invalidationAssessment.isKvvk(),
+          entity1.getId()));
 
 
       InvalidationAssessment invalidationAssessment1 = new InvalidationAssessment(entity.getId(), entity.getAppNo(),
@@ -984,6 +1039,13 @@ public class CengizPublicController {
 
   @PostMapping(value = "/patentPreSave")
   public ResponseEntity<General> postPatentPre(@RequestBody PatentPre patentPre) {
+
+    GeneratorPatentPreEntity generatorPatentPreEntity = new GeneratorPatentPreEntity();
+    generatorPatentPreEntity.setServicesType("Patent Ön Araştırma Talebi");
+    generatorPatentPreEntity.setType("PA");
+    GeneratorPatentPreEntity entity1 =
+        generatorPatentPreRepository.save(generatorPatentPreEntity);
+
     General general = new General();
     try {
       PatentPreEntity patentPreEntity = patentPreRepository.save(new PatentPreEntity(
@@ -1016,7 +1078,8 @@ public class CengizPublicController {
           patentPre.getOtherpoint(),
           patentPre.getLegalPerson(),
           patentPre.isKvvk(),
-          patentPre.getAppNo()
+          patentPre.getAppNo(),
+          entity1.getId()
       ));
 
       general.setMessage("Kayıt işleminiz başarılı!");
@@ -1033,6 +1096,13 @@ public class CengizPublicController {
 
   @PostMapping(value = "/valuationPatentSave")
   public ResponseEntity<General> valuationPatentSave(@RequestBody ValuationPatent valuationPatent) {
+
+    GeneratorValuationPatentEntity generatorValuationPatentEntity = new GeneratorValuationPatentEntity();
+    generatorValuationPatentEntity.setServicesType("Patent Değerleme Talebi");
+    generatorValuationPatentEntity.setType("PD");
+    GeneratorValuationPatentEntity entity1 =
+        generatorValuationPatentRepository.save(generatorValuationPatentEntity);
+
     General general = new General();
     try {
       ValuationPatentEntity valuationPatentEntity = valuationPatentRepository.save(new ValuationPatentEntity(
@@ -1069,8 +1139,8 @@ public class CengizPublicController {
           valuationPatent.getPatentmarketchoose(),
           valuationPatent.getPatentcontribution(),
           valuationPatent.getPatentmarkettime(),
-          valuationPatent.getPatentmarkettimeplan()
-
+          valuationPatent.getPatentmarkettimeplan(),
+          entity1.getId()
       ));
 
       general.setMessage("Kayıt işleminiz başarılı!");
@@ -1086,6 +1156,13 @@ public class CengizPublicController {
 
   @PostMapping(value = "/valuationTrademarkSave")
   public ResponseEntity<General> valuationTrademarkSave(@RequestBody ValuationTrademark valuationTrademark) {
+
+    GeneratorValuationTrademarkEntity generatorValuationTrademarkEntity = new GeneratorValuationTrademarkEntity();
+    generatorValuationTrademarkEntity.setServicesType("Marka Değerleme Talebi");
+    generatorValuationTrademarkEntity.setType("MD");
+    GeneratorValuationTrademarkEntity entity1 =
+        generatorValuationTrademarkRepository.save(generatorValuationTrademarkEntity);
+
     General general = new General();
     try {
       ValuationTrademarkEntity valuationTrademarkEntity = valuationTrademarkRepository.save(new ValuationTrademarkEntity(
@@ -1121,7 +1198,8 @@ public class CengizPublicController {
           valuationTrademark.getLegalPerson(),
           valuationTrademark.getValuationTrademarkAppNo(),
           valuationTrademark.getLicenseChoose(),
-          valuationTrademark.isKvvk()
+          valuationTrademark.isKvvk(),
+          entity1.getId()
       ));
 
       general.setMessage("Kayıt işleminiz başarılı!");
@@ -1137,6 +1215,12 @@ public class CengizPublicController {
 
   @PostMapping(value = "/activityAnalysisSave")
   public ResponseEntity<General> activityAnalysisSave(@RequestBody ActivityAnalysis activityAnalysis) {
+    GeneratorActivityAnalysisEntity generatorActivityAnalysisEntity = new GeneratorActivityAnalysisEntity();
+    generatorActivityAnalysisEntity.setServicesType("Faaliyet Serbestliği Analizi");
+    generatorActivityAnalysisEntity.setType("MD");
+    GeneratorActivityAnalysisEntity entity1 =
+        generatorActivityAnalysisRepository.save(generatorActivityAnalysisEntity);
+
     General general = new General();
     try {
       ActivityAnalysisEntity activityAnalysisEntity = activityAnalysisRepository.save(new ActivityAnalysisEntity(
@@ -1151,7 +1235,8 @@ public class CengizPublicController {
           activityAnalysis.getImage(),
           activityAnalysis.getOtherpoint(),
           activityAnalysis.getLegalPerson(),
-          activityAnalysis.isKvvk()
+          activityAnalysis.isKvvk(),
+          entity1.getId()
       ));
 
 
@@ -1216,29 +1301,45 @@ public class CengizPublicController {
 
 
   @PostMapping(value = "/sendEmailTrademarkPre/{id}")
-  public ResponseEntity<?> sendEmailTrademarkPre(@PathVariable("id") Long id) {
+  public ResponseEntity<?> sendEmailTrademarkPre(@PathVariable("id") Long id, @RequestBody String language) {
 
     try {
-      emailService.sendMimeMessage(id, 1);
+      String trackingNumber = emailService.sendMimeMessage(id, 1);
+      if (language.equals("en")) {
+        return ResponseEntity.ok(new MessageResponse("Your application has been examined and if there "
+            + "is no deficiency, your report will be completed within a week and an e-mail will be sent to you. "
+            + "Application Tracking Number:" + trackingNumber));
+      }
       return ResponseEntity.ok(new MessageResponse("Başvurunuz incelemeye alınmış olup eksiklik "
-          + "bulunmaması halinde bir hafta içersinde raporunuz tamamlanarak tarafınıza mail gönderilecektir."));
+          + "bulunmaması halinde bir hafta içersinde raporunuz tamamlanarak tarafınıza mail gönderilecektir. "
+          + "Başvuru Takip No:" + trackingNumber));
 
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
+      if (language.equals("en")) {
+        return ResponseEntity.ok(new MessageResponse("Your application could not be received! Please contact the responsible person."));
+      }
       return ResponseEntity.ok(new MessageResponse("Başvurunuz alınamamıştır! Lütfen sorumlu ile görüşürünüz."));
     }
 
   }
 
   @PostMapping(value = "/sendEmailInvalidationAssessment/{id}")
-  public ResponseEntity<?> sendEmailInvalidationAssessment(@PathVariable("id") Long id) {
+  public ResponseEntity<?> sendEmailInvalidationAssessment(@PathVariable("id") Long id, @RequestBody String language) {
 
     try {
-      emailService.sendMimeMessage(id, 6);
+      String trackingNumber = emailService.sendMimeMessage(id, 6);
+      if (language.equals("en")) {
+        return ResponseEntity.ok(new MessageResponse("Your application has been received and you will be contacted as "
+            + "soon as possible regarding the service fee. Application Tracking Number:" + trackingNumber));
+      }
       return ResponseEntity.ok(new MessageResponse("Başvurunuz alınmış olup hizmet bedeline ilişkin tarafınızla "
-          + "en kısa sürede iletişime geçilecektir."));
+          + "en kısa sürede iletişime geçilecektir. Başvuru Takip No:" + trackingNumber));
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
+      if (language.equals("en")) {
+        return ResponseEntity.ok(new MessageResponse("Your application could not be received! Please contact the responsible person."));
+      }
       return ResponseEntity.ok(new MessageResponse("Başvurunuz alınamamıştır! Lütfen sorumlu ile görüşürünüz."));
     }
 
@@ -1371,22 +1472,33 @@ public class CengizPublicController {
       return ResponseEntity.ok(new MessageResponse("Başarılı"));
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
+
+
       return ResponseEntity.ok(new MessageResponse("Başarısız!!"));
     }
   }
 
 
   @PostMapping(value = "/sendEmailPatentPre/{id}")
-  public ResponseEntity<?> sendEmailPatentPre(@PathVariable("id") Long id) {
+  public ResponseEntity<?> sendEmailPatentPre(@PathVariable("id") Long id, @RequestBody String language) {
 
     try {
-      emailService.sendMimeMessage(id, 2);
+      String trackingNumber = emailService.sendMimeMessage(id, 2);
+      if (language.equals("en")) {
+        return ResponseEntity.ok(new MessageResponse("Your application has been reviewed and "
+            + "if there is no deficiency, your report will be completed within two weeks and "
+            + "an e-mail will be sent to you. Application Tracking Number:" + trackingNumber));
+      }
       return ResponseEntity.ok(new MessageResponse("Başvurunuz incelemeye "
           + "alınmış olup eksiklik bulunmaması halinde iki hafta içersinde raporunuz "
-          + "tamamlanarak tarafınıza mail gönderilecektir."));
+          + "tamamlanarak tarafınıza mail gönderilecektir."
+          + "Başvuru Takip No:" + trackingNumber));
 
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
+      if (language.equals("en")) {
+        return ResponseEntity.ok(new MessageResponse("Your application could not be received.! Please contact the responsible person."));
+      }
       return ResponseEntity.ok(new MessageResponse("Başvurunuz Alınamamıştır.! Lütfen sorumlu ile görüşürünüz."));
     }
 
@@ -1394,43 +1506,64 @@ public class CengizPublicController {
   }
 
   @PostMapping(value = "/sendEmailValuationPatent/{id}")
-  public ResponseEntity<?> sendEmailValuationPatent(@PathVariable("id") Long id) {
+  public ResponseEntity<?> sendEmailValuationPatent(@PathVariable("id") Long id, @RequestBody String language) {
 
     try {
-      emailService.sendMimeMessage(id, 3);
+      String trackingNumber = emailService.sendMimeMessage(id, 3);
+      if (language.equals("en")) {
+        return ResponseEntity.ok(new MessageResponse("Your application has been received and you will be contacted "
+            + "as soon as possible regarding the service fee. Application Tracking Number:" + trackingNumber));
+      }
       return ResponseEntity.ok(new MessageResponse("Başvurunuz alınmış olup hizmet bedeline ilişkin tarafınızla "
-          + "en kısa sürede iletişime geçilecektir."));
+          + "en kısa sürede iletişime geçilecektir. Başvuru Takip No:" + trackingNumber));
 
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
+      if (language.equals("en")) {
+        return ResponseEntity.ok(new MessageResponse("Your application could not be received.! Please contact the responsible person."));
+      }
       return ResponseEntity.ok(new MessageResponse("Başvurunuz alınmamıştır. Lütfen sorumlu ile görüşürünüz."));
     }
 
   }
 
   @PostMapping(value = "/sendEmailValuationTrademark/{id}")
-  public ResponseEntity<?> sendEmailValuationTrademark(@PathVariable("id") Long id) {
+  public ResponseEntity<?> sendEmailValuationTrademark(@PathVariable("id") Long id, @RequestBody String language) {
 
     try {
-      emailService.sendMimeMessage(id, 4);
+      String trackingNumber = emailService.sendMimeMessage(id, 4);
+      if (language.equals("en")) {
+        return ResponseEntity.ok(new MessageResponse("Your application has been received and you will be contacted "
+            + "as soon as possible regarding the service fee. Application Tracking Number:" + trackingNumber));
+      }
       return ResponseEntity.ok(new MessageResponse("Başvurunuz alınmış olup hizmet bedeline ilişkin tarafınızla "
-          + "en kısa sürede iletişime geçilecektir."));
+          + "en kısa sürede iletişime geçilecektir. Başvuru Takip No:" + trackingNumber));
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
+      if (language.equals("en")) {
+        return ResponseEntity.ok(new MessageResponse("Your application could not be received.! Please contact the responsible person."));
+      }
       return ResponseEntity.ok(new MessageResponse("Başvurunuz alınmamıştır! Lütfen sorumlu ile görüşürünüz."));
     }
 
   }
 
   @PostMapping(value = "/sendEmailActivityAnalysis/{id}")
-  public ResponseEntity<?> sendEmailActivityAnalysis(@PathVariable("id") Long id) {
+  public ResponseEntity<?> sendEmailActivityAnalysis(@PathVariable("id") Long id, @RequestBody String language) {
 
     try {
-      emailService.sendMimeMessage(id, 5);
+      String trackingNumber = emailService.sendMimeMessage(id, 5);
+      if (language.equals("en")) {
+        return ResponseEntity.ok(new MessageResponse("Your application has been received and you will be contacted "
+            + "as soon as possible regarding the service fee. Application Tracking Number:" + trackingNumber));
+      }
       return ResponseEntity.ok(new MessageResponse("Başvurunuz alınmış olup hizmet bedeline ilişkin tarafınızla "
-          + "en kısa sürede iletişime geçilecektir."));
+          + "en kısa sürede iletişime geçilecektir. Başvuru Takip No:" + trackingNumber));
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
+      if (language.equals("en")) {
+        return ResponseEntity.ok(new MessageResponse("Your application could not be received.! Please contact the responsible person."));
+      }
       return ResponseEntity.ok(new MessageResponse("Başvurunuz alınamamıştır! Lütfen sorumlu ile görüşürünüz."));
     }
 
@@ -2085,10 +2218,10 @@ public class CengizPublicController {
    * @throws Exception .
    */
   @PostMapping(value = "/saveKvkk", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<General> saveKvkk(@RequestParam("kvkk") MultipartFile kvkk) throws Exception {
+  public ResponseEntity<General> saveKvkk(@RequestParam("language") String language, @RequestParam("kvkk") MultipartFile kvkk) throws Exception {
 
 
-    KvvkEntity kvvkEntity = new KvvkEntity(kvkk.getBytes(), kvkk.getOriginalFilename(), kvkk.getContentType());
+    KvvkEntity kvvkEntity = new KvvkEntity(kvkk.getBytes(), kvkk.getOriginalFilename(), kvkk.getContentType(), language);
     General general = new General();
     try {
       Long id = kvvkInfoService.saveKvvk(kvvkEntity);
@@ -2111,10 +2244,10 @@ public class CengizPublicController {
    *
    * @return .
    */
-  @GetMapping("/downloadKvvk")
-  public ResponseEntity<Resource> downloadKvvk() {
+  @GetMapping("/downloadKvvk/{language}")
+  public ResponseEntity<Resource> downloadKvvk(@PathVariable("language") String language) {
     //list dönen servis için bir class daha yazıp öyle handle ettik
-    KvvkEntity kvvkEntity = kvvkInfoService.getKvvkFile();
+    KvvkEntity kvvkEntity = kvvkInfoService.getKvvkFile(language);
     return ResponseEntity.ok()
         .contentType(MediaType.parseMediaType(kvvkEntity.getFileType()))
         .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""
@@ -2127,10 +2260,10 @@ public class CengizPublicController {
    *
    * @return .
    */
-  @GetMapping("/getKvkk")
-  public String getKvkk() {
+  @GetMapping("/getKvkk/{language}")
+  public String getKvkk(@PathVariable("language") String language) {
     //list dönen servis için bir class daha yazıp öyle handle ettik
-    KvvkEntity kvvkEntity = kvvkInfoService.getKvvkFile();
+    KvvkEntity kvvkEntity = kvvkInfoService.getKvvkFile(language);
     return "data: image/jpeg;base64," +
         new String(Base64.encodeBase64(kvvkEntity.getKvvk()), StandardCharsets.US_ASCII);
   }
@@ -2168,7 +2301,7 @@ public class CengizPublicController {
   public ResponseEntity<?> uploadSliderPictures(@RequestParam("sliderExplain") String sliderExplain, @RequestParam("pictures") MultipartFile picture)
       throws Exception {
     try {
-      homeService.uploadSliderPictures(sliderExplain,picture);
+      homeService.uploadSliderPictures(sliderExplain, picture);
       return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
     } catch (Exception e) {
       logger.error(e.getLocalizedMessage());
@@ -2218,7 +2351,7 @@ public class CengizPublicController {
    * @return .
    */
   @PostMapping(value = "/updateSliderPictureExplain", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<?> updateSliderPictureExplain(@RequestParam("id") Long id,@RequestParam("sliderExplain") String sliderExplain) throws Exception {
+  public ResponseEntity<?> updateSliderPictureExplain(@RequestParam("id") Long id, @RequestParam("sliderExplain") String sliderExplain) throws Exception {
 
     try {
       homeService.updateSliderPictureExplain(id, sliderExplain);
@@ -2228,7 +2361,6 @@ public class CengizPublicController {
       return ResponseEntity.ok(new MessageResponse("Güncelleme işleminiz başarısız!!"));
     }
   }
-
 
 
   /**

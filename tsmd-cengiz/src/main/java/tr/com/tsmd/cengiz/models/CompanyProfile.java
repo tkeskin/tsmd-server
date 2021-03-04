@@ -6,6 +6,7 @@ public class CompanyProfile {
   private byte[] picture;
   private String companyPresident;
   private String companyProfileExplain;
+  private String companyProfileExplainEn;
   private String pictureBase64;
   private String fileName;
   private String fileType;
@@ -49,6 +50,18 @@ public class CompanyProfile {
     this.fileName = fileName;
     this.fileType = fileType;
   }
+
+  public CompanyProfile(Long id, byte[] picture, String companyPresident, String companyProfileExplain,String companyProfileExplainEn, String pictureBase64, String fileName, String fileType) {
+    this.id = id;
+    this.picture = picture;
+    this.companyPresident = companyPresident;
+    this.companyProfileExplain = companyProfileExplain;
+    this.companyProfileExplainEn = companyProfileExplainEn;
+    this.pictureBase64 = pictureBase64;
+    this.fileName = fileName;
+    this.fileType = fileType;
+  }
+
 
   public Long getId() {
     return id;
@@ -104,5 +117,13 @@ public class CompanyProfile {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public String getCompanyProfileExplainEn() {
+    return companyProfileExplainEn;
+  }
+
+  public void setCompanyProfileExplainEn(String companyProfileExplainEn) {
+    this.companyProfileExplainEn = companyProfileExplainEn;
   }
 }

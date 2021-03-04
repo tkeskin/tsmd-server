@@ -19,7 +19,15 @@ public class SloganEntity extends AuditModel {
   private Long id;
 
   @NotBlank
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
   private String slogan;
+
+  @NotBlank
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
+  private String sloganEn;
+
 
   public SloganEntity() {
   }
@@ -38,5 +46,13 @@ public class SloganEntity extends AuditModel {
 
   public void setSlogan(String slogan) {
     this.slogan = slogan;
+  }
+
+  public String getSloganEn() {
+    return sloganEn;
+  }
+
+  public void setSloganEn(String sloganEn) {
+    this.sloganEn = sloganEn;
   }
 }

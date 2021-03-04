@@ -24,6 +24,11 @@ public class EvaluationInvalidationViewEntity extends AuditModel {
   @Type(type="org.hibernate.type.TextType")
   private String evaluationInvalidationExplain;
 
+  @NotBlank
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
+  private String evaluationInvalidationExplainEn;
+
   @Lob
   @Type(type="org.hibernate.type.BinaryType")
   private byte[] picture;
@@ -87,5 +92,13 @@ public class EvaluationInvalidationViewEntity extends AuditModel {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public String getEvaluationInvalidationExplainEn() {
+    return evaluationInvalidationExplainEn;
+  }
+
+  public void setEvaluationInvalidationExplainEn(String evaluationInvalidationExplainEn) {
+    this.evaluationInvalidationExplainEn = evaluationInvalidationExplainEn;
   }
 }

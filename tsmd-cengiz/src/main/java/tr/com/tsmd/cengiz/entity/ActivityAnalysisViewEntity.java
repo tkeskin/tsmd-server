@@ -24,6 +24,11 @@ public class ActivityAnalysisViewEntity extends AuditModel {
   @Type(type="org.hibernate.type.TextType")
   private String activityAnalysisExplain;
 
+  @NotBlank
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
+  private String activityAnalysisExplainEn;
+
   @Lob
   @Type(type="org.hibernate.type.BinaryType")
   private byte[] picture;
@@ -87,5 +92,13 @@ public class ActivityAnalysisViewEntity extends AuditModel {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public String getActivityAnalysisExplainEn() {
+    return activityAnalysisExplainEn;
+  }
+
+  public void setActivityAnalysisExplainEn(String activityAnalysisExplainEn) {
+    this.activityAnalysisExplainEn = activityAnalysisExplainEn;
   }
 }

@@ -27,6 +27,8 @@ public class KvvkEntity extends AuditModel {
 
   private String fileType;
 
+  private String language;
+
 
   public KvvkEntity() {
   }
@@ -35,6 +37,13 @@ public class KvvkEntity extends AuditModel {
     this.kvvk = kvvk;
     this.fileName = fileName;
     this.fileType = fileType;
+  }
+
+  public KvvkEntity(byte[] kvvk, String fileName, String fileType,String language) {
+    this.kvvk = kvvk;
+    this.fileName = fileName;
+    this.fileType = fileType;
+    this.language = language;
   }
 
 
@@ -68,5 +77,13 @@ public class KvvkEntity extends AuditModel {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public String getLanguage() {
+    return language;
+  }
+
+  public void setLanguage(String language) {
+    this.language = language;
   }
 }

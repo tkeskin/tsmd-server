@@ -80,13 +80,15 @@ public class EmailServiceImpl implements EmailService {
   }
 
   @Override
-  public void sendMimeMessage(Long id, Integer servicesType) throws MessagingException {
+  public String sendMimeMessage(Long id, Integer servicesType) throws MessagingException {
+    String trackingNumber=null;
     MimeMessage message = emailSender.createMimeMessage();
     MimeMessageHelper helper = new MimeMessageHelper(message,
         MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
         StandardCharsets.UTF_8.name());
     if (servicesType == 1) {
       TrademarkPreEntity trademarkPreEntity= trademarkPreRepository.getById(id);
+      trackingNumber = trademarkPreEntity.getTrackingNumber();
       try {
         String inlineImage = "";
         if (trademarkPreEntity.getTrademarkimagebyte() != null){
@@ -146,7 +148,7 @@ public class EmailServiceImpl implements EmailService {
           contentHtml+= "<div></div>\n";
         }
         helper.setText(contentHtml, true);
-        helper.setSubject("Marka Ön Araştırma Raporu Talebi");
+        helper.setSubject("Marka Ön Araştırma Raporu Talebi"+"("+trademarkPreEntity.getTrackingNumber()+")");
 
       } catch (MessagingException e){
         e.getLocalizedMessage();
@@ -158,6 +160,7 @@ public class EmailServiceImpl implements EmailService {
       PatentPreEntity patentPreEntity = patentPreRepository.getById(id);
       List<PatentPreTableEntity> patentPreTableEntity = patentPreTableRepository.getByPatentPreId(id);
       List<PatentPreRelatedPicturesEntity> patentPreRelatedPicturesEntities = patentPreRelatedPicturesRepository.getByPatentPreId(id);
+      trackingNumber = patentPreEntity.getTrackingNumber();
 
       String[] relatedPicturesImg = null;
       if (patentPreRelatedPicturesEntities.size()>0){
@@ -329,11 +332,12 @@ public class EmailServiceImpl implements EmailService {
       }
 
       helper.setText(contentHtml, true);
-      helper.setSubject("Patent Ön Araştırma Talebi");
+      helper.setSubject("Patent Ön Araştırma Talebi"+"("+patentPreEntity.getTrackingNumber()+")");
 
 
     } else if (servicesType == 3) {
       ValuationPatentEntity valuationPatentEntity = valuationPatentRepository.getById(id);
+      trackingNumber = valuationPatentEntity.getTrackingNumber();
 //      helper.addAttachment("dekont.jpeg", new ByteArrayResource(valuationPatentEntity.getDekont()));
       String contentHtml="<h1 style=\"font-weight: bold;color: white;background-color: #d32f2f\">Patent Değerleme Talebi </h1>\n"
           + "<br>\n"
@@ -575,10 +579,11 @@ public class EmailServiceImpl implements EmailService {
           + "</div>\n";
 
       helper.setText(contentHtml, true);
-      helper.setSubject("Patent Değerleme Talebi");
+      helper.setSubject("Patent Değerleme Talebi"+"("+valuationPatentEntity.getTrackingNumber()+")");
 
     } else if (servicesType == 4) {
       ValuationTrademarkEntity valuationTrademarkEntity = valuationTrademarkRepository.getById(id);
+      trackingNumber = valuationTrademarkEntity.getTrackingNumber();
 //      helper.addAttachment("dekont.jpeg", new ByteArrayResource(valuationTrademarkEntity.getDekont()));
       String contentHtml="<h1 style=\"font-weight: bold;color: white;background-color: #d32f2f\">Marka Değerleme Talebi </h1>\n"
           + "<br>\n"
@@ -798,13 +803,14 @@ public class EmailServiceImpl implements EmailService {
           + "</div>";
 
       helper.setText(contentHtml, true);
-      helper.setSubject("Marka Değerleme Talebi");
+      helper.setSubject("Marka Değerleme Talebi"+"("+valuationTrademarkEntity.getTrackingNumber()+")");
 
 
     } else if (servicesType == 5) {
 
       ActivityAnalysisEntity activityAnalysisEntity = activityAnalysisRepository.getById(id);
       List<ActivityAnalysisPicturesEntity> activityAnalysisPicturesEntities = activityAnalysisPicturesRepository.getByActivityAnalysisId(id);
+      trackingNumber = activityAnalysisEntity.getTrackingNumber();
       //helper.addAttachment("dekont.jpeg", new ByteArrayResource(activityAnalysisEntity.getDekont()));
 
       String[] relatedPicturesImg = null;
@@ -871,10 +877,11 @@ public class EmailServiceImpl implements EmailService {
           + "<div>"+activityAnalysisEntity.getOtherpoint()+"</div>";
 
       helper.setText(contentHtml, true);
-      helper.setSubject("Faaliyet Serbestliği Analizi");
+      helper.setSubject("Faaliyet Serbestliği Analizi"+"("+activityAnalysisEntity.getTrackingNumber()+")");
 
     } else if (servicesType == 6) {
       InvalidationAssessmentEntity invalidationAssessmentEntity= invalidationAssessmentRepository.getById(id);
+      trackingNumber = invalidationAssessmentEntity.getTrackingNumber();
       try {
 
         String contentHtml = "<h1 style=\"font-weight: bold;color: white;background-color: #d32f2f\">Sınai Mülkiyet Varlıkları Hükümsüzlük Analizi </h1>\n"
@@ -892,7 +899,7 @@ public class EmailServiceImpl implements EmailService {
             + "<div>" + invalidationAssessmentEntity.getAppNo() + "</div>\n";
 
         helper.setText(contentHtml, true);
-        helper.setSubject("Sınai Mülkiyet Varlıkları Hükümsüzlük Analizi");
+        helper.setSubject("Sınai Mülkiyet Varlıkları Hükümsüzlük Analizi"+"("+invalidationAssessmentEntity.getTrackingNumber()+")");
 
       } catch (MessagingException e){
         e.getLocalizedMessage();
@@ -905,6 +912,7 @@ public class EmailServiceImpl implements EmailService {
     helper.setTo("test@turksmd.com.tr");
     helper.setFrom("test@turksmd.com.tr");
     emailSender.send(message);
+    return trackingNumber;
   }
 
   public String attachmentNameControl(String attachmentName, String attachmentContentType){

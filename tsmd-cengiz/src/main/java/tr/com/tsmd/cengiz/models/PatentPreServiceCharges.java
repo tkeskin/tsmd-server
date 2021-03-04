@@ -6,6 +6,7 @@ public class PatentPreServiceCharges {
 
 
   private String explain;
+  private String explainEn;
 
   public PatentPreServiceCharges() {
   }
@@ -13,6 +14,12 @@ public class PatentPreServiceCharges {
   public PatentPreServiceCharges(Long id, String explain) {
     this.id = id;
     this.explain = explain;
+  }
+
+  public PatentPreServiceCharges(Long id, String explain, String explainEn) {
+    this.id = id;
+    this.explain = explain;
+    this.explainEn = explainEn;
   }
 
   public Long getId() {
@@ -29,5 +36,13 @@ public class PatentPreServiceCharges {
 
   public void setExplain(String explain) {
     this.explain = explain;
+  }
+
+  public String getExplainEn() {
+    return explainEn;
+  }
+
+  public void setExplainEn(String explainEn) {
+    this.explainEn = explainEn;
   }
 }

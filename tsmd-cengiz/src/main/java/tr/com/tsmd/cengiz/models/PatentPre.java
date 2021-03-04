@@ -51,6 +51,7 @@ public class PatentPre {
 
   private boolean kvvk;
   private String appNo;
+  private String trackingNumber;
 
   public PatentPre() {
   }
@@ -363,5 +364,13 @@ public class PatentPre {
 
   public void setAppNo(String appNo) {
     this.appNo = appNo;
+  }
+
+  public String getTrackingNumber() {
+    return trackingNumber;
+  }
+
+  public void setTrackingNumber(String trackingNumber) {
+    this.trackingNumber = trackingNumber;
   }
 }

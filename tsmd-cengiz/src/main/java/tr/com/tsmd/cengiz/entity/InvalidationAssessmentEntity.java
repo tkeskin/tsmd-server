@@ -32,6 +32,8 @@ public class InvalidationAssessmentEntity extends AuditModel {
 
   private boolean kvvk;
 
+  private String trackingNumber;
+
 
   public InvalidationAssessmentEntity() {
   }
@@ -48,6 +50,21 @@ public class InvalidationAssessmentEntity extends AuditModel {
     this.tel = tel;
     this.email = email;
     this.kvvk = kvvk;
+  }
+
+  public InvalidationAssessmentEntity(String appNo, String name_surname, String tc,
+                                      String address, String tel,
+                                      @NotBlank @Size(max = 50) @Email String email,
+                                      boolean kvvk , String trackingNumber) {
+
+    this.appNo = appNo;
+    this.name_surname = name_surname;
+    this.tc = tc;
+    this.address = address;
+    this.tel = tel;
+    this.email = email;
+    this.kvvk = kvvk;
+    this.trackingNumber = trackingNumber;
   }
 
   public Long getId() {
@@ -112,5 +129,13 @@ public class InvalidationAssessmentEntity extends AuditModel {
 
   public void setName_surname(String name_surname) {
     this.name_surname = name_surname;
+  }
+
+  public String getTrackingNumber() {
+    return trackingNumber;
+  }
+
+  public void setTrackingNumber(String trackingNumber) {
+    this.trackingNumber = trackingNumber;
   }
 }

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,14 +21,24 @@ public class KvvkInfoServiceImpl implements KvvkInfoService {
 
   @Override
   public Long saveKvvk(KvvkEntity kvvk) {
-    kvvkRepository.deleteAll();
-    KvvkEntity entity = kvvkRepository.save(kvvk);
+//    kvvkRepository.deleteAll();
+    Optional<KvvkEntity> entity = kvvkRepository.findAllByLanguage(kvvk.getLanguage());
+    KvvkEntity kvvkEntity;
+    if (entity.isPresent()) {
+      entity.get().setFileName(kvvk.getFileName());
+      entity.get().setFileType(kvvk.getFileType());
+      entity.get().setKvvk(kvvk.getKvvk());
+      entity.get().setLanguage(kvvk.getLanguage());
+      kvvkEntity=kvvkRepository.save(entity.get());
+    } else {
+      kvvkEntity=kvvkRepository.save(kvvk);
+    }
 
-    return entity.getId();
+    return kvvkEntity.getId();
   }
 
   @Override
-  public KvvkEntity getKvvkFile() {
-    return kvvkRepository.findAll().get(0);
+  public KvvkEntity getKvvkFile(String language) {
+    return kvvkRepository.findAllByLanguage(language).get();
   }
 }

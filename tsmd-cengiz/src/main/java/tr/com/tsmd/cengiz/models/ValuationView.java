@@ -4,6 +4,7 @@ public class ValuationView {
 
   private Long id;
   private String valuationExplain;
+  private String valuationExplainEn;
   private byte[] picture;
   private String pictureBase64;
   private String fileName;
@@ -42,6 +43,16 @@ public class ValuationView {
     this.id = id;
     this.picture = picture;
     this.valuationExplain = valuationExplain;
+    this.pictureBase64 = pictureBase64;
+    this.fileName = fileName;
+    this.fileType = fileType;
+  }
+
+  public ValuationView(Long id, byte[] picture, String valuationExplain,String valuationExplainEn,String pictureBase64, String fileName, String fileType) {
+    this.id = id;
+    this.picture = picture;
+    this.valuationExplain = valuationExplain;
+    this.valuationExplainEn = valuationExplainEn;
     this.pictureBase64 = pictureBase64;
     this.fileName = fileName;
     this.fileType = fileType;
@@ -94,5 +105,13 @@ public class ValuationView {
 
   public void setFileType(String fileType) {
     this.fileType = fileType;
+  }
+
+  public String getValuationExplainEn() {
+    return valuationExplainEn;
+  }
+
+  public void setValuationExplainEn(String valuationExplainEn) {
+    this.valuationExplainEn = valuationExplainEn;
   }
 }

@@ -52,7 +52,7 @@ public class AboutInfoServiceImpl implements AboutInfoService {
   @Override
   public About getAboutBy() {
     AboutEntity entity = aboutRepository.getBy();
-    About about = new About(entity.getId(), entity.getPicture(), entity.getAboutExplain(), "data: image/jpeg;base64," +
+    About about = new About(entity.getId(), entity.getAboutExplain(), entity.getAboutExplainEn(), entity.getPicture(),"data: image/jpeg;base64," +
         new String(Base64.encodeBase64(entity.getPicture()), StandardCharsets.US_ASCII), entity.getFileName(), entity.getFileType());
     return about;
   }
@@ -62,6 +62,7 @@ public class AboutInfoServiceImpl implements AboutInfoService {
 
     AboutEntity entity = aboutRepository.getBy();
     entity.setAboutExplain(about.getAboutExplain());
+    entity.setAboutExplainEn(about.getAboutExplainEn());
 
     aboutRepository.save(entity);
 

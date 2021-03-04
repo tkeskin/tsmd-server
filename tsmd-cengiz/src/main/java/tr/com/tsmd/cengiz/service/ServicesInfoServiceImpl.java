@@ -107,7 +107,7 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
   @Override
   public PatentPreView getPatentPreViewBy() {
     PatentPreViewEntity entity = patentPreViewRepository.getBy();
-    PatentPreView patentPreView = new PatentPreView(entity.getId(), entity.getPicture(), entity.getPatentPreExplain(), "data: image/jpeg;base64," +
+    PatentPreView patentPreView = new PatentPreView(entity.getId(), entity.getPicture(), entity.getPatentPreExplain(),entity.getPatentPreExplainEn(), "data: image/jpeg;base64," +
         new String(Base64.encodeBase64(entity.getPicture()), StandardCharsets.US_ASCII), entity.getFileName(), entity.getFileType());
     return patentPreView;
   }
@@ -117,6 +117,7 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
 
     PatentPreViewEntity entity = patentPreViewRepository.getBy();
     entity.setPatentPreExplain(patentPreView.getPatentPreExplain());
+    entity.setPatentPreExplainEn(patentPreView.getPatentPreExplainEn());
 
     patentPreViewRepository.save(entity);
 
@@ -143,7 +144,7 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
     TrademarkPreViewEntity entity = trademarkPreViewRepository.getBy();
     TrademarkPreView trademarkPreView = null;
     if (entity.getNice() != null) {
-      trademarkPreView = new TrademarkPreView(entity.getId(), entity.getTrademarkPreExplain(), entity.getPicture(), "data: image/jpeg;base64," +
+      trademarkPreView = new TrademarkPreView(entity.getId(), entity.getTrademarkPreExplain(),entity.getTrademarkPreExplainEn(), entity.getPicture(), "data: image/jpeg;base64," +
           new String(Base64.encodeBase64(entity.getPicture()), StandardCharsets.US_ASCII), entity.getFileName(), entity.getFileType(),
           entity.getNice(), "data: image/jpeg;base64," +
           new String(Base64.encodeBase64(entity.getNice()), StandardCharsets.US_ASCII), entity.getNiceFileName(), entity.getNiceFileType());
@@ -159,6 +160,7 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
 
     TrademarkPreViewEntity entity = trademarkPreViewRepository.getBy();
     entity.setTrademarkPreExplain(trademarkPreView.getTrademarkPreExplain());
+    entity.setTrademarkPreExplainEn(trademarkPreView.getTrademarkPreExplainEn());
 
     trademarkPreViewRepository.save(entity);
 
@@ -183,7 +185,7 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
   @Override
   public ActivityAnalysisView getActivityAnalysisViewBy() {
     ActivityAnalysisViewEntity entity = activityAnalysisViewRepository.getBy();
-    ActivityAnalysisView activityAnalysisView = new ActivityAnalysisView(entity.getId(), entity.getPicture(), entity.getActivityAnalysisExplain(), "data: image/jpeg;base64," +
+    ActivityAnalysisView activityAnalysisView = new ActivityAnalysisView(entity.getId(), entity.getPicture(), entity.getActivityAnalysisExplain(), entity.getActivityAnalysisExplainEn(),"data: image/jpeg;base64," +
         new String(Base64.encodeBase64(entity.getPicture()), StandardCharsets.US_ASCII), entity.getFileName(), entity.getFileType());
     return activityAnalysisView;
   }
@@ -193,6 +195,7 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
 
     ActivityAnalysisViewEntity entity = activityAnalysisViewRepository.getBy();
     entity.setActivityAnalysisExplain(activityAnalysisView.getActivityAnalysisExplain());
+    entity.setActivityAnalysisExplainEn(activityAnalysisView.getActivityAnalysisExplainEn());
 
     activityAnalysisViewRepository.save(entity);
 
@@ -217,7 +220,7 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
   @Override
   public ValuationView getValuationViewBy() {
     ValuationViewEntity entity = valuationViewRepository.getBy();
-    ValuationView valuationView = new ValuationView(entity.getId(), entity.getPicture(), entity.getValuationExplain(), "data: image/jpeg;base64," +
+    ValuationView valuationView = new ValuationView(entity.getId(), entity.getPicture(), entity.getValuationExplain(),entity.getValuationExplainEn(), "data: image/jpeg;base64," +
         new String(Base64.encodeBase64(entity.getPicture()), StandardCharsets.US_ASCII), entity.getFileName(), entity.getFileType());
     return valuationView;
   }
@@ -227,6 +230,7 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
 
     ValuationViewEntity entity = valuationViewRepository.getBy();
     entity.setValuationExplain(valuationView.getValuationExplain());
+    entity.setValuationExplainEn(valuationView.getValuationExplainEn());
 
     valuationViewRepository.save(entity);
 
@@ -251,7 +255,7 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
   @Override
   public EvaluationInvalidationView getEvaluationInvalidationViewBy() {
     EvaluationInvalidationViewEntity entity = evaluationInvalidationViewRepository.getBy();
-    EvaluationInvalidationView evaluationInvalidationView = new EvaluationInvalidationView(entity.getId(), entity.getPicture(), entity.getEvaluationInvalidationExplain(), "data: image/jpeg;base64," +
+    EvaluationInvalidationView evaluationInvalidationView = new EvaluationInvalidationView(entity.getId(), entity.getPicture(), entity.getEvaluationInvalidationExplain(), entity.getEvaluationInvalidationExplainEn(),"data: image/jpeg;base64," +
         new String(Base64.encodeBase64(entity.getPicture()), StandardCharsets.US_ASCII), entity.getFileName(), entity.getFileType());
     return evaluationInvalidationView;
   }
@@ -261,6 +265,7 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
 
     EvaluationInvalidationViewEntity entity = evaluationInvalidationViewRepository.getBy();
     entity.setEvaluationInvalidationExplain(evaluationInvalidationView.getEvaluationInvalidationExplain());
+    entity.setEvaluationInvalidationExplainEn(evaluationInvalidationView.getEvaluationInvalidationExplainEn());
 
     evaluationInvalidationViewRepository.save(entity);
 
@@ -285,7 +290,7 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
   @Override
   public TechnologyConsultancyView getTechnologyConsultancyViewBy() {
     TechnologyConsultancyViewEntity entity = technologyConsultancyViewRepository.getBy();
-    TechnologyConsultancyView technologyConsultancyView = new TechnologyConsultancyView(entity.getId(), entity.getPicture(), entity.getTechnologyConsultancyExplain(), "data: image/jpeg;base64," +
+    TechnologyConsultancyView technologyConsultancyView = new TechnologyConsultancyView(entity.getId(), entity.getPicture(), entity.getTechnologyConsultancyExplain(),entity.getTechnologyConsultancyExplainEn(), "data: image/jpeg;base64," +
         new String(Base64.encodeBase64(entity.getPicture()), StandardCharsets.US_ASCII), entity.getFileName(), entity.getFileType());
     return technologyConsultancyView;
   }
@@ -295,6 +300,7 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
 
     TechnologyConsultancyViewEntity entity = technologyConsultancyViewRepository.getBy();
     entity.setTechnologyConsultancyExplain(technologyConsultancyView.getTechnologyConsultancyExplain());
+    entity.setTechnologyConsultancyExplainEn(technologyConsultancyView.getTechnologyConsultancyExplainEn());
 
     technologyConsultancyViewRepository.save(entity);
 
@@ -605,7 +611,7 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
   public TrademarkPreServiceCharges getTrademarkPreServiceCharges() {
     Optional<TrademarkPreServiceChargesEntity> optional = trademarkPreServiceChargesRepository.getBy();
     if (optional.isPresent()) {
-     return new TrademarkPreServiceCharges(optional.get().getId(),optional.get().getExplain());
+     return new TrademarkPreServiceCharges(optional.get().getId(),optional.get().getExplain(),optional.get().getExplainEn());
     } else {
       return new TrademarkPreServiceCharges();
     }
@@ -616,10 +622,12 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
     Optional<TrademarkPreServiceChargesEntity> optional = trademarkPreServiceChargesRepository.getBy();
     if (optional.isPresent()) {
       optional.get().setExplain(trademarkPreServiceCharges.getExplain());
+      optional.get().setExplainEn(trademarkPreServiceCharges.getExplainEn());
       trademarkPreServiceChargesRepository.save(optional.get());
     } else {
       TrademarkPreServiceChargesEntity trademarkPreServiceChargesEntity = new TrademarkPreServiceChargesEntity();
       trademarkPreServiceCharges.setExplain(trademarkPreServiceCharges.getExplain());
+      trademarkPreServiceCharges.setExplainEn(trademarkPreServiceCharges.getExplainEn());
       trademarkPreServiceChargesRepository.save(trademarkPreServiceChargesEntity);
     }
 
@@ -629,7 +637,7 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
   public PatentPreServiceCharges getPatentPreServiceCharges() {
     Optional<PatentPreServiceChargesEntity> optional = patentPreServiceChargesRepository.getBy();
     if (optional.isPresent()) {
-      return new PatentPreServiceCharges(optional.get().getId(),optional.get().getExplain());
+      return new PatentPreServiceCharges(optional.get().getId(),optional.get().getExplain(),optional.get().getExplainEn());
     } else {
       return new PatentPreServiceCharges();
     }
@@ -640,10 +648,12 @@ public class ServicesInfoServiceImpl implements ServicesInfoService {
     Optional<PatentPreServiceChargesEntity> optional = patentPreServiceChargesRepository.getBy();
     if (optional.isPresent()) {
       optional.get().setExplain(patentPreServiceCharges.getExplain());
+      optional.get().setExplainEn(patentPreServiceCharges.getExplainEn());
       patentPreServiceChargesRepository.save(optional.get());
     } else {
       PatentPreServiceChargesEntity patentPreServiceChargesEntity = new PatentPreServiceChargesEntity();
       patentPreServiceChargesEntity.setExplain(patentPreServiceCharges.getExplain());
+      patentPreServiceChargesEntity.setExplainEn(patentPreServiceCharges.getExplainEn());
       patentPreServiceChargesRepository.save(patentPreServiceChargesEntity);
     }
   }

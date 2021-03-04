@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,7 +51,7 @@ public class HomeServiceImpl implements HomeService {
       dtos.add(slider);
     }
     homePage.setSliders(dtos);
-    Slogan slogan = new Slogan(sloganEntities.get(0).getId(),sloganEntities.get(0).getSlogan());
+    Slogan slogan = new Slogan(sloganEntities.get(0).getId(),sloganEntities.get(0).getSlogan(),sloganEntities.get(0).getSloganEn());
     homePage.setSlogan(slogan);
 
     return homePage;
@@ -64,7 +65,13 @@ public class HomeServiceImpl implements HomeService {
   @Override
   public void sloganUpdate(Slogan slogan) {
     SloganEntity sloganEntity = sloganRepository.getById(slogan.getId());
+    slogan.setSlogan(slogan.getSlogan().replaceAll(Pattern.quote("<p>"),""));
+    slogan.setSloganEn(slogan.getSloganEn().replaceAll(Pattern.quote("<p>"),""));
+    slogan.setSlogan(slogan.getSlogan().replaceAll(Pattern.quote("</p>"),""));
+    slogan.setSloganEn(slogan.getSloganEn().replaceAll(Pattern.quote("</p>"),""));
+
     sloganEntity.setSlogan(slogan.getSlogan());
+    sloganEntity.setSloganEn(slogan.getSloganEn());
     sloganRepository.save(sloganEntity);
   }
 

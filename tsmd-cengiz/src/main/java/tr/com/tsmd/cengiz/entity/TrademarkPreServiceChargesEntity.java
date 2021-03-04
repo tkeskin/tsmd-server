@@ -23,6 +23,10 @@ public class TrademarkPreServiceChargesEntity extends AuditModel {
   @Type(type="org.hibernate.type.TextType")
   private String explain;
 
+  @Lob
+  @Type(type="org.hibernate.type.TextType")
+  private String explainEn;
+
   public TrademarkPreServiceChargesEntity() {
   }
 
@@ -40,5 +44,13 @@ public class TrademarkPreServiceChargesEntity extends AuditModel {
 
   public void setExplain(String explain) {
     this.explain = explain;
+  }
+
+  public String getExplainEn() {
+    return explainEn;
+  }
+
+  public void setExplainEn(String explainEn) {
+    this.explainEn = explainEn;
   }
 }

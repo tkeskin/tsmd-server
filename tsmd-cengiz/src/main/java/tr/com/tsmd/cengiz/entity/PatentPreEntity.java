@@ -91,6 +91,8 @@ public class PatentPreEntity extends AuditModel {
   @Type(type="org.hibernate.type.TextType")
   private String appNo;
 
+  private String trackingNumber;
+
 
   public PatentPreEntity() {
   }
@@ -126,6 +128,40 @@ public class PatentPreEntity extends AuditModel {
     this.legalPerson = legalPerson;
     this.kvvk = kvvk;
     this.appNo = appNo;
+  }
+
+  public PatentPreEntity(String name_surname, String tc, String address, String tel, @NotBlank @Size(max = 50) @Email String email, String protectiontype, String reporttype, String computerarea, String electricityarea, String electronicarea, String machinearea, String medicinearea, String automotivearea, String metallurgyarea, String biomedicalarea, String chemistryarea, String foodarea, String buildarea, String otherarea, String title, String patentkeyword, String patentapplication, String advantage, String publications, String detailexplain, String picture, String otherpoint, String legalPerson, boolean kvvk,String appNo,String trackingNumber) {
+    this.name_surname = name_surname;
+    this.tc = tc;
+    this.address = address;
+    this.tel = tel;
+    this.email = email;
+    this.protectiontype = protectiontype;
+    this.reporttype = reporttype;
+    this.computerarea = computerarea;
+    this.electricityarea = electricityarea;
+    this.electronicarea = electronicarea;
+    this.machinearea = machinearea;
+    this.medicinearea = medicinearea;
+    this.automotivearea = automotivearea;
+    this.metallurgyarea = metallurgyarea;
+    this.biomedicalarea = biomedicalarea;
+    this.chemistryarea = chemistryarea;
+    this.foodarea = foodarea;
+    this.buildarea = buildarea;
+    this.otherarea = otherarea;
+    this.title = title;
+    this.patentkeyword = patentkeyword;
+    this.patentapplication = patentapplication;
+    this.advantage = advantage;
+    this.publications = publications;
+    this.detailexplain = detailexplain;
+    this.picture = picture;
+    this.otherpoint = otherpoint;
+    this.legalPerson = legalPerson;
+    this.kvvk = kvvk;
+    this.appNo = appNo;
+    this.trackingNumber = trackingNumber;
   }
 
   public Long getId() {
@@ -399,5 +435,13 @@ public class PatentPreEntity extends AuditModel {
 
   public void setAppNo(String appNo) {
     this.appNo = appNo;
+  }
+
+  public String getTrackingNumber() {
+    return trackingNumber;
+  }
+
+  public void setTrackingNumber(String trackingNumber) {
+    this.trackingNumber = trackingNumber;
   }
 }

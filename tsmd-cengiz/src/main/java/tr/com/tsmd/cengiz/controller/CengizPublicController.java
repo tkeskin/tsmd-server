@@ -995,6 +995,7 @@ public class CengizPublicController {
 
       general = new General("Kayıt işleminiz başarılı...", entity.getId());
     } catch (Exception e) {
+      logger.error("--->postTrademarkPre Başvuru takip no: "+entity1.getId());
       logger.error(e.getLocalizedMessage());
       general = new General("Kayıt işleminiz başarısız!!!", 5L);
     }
@@ -1031,6 +1032,7 @@ public class CengizPublicController {
 
       general = new General("Kayıt işleminiz başarılı...", entity.getId());
     } catch (Exception e) {
+      logger.error("--->postInvalidationAssessment Başvuru takip no: "+entity1.getId());
       logger.error(e.getLocalizedMessage());
       general = new General("Kayıt işleminiz başarısız!!!", 5L);
     }
@@ -1086,6 +1088,7 @@ public class CengizPublicController {
       general.setId(patentPreEntity.getId());
 
     } catch (Exception e) {
+      logger.error("--->postPatentPre Başvuru takip no: "+entity1.getId());
       logger.error(e.getLocalizedMessage());
       general = new General("Kayıt işleminiz başarısız!!!", 5L);
     }
@@ -1146,6 +1149,7 @@ public class CengizPublicController {
       general.setMessage("Kayıt işleminiz başarılı!");
       general.setId(valuationPatentEntity.getId());
     } catch (Exception e) {
+      logger.error("--->valuationPatentSave Başvuru takip no: "+entity1.getId());
       logger.error(e.getLocalizedMessage());
       general = new General("Kayıt işleminiz başarısız!!!", 5L);
     }
@@ -1205,6 +1209,7 @@ public class CengizPublicController {
       general.setMessage("Kayıt işleminiz başarılı!");
       general.setId(valuationTrademarkEntity.getId());
     } catch (Exception e) {
+      logger.error("--->valuationTrademarkSave Başvuru takip no: "+entity1.getId());
       logger.error(e.getLocalizedMessage());
       general = new General("Kayıt işleminiz başarısız!!!", 5L);
     }
@@ -1243,6 +1248,7 @@ public class CengizPublicController {
       general.setMessage("Kayıt işleminiz başarılı!");
       general.setId(activityAnalysisEntity.getId());
     } catch (Exception e) {
+      logger.error("--->activityAnalysisSave Başvuru takip no: "+entity1.getId());
       logger.error(e.getLocalizedMessage());
       general = new General("Kayıt işleminiz başarısız!!!", 5L);
     }
@@ -1294,6 +1300,7 @@ public class CengizPublicController {
       trademarkPreRepository.save(entity);
       return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
     } catch (Exception e) {
+      logger.error("--->fileUpload Marka Ön Araştırma id="+id+" tür(1=marka örneği 2=dekont)="+type);
       logger.error(e.getLocalizedMessage());
       return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!"));
     }
@@ -1315,6 +1322,7 @@ public class CengizPublicController {
           + "Başvuru Takip No:" + trackingNumber));
 
     } catch (Exception e) {
+      logger.error("--->sendEmailTrademarkPre id="+id);
       logger.error(e.getLocalizedMessage());
       if (language.equals("en")) {
         return ResponseEntity.ok(new MessageResponse("Your application could not be received! Please contact the responsible person."));
@@ -1336,6 +1344,7 @@ public class CengizPublicController {
       return ResponseEntity.ok(new MessageResponse("Başvurunuz alınmış olup hizmet bedeline ilişkin tarafınızla "
           + "en kısa sürede iletişime geçilecektir. Başvuru Takip No:" + trackingNumber));
     } catch (Exception e) {
+      logger.error("--->sendEmailInvalidationAssessment id="+id);
       logger.error(e.getLocalizedMessage());
       if (language.equals("en")) {
         return ResponseEntity.ok(new MessageResponse("Your application could not be received! Please contact the responsible person."));
@@ -1471,9 +1480,8 @@ public class CengizPublicController {
       patentPreService.savePatentPreTable(id, fullDataList);
       return ResponseEntity.ok(new MessageResponse("Başarılı"));
     } catch (Exception e) {
+      logger.error("--->/fullData Patent Ön araştırma tablo ekleme id="+id);
       logger.error(e.getLocalizedMessage());
-
-
       return ResponseEntity.ok(new MessageResponse("Başarısız!!"));
     }
   }
@@ -1485,7 +1493,7 @@ public class CengizPublicController {
     try {
       String trackingNumber = emailService.sendMimeMessage(id, 2);
       if (language.equals("en")) {
-        return ResponseEntity.ok(new MessageResponse("Your application has been reviewed and "
+        return ResponseEntity.ok(new MessageResponse("Your application has been submitted and "
             + "if there is no deficiency, your report will be completed within two weeks and "
             + "an e-mail will be sent to you. Application Tracking Number:" + trackingNumber));
       }
@@ -1495,6 +1503,7 @@ public class CengizPublicController {
           + "Başvuru Takip No:" + trackingNumber));
 
     } catch (Exception e) {
+      logger.error("--->sendEmailPatentPre id="+id);
       logger.error(e.getLocalizedMessage());
       if (language.equals("en")) {
         return ResponseEntity.ok(new MessageResponse("Your application could not be received.! Please contact the responsible person."));
@@ -1518,6 +1527,7 @@ public class CengizPublicController {
           + "en kısa sürede iletişime geçilecektir. Başvuru Takip No:" + trackingNumber));
 
     } catch (Exception e) {
+      logger.error("--->sendEmailValuationPatent id="+id);
       logger.error(e.getLocalizedMessage());
       if (language.equals("en")) {
         return ResponseEntity.ok(new MessageResponse("Your application could not be received.! Please contact the responsible person."));
@@ -1539,6 +1549,7 @@ public class CengizPublicController {
       return ResponseEntity.ok(new MessageResponse("Başvurunuz alınmış olup hizmet bedeline ilişkin tarafınızla "
           + "en kısa sürede iletişime geçilecektir. Başvuru Takip No:" + trackingNumber));
     } catch (Exception e) {
+      logger.error("--->sendEmailValuationTrademark id="+id);
       logger.error(e.getLocalizedMessage());
       if (language.equals("en")) {
         return ResponseEntity.ok(new MessageResponse("Your application could not be received.! Please contact the responsible person."));
@@ -1560,6 +1571,7 @@ public class CengizPublicController {
       return ResponseEntity.ok(new MessageResponse("Başvurunuz alınmış olup hizmet bedeline ilişkin tarafınızla "
           + "en kısa sürede iletişime geçilecektir. Başvuru Takip No:" + trackingNumber));
     } catch (Exception e) {
+      logger.error("--->sendEmailActivityAnalysis id="+id);
       logger.error(e.getLocalizedMessage());
       if (language.equals("en")) {
         return ResponseEntity.ok(new MessageResponse("Your application could not be received.! Please contact the responsible person."));
@@ -1577,6 +1589,7 @@ public class CengizPublicController {
       patentPreService.addPatentPreRelatedPictures(patentPreId, pictures);
       return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
     } catch (Exception e) {
+      logger.error("--->addPatentPreRelatedPictures Patent Ön Araştırma ilgili görsel ekleme id="+patentPreId);
       logger.error(e.getLocalizedMessage());
       return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!!"));
     }
@@ -1644,6 +1657,7 @@ public class CengizPublicController {
       activityAnalysisService.addActivityAnalysisPictures(activityId, pictures);
       return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarılı!"));
     } catch (Exception e) {
+      logger.error("--->addActivityAnalysisPictures Faaliyet serbestliği analizi ilgili görseller id="+activityId);
       logger.error(e.getLocalizedMessage());
       return ResponseEntity.ok(new MessageResponse("Kayıt işleminiz başarısız!!"));
     }

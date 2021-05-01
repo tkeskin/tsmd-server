@@ -1258,7 +1258,8 @@ public class CengizPublicController {
 
   private void sendMail(String replyText, String[] to, String subject) {
     Mail mail = new Mail();
-    mail.setFrom("test@turksmd.com.tr");
+//    mail.setFrom("test@turksmd.com.tr");
+    mail.setFrom("talep@turksmd.com.tr");
     mail.setTo(to);
     mail.setSubject(subject);
     mail.setContent(replyText);
@@ -1461,7 +1462,8 @@ public class CengizPublicController {
     try {
       contactMailRepository.save(new ContactMailEntity(contactMail.getEmail(), contactMail.getNameSurname(), contactMail.getMessage()));
 
-      String[] to = {"test@turksmd.com.tr"};
+//      String[] to = {"test@turksmd.com.tr"};
+      String[] to = {"talep@turksmd.com.tr"};
       String content = "Ad Soyad = " + contactMail.getNameSurname() + "\nEmail = " + contactMail.getEmail() + "\nMesaj =" + contactMail.getMessage();
       sendMail(content, to, "Bizimle İletişime Geçin");
       return ResponseEntity.ok(new MessageResponse("Mailiniz gönderilmiştir!"));

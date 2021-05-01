@@ -909,8 +909,10 @@ public class EmailServiceImpl implements EmailService {
 
     }
 
-    helper.setTo("test@turksmd.com.tr");
-    helper.setFrom("test@turksmd.com.tr");
+//    helper.setTo("test@turksmd.com.tr");
+//    helper.setFrom("test@turksmd.com.tr");
+    helper.setTo("talep@turksmd.com.tr");
+    helper.setFrom("talep@turksmd.com.tr");
     emailSender.send(message);
     return trackingNumber;
   }

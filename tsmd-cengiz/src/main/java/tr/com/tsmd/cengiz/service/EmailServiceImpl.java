@@ -1,12 +1,17 @@
 package tr.com.tsmd.cengiz.service;
 
 import com.sun.istack.ByteArrayDataSource;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -149,6 +154,7 @@ public class EmailServiceImpl implements EmailService {
         }
         helper.setText(contentHtml, true);
         helper.setSubject("Marka Ön Araştırma Raporu Talebi"+"("+trademarkPreEntity.getTrackingNumber()+")");
+        helper.setReplyTo(trademarkPreEntity.getEmail());
 
       } catch (MessagingException e){
         e.getLocalizedMessage();
@@ -333,6 +339,7 @@ public class EmailServiceImpl implements EmailService {
 
       helper.setText(contentHtml, true);
       helper.setSubject("Patent Ön Araştırma Talebi"+"("+patentPreEntity.getTrackingNumber()+")");
+      helper.setReplyTo(patentPreEntity.getEmail());
 
 
     } else if (servicesType == 3) {
@@ -580,6 +587,7 @@ public class EmailServiceImpl implements EmailService {
 
       helper.setText(contentHtml, true);
       helper.setSubject("Patent Değerleme Talebi"+"("+valuationPatentEntity.getTrackingNumber()+")");
+      helper.setReplyTo(valuationPatentEntity.getEmail());
 
     } else if (servicesType == 4) {
       ValuationTrademarkEntity valuationTrademarkEntity = valuationTrademarkRepository.getById(id);
@@ -804,6 +812,7 @@ public class EmailServiceImpl implements EmailService {
 
       helper.setText(contentHtml, true);
       helper.setSubject("Marka Değerleme Talebi"+"("+valuationTrademarkEntity.getTrackingNumber()+")");
+      helper.setReplyTo(valuationTrademarkEntity.getEmail());
 
 
     } else if (servicesType == 5) {
@@ -878,6 +887,7 @@ public class EmailServiceImpl implements EmailService {
 
       helper.setText(contentHtml, true);
       helper.setSubject("Faaliyet Serbestliği Analizi"+"("+activityAnalysisEntity.getTrackingNumber()+")");
+      helper.setReplyTo(activityAnalysisEntity.getEmail());
 
     } else if (servicesType == 6) {
       InvalidationAssessmentEntity invalidationAssessmentEntity= invalidationAssessmentRepository.getById(id);
@@ -900,6 +910,7 @@ public class EmailServiceImpl implements EmailService {
 
         helper.setText(contentHtml, true);
         helper.setSubject("Sınai Mülkiyet Varlıkları Hükümsüzlük Analizi"+"("+invalidationAssessmentEntity.getTrackingNumber()+")");
+        helper.setReplyTo(invalidationAssessmentEntity.getEmail());
 
       } catch (MessagingException e){
         e.getLocalizedMessage();
@@ -915,6 +926,44 @@ public class EmailServiceImpl implements EmailService {
     helper.setFrom("talep@turksmd.com.tr");
     emailSender.send(message);
     return trackingNumber;
+  }
+
+  @Override
+  public String sendInformationMessage(String trackingNumber,Long id, Integer servicesType) throws MessagingException, IOException {
+    MimeMessage message = emailSender.createMimeMessage();
+    MimeMessageHelper helper = new MimeMessageHelper(message,
+        MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
+        StandardCharsets.UTF_8.name());
+    TrademarkPreEntity trademarkPreEntity= trademarkPreRepository.getById(id);
+    if (servicesType == 1) {
+      String contentHtml = "<div>Sayın İlgili,</div></br>\n"
+          + "<div>Marka ön araştırma talebiniz alınmış olup eksiklik bulunmaması halinde bir hafta içerisinde raporunuz tamamlanarak tarafınıza mail gönderilecektir. Başvuru Takip No: " + trackingNumber;
+      contentHtml += "</div></br>"
+          + "<div>Saygılarımızla bilgilerinize sunarız.</div></br>"
+          + "<div style=\"font-weight: bold;\">(Bu bir otomatik maildir, lütfen yanıtlamayınız.)</div></br>";
+      InputStream is = getClass().getResourceAsStream("/images/mailsignature.png");
+      byte[] bytes = is.readAllBytes();
+      ByteArrayDataSource bds = new ByteArrayDataSource(bytes, "image/png");
+      String markaOrnegiIsim = attachmentNameControl("marka_ornegi","image/png");
+      helper.addAttachment(markaOrnegiIsim, bds);
+      String inlineImage = "<img src=\"cid:"+markaOrnegiIsim+"\"></img><br/>";
+      contentHtml+= "<div><span><a href=\"https://www.turksmd.com.tr\" target=\"_blank\">" + inlineImage + "</a></span></br>"
+          + "<span style=\"font-weight: bold;\">Türk Sınai Mülkiyet Değerleme Mühendislik ve Danışmanlık Hizmetleri A.Ş.</span></br>"
+          + "<span>Hipodrom Caddesi No:13/1</span></br>"
+          + "<span>Yenimahalle/ANKARA</span></br>"
+          + "<span><span style=\"font-weight: bold;\">t:</span> +90 312 306 25 00</span></br>"
+          + "<p style=\"font-weight: bold;\"><a href=\"https://www.turksmd.com.tr\" target=\"_blank\">www.turksmd.com.tr</a></p>"
+          + "</div>";
+      helper.setText(contentHtml, true);
+      helper.setSubject("Marka Ön Araştırma Talebi Bilgilendirme");
+
+    }
+    helper.setTo(trademarkPreEntity.getEmail());
+//    helper.setFrom("test@turksmd.com.tr");
+    helper.setFrom("talep@turksmd.com.tr");
+
+    emailSender.send(message);
+    return "Başarılı";
   }
 
   public String attachmentNameControl(String attachmentName, String attachmentContentType){

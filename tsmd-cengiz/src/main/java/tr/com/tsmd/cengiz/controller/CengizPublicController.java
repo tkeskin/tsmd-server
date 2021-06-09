@@ -1313,6 +1313,7 @@ public class CengizPublicController {
 
     try {
       String trackingNumber = emailService.sendMimeMessage(id, 1);
+      String informationMessage = emailService.sendInformationMessage(trackingNumber, id,1);
       if (language.equals("en")) {
         return ResponseEntity.ok(new MessageResponse("Your application has been examined and if there "
             + "is no deficiency, your report will be completed within a week and an e-mail will be sent to you. "
